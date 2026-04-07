@@ -153,7 +153,7 @@ ul.wl{list-style:none}
   <ul class="wl">
     
       <li>
-        <a class="wi" href="https://thebalddude.co/02-28-26" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/02-28-26" target="_blank" rel="noopener">
           <span class="wi-num">01</span>
           <span class="wi-name">02.28.26</span>
           <span class="wi-type">NYC Street</span>
@@ -162,7 +162,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/02-25-26" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/02-25-26" target="_blank" rel="noopener">
           <span class="wi-num">02</span>
           <span class="wi-name">02.25.26</span>
           <span class="wi-type">NYC Street</span>
@@ -171,7 +171,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/02-23-26" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/02-23-26" target="_blank" rel="noopener">
           <span class="wi-num">03</span>
           <span class="wi-name">02.23.26</span>
           <span class="wi-type">NYC Street</span>
@@ -180,7 +180,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/02-22-26" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/02-22-26" target="_blank" rel="noopener">
           <span class="wi-num">04</span>
           <span class="wi-name">02.22.26</span>
           <span class="wi-type">NYC Street</span>
@@ -189,7 +189,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/01-25-26" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/01-25-26" target="_blank" rel="noopener">
           <span class="wi-num">05</span>
           <span class="wi-name">02.18.26</span>
           <span class="wi-type">NYC Street</span>
@@ -198,7 +198,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/06-19-25" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/06-19-25" target="_blank" rel="noopener">
           <span class="wi-num">06</span>
           <span class="wi-name">06.19.25</span>
           <span class="wi-type">NYC Street</span>
@@ -207,7 +207,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/04-05-25" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/04-05-25" target="_blank" rel="noopener">
           <span class="wi-num">07</span>
           <span class="wi-name">04.05.25</span>
           <span class="wi-type">NYC Street</span>
@@ -216,7 +216,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/03-02-25" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/03-02-25" target="_blank" rel="noopener">
           <span class="wi-num">08</span>
           <span class="wi-name">03.02.25</span>
           <span class="wi-type">NYC Street</span>
@@ -225,7 +225,7 @@ ul.wl{list-style:none}
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/02-18-24" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.myportfolio.com/02-18-24" target="_blank" rel="noopener">
           <span class="wi-num">09</span>
           <span class="wi-name">02.18.24</span>
           <span class="wi-type">NYC Street</span>
@@ -242,25 +242,39 @@ ul.wl{list-style:none}
   <a href="product.html" class="pf-link">Product &#8594;</a>
 </div>
 
+
 <script>
-
-const cur=document.getElementById('cur');
-const ring=document.getElementById('curRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('h'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('h'));
+document.addEventListener('DOMContentLoaded',function(){
+  const apt=document.getElementById('hud-cursor');
+  if(!apt)return;
+  let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+  apt.style.left=ax+'px';apt.style.top=ay+'px';
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  (function loop(){
+    ax+=(mx-ax)*.16;ay+=(my-ay)*.16;
+    apt.style.left=Math.round(ax)+'px';
+    apt.style.top=Math.round(ay)+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+  document.querySelectorAll('a,button,.wi,.work-item,.social-row').forEach(el=>{
+    el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+    el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+  });
+  document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+  const nav=document.getElementById('mainNav');
+  window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',scrollY>60)});
+  function toggleMobile(){
+    const ul=document.querySelector('.nav-links');
+    const bk=document.querySelector('.nav-book');
+    const open=ul.style.display==='flex';
+    ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+    if(bk)bk.style.display=open?'':'none';
+  }
+  window.toggleMobile=toggleMobile;
 });
-function toggleMobile(){
-  const ul=document.querySelector('.nav-links');
-  const bk=document.querySelector('.nav-book');
-  const open=ul.style.display==='flex';
-  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
-  if(bk)bk.style.display=open?'':'none';
-}
-
 </script>
 </body>
 </html>
