@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portraits — The Bald Dude Co.</title>
+<meta name="description" content="NYC editorial portrait photography — personal branding, solo sessions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --mid:#6b6b6b;
+  --border:rgba(255,255,255,0.07);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:#f5f4f0;font-family:var(--sans);overflow-x:hidden;cursor:none}
+
+.cur{position:fixed;width:6px;height:6px;background:#f5f4f0;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(245,244,240,.2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
+.cur-ring.h{width:48px;height:48px;border-color:rgba(245,244,240,.55)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.75rem 2.5rem}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:#f5f4f0}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#f5f4f0}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(245,244,240,.18);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:#f5f4f0;border-color:#f5f4f0}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+.page-header{padding:9rem 2.5rem 3.5rem;border-bottom:.5px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;gap:2rem}
+.ph-left{}
+.ph-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,244,240,.28);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.ph-eyebrow::before{content:'';width:20px;height:1px;background:rgba(245,244,240,.2)}
+.ph-title{font-family:var(--sans);font-size:clamp(3.5rem,9vw,8rem);font-weight:300;line-height:.95;letter-spacing:-.02em;color:#f5f4f0}
+.ph-title em{font-style:italic}
+.ph-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,244,240,.18);text-align:right;line-height:2.2;flex-shrink:0}
+
+.work-list-wrap{padding:0 2.5rem;position:relative;z-index:2}
+.wl-header{display:flex;justify-content:space-between;padding:1.5rem 0;border-bottom:.5px solid var(--border)}
+.wl-col{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,244,240,.18)}
+ul.wl{list-style:none}
+.wi{
+  display:flex;align-items:baseline;gap:1.5rem;
+  border-bottom:.5px solid var(--border);
+  padding:1.6rem 0;
+  text-decoration:none;color:inherit;
+  transition:padding-left .28s ease;
+  position:relative;
+}
+.wi:hover{padding-left:.75rem}
+.wi:hover .wi-name{color:#f5f4f0}
+.wi:hover .wi-num{color:rgba(245,244,240,.35)}
+.wi:hover .wi-type{color:rgba(245,244,240,.35)}
+.wi:hover .wi-year{color:rgba(245,244,240,.35)}
+.wi:hover .wi-arr{opacity:1;transform:translateX(0)}
+.wi-num{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:rgba(245,244,240,.14);min-width:3rem;flex-shrink:0;transition:color .25s}
+.wi-name{font-family:var(--sans);font-size:clamp(1.4rem,3.2vw,2.5rem);font-weight:300;color:rgba(245,244,240,.52);flex:1;letter-spacing:-.01em;line-height:1.1;transition:color .25s}
+.wi-type{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,244,240,.16);flex-shrink:0;transition:color .25s;min-width:160px;text-align:right}
+.wi-year{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:rgba(245,244,240,.14);flex-shrink:0;min-width:3rem;text-align:right;transition:color .25s}
+.wi-arr{font-size:12px;color:rgba(245,244,240,.3);flex-shrink:0;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+
+.page-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-top:3rem}
+.pf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.pf-link:hover{color:#f5f4f0}
+.pf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .page-header{flex-direction:column;align-items:flex-start;padding:8rem 1.5rem 3rem}
+  .ph-meta{text-align:left}
+  .work-list-wrap{padding:0 1.5rem}
+  .page-footer{padding:2rem 1.5rem}
+  .wi-type{display:none}
+  .wi-year{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="events.html">Events</a></li>
+    <li><a href="portraits.html" class="active">Portraits</a></li>
+    <li><a href="couples.html">Couples</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="product.html">Product</a></li>
+    
+  </ul>
+  <a href="index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="page-header">
+  <div class="ph-left">
+    <div class="ph-eyebrow">Selected Work</div>
+    <h1 class="ph-title"><em>Portraits</em></h1>
+  </div>
+  <div class="ph-meta">
+    Brooklyn, NYC<br>
+    2019 — Present<br>
+    21 Projects
+  </div>
+</div>
+
+<div class="work-list-wrap">
+  <div class="wl-header">
+    <span class="wl-col">Project</span>
+    <span class="wl-col">Click to view &#8599;</span>
+  </div>
+  <ul class="wl">
+    
+      <li>
+        <a class="wi" href="https://thebalddude.co/andrea" target="_blank" rel="noopener">
+          <span class="wi-num">01</span>
+          <span class="wi-name">Andrea</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/avi-hart" target="_blank" rel="noopener">
+          <span class="wi-num">02</span>
+          <span class="wi-name">Avi Hart</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/christine" target="_blank" rel="noopener">
+          <span class="wi-num">03</span>
+          <span class="wi-name">Christine</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/duke" target="_blank" rel="noopener">
+          <span class="wi-num">04</span>
+          <span class="wi-name">Duke</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/dennis" target="_blank" rel="noopener">
+          <span class="wi-num">05</span>
+          <span class="wi-name">Dennis</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/jaida" target="_blank" rel="noopener">
+          <span class="wi-num">06</span>
+          <span class="wi-name">Jaida</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/justin" target="_blank" rel="noopener">
+          <span class="wi-num">07</span>
+          <span class="wi-name">Justin</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/francis" target="_blank" rel="noopener">
+          <span class="wi-num">08</span>
+          <span class="wi-name">Francis</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/kari-rae" target="_blank" rel="noopener">
+          <span class="wi-num">09</span>
+          <span class="wi-name">Kari Rae</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/kaylee" target="_blank" rel="noopener">
+          <span class="wi-num">10</span>
+          <span class="wi-name">Kaylee</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/layla" target="_blank" rel="noopener">
+          <span class="wi-num">11</span>
+          <span class="wi-name">Layla</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/lily" target="_blank" rel="noopener">
+          <span class="wi-num">12</span>
+          <span class="wi-name">Lily</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/macy-jolie" target="_blank" rel="noopener">
+          <span class="wi-num">13</span>
+          <span class="wi-name">Macy Jolie</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/mikayla" target="_blank" rel="noopener">
+          <span class="wi-num">14</span>
+          <span class="wi-name">Mikayla</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/onkar" target="_blank" rel="noopener">
+          <span class="wi-num">15</span>
+          <span class="wi-name">Onkar</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/that-70s-shoot" target="_blank" rel="noopener">
+          <span class="wi-num">16</span>
+          <span class="wi-name">Layla — That 70s Shoot</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2025</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/pierreline" target="_blank" rel="noopener">
+          <span class="wi-num">17</span>
+          <span class="wi-name">Pierreline</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/sergio" target="_blank" rel="noopener">
+          <span class="wi-num">18</span>
+          <span class="wi-name">Sergio</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/tess" target="_blank" rel="noopener">
+          <span class="wi-num">19</span>
+          <span class="wi-name">Tess</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/tiffany" target="_blank" rel="noopener">
+          <span class="wi-num">20</span>
+          <span class="wi-name">Tiffany</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/tristan" target="_blank" rel="noopener">
+          <span class="wi-num">21</span>
+          <span class="wi-name">Tristan</span>
+          <span class="wi-type">Editorial Portrait</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+  </ul>
+</div>
+
+<div class="page-footer">
+  <a href="events.html" class="pf-link">&#8592; Events</a>
+  <span class="pf-copy">The Bald Dude Co.™</span>
+  <a href="couples.html" class="pf-link">Couples &#8594;</a>
+</div>
+
+<script>
+
+const cur=document.getElementById('cur');
+const ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('h'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('h'));
+});
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+
+</script>
+</body>
+</html>
