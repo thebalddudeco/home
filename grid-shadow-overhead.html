@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid, Shadow & Overhead — Vol. 03 — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  :root {
+    --ink:        #0a0f0d;
+    --deep:       #0d1410;
+    --surface:    #111a16;
+    --card:       #16221c;
+    --border:     #1e3028;
+    --teal:       #1a5c48;
+    --teal-mid:   #2a7a60;
+    --teal-bright:#3da882;
+    --teal-pale:  #7ecfb2;
+    --cream:      #e8f0ec;
+    --muted:      #5a8070;
+    --grid-line:  rgba(58,168,130,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* subtle grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ══ HERO ══════════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    background: var(--deep);
+  }
+
+  /* Grid shadow SVG background — the signature visual */
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.18;
+  }
+
+  .hero-teal-wash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,92,72,0.4) 0%, transparent 70%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 80px 60px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero-vol {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: riseIn 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 118px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    opacity: 0;
+    animation: riseIn 1s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal-pale);
+    font-weight: 300;
+  }
+
+  .hero-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--teal-mid);
+    margin: 32px 0;
+    opacity: 0;
+    animation: riseIn 0.7s ease forwards 0.7s;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 200;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: riseIn 0.7s ease forwards 0.9s;
+  }
+
+  .hero-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 80px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    animation: riseIn 0.7s ease forwards 1.1s;
+  }
+
+  .hero-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-tag span { color: var(--teal-bright); margin-right: 6px; }
+
+  /* ══ SECTION ═══════════════════════════════════════════ */
+  .sec {
+    padding: 96px 80px;
+    border-top: 1px solid var(--border);
+  }
+
+  .sec-hd {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+
+  .sec-n {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    padding-bottom: 4px;
+  }
+
+  .sec-t {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4.5vw, 60px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+
+  .sec-t em { font-style: italic; color: var(--teal-pale); }
+
+  /* ══ TECHNIQUE OVERVIEW ═══════════════════════════════ */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2px;
+  }
+
+  .ov-main {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ov-main::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(26,92,72,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .ov-tag {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+  }
+
+  .ov-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--cream);
+  }
+
+  .ov-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 640px;
+  }
+  .ov-body strong { color: var(--cream); font-weight: 500; }
+
+  .ov-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .pill {
+    border: 1px solid var(--border);
+    background: rgba(26,92,72,0.1);
+    color: var(--teal-pale);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  .ov-side {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .ov-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .ov-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--teal-bright);
+    line-height: 1;
+  }
+
+  .ov-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ov-stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ══ GEAR ════════════════════════════════════════════ */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .g-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .g-card:hover { background: var(--card); }
+
+  .g-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal-mid), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .g-card:hover::after { opacity: 1; }
+
+  .g-cat {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 14px;
+  }
+
+  .g-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .g-spec {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .g-spec strong { color: var(--cream); font-weight: 500; }
+
+  .g-note {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(26,92,72,0.1);
+    border-left: 2px solid var(--teal-mid);
+    font-size: 11px;
+    color: #4a7060;
+    font-style: italic;
+  }
+
+  .g-num {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: rgba(26,92,72,0.07);
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  /* ══ SHADOW GRID TECHNIQUE ════════════════════════════ */
+  .shadow-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .shadow-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 48px;
+  }
+
+  .shadow-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .shadow-panel-sub {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 24px;
+  }
+
+  .shadow-panel-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+  .shadow-panel-body strong { color: var(--cream); font-weight: 500; }
+
+  .gobo-options {
+    display: grid;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .gobo-option {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: rgba(26,92,72,0.07);
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .gobo-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border: 1px solid var(--teal-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--teal-bright);
+    letter-spacing: 0.1em;
+  }
+
+  .gobo-text { font-size: 11px; color: var(--muted); line-height: 1.65; }
+  .gobo-text strong { color: var(--cream); font-weight: 500; }
+
+  /* ══ LIGHTING DIAGRAM ═════════════════════════════════ */
+  .diag-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 60px;
+  }
+
+  .diag-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  /* ══ OVERHEAD BOOM SETUP ══════════════════════════════ */
+  .boom-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    counter-reset: boom;
+  }
+
+  .boom-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    position: relative;
+    counter-increment: boom;
+    overflow: hidden;
+  }
+
+  .boom-step::before {
+    content: '0' counter(boom);
+    position: absolute;
+    top: 12px; right: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: rgba(26,92,72,0.07);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .boom-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.25;
+    position: relative;
+    z-index: 2;
+  }
+
+  .boom-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+  }
+  .boom-body strong { color: var(--cream); font-weight: 500; }
+
+  .boom-note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: rgba(26,92,72,0.08);
+    border-left: 2px solid var(--teal-mid);
+    font-size: 10px;
+    color: #4a7060;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ══ SHOT LIST ═══════════════════════════════════════ */
+  .shot-tbl { display: grid; gap: 2px; }
+
+  .s-row {
+    display: grid;
+    grid-template-columns: 60px 1.8fr 1fr 1fr 120px;
+    gap: 2px;
+  }
+
+  .s-row.hdr .sc {
+    background: rgba(10,15,13,0.8);
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .sc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 22px 20px;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+  }
+
+  .s-row:not(.hdr):hover .sc { background: var(--card); }
+
+  .sc.idx {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: rgba(61,168,130,0.15);
+    justify-content: center;
+  }
+
+  .sc.info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .sc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.25;
+  }
+
+  .sc-desc { font-size: 10px; color: var(--muted); line-height: 1.55; }
+
+  .sc-badge {
+    display: inline-block;
+    background: rgba(26,92,72,0.15);
+    border: 1px solid rgba(61,168,130,0.2);
+    color: var(--teal-pale);
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 2px;
+  }
+
+  .sc.cam {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .cv { color: var(--teal-pale); font-size: 11px; }
+  .ck { font-size: 8px; color: var(--muted); letter-spacing: 0.08em; min-width: 24px; display: inline-block; }
+
+  /* ══ SURFACE + COLOR STORY ════════════════════════════ */
+  .surface-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .sf-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sf-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    margin-bottom: 4px;
+  }
+
+  .sf-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cream);
+  }
+
+  .sf-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+  }
+
+  .sf-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .sf-body strong { color: var(--cream); font-weight: 500; }
+
+  /* ══ POST PRODUCTION ══════════════════════════════════ */
+  .post-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .p-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+  }
+
+  .p-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .p-sub {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 24px;
+  }
+
+  .br {
+    display: grid;
+    grid-template-columns: 120px 1fr 48px;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .bl { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  .bt { height: 2px; background: var(--border); }
+
+  .bf {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+  }
+
+  .bf.neg {
+    background: linear-gradient(90deg, #203a30, var(--teal));
+    margin-left: auto;
+  }
+
+  .bv { font-size: 10px; color: var(--teal-pale); text-align: right; }
+
+  /* color curve svg */
+  .curve-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    grid-column: span 1;
+  }
+
+  /* ══ QUOTE STRIP ══════════════════════════════════════ */
+  .quote-strip {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal-mid);
+    padding: 56px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-strip::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px; left: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(26,92,72,0.07);
+    line-height: 1;
+  }
+
+  .quote-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    max-width: 780px;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  /* ══ PRO TIPS ═════════════════════════════════════════ */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tip-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--teal-mid);
+    letter-spacing: 0.1em;
+  }
+
+  .tip-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.25;
+  }
+
+  .tip-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .tip-body strong { color: var(--cream); font-weight: 500; }
+
+  /* ══ TEAM WORKFLOW ════════════════════════════════════ */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .role-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .role-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: var(--teal);
+    opacity: 0.4;
+  }
+
+  .role-tag {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 10px;
+  }
+
+  .role-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .role-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .role-task {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .role-task::before {
+    content: '—';
+    color: var(--teal-mid);
+    flex-shrink: 0;
+    margin-top: 0px;
+  }
+
+  /* ══ FOOTER ═══════════════════════════════════════════ */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--deep);
+  }
+
+  .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--teal-bright);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-note {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .hero-content, .footer { padding-left: 28px; padding-right: 28px; }
+    .sec { padding: 60px 28px; }
+    .hero-bar { padding: 24px 28px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .overview-grid, .shadow-split, .post-row, .tips-grid, .team-grid { grid-template-columns: 1fr; }
+    .gear-grid, .surface-grid { grid-template-columns: 1fr 1fr; }
+    .boom-steps { grid-template-columns: 1fr 1fr; }
+    .s-row { grid-template-columns: 40px 1fr; }
+    .sc.cam, .sc:nth-child(4), .sc:nth-child(5) { display: none; }
+    .s-row.hdr .sc:nth-child(n+4) { display: none; }
+    .ov-side { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>Grid, Shadow & Overhead</em> — Vol. 03</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <!-- Signature grid shadow background -->
+  <svg class="hero-grid-bg" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#3da882" stroke-width="2" fill="none">
+      <!-- Diagonal window/grid lines — replicating the shadow pattern from the BTS -->
+      <line x1="-100" y1="200" x2="900" y2="800"/>
+      <line x1="-100" y1="350" x2="900" y2="950"/>
+      <line x1="-100" y1="500" x2="900" y2="1100"/>
+      <line x1="100" y1="-100" x2="700" y2="900"/>
+      <line x1="250" y1="-100" x2="850" y2="900"/>
+      <line x1="400" y1="-100" x2="1000" y2="900"/>
+      <!-- Cross members -->
+      <line x1="-100" y1="100" x2="900" y2="700"/>
+      <line x1="-100" y1="0" x2="900" y2="600"/>
+      <line x1="0" y1="-100" x2="600" y2="900"/>
+    </g>
+  </svg>
+
+  <div class="hero-teal-wash"></div>
+
+  <div class="hero-content">
+    <p class="hero-vol">Vol. 03 · Product Photography Guide · Grid Shadow + Overhead Boom</p>
+    <h1 class="hero-title">Shadow<br><em>Grid</em><br>&amp; Overhead</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">A 3-person production workflow using a boom-mounted overhead camera, dramatic diagonal grid shadows as a compositional element, and a deep teal velvet surface — for a dark, editorial product aesthetic.</p>
+  </div>
+
+  <div class="hero-bar">
+    <span class="hero-tag"><span>Client</span> Cantiz — Facial Tissue Tube</span>
+    <span class="hero-tag"><span>Surface</span> Dark Teal Velvet</span>
+    <span class="hero-tag"><span>Rig</span> Overhead Boom / Crossbar</span>
+    <span class="hero-tag"><span>Shadow Source</span> Grid / Window Gobo</span>
+    <span class="hero-tag"><span>Team</span> 3-Person Crew</span>
+  </div>
+</section>
+
+
+<!-- ══════════ TECHNIQUE OVERVIEW ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">01 ——</span>
+    <h2 class="sec-t">The <em>Technique</em></h2>
+  </div>
+
+  <div class="overview-grid">
+    <div class="ov-main">
+      <p class="ov-tag">Concept</p>
+      <p class="ov-headline">A dramatic window-grid shadow cast across a deep velvet surface — the shadow is the set.</p>
+      <p class="ov-body">
+        This is an <strong>ambient-light-first, shadow-as-hero</strong> approach. Rather than using studio lights to illuminate the product, the environment is built around a strong directional light source casting a <strong>geometric grid shadow pattern</strong> across the surface and background. This grid — created by light coming through a window frame, louvered blinds, or a purpose-built gobo — becomes the set design. The product sits within the shadow architecture, <strong>lit only by what the pattern allows through</strong>.<br><br>
+        The camera is mounted on a <strong>horizontal boom arm</strong> spanning between two light stands directly above the shooting table, enabling true overhead and near-overhead angles without the tripod appearing in frame. Combined with the <strong>deep teal velvet surface</strong> and matte black product packaging, the result is a high-contrast, editorial composition with a strong graphic identity.
+      </p>
+      <div class="ov-pills">
+        <span class="pill">Ambient / Available Light</span>
+        <span class="pill">Grid Shadow Gobo</span>
+        <span class="pill">Overhead Boom Rig</span>
+        <span class="pill">Teal Velvet Surface</span>
+        <span class="pill">3-Person Crew</span>
+        <span class="pill">Dark &amp; Matte Packaging</span>
+      </div>
+    </div>
+
+    <div class="ov-side">
+      <div class="ov-stat">
+        <p class="ov-stat-num">3</p>
+        <p class="ov-stat-label">Crew Members</p>
+        <p class="ov-stat-sub">Stylist / Operator / Director — all working simultaneously</p>
+      </div>
+      <div class="ov-stat">
+        <p class="ov-stat-num">0</p>
+        <p class="ov-stat-label">Studio Lights</p>
+        <p class="ov-stat-sub">All light from a single directional source through a grid gobo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ GEAR ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">02 ——</span>
+    <h2 class="sec-t">Gear &amp; <em>Materials</em></h2>
+  </div>
+
+  <div class="gear-grid">
+
+    <div class="g-card">
+      <span class="g-num">A</span>
+      <p class="g-cat">Camera Body</p>
+      <p class="g-name">Mirrorless Camera<br>+ Articulating LCD</p>
+      <p class="g-spec">Visible in BTS: camera with <strong>fully articulating/flip-out LCD screen</strong> — essential for overhead shooting where the viewfinder is inaccessible. Ball head mounted on boom arm. Any mirrorless with a live view screen will work.</p>
+      <div class="g-note">The LCD flip-out is non-negotiable for overhead boom setups — you need to compose the shot by looking up at the screen, not down into a viewfinder.</div>
+    </div>
+
+    <div class="g-card">
+      <span class="g-num">B</span>
+      <p class="g-cat">Camera Rig</p>
+      <p class="g-name">Boom Arm Crossbar<br>+ Dual Light Stands</p>
+      <p class="g-spec">A <strong>long horizontal aluminum or carbon boom arm</strong> (also called a crossbar or C-stand arm) mounted between two heavy-duty light stands positioned at each end of the table. The camera mounts on a ball head at the center of the crossbar, directly above the subject. Orange safety clips visible in BTS at the clamp points.</p>
+      <div class="g-note">Counter-weight any setup with the camera overhanging — an unsecured boom can topple. Sandbag the base of both stands.</div>
+    </div>
+
+    <div class="g-card">
+      <span class="g-num">C</span>
+      <p class="g-cat">Shooting Table</p>
+      <p class="g-name">Warm Wood Table<br>+ Black Matte Surface Sheet</p>
+      <p class="g-spec">The underlying table is a <strong>warm orange-grain wood surface</strong>. Laid over it: a <strong>large black matte sheet</strong> (foam board, foam core, or black acrylic) providing a neutral dark base. The final velvet surface goes on top of this. Tape the surface down with gaffer tape at the edges to prevent shifting.</p>
+      <div class="g-note">The underlying table surface doesn't matter — it's fully covered. What matters is the height, stability, and width of the table relative to the boom span.</div>
+    </div>
+
+    <div class="g-card">
+      <span class="g-num">D</span>
+      <p class="g-cat">Shooting Surface</p>
+      <p class="g-name">Deep Teal Velvet<br>or Fabric</p>
+      <p class="g-spec">The hero surface in the final shots: a <strong>dark teal/hunter green velvet fabric</strong>. Velvet is ideal for dark product work because it absorbs light (near-zero reflection), its nap texture catches directional light as subtle gradients, and it conveys luxury. The teal-black tone complements dark navy/black packaging.</p>
+      <div class="g-note">Buy velvet by the yard from a fabric store — far cheaper than photography backdrops. 1.5–2 yards covers a standard shooting table with drape overhang.</div>
+    </div>
+
+    <div class="g-card">
+      <span class="g-num">E</span>
+      <p class="g-cat">Shadow Tool</p>
+      <p class="g-name">Grid Gobo / Window Frame<br>or Louvered Blind</p>
+      <p class="g-spec">The dramatic diagonal grid shadow pattern is created by <strong>light passing through a frame with geometric openings</strong>. This could be: a nearby window with a grid frame, louvered blinds, a purpose-built black foam board with cut slits, or a metal grid flag. The light source (sun or single LED) is aimed at the gobo, projecting the pattern onto the surface and wall.</p>
+      <div class="g-note">Natural window light with frame shadows is the easiest option. Control the shadow sharpness by moving the light source closer (harder shadow) or further (softer shadow).</div>
+    </div>
+
+    <div class="g-card">
+      <span class="g-num">F</span>
+      <p class="g-cat">Subject</p>
+      <p class="g-name">Cantiz Facial Tissue<br>Cylinder Tube</p>
+      <p class="g-spec"><strong>Matte dark navy/black paper tube</strong> with script logo and a circular top panel. The matte finish is ideal for this technique — it doesn't reflect the grid shadows back as specular highlights, allowing the background to carry the pattern while the product remains graphically clean. Two orientations shot: lid-up and upright.</p>
+      <div class="g-note">Matte or soft-touch packaging always performs better under patterned light than glossy — gloss creates distracting reflections from the grid.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ GRID SHADOW TECHNIQUE ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">03 ——</span>
+    <h2 class="sec-t">The <em>Grid Shadow</em></h2>
+  </div>
+
+  <div class="shadow-split">
+    <div class="shadow-panel">
+      <p class="shadow-panel-sub">What It Is</p>
+      <p class="shadow-panel-title">Using the Shadow as Set Design</p>
+      <p class="shadow-panel-body">
+        The diagonal grid shadow pattern visible in both the BTS frames and the final shots is <strong>not a background backdrop</strong> — it's a pattern projected onto the plain gray wall by light passing through a frame or grid structure in front of the light source. This turns a plain, unremarkable wall into a dynamic, layered compositional element.<br><br>
+        In the final shots, the pattern extends from the background <strong>across the teal velvet surface itself</strong> — the shadow lines divide the surface into geometric zones, and the product is placed <strong>within one of these zones</strong>, creating a natural framing that a plain backdrop cannot provide.<br><br>
+        The pattern in these frames appears to be from a <strong>window with a grid frame</strong> or a combination of a window with horizontal and vertical members, creating overlapping diagonal shadow lines when the sun or a strong light hits it at an angle.
+      </p>
+    </div>
+
+    <div class="shadow-panel">
+      <p class="shadow-panel-sub">How to Create It</p>
+      <p class="shadow-panel-title">Gobo Options — From Free to Purpose-Built</p>
+      <div class="gobo-options">
+        <div class="gobo-option">
+          <div class="gobo-icon">01</div>
+          <p class="gobo-text"><strong>Natural window + frame shadows.</strong> Position your table near a window. As sun moves, the window frame/grid casts geometric shadows at an angle. Best in morning or late afternoon when sun is low and directional. Free — zero cost.</p>
+        </div>
+        <div class="gobo-option">
+          <div class="gobo-icon">02</div>
+          <p class="gobo-text"><strong>Louvered blinds or sheer curtains.</strong> Venetian blinds create parallel line shadows; layered sheers create soft grid effects. Position the blind between a window or single LED and your surface. Adjustable slat angle changes shadow pattern.</p>
+        </div>
+        <div class="gobo-option">
+          <div class="gobo-icon">03</div>
+          <p class="gobo-text"><strong>DIY foam board gobo.</strong> Cut geometric slits or a grid pattern into a large piece of black foam board. Hold or mount it between a single LED light stand and your shooting table. Full control over pattern size, density, and angle.</p>
+        </div>
+        <div class="gobo-option">
+          <div class="gobo-icon">04</div>
+          <p class="gobo-text"><strong>Metal grid flag or cine flag.</strong> Standard cine equipment — a metal frame flag with a wire grid insert. Mount on a C-stand arm between your light and surface. Produces sharp, clean shadow lines. Reusable, professional option.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ LIGHTING DIAGRAM ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">04 ——</span>
+    <h2 class="sec-t">Lighting <em>Diagram</em></h2>
+  </div>
+
+  <div class="diag-wrap">
+    <p class="diag-label">Side Profile + Top-Down Composite · Overhead Boom Rig · Grid Shadow Source</p>
+
+    <svg viewBox="0 0 920 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:920px;display:block;margin:0 auto;">
+      <defs>
+        <linearGradient id="shadowBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3da882;stop-opacity:0.5"/>
+          <stop offset="100%" style="stop-color:#3da882;stop-opacity:0"/>
+        </linearGradient>
+        <radialGradient id="lightCore" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#e8f0ec;stop-opacity:0.9"/>
+          <stop offset="100%" style="stop-color:#e8f0ec;stop-opacity:0"/>
+        </radialGradient>
+        <filter id="blur4"><feGaussianBlur stdDeviation="4"/></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+      </defs>
+
+      <!-- Room bg -->
+      <rect width="920" height="600" fill="#0d1410"/>
+
+      <!-- Grid subtle -->
+      <g stroke="#1e3028" stroke-width="1">
+        <line x1="0" y1="120" x2="920" y2="120"/>
+        <line x1="0" y1="240" x2="920" y2="240"/>
+        <line x1="0" y1="360" x2="920" y2="360"/>
+        <line x1="0" y1="480" x2="920" y2="480"/>
+        <line x1="115" y1="0" x2="115" y2="600"/>
+        <line x1="230" y1="0" x2="230" y2="600"/>
+        <line x1="345" y1="0" x2="345" y2="600"/>
+        <line x1="460" y1="0" x2="460" y2="600"/>
+        <line x1="575" y1="0" x2="575" y2="600"/>
+        <line x1="690" y1="0" x2="690" y2="600"/>
+        <line x1="805" y1="0" x2="805" y2="600"/>
+      </g>
+
+      <!-- Wall background -->
+      <rect x="0" y="0" width="920" height="100" fill="#111a16" opacity="0.8"/>
+      <text x="460" y="58" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#1e3028" letter-spacing="3">WALL / BACKGROUND</text>
+
+      <!-- Grid shadow lines on wall — diagonal pattern -->
+      <g stroke="#3da882" stroke-width="1.5" opacity="0.15">
+        <line x1="80" y1="0" x2="400" y2="100"/>
+        <line x1="180" y1="0" x2="500" y2="100"/>
+        <line x1="280" y1="0" x2="600" y2="100"/>
+        <line x1="380" y1="0" x2="700" y2="100"/>
+        <line x1="480" y1="0" x2="800" y2="100"/>
+        <line x1="100" y1="0" x2="920" y2="56"/>
+        <line x1="300" y1="0" x2="920" y2="38"/>
+      </g>
+
+      <!-- Grid shadow lines on surface -->
+      <g stroke="#3da882" stroke-width="1.2" opacity="0.12">
+        <line x1="250" y1="100" x2="600" y2="450"/>
+        <line x1="330" y1="100" x2="680" y2="450"/>
+        <line x1="410" y1="100" x2="760" y2="450"/>
+        <line x1="490" y1="100" x2="840" y2="450"/>
+        <line x1="200" y1="200" x2="860" y2="450"/>
+        <line x1="200" y1="280" x2="860" y2="380"/>
+      </g>
+
+      <!-- Table surface (teal velvet) -->
+      <rect x="230" y="200" width="500" height="280" rx="2" fill="#0d1a16" stroke="#1e3028" stroke-width="1.5"/>
+      <text x="480" y="498" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#1e3028" letter-spacing="2">TEAL VELVET SURFACE · TABLE</text>
+
+      <!-- Product on table (top-down view) -->
+      <circle cx="480" cy="330" r="32" fill="#111a16" stroke="#3da882" stroke-width="1.5"/>
+      <circle cx="480" cy="330" r="16" fill="none" stroke="#2a7a60" stroke-width="1"/>
+      <text x="480" y="334" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#3da882" letter-spacing="1">PROD</text>
+
+      <!-- ─── OVERHEAD BOOM ARM ─── -->
+      <!-- Left light stand -->
+      <rect x="212" y="120" width="16" height="200" rx="1" fill="#16221c" stroke="#2a7a60" stroke-width="1"/>
+      <!-- tripod base left -->
+      <line x1="198" y1="320" x2="240" y2="320" stroke="#2a7a60" stroke-width="1.5"/>
+      <line x1="198" y1="320" x2="188" y2="340" stroke="#2a7a60" stroke-width="1.2"/>
+      <line x1="240" y1="320" x2="250" y2="340" stroke="#2a7a60" stroke-width="1.2"/>
+      <text x="220" y="360" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#2a7a60">L-STAND</text>
+
+      <!-- Right light stand -->
+      <rect x="732" y="120" width="16" height="200" rx="1" fill="#16221c" stroke="#2a7a60" stroke-width="1"/>
+      <!-- tripod base right -->
+      <line x1="718" y1="320" x2="760" y2="320" stroke="#2a7a60" stroke-width="1.5"/>
+      <line x1="718" y1="320" x2="708" y2="340" stroke="#2a7a60" stroke-width="1.2"/>
+      <line x1="760" y1="320" x2="770" y2="340" stroke="#2a7a60" stroke-width="1.2"/>
+      <text x="740" y="360" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#2a7a60">R-STAND</text>
+
+      <!-- Crossbar / boom arm -->
+      <rect x="228" y="128" width="504" height="10" rx="2" fill="#16221c" stroke="#3da882" stroke-width="1.5"/>
+      <text x="480" y="118" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#3da882" letter-spacing="2">CROSSBAR BOOM ARM</text>
+
+      <!-- Camera mounted overhead -->
+      <rect x="454" y="100" width="52" height="36" rx="2" fill="#111a16" stroke="#7ecfb2" stroke-width="1.5"/>
+      <circle cx="480" cy="118" r="10" fill="none" stroke="#aaa" stroke-width="1.5"/>
+      <circle cx="480" cy="118" r="5" fill="#1e3028"/>
+      <!-- LCD screen flipped out -->
+      <rect x="506" y="103" width="28" height="22" rx="1" fill="#1e3028" stroke="#7ecfb2" stroke-width="1"/>
+      <text x="520" y="117" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#7ecfb2">LCD</text>
+      <text x="480" y="90" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#7ecfb2">CAMERA ↓</text>
+      <text x="480" y="79" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#5a8070">OVERHEAD POSITION</text>
+
+      <!-- Downward arrow from camera to product -->
+      <line x1="480" y1="136" x2="480" y2="298" stroke="#7ecfb2" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+      <polygon points="476,298 480,312 484,298" fill="#7ecfb2" opacity="0.4"/>
+
+      <!-- ─── LIGHT SOURCE + GOBO ─── -->
+      <!-- Light source at top-left (outside frame) -->
+      <circle cx="60" cy="60" r="22" fill="#16221c" stroke="#e8f0ec" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="12" fill="#e8f0ec" opacity="0.5"/>
+      <circle cx="60" cy="60" r="6" fill="#e8f0ec" opacity="0.9"/>
+      <text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#e8f0ec">LIGHT</text>
+      <text x="60" y="112" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#5a8070">SUN / LED</text>
+
+      <!-- Gobo / grid frame between light and table -->
+      <rect x="120" y="40" width="60" height="80" rx="1" fill="none" stroke="#3da882" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <!-- Grid lines in gobo -->
+      <line x1="140" y1="40" x2="140" y2="120" stroke="#3da882" stroke-width="1" opacity="0.6"/>
+      <line x1="160" y1="40" x2="160" y2="120" stroke="#3da882" stroke-width="1" opacity="0.6"/>
+      <line x1="120" y1="65" x2="180" y2="65" stroke="#3da882" stroke-width="1" opacity="0.6"/>
+      <line x1="120" y1="90" x2="180" y2="90" stroke="#3da882" stroke-width="1" opacity="0.6"/>
+      <text x="150" y="135" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#3da882">GOBO / GRID</text>
+      <text x="150" y="146" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#5a8070">WINDOW FRAME</text>
+
+      <!-- Light beam through gobo -->
+      <polygon points="82,80 120,50 440,380 400,420" fill="url(#shadowBeam)" opacity="0.1" filter="url(#blur4)"/>
+      <line x1="82" y1="82" x2="440" y2="390" stroke="#e8f0ec" stroke-width="0.7" stroke-dasharray="5,5" opacity="0.15"/>
+
+      <!-- Orange clamp clips on crossbar -->
+      <rect x="224" y="124" width="16" height="18" rx="2" fill="#e07020" opacity="0.7"/>
+      <rect x="720" y="124" width="16" height="18" rx="2" fill="#e07020" opacity="0.7"/>
+
+      <!-- Legend -->
+      <circle cx="22" cy="530" r="5" fill="#e8f0ec" opacity="0.8"/>
+      <text x="35" y="534" font-family="DM Sans" font-size="8" fill="#5a8070">Light Source (Sun / Single LED)</text>
+      <rect x="17" y="546" width="10" height="6" fill="none" stroke="#3da882" stroke-width="1" stroke-dasharray="2,1"/>
+      <text x="35" y="552" font-family="DM Sans" font-size="8" fill="#5a8070">Grid Gobo (Window / DIY)</text>
+      <rect x="17" y="561" width="10" height="6" fill="#16221c" stroke="#3da882" stroke-width="1"/>
+      <text x="35" y="568" font-family="DM Sans" font-size="8" fill="#5a8070">Overhead Boom Arm + Camera</text>
+      <circle cx="22" cy="582" r="5" fill="#111a16" stroke="#3da882" stroke-width="1"/>
+      <text x="35" y="586" font-family="DM Sans" font-size="8" fill="#5a8070">Product (Teal Velvet Surface)</text>
+
+      <text x="900" y="588" text-anchor="end" font-family="DM Sans" font-size="7" fill="#1e3028">COMPOSITE DIAGRAM</text>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════ OVERHEAD BOOM SETUP ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">05 ——</span>
+    <h2 class="sec-t">Boom Rig <em>Build</em></h2>
+  </div>
+
+  <div class="boom-steps">
+
+    <div class="boom-step">
+      <p class="boom-title">Position the Two Light Stands</p>
+      <p class="boom-body">Place a <strong>heavy-duty light stand at each end of the shooting table</strong> — one at the head (far end from camera operator) and one at the foot. Both stands should be raised to the same height, approximately <strong>6–8 feet</strong>. The stands must be more stable than a normal single-leg setup since they'll bear the weight of the boom arm and camera.</p>
+      <p class="boom-note">Sandbag both stands. The camera-side weight is significant and unbalanced — a tip is a destroyed camera.</p>
+    </div>
+
+    <div class="boom-step">
+      <p class="boom-title">Mount &amp; Secure the Crossbar</p>
+      <p class="boom-body">Lay the <strong>horizontal boom arm across both stand tops</strong> and secure at each end with clamps (the orange safety clips visible in the BTS frames). The bar should extend <strong>parallel to and directly above the table surface</strong>. The center of the bar should align with the center of the subject on the table — this is your camera position.</p>
+      <p class="boom-note">Test stability before mounting the camera: push the bar from different angles. It should not rotate or flex.</p>
+    </div>
+
+    <div class="boom-step">
+      <p class="boom-title">Mount Camera at Center</p>
+      <p class="boom-body">Attach a <strong>ball head or adjustable arm to the center of the crossbar</strong>. Mount the camera body pointing <strong>straight down</strong> for true overhead, or angled slightly forward for a near-overhead 3/4 high angle. Flip the LCD screen fully open so it faces upward — you'll compose by looking up at the screen while standing beside the table.</p>
+      <p class="boom-note">Confirm the lens is not in frame — use a wider focal length if the edge of the stand or arm appears.</p>
+    </div>
+
+    <div class="boom-step">
+      <p class="boom-title">Test Frame + Adjust</p>
+      <p class="boom-body">Use <strong>live view on the flipped LCD</strong> to check framing. The product should be centered within the shadow grid zones. Adjust the camera angle by rotating the ball head — small adjustments have big compositional impacts at this height. Have a crew member <strong>hold a stand-in object</strong> (paper cup, roll of tape) on the velvet surface while you set the frame.</p>
+      <p class="boom-note">Once camera is locked, use a 2-second timer or remote shutter to avoid touching the rig — any contact causes shake that persists for 3–5 seconds.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ SURFACE + COLOR ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">06 ——</span>
+    <h2 class="sec-t">Surface &amp; <em>Color Story</em></h2>
+  </div>
+
+  <div class="surface-grid">
+
+    <div class="sf-card">
+      <div class="sf-swatch" style="background:linear-gradient(135deg,#0d3025,#1a5c48,#2a7a60);"></div>
+      <p class="sf-label">Hero Surface</p>
+      <p class="sf-name">Deep Teal Velvet</p>
+      <p class="sf-body">The primary surface. <strong>Velvet's nap texture</strong> catches raking directional light as a subtle gradient — darker where light misses, slightly lighter where it grazes. This gives depth to what would otherwise be a flat surface. The dark teal color complements the near-black packaging without competing with it. Purchase: fabric store velvet by the yard, draped over the table and pinned/taped underneath.</p>
+    </div>
+
+    <div class="sf-card">
+      <div class="sf-swatch" style="background:linear-gradient(135deg,#060a08,#0d1410,#111);"></div>
+      <p class="sf-label">Under-Layer</p>
+      <p class="sf-name">Black Matte Sheet</p>
+      <p class="sf-body">Beneath the velvet: a large <strong>black foam board or matte black acrylic sheet</strong> covering the warm wood table. This prevents any warm orange wood grain from showing through at the velvet edges or in wide shots. It also provides a firm, flat base for precise product placement — velvet alone on a wood surface can shift.</p>
+    </div>
+
+    <div class="sf-card">
+      <div class="sf-swatch" style="background:linear-gradient(135deg,#0a0f0d,#1a2e28,rgba(61,168,130,0.15));"></div>
+      <p class="sf-label">Color Grade Direction</p>
+      <p class="sf-name">Teal-Black Cinematic</p>
+      <p class="sf-body">The final images push into a <strong>teal-black color space</strong> — near-black shadows with a green-teal cast rather than neutral black. The dark areas retain a teal hue that ties the surface color into the entire frame. Midtones are slightly desaturated. There is minimal warm tone anywhere — the palette is intentionally cold and refined, contrasting with the dark navy product packaging.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ SHOT LIST ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">07 ——</span>
+    <h2 class="sec-t">Shot <em>List</em></h2>
+  </div>
+
+  <div class="shot-tbl">
+    <div class="s-row hdr">
+      <div class="sc">#</div>
+      <div class="sc">Shot / Intent</div>
+      <div class="sc">Camera Settings</div>
+      <div class="sc">Position / Angle</div>
+      <div class="sc">Priority</div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">1</div>
+      <div class="sc info">
+        <p class="sc-title">Overhead — Lid-Top Flat Lay</p>
+        <p class="sc-desc">Camera directly above. Product horizontal, lid facing up. The Cantiz oval label fully visible. Grid shadow lines cut diagonally across the velvet surface surrounding the tube. The tube sits in a lighter zone between shadow lines.</p>
+        <span class="sc-badge">● Hero Overhead</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span> <span class="cv">400–800</span></div>
+        <div><span class="ck">SS</span> <span class="cv">1/200s</span></div>
+        <div><span class="ck">AP</span> <span class="cv">f/5.6–f/8</span></div>
+        <div><span class="ck">FL</span> <span class="cv">24–35mm</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ANG</span> <span class="cv">90° Overhead</span></div>
+        <div><span class="ck">RIG</span> <span class="cv">Boom center</span></div>
+        <div><span class="ck">LCD</span> <span class="cv">Flipped up</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● CRITICAL</span></div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">2</div>
+      <div class="sc info">
+        <p class="sc-title">Upright — Front Face 3/4 High</p>
+        <p class="sc-desc">Product standing upright. Camera drops from boom to near-table level, 3/4 angle slightly elevated. Script logo and "Facial Tissue" text fully readable. Grid shadow lines visible on surface and background wall behind. This is the primary marketing/packaging shot.</p>
+        <span class="sc-badge">● Hero Standing</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span> <span class="cv">400</span></div>
+        <div><span class="ck">SS</span> <span class="cv">1/160s</span></div>
+        <div><span class="ck">AP</span> <span class="cv">f/4–f/5.6</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ANG</span> <span class="cv">30–45° high</span></div>
+        <div><span class="ck">RIG</span> <span class="cv">Off boom / tripod</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● CRITICAL</span></div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">3</div>
+      <div class="sc info">
+        <p class="sc-title">Low Angle — Upright with Grid BG</p>
+        <p class="sc-desc">Camera drops to just above table level. Grid shadow pattern fills the background wall prominently. Product sits in the lower third of frame. Strong depth — near-background has shadow geometry, product in middle, wall pattern behind. Most cinematic of the three angles.</p>
+        <span class="sc-badge">Editorial / Key</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span> <span class="cv">640</span></div>
+        <div><span class="ck">SS</span> <span class="cv">1/100s</span></div>
+        <div><span class="ck">AP</span> <span class="cv">f/2.8–f/4</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ANG</span> <span class="cv">5–15° elevation</span></div>
+        <div><span class="ck">RIG</span> <span class="cv">Low tripod / floor</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● HIGH</span></div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">4</div>
+      <div class="sc info">
+        <p class="sc-title">Near-Overhead — 3/4 High Angle</p>
+        <p class="sc-desc">Camera on boom, tilted slightly from vertical — approximately 60–70° down. Shows both the top lid and partial front face of the tube. The shadow band cuts diagonally behind the product on the surface, framing it in a lighter strip. This is the "between overhead and upright" transitional angle.</p>
+        <span class="sc-badge">Alt / Portfolio</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span> <span class="cv">400–640</span></div>
+        <div><span class="ck">AP</span> <span class="cv">f/5.6</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ANG</span> <span class="cv">60–70° down</span></div>
+        <div><span class="ck">RIG</span> <span class="cv">Boom / angled ball</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ MEDIUM</span></div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">5</div>
+      <div class="sc info">
+        <p class="sc-title">Close Crop — Label Detail</p>
+        <p class="sc-desc">Camera repositioned close. Fill the frame with just the label area — the script "Cantiz" and product descriptor text. The velvet nap texture blurs into a smooth gradient. Grid shadow creates a subtle diagonal that doesn't compete with the text.</p>
+        <span class="sc-badge">Detail / Macro</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span> <span class="cv">320</span></div>
+        <div><span class="ck">AP</span> <span class="cv">f/2.8</span></div>
+        <div><span class="ck">FL</span> <span class="cv">85mm+</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ANG</span> <span class="cv">Eye level</span></div>
+        <div><span class="ck">RIG</span> <span class="cv">Tripod, close</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ OPTIONAL</span></div>
+    </div>
+
+    <div class="s-row">
+      <div class="sc idx">6</div>
+      <div class="sc info">
+        <p class="sc-title">BTS Documentation</p>
+        <p class="sc-desc">Phone or second camera pulls back to show the full 3-person crew in action: the boom rig, two light stands, the table with velvet, and the grid shadow falling across the setup. The shadow on the white wall in the BTS frames is itself visually interesting content.</p>
+        <span class="sc-badge">BTS / Content</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">CAM</span> <span class="cv">Phone / B-cam</span></div>
+        <div><span class="ck">ANG</span> <span class="cv">Wide, elevated</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">RIG</span> <span class="cv">Handheld / stick</span></div>
+        <div><span class="ck">INCL</span> <span class="cv">Full rig visible</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ CONTENT</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ QUOTE STRIP ══════════ -->
+<section style="padding:0 80px 80px;border-top:none;">
+  <div class="quote-strip">
+    <p class="quote-eyebrow">The Core Insight</p>
+    <p class="quote-text">"The shadow is not what happens when the light is blocked. The shadow is the design. Build the set around what the light leaves out — not what it lights up."</p>
+  </div>
+</section>
+
+
+<!-- ══════════ POST PRODUCTION ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">08 ——</span>
+    <h2 class="sec-t">Post <em>Settings</em></h2>
+  </div>
+
+  <div class="post-row">
+
+    <div class="p-block">
+      <p class="p-title">Exposure &amp; Tone</p>
+      <p class="p-sub">Teal-Black Grade</p>
+      <div class="br"><p class="bl">Exposure</p><div class="bt"><div class="bf neg" style="width:35%;"></div></div><p class="bv">−0.5</p></div>
+      <div class="br"><p class="bl">Contrast</p><div class="bt"><div class="bf" style="width:70%;"></div></div><p class="bv">+28</p></div>
+      <div class="br"><p class="bl">Highlights</p><div class="bt"><div class="bf neg" style="width:45%;"></div></div><p class="bv">−35</p></div>
+      <div class="br"><p class="bl">Shadows</p><div class="bt"><div class="bf neg" style="width:60%;"></div></div><p class="bv">−45</p></div>
+      <div class="br"><p class="bl">Blacks</p><div class="bt"><div class="bf neg" style="width:75%;"></div></div><p class="bv">−60</p></div>
+      <div class="br"><p class="bl">Clarity</p><div class="bt"><div class="bf" style="width:35%;"></div></div><p class="bv">+15</p></div>
+      <div class="br"><p class="bl">Dehaze</p><div class="bt"><div class="bf" style="width:20%;"></div></div><p class="bv">+8</p></div>
+    </div>
+
+    <div class="p-block">
+      <p class="p-title">Color Grading</p>
+      <p class="p-sub">Cool Teal Cinematic</p>
+      <div class="br"><p class="bl">WB Temp</p><div class="bt"><div class="bf neg" style="width:40%;background:linear-gradient(90deg,#1a5c48,#3da882);"></div></div><p class="bv">−200K</p></div>
+      <div class="br"><p class="bl">WB Tint</p><div class="bt"><div class="bf neg" style="width:20%;background:linear-gradient(90deg,#1a5c48,#3da882);"></div></div><p class="bv">+5 G</p></div>
+      <div class="br"><p class="bl">Green Sat.</p><div class="bt"><div class="bf" style="width:30%;background:linear-gradient(90deg,#1a5c48,#3da882);"></div></div><p class="bv">+15</p></div>
+      <div class="br"><p class="bl">Cyan Sat.</p><div class="bt"><div class="bf" style="width:25%;background:linear-gradient(90deg,#1a5c48,#3da882);"></div></div><p class="bv">+12</p></div>
+      <div class="br"><p class="bl">Shadow Hue</p><div class="bt"><div class="bf" style="width:35%;background:linear-gradient(90deg,#0d3025,#1a5c48);"></div></div><p class="bv">Teal</p></div>
+      <div class="br"><p class="bl">Sat. overall</p><div class="bt"><div class="bf neg" style="width:30%;"></div></div><p class="bv">−12</p></div>
+    </div>
+
+    <div class="p-block">
+      <p class="p-title">Tonal Curve</p>
+      <p class="p-sub">Shadows Pulled to Teal-Black</p>
+      <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;margin-top:8px;">
+        <rect width="280" height="200" fill="#0d1410" rx="2"/>
+        <line x1="0" y1="200" x2="280" y2="0" stroke="#1e3028" stroke-width="1" stroke-dasharray="3,3"/>
+        <!-- Cool, pulled-shadow curve — shadows crushed hard, highlights slightly pulled -->
+        <path d="M 0 200 C 35 200, 55 188, 80 175 C 110 158, 130 130, 152 105 C 172 82, 195 38, 225 14 C 248 0, 268 0, 280 0"
+              fill="none" stroke="#3da882" stroke-width="2.5"/>
+        <circle cx="80" cy="175" r="4" fill="#7ecfb2"/>
+        <circle cx="195" cy="38" r="4" fill="#7ecfb2"/>
+        <text x="10" y="194" font-family="DM Sans" font-size="7" fill="#1e3028">Teal shadows</text>
+        <text x="168" y="26" font-family="DM Sans" font-size="7" fill="#1e3028">Cool highs</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ TEAM WORKFLOW ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">09 ——</span>
+    <h2 class="sec-t">3-Person <em>Crew Roles</em></h2>
+  </div>
+
+  <div class="team-grid">
+    <div class="role-card">
+      <p class="role-tag">Position A</p>
+      <p class="role-name">Stylist / Prop Handler</p>
+      <div class="role-tasks">
+        <p class="role-task">Positions the product on the velvet surface, adjusting placement within the shadow grid zones</p>
+        <p class="role-task">Manages surface cleanliness — removes lint, dust, fingerprints between shots</p>
+        <p class="role-task">Tries multiple product orientations (lid-up, standing, angled) and communicates to camera op when ready</p>
+        <p class="role-task">Adjusts surface drape and tautness to remove unwanted creases visible in frame</p>
+        <p class="role-task">Can also adjust the gobo angle/position to shift the shadow pattern direction</p>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <p class="role-tag">Position B</p>
+      <p class="role-name">Camera Operator / Shooter</p>
+      <div class="role-tasks">
+        <p class="role-task">Operates and adjusts the camera on the boom arm — repositioning the ball head for each angle</p>
+        <p class="role-task">Reads the flipped LCD screen for composition, checking that the shadow grid falls in the intended position relative to product</p>
+        <p class="role-task">Controls all camera settings: ISO, aperture, shutter. Calls out when exposure is locked</p>
+        <p class="role-task">Fires the shutter via remote trigger or 2-second timer — does not touch the camera body</p>
+        <p class="role-task">Reviews each frame on the LCD and directs adjustments to Stylist</p>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <p class="role-tag">Position C</p>
+      <p class="role-name">Director / Art Direction</p>
+      <div class="role-tasks">
+        <p class="role-task">Calls overall composition direction — confirms shadow grid framing, product placement, and creative intent of each shot</p>
+        <p class="role-task">Reviews images on a secondary screen (laptop tether) for quality control</p>
+        <p class="role-task">Manages the shot list and communicates what's been covered vs still needed</p>
+        <p class="role-task">Handles the BTS camera — documenting the setup for content creation between shot coverage</p>
+        <p class="role-task">Makes final call on selects during the session — eliminates reshoots after wrap</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ PRO TIPS ══════════ -->
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-n">10 ——</span>
+    <h2 class="sec-t">Pro <em>Tips</em></h2>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <p class="tip-num">01 — Shadow Placement</p>
+      <p class="tip-title">Put the Product in a Light Zone, Not a Shadow Zone</p>
+      <p class="tip-body">The grid shadow divides the surface into bands of light and dark. Always position the product <strong>within a lighter band</strong> — this naturally separates it from the surface and gives it a platform. A product placed inside a dark shadow band vanishes. Adjust the gobo angle or rotate the table until the grid falls exactly right.</p>
+    </div>
+
+    <div class="tip-card">
+      <p class="tip-num">02 — Velvet Care</p>
+      <p class="tip-title">Lint Roller Is Your Best Friend</p>
+      <p class="tip-body">Velvet attracts <strong>dust, lint, and pet hair</strong> aggressively, and all of it becomes visible under the raking directional light used in this setup. Keep a lint roller within arm's reach. Roll the surface before every angle change. Also — always stroke the velvet in one direction before shooting; the <strong>nap direction affects how it catches light</strong>.</p>
+    </div>
+
+    <div class="tip-card">
+      <p class="tip-num">03 — Shadow Sharpness</p>
+      <p class="tip-title">Distance = Softness</p>
+      <p class="tip-body">The sharpness of the grid shadow lines is controlled by how far the gobo is from the light source and the surface. <strong>Gobo closer to the light source</strong> = softer, more diffuse grid. <strong>Gobo closer to the surface</strong> = sharper, harder shadow lines. The BTS shows fairly sharp lines — the gobo (window frame) is relatively close to the surface, not mid-room.</p>
+    </div>
+
+    <div class="tip-card">
+      <p class="tip-num">04 — Boom Stability</p>
+      <p class="tip-title">Never Touch the Rig While Shooting</p>
+      <p class="tip-body">Once the boom arm is locked and the camera is set, <strong>treat the rig as untouchable</strong>. Use a remote shutter or 2-second timer for every frame. The boom arm is long — even breathing on a stand leg can transmit vibration to the camera. Between setups, communicate verbally rather than by physically adjusting anything while the shutter is live.</p>
+    </div>
+
+    <div class="tip-card">
+      <p class="tip-num">05 — Matte Packaging</p>
+      <p class="tip-title">This Technique Is Built for Matte Finishes</p>
+      <p class="tip-body">The patterned light environment of this setup only works cleanly with <strong>matte or soft-touch packaging</strong>. Glossy products will mirror the grid lines as specular highlights — creating an uncontrolled, chaotic look. If your product has a glossy finish, add a <strong>temporary matte film or matte spray</strong> for the shoot and retouch out any remaining highlights in post.</p>
+    </div>
+
+    <div class="tip-card">
+      <p class="tip-num">06 — Color Story</p>
+      <p class="tip-title">Let the Surface Color Become the Grade</p>
+      <p class="tip-body">The teal velvet isn't just a surface — it's the entire color direction for the post grade. <strong>Pull your grade toward the surface color</strong> (teal-green shadows, desaturated mids) rather than correcting toward neutral. The more your grade amplifies the velvet's color cast, the more cohesive the final image feels. This technique produces its best results when surface and grade are working in the same direction.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FOOTER ══════════ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

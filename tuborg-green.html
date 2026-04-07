@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuborg Green — Beer Campaign Lighting — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00c800;
+    --green-dim: rgba(0,200,0,0.12);
+    --green-border: rgba(0,200,0,0.3);
+    --amber: #d4820a;
+    --ink: #0d0d0d;
+    --paper: #f7f5f0;
+    --muted: #5a5a54;
+    --rule: #e2dfd8;
+    --card-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ink);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,0,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .cover-accent {
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,0,0.15) 0%, transparent 70%);
+  }
+
+  .cover-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 140px);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .cover h1 span { color: var(--green); }
+
+  .cover-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    position: relative;
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  .cover-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+  }
+
+  .cover-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+
+  .cover-tag.active {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .page-num {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 48px 24px; }
+    .cover { padding: 40px 32px; }
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  /* ── GEAR GRID ── */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .gear-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .gear-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .gear-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .gear-note {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── LIGHTING DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--ink);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 24px;
+  }
+
+  .diagram-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .light-notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 12px;
+  }
+
+  .light-note {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--green);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .light-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+
+  .light-note-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .light-note-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  /* ── SHOT CARDS ── */
+  .shot-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .shot-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .shot-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .shot-index {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    min-width: 52px;
+  }
+
+  .shot-meta { flex: 1; }
+
+  .shot-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .shot-type-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    display: inline-block;
+  }
+
+  .shot-body {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .shot-body { grid-template-columns: 1fr; }
+  }
+
+  .shot-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .spec-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+  .spec-list li {
+    font-size: 13px;
+    color: #3a3a36;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.45;
+  }
+
+  .spec-list li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .key-note {
+    grid-column: 1 / -1;
+    background: var(--green-dim);
+    border-left: 3px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #2a3a2a;
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  /* ── CAM SPECS ROW ── */
+  .cam-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    grid-column: 1 / -1;
+  }
+
+  .cam-spec-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 11px;
+    background: #f0ede6;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+
+  /* ── WORKFLOW ── */
+  .workflow { display: flex; flex-direction: column; gap: 0; }
+
+  .wf-step {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+
+  .wf-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .wf-circle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--green);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-content { padding-top: 8px; }
+
+  .wf-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .wf-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 640px;
+  }
+
+  /* ── TIPS ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .tip-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .tip-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .tip-icon svg { width: 16px; height: 16px; }
+
+  .tip-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .tip-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER PAGE BREAK ── */
+  .page-break {
+    border-top: 1px solid var(--rule);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── POST SECTION ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 600px) { .post-grid { grid-template-columns: 1fr; } }
+
+  .post-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .post-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .post-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .post-body { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    padding: 40px 48px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  footer span { color: var(--green); }
+
+  /* ── PRINT ── */
+  @media print {
+    .cover { min-height: auto; page-break-after: always; }
+    .shot-card { page-break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>Tuborg Green</em> — Beer Campaign Lighting</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ══════════════════════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-accent"></div>
+  <div class="page-num">TBDC / 2025</div>
+
+  <div class="cover-label">Product Photography & Lighting Guide — Beverage Campaign</div>
+
+  <h1>TUBORG<br><span>GREEN</span></h1>
+
+  <div class="cover-sub">
+    11-shot cinematic product campaign. Sony FX3. Green screen. Studio tabletop. Behind the scenes decoded into a replicable shooting system.
+  </div>
+
+  <div class="cover-tags">
+    <span class="cover-tag active">Sony FX3</span>
+    <span class="cover-tag active">Green Screen</span>
+    <span class="cover-tag active">Softbox Key</span>
+    <span class="cover-tag">Beverage</span>
+    <span class="cover-tag">Tabletop Studio</span>
+    <span class="cover-tag">120fps Slowmo</span>
+    <span class="cover-tag">Macro Liquid FX</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ GEAR ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">01 / GEAR</div>
+    <div class="section-title">Kit & Setup Overview</div>
+  </div>
+
+  <div class="gear-grid">
+    <div class="gear-card">
+      <div class="gear-cat">Camera</div>
+      <div class="gear-name">Sony FX3</div>
+      <div class="gear-note">Cinema body. Full-frame sensor. 12.1MP stills + 4K/120fps video. Tethered to field monitor via HDMI.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Support</div>
+      <div class="gear-name">Heavy Fluid Tripod</div>
+      <div class="gear-note">Manfrotto-style legs + fluid head. Locked off for all shots. Arm attachment for inverted overhead setup.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Monitor</div>
+      <div class="gear-name">5" HDMI Field Monitor</div>
+      <div class="gear-note">On articulating arm/secondary stand. Used for live shot review and focus confirmation without moving to camera.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Background</div>
+      <div class="gear-name">Chroma Green Paper Sweep</div>
+      <div class="gear-note">Saturated chromakey green. Doubles as product color echo + fills shadow side of bottles with ambient green bounce.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Key Light</div>
+      <div class="gear-name">Large Oval Softbox</div>
+      <div class="gear-note">Camera-right at 45°. White face. Creates specular highlights on wet glass and rim-lights the pour stream.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Background Light</div>
+      <div class="gear-name">Green LED Strip</div>
+      <div class="gear-note">Laid flat at base of sweep, angled upward. Saturates background and gives bottles their backlit green glow.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Shooting Surface</div>
+      <div class="gear-name">White Seamless Sweep Table</div>
+      <div class="gear-note">White surface, tabletop height. Provides clean product platform and reflects soft fill up from below.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Styling Kit</div>
+      <div class="gear-name">Dropper + Spoon + Spray Bottle</div>
+      <div class="gear-note">Dropper for controlled splash. Spoon for foam sculpting. Spray bottle (water/glycerin mix) for condensation FX.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Optional</div>
+      <div class="gear-name">Macro Lens / Extension Tubes</div>
+      <div class="gear-note">Required for cap, bubble, and label texture shots. Min. 1:1 magnification ratio recommended.</div>
+    </div>
+  </div>
+
+  <!-- Camera Settings Row -->
+  <div style="background: var(--ink); border-radius: 8px; padding: 20px 24px; margin-top: 8px;">
+    <div style="font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px;">Base Camera Settings</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(0,200,0,0.25); border-radius: 4px; color: var(--green);">4K / 24fps base</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: rgba(255,255,255,0.5);">120fps for action</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: rgba(255,255,255,0.5);">f/1.4 – f/5.6 range</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: rgba(255,255,255,0.5);">1/50 – 1/4000s</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: rgba(255,255,255,0.5);">ISO 800 – 3200</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: rgba(255,255,255,0.5);">S-Log3 / flat profile</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ══════════════════════════════════ LIGHTING ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">02 / LIGHTING</div>
+    <div class="section-title">Architecture & Diagram</div>
+  </div>
+
+  <!-- SVG Diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-label">Top-Down Studio Layout — Not To Scale</div>
+    <svg viewBox="0 0 600 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-height:310px;display:block;">
+
+      <!-- BG sweep zone -->
+      <rect x="80" y="20" width="380" height="160" rx="8" fill="rgba(0,200,0,0.08)" stroke="rgba(0,200,0,0.25)" stroke-width="1"/>
+      <text x="270" y="14" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="rgba(0,200,0,0.5)" letter-spacing="2">CHROMA GREEN BACKDROP</text>
+
+      <!-- Table surface -->
+      <rect x="100" y="140" width="340" height="30" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="270" y="159" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)">WHITE SWEEP TABLE</text>
+
+      <!-- LED strip -->
+      <rect x="100" y="168" width="340" height="6" rx="3" fill="rgba(0,200,0,0.4)" stroke="rgba(0,200,0,0.6)" stroke-width="0.5"/>
+      <text x="270" y="188" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,200,0,0.5)">▲ GREEN LED STRIP (floor, bouncing upward)</text>
+
+      <!-- Product bottles group -->
+      <circle cx="240" cy="110" r="10" fill="rgba(0,160,0,0.35)" stroke="rgba(0,200,0,0.6)" stroke-width="1.5"/>
+      <circle cx="260" cy="115" r="8" fill="rgba(0,130,0,0.25)" stroke="rgba(0,200,0,0.35)" stroke-width="1"/>
+      <circle cx="222" cy="118" r="7" fill="rgba(0,130,0,0.2)" stroke="rgba(0,200,0,0.3)" stroke-width="1"/>
+      <text x="247" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,200,0,0.6)">BOTTLES</text>
+
+      <!-- Softbox / Key Light RIGHT -->
+      <rect x="490" y="60" width="80" height="120" rx="8" fill="rgba(255,230,120,0.08)" stroke="rgba(255,220,80,0.4)" stroke-width="1.5"/>
+      <text x="530" y="115" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,210,60,0.7)">SOFTBOX</text>
+      <text x="530" y="126" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,210,60,0.45)">KEY / FILL</text>
+      <text x="530" y="137" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,210,60,0.35)">45° CAM-RIGHT</text>
+
+      <!-- Light rays from softbox to subject -->
+      <line x1="490" y1="75" x2="270" y2="100" stroke="rgba(255,220,80,0.2)" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <line x1="490" y1="110" x2="258" y2="110" stroke="rgba(255,220,80,0.3)" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="490" y1="145" x2="265" y2="122" stroke="rgba(255,220,80,0.2)" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+      <!-- Camera (front) -->
+      <rect x="210" y="220" width="70" height="44" rx="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <text x="245" y="238" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,255,255,0.5)">SONY</text>
+      <text x="245" y="249" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,255,255,0.5)">FX3</text>
+      <text x="245" y="258" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.25)">TRIPOD</text>
+
+      <!-- Camera sight line -->
+      <line x1="245" y1="220" x2="245" y2="130" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+      <polygon points="245,122 241,132 249,132" fill="rgba(255,255,255,0.15)"/>
+
+      <!-- Overhead camera (shots 4–5) -->
+      <rect x="208" y="22" width="70" height="24" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <text x="243" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">CAM — OVERHEAD</text>
+      <line x1="243" y1="46" x2="243" y2="98" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- Monitor stand -->
+      <rect x="340" y="215" width="50" height="34" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <text x="365" y="232" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">FIELD</text>
+      <text x="365" y="242" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">MON.</text>
+
+      <!-- Shooter position label -->
+      <text x="50" y="250" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)" transform="rotate(-90,50,250)">SHOOTER →</text>
+
+      <!-- Legend -->
+      <rect x="82" y="270" width="10" height="4" rx="1" fill="rgba(0,200,0,0.6)"/>
+      <text x="96" y="277" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Green light</text>
+      <line x1="160" y1="273" x2="185" y2="273" stroke="rgba(255,220,80,0.5)" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="190" y="277" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Softbox rays</text>
+      <line x1="280" y1="273" x2="305" y2="273" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="310" y="277" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Camera sight line</text>
+    </svg>
+  </div>
+
+  <!-- Light source notes -->
+  <div class="light-notes">
+    <div class="light-note">
+      <div class="light-note-label">Key / Fill — Camera Right</div>
+      <div class="light-note-title">Large Oval Softbox</div>
+      <div class="light-note-body">Positioned at ~45° camera-right. Creates specular highlights on wet glass curves and rim-lights the pour stream. Used across all shots except overhead setup.</div>
+    </div>
+    <div class="light-note">
+      <div class="light-note-label">Background Accent — Floor Level</div>
+      <div class="light-note-title">Green LED Strip</div>
+      <div class="light-note-body">Laid flat at the base of the sweep, aimed upward. Saturates the BG and gives bottles their backlit green glow in Shots 01, 02, 06, 09.</div>
+    </div>
+    <div class="light-note">
+      <div class="light-note-label">Ambient Bounce — BG Paper</div>
+      <div class="light-note-title">Chroma Green Reflection</div>
+      <div class="light-note-body">The green paper itself acts as a massive green fill reflector. No additional green light needed — the BG bounces naturally into the shadow side of each bottle.</div>
+    </div>
+    <div class="light-note">
+      <div class="light-note-label">Fill — Camera Left (Optional)</div>
+      <div class="light-note-title">White Card / Reflector</div>
+      <div class="light-note-body">Subtle fill on camera-left. Maintains label readability in shadow. For overhead shots (04–05), position above and slightly to the side.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ══════════════════════════════════ SHOT LIST ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">03 / SHOTS</div>
+    <div class="section-title">Shot List & Camera Notes</div>
+  </div>
+
+  <div class="shot-list">
+
+    <!-- SHOT 01 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">01</div>
+        <div class="shot-meta">
+          <div class="shot-name">Bottle cluster — low front angle, label reveal</div>
+          <span class="shot-type-badge">ECU / Product Hero</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Low angle, lens roughly eye-level with the label zone</li>
+            <li>Long telephoto: 85–135mm equiv for heavy compression</li>
+            <li>f/1.4–f/2.0 — razor thin DOF, foreground bottles bokeh'd</li>
+            <li>Hero bottle dead center, slightly forward of cluster</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Staging</div>
+          <ul class="spec-list">
+            <li>5–6 Tuborg bottles in a loose cluster arrangement</li>
+            <li>Green screen fills entire background</li>
+            <li>Water droplets applied to all bottles (glycerin mix)</li>
+            <li>Background bottles become saturated green bokeh orbs</li>
+          </ul>
+        </div>
+        <div class="key-note">The compressed background bottles become abstract green bokeh — the chroma key paper reads as pure color, not environment. This is intentional. Keep the BG slightly underexposed so the green reads rich and deep, not washed out.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">85–135mm</span>
+          <span class="cam-spec-pill">f/1.4–f/2.0</span>
+          <span class="cam-spec-pill">1/50s (24fps)</span>
+          <span class="cam-spec-pill">ISO 1600</span>
+          <span class="cam-spec-pill">Locked tripod</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 02 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">02</div>
+        <div class="shot-meta">
+          <div class="shot-name">Bottle neck / cap — upward tilt reveal</div>
+          <span class="shot-type-badge">ECU / Detail</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Same cluster setup as Shot 01 — no restage needed</li>
+            <li>Reframe upward to emphasize neck, blue label band, and cap</li>
+            <li>Maintain same focal length for visual consistency</li>
+            <li>Hero bottle shifts to occupy upper 2/3 of frame</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Styling</div>
+          <ul class="spec-list">
+            <li>Refresh water droplets on neck area — they dry quickly</li>
+            <li>Check cap for fingerprints before rolling camera</li>
+            <li>Blue label band should catch specular from key softbox</li>
+            <li>Cap ring and tab should be clean and undeformed</li>
+          </ul>
+        </div>
+        <div class="key-note">This is your transition shot — from label to cap. If cutting for video, pair this with Shot 01 for a slow upward push or clean cut-on-action. The upward framing implies energy and lift.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">85–135mm</span>
+          <span class="cam-spec-pill">f/1.4–f/2.0</span>
+          <span class="cam-spec-pill">Reframe only</span>
+          <span class="cam-spec-pill">No restage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 03 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">03</div>
+        <div class="shot-meta">
+          <div class="shot-name">Cap burst — dropper water impact / crown splash</div>
+          <span class="shot-type-badge">Hero Action / High Shutter</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Low angle looking up at the bottle cap</li>
+            <li>Medium telephoto — 85–100mm equiv</li>
+            <li>f/2.8–f/4 for enough DOF to keep splash sharp</li>
+            <li>High shutter: 1/2000–1/4000s to freeze splash</li>
+            <li>Shoot burst mode OR 120fps and pull best frame</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Technique</div>
+          <ul class="spec-list">
+            <li>Dropper / syringe held 10–15cm above the cap</li>
+            <li>Release single large drop — triggers crown splash shape</li>
+            <li>Shooter triggers camera on dropper release — timing critical</li>
+            <li>Shoot 15–25 takes minimum — need the crown shape</li>
+            <li>Chill bottle first so water beads cleanly on cap surface</li>
+          </ul>
+        </div>
+        <div class="key-note">The dropper gives you reproducible control over splash size and timing. A syringe from ~12cm creates a consistent crown splash. The green screen behind gives the water a luminous quality when backlit. Shoot 120fps if possible — select the perfect frame in post. Crown shape is everything.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">85–100mm</span>
+          <span class="cam-spec-pill">f/2.8–f/4</span>
+          <span class="cam-spec-pill">1/2000–1/4000s</span>
+          <span class="cam-spec-pill">120fps preferred</span>
+          <span class="cam-spec-pill">Burst mode</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOTS 04 + 05 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">04–05</div>
+        <div class="shot-meta">
+          <div class="shot-name">Overhead top-down — cap face: sealed → open</div>
+          <span class="shot-type-badge">Top-Down / Macro Detail</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera Position</div>
+          <ul class="spec-list">
+            <li>Camera inverted on tripod arm — pointing straight down</li>
+            <li>Macro or 85–100mm + extension tube for tight cap framing</li>
+            <li>f/4–f/5.6 — entire cap face sharp across the circle</li>
+            <li>Shooter holds/positions bottle below camera by hand</li>
+            <li>Camera must be perfectly perpendicular — test with a coin</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Shot 04 vs. 05</div>
+          <ul class="spec-list">
+            <li><strong>04:</strong> Cap sealed — "Copenhagen Denmark / Tuborg" legible</li>
+            <li><strong>05:</strong> Cap removed — dark bottle mouth, open interior visible</li>
+            <li>Shooter's hand/thumb frames the cap naturally in both</li>
+            <li>Green BG visible in background for visual consistency</li>
+            <li>Keep hand relaxed — tension reads as awkward in frame</li>
+          </ul>
+        </div>
+        <div class="key-note">The human hand framing the cap adds scale and tactile connection — it subconsciously says "grab this." The peach/orange tones of skin against the green BG create strong natural color contrast. Any tilt in the camera reads immediately against the circular geometry of the cap. Check level before every take.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">Macro / 85mm</span>
+          <span class="cam-spec-pill">f/4–f/5.6</span>
+          <span class="cam-spec-pill">Overhead mount</span>
+          <span class="cam-spec-pill">Inverted tripod arm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 06 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">06</div>
+        <div class="shot-meta">
+          <div class="shot-name">Beer pour — bottle tilt, liquid cascade close-up</div>
+          <span class="shot-type-badge">Action / Liquid Motion</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Camera at table level — lens axis horizontal</li>
+            <li>Macro or telephoto — liquid stream fills most of frame</li>
+            <li>120fps minimum — the pour happens fast</li>
+            <li>f/2.8 — liquid sharp, background green soft</li>
+            <li>Large softbox camera-right creates key specular on pour</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Setup</div>
+          <ul class="spec-list">
+            <li>Shooter tilts bottle toward camera — direct pour to lens</li>
+            <li>Receiving vessel kept OOF in foreground (below frame)</li>
+            <li>Green BG locks the color palette through the sequence</li>
+            <li>Softbox right-to-back lights the liquid stream — amber glow</li>
+            <li>Chill bottle for condensation on glass exterior</li>
+          </ul>
+        </div>
+        <div class="key-note">Position the softbox so its light passes through the falling pour stream — this is what creates the glowing amber translucency. Side-back lighting through liquid is the defining visual of premium beverage work. Without this, the pour reads flat and dark.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">Macro / 85mm</span>
+          <span class="cam-spec-pill">f/2.8</span>
+          <span class="cam-spec-pill">1/500s+ (stills)</span>
+          <span class="cam-spec-pill">120fps (video)</span>
+          <span class="cam-spec-pill">Horizontal tripod</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOTS 07 + 08 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">07–08</div>
+        <div class="shot-meta">
+          <div class="shot-name">Beer bubbles — extreme macro, fill level in glass</div>
+          <span class="shot-type-badge">Abstract Macro / Texture</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Camera horizontal — shooting through the side of the glass</li>
+            <li>Macro lens / extension tube essential</li>
+            <li>f/2.8–f/4 — slight DOF to see bubble depth and clusters</li>
+            <li>Backlit softbox (camera-right) illuminates the amber liquid</li>
+            <li>Expose for the highlights — amber should glow, not blow</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Technique</div>
+          <ul class="spec-list">
+            <li>Pour beer slowly to minimize excess head at start</li>
+            <li>Shoot immediately — bubbles dissipate within 3–4 minutes</li>
+            <li>Glass must be immaculate — fingerprints kill this shot</li>
+            <li><strong>07:</strong> Full head / maximum bubbles immediately after pour</li>
+            <li><strong>08:</strong> 30–60s later — settled, texture visible, foam finer</li>
+          </ul>
+        </div>
+        <div class="key-note">The white textured foam against amber liquid is a universally effective beer visual. Shoot both the maximum-head moment and 45 seconds after settling — they read very differently. Give your editor both options. Glass cleanliness is non-negotiable here; even a water spot will show at macro distances.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">Macro lens</span>
+          <span class="cam-spec-pill">f/2.8–f/4</span>
+          <span class="cam-spec-pill">1/100–1/200s</span>
+          <span class="cam-spec-pill">Horizontal rig</span>
+          <span class="cam-spec-pill">Backlit setup</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 09 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">09</div>
+        <div class="shot-meta">
+          <div class="shot-name">Branded glass with head — spoon foam sculpting</div>
+          <span class="shot-type-badge">Hero Product / Branded Glass</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Medium angle — glass in left 2/3 of frame</li>
+            <li>Green BG occupies right 1/3 — half-frame split composition</li>
+            <li>85–100mm, f/2.8 — logo and crown emblem sharp</li>
+            <li>Slight backlight from right gives head texture and translucency</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">Foam Styling Technique</div>
+          <ul class="spec-list">
+            <li>Pour first glass to fill (liquid) — set aside as source</li>
+            <li>Pour second glass lightly — this is the hero glass</li>
+            <li>Use spoon to transfer foam from source glass to hero</li>
+            <li>Smooth crown with the back of the spoon — pub-perfect shape</li>
+            <li>Tuborg branded glass is essential — logo adds authenticity</li>
+          </ul>
+        </div>
+        <div class="key-note">The spoon foam transfer is a standard food/bev styling technique. Real beer foam deflates — you need a "sacrifice" glass off-camera to harvest from. Work fast: foam life is 2–3 minutes under lights. Have a second pre-poured glass ready. Shoot as soon as the crown is set.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">85–100mm</span>
+          <span class="cam-spec-pill">f/2.8</span>
+          <span class="cam-spec-pill">1/50s</span>
+          <span class="cam-spec-pill">Branded glass required</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOTS 10 + 11 -->
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-index">10–11</div>
+        <div class="shot-meta">
+          <div class="shot-name">Frost bottle — cold condensation, label obscured</div>
+          <span class="shot-type-badge">Texture / Product Detail</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="shot-col-label">Camera</div>
+          <ul class="spec-list">
+            <li>Tripod locked, horizontal — label zone in center frame</li>
+            <li>Slight 3/4 angle to show frost texture and label together</li>
+            <li>85mm, f/2.8–f/4 — foreground frost sharp, BG green soft</li>
+            <li>Key light rakes across frost surface to reveal ice texture</li>
+            <li><strong>10:</strong> Label partially visible through frost bloom</li>
+            <li><strong>11:</strong> Heavier frost — brand almost fully obscured</li>
+          </ul>
+        </div>
+        <div>
+          <div class="shot-col-label">How to Create Frost</div>
+          <ul class="spec-list">
+            <li>Method A: Freeze bottle solid overnight (remove cap first)</li>
+            <li>Remove from freezer — let sweat 60–90 seconds before shooting</li>
+            <li>Method B: Canned cold/freeze spray for instant controlled burst</li>
+            <li>Spoon water onto frozen surface for controlled condensation runs</li>
+            <li>Work in a cool room — warm studios kill frost in under 2 min</li>
+          </ul>
+        </div>
+        <div class="key-note">The white frosted bottle against vivid green BG is maximum contrast — this is typically the hero frame for packaging, OOH, and social. A key light at 45° right raking across the frosted surface reveals ice texture dimensionally. The label half-disappearing beneath frost creates intrigue. Shoot within the first 90 seconds after removing from freezer.</div>
+        <div class="cam-specs">
+          <span class="cam-spec-pill">85mm</span>
+          <span class="cam-spec-pill">f/2.8–f/4</span>
+          <span class="cam-spec-pill">1/50s</span>
+          <span class="cam-spec-pill">Frozen bottle req'd</span>
+          <span class="cam-spec-pill">90s window</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ══════════════════════════════════ WORKFLOW ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">04 / WORKFLOW</div>
+    <div class="section-title">Production Order</div>
+  </div>
+
+  <div class="workflow">
+    <div class="wf-step">
+      <div class="wf-circle">1</div>
+      <div class="wf-content">
+        <div class="wf-title">Prep & chill products</div>
+        <div class="wf-body">Refrigerate all hero bottles overnight. Freeze 2–3 bottles solid for frost shots (Shots 10–11). Remove caps before freezing. Keep at least 4 room-temp bottles for pour shots — frozen beer won't pour cleanly or consistently.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">2</div>
+      <div class="wf-content">
+        <div class="wf-title">Build the set</div>
+        <div class="wf-body">Hang or stand the green screen sweep. Lay LED strip at the base of the sweep angled upward. Set the white sweep table. Position the large softbox camera-right at 45°. Mount your field monitor on a secondary stand for live review without walking to camera.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">3</div>
+      <div class="wf-content">
+        <div class="wf-title">Shoot dry bottles first — cluster shots (01–02)</div>
+        <div class="wf-body">Start with the bottle cluster shots before applying any water. Dry bottles let you dial in exposure, framing, focus, and lens position without time pressure. Lock off your camera position and save the settings. Water comes after the frame is perfect.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">4</div>
+      <div class="wf-content">
+        <div class="wf-title">Apply condensation FX</div>
+        <div class="wf-body">Mix 60% water / 40% glycerin in a spray bottle. Glycerin makes droplets bead and hold their shape much longer without running. Spray from ~40cm for a fine mist. Use a dropper or brush for hero droplets on the label face. Shoot immediately.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">5</div>
+      <div class="wf-content">
+        <div class="wf-title">Overhead rig — cap shots (04–05)</div>
+        <div class="wf-body">Reposition the tripod for inverted overhead. Mount camera on the arm or invert the head. Verify the camera is perfectly level — any tilt shows against the circular cap geometry. Do all overhead shots together before moving back to horizontal.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">6</div>
+      <div class="wf-content">
+        <div class="wf-title">Cap splash shot — 120fps (03)</div>
+        <div class="wf-body">Switch to 120fps. Return to horizontal rig at low angle looking up at the cap. Drop water from the dropper — shoot on release. Repeat 15–20 times until you get a clean crown splash shape. Keep paper towels close — the table will get wet.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">7</div>
+      <div class="wf-content">
+        <div class="wf-title">Pour sequences — macro liquid (06–08)</div>
+        <div class="wf-body">Keep 120fps engaged. Set up a receiving vessel (glass or bowl) in the foreground, out of frame. Tilt bottle toward the camera for Shot 06 close pour. Then reframe through the side of the glass for Shots 07–08 bubble macro. Have a mop or towels and a waterproof surface layer ready.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">8</div>
+      <div class="wf-content">
+        <div class="wf-title">Branded glass hero — foam sculpting (09)</div>
+        <div class="wf-body">Return to 24fps. Pour two glasses simultaneously — one hero, one sacrifice. Use the spoon to transfer foam from the sacrifice glass to top the hero glass. Smooth the crown, position, and shoot within 90 seconds. Reset and repeat minimum 3 times for selects.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-circle">9</div>
+      <div class="wf-content">
+        <div class="wf-title">Frost bottle hero (10–11)</div>
+        <div class="wf-body">Remove frozen bottle from freezer. Let sweat for 60–90 seconds in a cool room. Position and shoot immediately — you have a narrow window before frost melts under studio heat. Rake the key light across the bottle surface to reveal ice texture. Shoot multiple takes with different frost levels.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ══════════════════════════════════ TIPS ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">05 / TIPS</div>
+    <div class="section-title">Pro Techniques & Reminders</div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="6" stroke="#00c800" stroke-width="1.5"/>
+          <path d="M8 5v4M8 11v.5" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Glycerin = better droplets</div>
+      <div class="tip-body">60/40 water-to-glycerin ratio makes droplets bead beautifully and hold without running for 10–15 minutes. Pure water runs immediately under studio lights.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="10" height="10" rx="2" stroke="#00c800" stroke-width="1.5"/>
+          <path d="M6 8h4M8 6v4" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Green screen as fill light</div>
+      <div class="tip-body">Don't fight the green BG bounce — use it. It naturally fills the shadow side of your bottles with a cool green, making them look ultra-fresh without extra light.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2v3M8 11v3M2 8h3M11 8h3" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="8" cy="8" r="3" stroke="#00c800" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="tip-title">Backlight the pour</div>
+      <div class="tip-body">Position your softbox so light passes through the falling liquid. Side-backlighting a beer pour creates amber translucency — this is the visual signature of premium beverage advertising.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 13L8 3l5 10H3z" stroke="#00c800" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M8 9v2" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Crown splash = repeat takes</div>
+      <div class="tip-body">Budget 15–25 takes for the dropper cap shot. The perfect crown shape is unpredictable. Shoot 120fps and pick your best frame in post — you'll never get it in a single shot.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="5" stroke="#00c800" stroke-width="1.5"/>
+          <path d="M8 5v3l2 2" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Frost: 90-second window</div>
+      <div class="tip-body">Once a frozen bottle leaves the freezer, you have roughly 90 seconds before the frost begins to melt under studio lights. Have your frame pre-locked before you pull the bottle.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 8h8M8 4l4 4-4 4" stroke="#00c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Field monitor is essential</div>
+      <div class="tip-body">A second monitor on an articulating arm lets you check focus and composition without moving to the camera between every take. On liquid and splash shots, this saves huge amounts of time.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="12" height="4" rx="1" stroke="#00c800" stroke-width="1.5"/>
+          <path d="M8 2v8" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M5 5l3-3 3 3" stroke="#00c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Overhead level check</div>
+      <div class="tip-body">For the cap top-down shots, any camera tilt reads instantly against the circular geometry of the cap. Use your camera's built-in level or a bubble level on the hot shoe. Recheck after every repositioning.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 5h10M3 8h7M3 11h5" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Foam: sacrifice glass method</div>
+      <div class="tip-body">Always pour two glasses — one hero, one sacrifice. Spoon foam from the sacrifice to the hero to build a perfect crown. Real beer head deflates fast under heat — the second glass is your insurance policy.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2a6 6 0 100 12A6 6 0 008 2z" stroke="#00c800" stroke-width="1.5"/>
+          <path d="M8 6v2.5l1.5 1.5" stroke="#00c800" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tip-title">Shoot dry, then wet</div>
+      <div class="tip-body">Always start with dry bottles to lock exposure, framing, and focus without time pressure. Add water/glycerin only once everything is dialed in. You can't undo wet labels or blurred focus.</div>
+    </div>
+  </div>
+
+  <!-- ── POST ── -->
+  <div style="margin-top: 48px;">
+    <div class="section-header">
+      <div class="section-num">06 / POST</div>
+      <div class="section-title">Color & Editing Notes</div>
+    </div>
+
+    <div class="post-grid">
+      <div class="post-card">
+        <div class="post-cat">Color Grade</div>
+        <div class="post-title">Protect the green, push the amber</div>
+        <div class="post-body">Keep the chroma green BG fully saturated — it should feel almost over-the-top vibrant. Warm up the amber of the beer liquid with a slight orange push. Cool down the bottle glass glass for contrast. This warm/cool split does most of the work.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Slow Motion</div>
+        <div class="post-title">Conform 120fps to 24fps</div>
+        <div class="post-body">Conform all 120fps footage to 24fps timeline for 5x slow motion. Use frame interpolation (Twixtor or DaVinci's optical flow) only as a last resort — it artifacts on liquid. Real frame-rate slowdown is always cleaner.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Retouching</div>
+        <div class="post-title">Clean labels, enhance droplets</div>
+        <div class="post-body">For stills: remove any fingerprints or label wrinkles in Photoshop. Dodging individual water droplets to add a highlight catchlight makes them pop dramatically. Don't add fake droplets — enhance the real ones.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Edit Sequence</div>
+        <div class="post-title">Recommended cut order</div>
+        <div class="post-body">Open on frost bottle (10–11), cut to cluster shot (01), reveal cap (02), overhead cap (04), burst (03), pour (06), bubbles (07–08), branded glass (09). Front-load texture and product identity; land on the drinking moment last.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ FOOTER ══ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

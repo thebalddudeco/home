@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Canyon Technique — Backlit Product Drama — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  :root {
+    --ink: #0c0a07;
+    --paper: #f5f0e8;
+    --amber: #e07b00;
+    --amber-dark: #a85800;
+    --amber-pale: #fff3d6;
+    --amber-glow: rgba(224,123,0,0.15);
+    --char: #1a1510;
+    --stone: #8a8070;
+    --stone-light: #d4cfc5;
+    --border: #d0c8b8;
+    --muted: #7a7060;
+    --white: #fdfaf5;
+    --block-fill: #b8b0a0;
+    --block-stroke: #8a8278;
+    --silhouette: #1a1208;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--char);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Simulated final shot in CSS */
+  .hero-viz {
+    width: 100%;
+    height: 100%;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-glow-rect {
+    position: absolute;
+    width: 140px;
+    height: 340px;
+    background: radial-gradient(ellipse at center, #f5a623 0%, #e07b00 40%, #a85800 75%, transparent 100%);
+    opacity: 0.85;
+    filter: blur(8px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-bottle-silhouette {
+    position: relative;
+    z-index: 2;
+    width: 60px;
+    height: 190px;
+  }
+
+  .hero-blocks-left, .hero-blocks-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 260px;
+    background: #0e0c08;
+    z-index: 3;
+  }
+
+  .hero-blocks-left { left: calc(50% - 130px); }
+  .hero-blocks-right { right: calc(50% - 130px); }
+
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: slideIn 0.7s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 7vw, 100px);
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 4px;
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards 0.35s;
+  }
+
+  .hero-title .accent { color: var(--amber); }
+
+  .hero-subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--stone);
+    margin-top: 20px;
+    max-width: 380px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards 0.5s;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards 0.65s;
+  }
+
+  .hero-tag {
+    border: 1px solid rgba(224,123,0,0.4);
+    color: var(--amber);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone);
+    opacity: 0;
+    animation: slideIn 1s ease forwards 1s;
+  }
+
+  .hero-scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--stone);
+  }
+
+  /* ── CONCEPT STRIP ── */
+  .concept-strip {
+    background: var(--amber);
+    padding: 20px 80px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+  }
+
+  .concept-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--ink);
+    white-space: nowrap;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .concept-items {
+    display: flex;
+    gap: 0;
+    flex: 1;
+  }
+
+  .concept-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    border-left: 1px solid rgba(12,10,7,0.2);
+    min-width: 180px;
+  }
+
+  .concept-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: rgba(12,10,7,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .concept-text {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 100px 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .section.dark {
+    background: var(--ink);
+    color: var(--white);
+    border-color: #2a2520;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    color: inherit;
+    margin-bottom: 60px;
+  }
+
+  .section-title .light { font-family: 'Libre Baskerville', serif; font-weight: 400; font-style: italic; }
+
+  /* ── GEAR CARDS ── */
+  .gear-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 1px;
+  }
+
+  .gear-card {
+    background: var(--white);
+    padding: 36px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .gear-card:hover { background: var(--amber-pale); }
+
+  .gear-card.featured {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .gear-card.featured:hover { background: #1f1a12; }
+
+  .gear-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--amber);
+    opacity: 0.15;
+    position: absolute;
+    top: 20px;
+    right: 24px;
+  }
+
+  .gear-cat {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .gear-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: inherit;
+  }
+
+  .gear-spec {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .gear-card.featured .gear-spec { color: var(--stone); }
+
+  .gear-note {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--amber);
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    background: rgba(224,123,0,0.06);
+  }
+
+  .gear-card.featured .gear-note {
+    background: rgba(224,123,0,0.1);
+    color: #bba880;
+  }
+
+  /* ── BUILD SEQUENCE ── */
+  .build-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .build-step {
+    background: var(--white);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .build-step.dark-step {
+    background: var(--ink);
+  }
+
+  .build-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.25;
+  }
+
+  .build-step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: inherit;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .build-step.dark-step .build-step-title { color: var(--white); }
+
+  .build-step-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .build-step.dark-step .build-step-body { color: var(--stone); }
+
+  .build-arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    font-size: 20px;
+    color: var(--amber);
+    opacity: 0.4;
+  }
+
+  /* ── DIAGRAM ── */
+  .diagram-outer {
+    background: var(--ink);
+    padding: 60px;
+    border: 1px solid #2a2520;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagram-outer::before {
+    content: 'TOP-DOWN VIEW';
+    position: absolute;
+    bottom: 24px;
+    right: 32px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #2a2520;
+  }
+
+  /* ── WORKFLOW ── */
+  .workflow-timeline {
+    position: relative;
+    padding-left: 60px;
+  }
+
+  .workflow-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--amber), transparent);
+  }
+
+  .wf-step {
+    position: relative;
+    padding: 36px 0 36px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .wf-step:last-child { border-bottom: none; }
+
+  .wf-dot {
+    position: absolute;
+    left: -48px;
+    top: 44px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 3px solid var(--paper);
+  }
+
+  .wf-phase {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .wf-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--char);
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+
+  .wf-body {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 680px;
+    line-height: 1.8;
+  }
+
+  .wf-body strong { color: var(--char); font-weight: 500; }
+
+  .wf-callout {
+    margin-top: 16px;
+    background: var(--amber-pale);
+    border: 1px solid rgba(224,123,0,0.25);
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--amber-dark);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 680px;
+  }
+
+  .wf-callout-icon { flex-shrink: 0; font-size: 14px; }
+
+  /* ── SHOT LIST TABLE ── */
+  .shot-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+  }
+
+  .shot-table th {
+    background: var(--ink);
+    color: var(--amber);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    padding: 16px 20px;
+    text-align: left;
+    border-right: 1px solid #2a2520;
+    white-space: nowrap;
+  }
+
+  .shot-table td {
+    padding: 20px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .shot-table tr:hover td { background: var(--amber-pale); }
+
+  .shot-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--amber);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .shot-name-cell {
+    min-width: 200px;
+  }
+
+  .sname {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--char);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .sdesc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .badge {
+    display: inline-block;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  .badge.hero { background: var(--amber); color: var(--ink); }
+  .badge.alt { background: transparent; border: 1px solid var(--amber); color: var(--amber-dark); }
+  .badge.detail { background: var(--ink); color: var(--amber); }
+
+  .settings-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sline {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .skey {
+    font-size: 9px;
+    color: var(--stone-light);
+    background: var(--stone);
+    padding: 1px 5px;
+    border-radius: 2px;
+    min-width: 28px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .sval { color: var(--char); font-weight: 500; font-size: 12px; }
+
+  /* ── KEY INSIGHT BOX ── */
+  .insight {
+    background: var(--ink);
+    color: var(--white);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: center;
+    border-bottom: 1px solid #2a2520;
+  }
+
+  .insight-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .insight-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    line-height: 0.85;
+    color: var(--amber);
+    opacity: 0.12;
+  }
+
+  .insight-quote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--stone-light);
+  }
+
+  .insight-quote strong { color: var(--amber); font-style: normal; }
+
+  /* ── FINAL OUTPUTS ── */
+  .outputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .output-card {
+    background: var(--white);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .output-card.hero-card {
+    background: var(--ink);
+    color: var(--white);
+    grid-column: span 2;
+  }
+
+  .output-visual {
+    height: 200px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .output-cat {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .output-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: inherit;
+    margin-bottom: 12px;
+    line-height: 1.05;
+  }
+
+  .output-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 400px;
+  }
+
+  .output-card.hero-card .output-desc { color: var(--stone); }
+
+  .output-specs {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .spec-pill {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    background: var(--amber-pale);
+    color: var(--amber-dark);
+    font-weight: 500;
+  }
+
+  .output-card.hero-card .spec-pill {
+    background: rgba(224,123,0,0.15);
+    color: var(--amber);
+  }
+
+  /* ── POST SETTINGS ── */
+  .post-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .post-panel {
+    background: var(--white);
+    padding: 40px;
+  }
+
+  .post-panel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--char);
+    margin-bottom: 4px;
+  }
+
+  .post-sub {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+
+  .adj-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 44px;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .adj-row:last-child { border-bottom: none; }
+
+  .adj-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .adj-bar { height: 4px; background: var(--border); border-radius: 2px; position: relative; }
+  .adj-fill { height: 100%; border-radius: 2px; }
+  .adj-fill.warm { background: linear-gradient(90deg, var(--amber-dark), var(--amber)); }
+  .adj-fill.cool { background: linear-gradient(90deg, #2980b9, #16a085); }
+  .adj-fill.neutral { background: linear-gradient(90deg, #888, #aaa); }
+
+  .adj-val {
+    font-size: 11px;
+    color: var(--amber-dark);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--amber);
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+  }
+
+  .footer-technique {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--stone);
+    text-align: center;
+  }
+
+  .footer-url {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #3a3020;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .section, .insight, .footer { padding: 60px 24px; }
+    .gear-row { grid-template-columns: 1fr; }
+    .build-grid { grid-template-columns: 1fr 1fr; }
+    .post-two-col, .outputs-grid { grid-template-columns: 1fr; }
+    .output-card.hero-card { grid-column: span 1; }
+    .insight { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>The Canyon Technique</em> — Backlit Product Drama</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">The Bald Dude Co. · Production Guide No. 02</p>
+    <h1 class="hero-title">THE<br><span class="accent">CANYON</span><br>TECHNIQUE</h1>
+    <p class="hero-subtitle">A two-light approach using cinder block architecture to frame, lift, and backlight any product — creating a glowing amber window effect that looks like it cost five times the gear.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">2-Light Setup</span>
+      <span class="hero-tag">Amaran 150c + 300c</span>
+      <span class="hero-tag">Spotlight Attachment</span>
+      <span class="hero-tag">Backlit Product</span>
+      <span class="hero-tag">Cinder Block Rig</span>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div> Scroll to build</div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-viz">
+      <div class="hero-glow-rect"></div>
+      <div class="hero-blocks-left"></div>
+      <div class="hero-blocks-right"></div>
+      <!-- Simplified bottle SVG -->
+      <svg viewBox="0 0 60 190" style="position:relative;z-index:4;width:60px;height:190px;" xmlns="http://www.w3.org/2000/svg">
+        <!-- pump top -->
+        <rect x="26" y="0" width="8" height="30" rx="2" fill="#0c0a07"/>
+        <!-- neck -->
+        <rect x="22" y="28" width="16" height="18" rx="3" fill="#0c0a07"/>
+        <!-- body -->
+        <path d="M 10 46 Q 6 60 8 100 Q 8 150 10 170 Q 14 182 30 182 Q 46 182 50 170 Q 52 150 52 100 Q 54 60 50 46 Z" fill="#0c0a07"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONCEPT STRIP ═══════════════════ -->
+<div class="concept-strip">
+  <span class="concept-label">HOW IT WORKS</span>
+  <div class="concept-items">
+    <div class="concept-item">
+      <span class="concept-num">01</span>
+      <span class="concept-text">Build a cinder block canyon as a product cradle &amp; flag</span>
+    </div>
+    <div class="concept-item">
+      <span class="concept-num">02</span>
+      <span class="concept-text">Amaran 300c on the floor behind: paints the background amber</span>
+    </div>
+    <div class="concept-item">
+      <span class="concept-num">03</span>
+      <span class="concept-text">Amaran 150c + spotlight: fires through the canyon gap from behind</span>
+    </div>
+    <div class="concept-item">
+      <span class="concept-num">04</span>
+      <span class="concept-text">Black card flags the spotlight beam from hitting the lens</span>
+    </div>
+    <div class="concept-item">
+      <span class="concept-num">05</span>
+      <span class="concept-text">Result: product glows inside a perfect amber rectangle of light</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ GEAR ═══════════════════ -->
+<section class="section">
+  <p class="section-label">01 — Equipment</p>
+  <h2 class="section-title">Gear &amp; <span class="light">Materials</span></h2>
+
+  <div class="gear-row">
+    <div class="gear-card featured">
+      <span class="gear-num">1</span>
+      <p class="gear-cat">Background Light — Key Atmosphere</p>
+      <p class="gear-name">Amaran 300c</p>
+      <p class="gear-spec">RGBWW LED Panel · 300W equivalent · Bowens mount<br>Placed on the floor behind the table, aimed at the wall<br>Creates the warm amber background wash glow</p>
+      <div class="gear-note">Set to a warm tungsten-ish amber (~2700–3200K). This is your environment light — it sets the entire mood of the shot. The intensity gradient it throws on the wall becomes the background "portal" visible through the canyon gap.</div>
+    </div>
+
+    <div class="gear-card featured">
+      <span class="gear-num">2</span>
+      <p class="gear-cat">Key Product Light — Precision</p>
+      <p class="gear-name">Amaran 150c<br>+ Spotlight Attachment</p>
+      <p class="gear-spec">RGBWW LED Monolight · 150W · Bowens mount<br>Spotlight/Fresnel barrel attachment (cylindrical snoot)<br>Mounted on C-stand at camera left, elevated, aimed at product</p>
+      <div class="gear-note">The spotlight attachment is everything. It narrows the beam into a precise cone that passes through the canyon gap and hits the product from behind — creating edge glow and the luminous bottle effect without contaminating the background or hitting the camera lens.</div>
+    </div>
+
+    <div class="gear-card">
+      <span class="gear-num">3</span>
+      <p class="gear-cat">Camera</p>
+      <p class="gear-name">Mirrorless + Tripod</p>
+      <p class="gear-spec">Any mirrorless body with tilt screen<br>Solid tripod, fully locked<br>Level with or slightly above table surface</p>
+      <div class="gear-note">Position the camera at mid-height relative to the product — not too high, not table-level. The canyon architecture should frame the product with equal black margins on both sides when seen through the lens.</div>
+    </div>
+  </div>
+
+  <div class="gear-row" style="margin-top:2px;">
+    <div class="gear-card">
+      <p class="gear-cat">The Canyon Rig — Props</p>
+      <p class="gear-name">4 Cinder Blocks (CMU Blocks)</p>
+      <p class="gear-spec">Standard 8"×8"×16" concrete masonry units<br>Stack 2 blocks per column · 2 columns total<br>Gap between columns: ~4–6" (width of product)</p>
+      <div class="gear-note">The blocks serve triple duty: (1) elevate the product to the right height, (2) create side walls that frame the product, and (3) naturally block the background light from spilling around the product onto the foreground surface.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-cat">Product Elevator</p>
+      <p class="gear-name">Small Turntable / Lazy Susan Base</p>
+      <p class="gear-spec">Black or dark-colored small turntable<br>Placed under the front block of one column<br>Allows micro-rotation adjustment of product height/angle</p>
+      <div class="gear-note">Seen placed on the table surface under one of the block stacks. This allows you to fine-tune the product's exact position within the gap without lifting the blocks.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-cat">Flare Control</p>
+      <p class="gear-name">Large Black Foam Core Card / Flag</p>
+      <p class="gear-spec">At least 18"×24" · Matte black both sides<br>Hand-held or stand-mounted between Amaran 150c and camera lens<br>Critical for preventing direct lens flare from spotlight</p>
+      <div class="gear-note">"Cover and reveal" technique: hold the black card in the light path, fire the camera, then remove/adjust. This is also used to create a transition wipe effect in video — revealing the backlit product dramatically.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-cat">Subject</p>
+      <p class="gear-name">Any Translucent / Glass Bottle</p>
+      <p class="gear-spec">Amber/orange oil serum used here (L'Oréal Elvive)<br>Translucency is key — light passes through the bottle<br>Glass, PET plastic, frosted containers all work</p>
+      <div class="gear-note">Translucent products are the magic ingredient. Opaque bottles work too (you get a silhouette) but clear/translucent containers glow from within when backlit, creating a secondary light source effect that looks extraordinary.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ BUILD SEQUENCE ═══════════════════ -->
+<section class="section" style="background:var(--amber-pale);">
+  <p class="section-label">02 — Assembly</p>
+  <h2 class="section-title">The Build <span class="light">Sequence</span></h2>
+
+  <div class="build-grid">
+
+    <div class="build-step">
+      <div class="build-step-num">01</div>
+      <p class="build-step-title">Place Turntable on Table</p>
+      <p class="build-step-body">Set the small turntable base flat on the shooting table surface, centered where the product gap will be. This is the foundation that lets you micro-adjust the product later without moving blocks.</p>
+      <span class="build-arrow">→</span>
+    </div>
+
+    <div class="build-step">
+      <div class="build-step-num">02</div>
+      <p class="build-step-title">Stack Column One (Left)</p>
+      <p class="build-step-body">Place two cinder blocks on the turntable base, stacked vertically. This gives you ~16" of height — enough to frame most bottle-height products with headroom above.</p>
+      <span class="build-arrow">→</span>
+    </div>
+
+    <div class="build-step dark-step">
+      <div class="build-step-num">03</div>
+      <p class="build-step-title">Stack Column Two (Right)</p>
+      <p class="build-step-body">Position the second two-block column approximately 4–6 inches to the right of the first — wide enough for the product to sit in between with slight clearance. Keep them parallel.</p>
+      <span class="build-arrow" style="color:var(--amber);opacity:0.5;">→</span>
+    </div>
+
+    <div class="build-step dark-step">
+      <div class="build-step-num">04</div>
+      <p class="build-step-title">Place Product in Gap</p>
+      <p class="build-step-body">Set the bottle into the gap between the two columns, resting on the turntable. The column walls should flank it on both sides with even margins — creating the rectangular "frame" around the product.</p>
+      <span class="build-arrow" style="color:var(--amber);opacity:0.5;">→</span>
+    </div>
+
+    <div class="build-step">
+      <div class="build-step-num">05</div>
+      <p class="build-step-title">Position Background Light</p>
+      <p class="build-step-body">Place the <strong>Amaran 300c</strong> on the floor behind the table, aimed at the wall at roughly a 45° upward angle. Fire it up — you should see a warm amber halo bloom on the wall behind the rig.</p>
+      <span class="build-arrow">→</span>
+    </div>
+
+    <div class="build-step">
+      <div class="build-step-num">06</div>
+      <p class="build-step-title">Mount &amp; Aim Spotlight</p>
+      <p class="build-step-body">Attach the spotlight barrel to the <strong>Amaran 150c</strong>. Mount on a C-stand at camera left, elevated. Aim the beam through the canyon gap at the back of the product. Use the black flag to control lens flare.</p>
+      <span class="build-arrow">→</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════ LIGHTING DIAGRAM ═══════════════════ -->
+<section class="section dark">
+  <p class="section-label">03 — Diagram</p>
+  <h2 class="section-title" style="color:var(--white);">Lighting <span class="light" style="color:var(--stone);">Layout</span></h2>
+
+  <div class="diagram-outer">
+    <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;display:block;margin:0 auto;">
+      <defs>
+        <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#e07b00;stop-opacity:0.9"/>
+          <stop offset="60%" style="stop-color:#a85800;stop-opacity:0.4"/>
+          <stop offset="100%" style="stop-color:#e07b00;stop-opacity:0"/>
+        </radialGradient>
+        <radialGradient id="spotBeam" cx="0%" cy="50%" r="100%">
+          <stop offset="0%" style="stop-color:#f5a623;stop-opacity:0.7"/>
+          <stop offset="100%" style="stop-color:#f5a623;stop-opacity:0"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="softBlur"><feGaussianBlur stdDeviation="8"/></filter>
+      </defs>
+
+      <!-- Background -->
+      <rect width="900" height="520" fill="#0c0a07"/>
+
+      <!-- Grid -->
+      <g stroke="#1a1510" stroke-width="1">
+        <line x1="0" y1="104" x2="900" y2="104"/>
+        <line x1="0" y1="208" x2="900" y2="208"/>
+        <line x1="0" y1="312" x2="900" y2="312"/>
+        <line x1="0" y1="416" x2="900" y2="416"/>
+        <line x1="90" y1="0" x2="90" y2="520"/>
+        <line x1="180" y1="0" x2="180" y2="520"/>
+        <line x1="270" y1="0" x2="270" y2="520"/>
+        <line x1="360" y1="0" x2="360" y2="520"/>
+        <line x1="450" y1="0" x2="450" y2="520"/>
+        <line x1="540" y1="0" x2="540" y2="520"/>
+        <line x1="630" y1="0" x2="630" y2="520"/>
+        <line x1="720" y1="0" x2="720" y2="520"/>
+        <line x1="810" y1="0" x2="810" y2="520"/>
+      </g>
+
+      <!-- WALL (background) -->
+      <rect x="300" y="60" width="400" height="8" rx="2" fill="#2a2218" stroke="#3a3020" stroke-width="1"/>
+      <text x="500" y="48" text-anchor="middle" font-family="Bebas Neue" font-size="10" fill="#3a3020" letter-spacing="3">WALL / BACKGROUND</text>
+
+      <!-- Background glow on wall -->
+      <ellipse cx="680" cy="130" rx="90" ry="110" fill="url(#bgGlow)" filter="url(#softBlur)" opacity="0.8"/>
+
+      <!-- TABLE -->
+      <rect x="260" y="240" width="380" height="16" rx="1" fill="#2a1e0a" stroke="#4a3820" stroke-width="1"/>
+      <!-- Table surface -->
+      <rect x="270" y="180" width="360" height="60" rx="1" fill="#1e1508" stroke="#3a2c10" stroke-width="1"/>
+      <text x="450" y="278" text-anchor="middle" font-family="Bebas Neue" font-size="9" fill="#3a2c10" letter-spacing="3">SHOOTING TABLE</text>
+
+      <!-- Cinder Block Left Column -->
+      <rect x="390" y="105" width="48" height="76" rx="1" fill="#2a2820" stroke="#4a4838" stroke-width="1.5"/>
+      <!-- block texture lines -->
+      <line x1="390" y1="143" x2="438" y2="143" stroke="#3a3828" stroke-width="0.5"/>
+      <rect x="392" y="107" width="44" height="34" rx="0" fill="none" stroke="#333028" stroke-width="0.5"/>
+      <rect x="392" y="143" width="44" height="36" rx="0" fill="none" stroke="#333028" stroke-width="0.5"/>
+      <text x="414" y="198" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#4a4838" letter-spacing="1">L COLUMN</text>
+
+      <!-- Cinder Block Right Column -->
+      <rect x="462" y="105" width="48" height="76" rx="1" fill="#2a2820" stroke="#4a4838" stroke-width="1.5"/>
+      <line x1="462" y1="143" x2="510" y2="143" stroke="#3a3828" stroke-width="0.5"/>
+      <rect x="464" y="107" width="44" height="34" rx="0" fill="none" stroke="#333028" stroke-width="0.5"/>
+      <rect x="464" y="143" width="44" height="36" rx="0" fill="none" stroke="#333028" stroke-width="0.5"/>
+      <text x="486" y="198" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#4a4838" letter-spacing="1">R COLUMN</text>
+
+      <!-- GAP label -->
+      <text x="450" y="165" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#e07b00" opacity="0.6">GAP</text>
+      <line x1="438" y1="158" x2="462" y2="158" stroke="#e07b00" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+
+      <!-- Product (bottle) in gap -->
+      <rect x="443" y="118" width="14" height="45" rx="3" fill="#e07b00" opacity="0.8" filter="url(#glow)"/>
+      <rect x="447" y="113" width="6" height="10" rx="1" fill="#c86000"/>
+      <text x="450" y="215" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#e07b00" letter-spacing="1">PRODUCT</text>
+
+      <!-- Background Light (Amaran 300c) — on floor behind table -->
+      <rect x="620" y="310" width="72" height="44" rx="2" fill="#1a1510" stroke="#e07b00" stroke-width="1.5"/>
+      <rect x="628" y="318" width="56" height="28" rx="1" fill="#e07b00" opacity="0.2"/>
+      <circle cx="656" cy="332" r="10" fill="#e07b00" opacity="0.5" filter="url(#glow)"/>
+      <circle cx="656" cy="332" r="4" fill="#e07b00" opacity="0.9"/>
+      <!-- stand -->
+      <line x1="656" y1="354" x2="656" y2="390" stroke="#3a3020" stroke-width="2"/>
+      <line x1="636" y1="390" x2="676" y2="390" stroke="#3a3020" stroke-width="1.5"/>
+      <text x="656" y="410" text-anchor="middle" font-family="Bebas Neue" font-size="9" fill="#e07b00" letter-spacing="1">AMARAN 300c</text>
+      <text x="656" y="421" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#3a3020" letter-spacing="1">BG LIGHT · FLOOR</text>
+      <!-- Background light beam path to wall -->
+      <path d="M 656 310 Q 680 180 680 100" fill="none" stroke="#e07b00" stroke-width="1" stroke-dasharray="5,4" opacity="0.35"/>
+
+      <!-- Spotlight (Amaran 150c) — camera left, elevated -->
+      <rect x="100" y="100" width="70" height="40" rx="2" fill="#1a1510" stroke="#f0ede8" stroke-width="1.5"/>
+      <!-- spotlight barrel -->
+      <rect x="170" y="110" width="50" height="20" rx="8" fill="#222" stroke="#888" stroke-width="1"/>
+      <text x="135" y="90" text-anchor="middle" font-family="Bebas Neue" font-size="9" fill="#f0ede8" letter-spacing="1">AMARAN 150c</text>
+      <text x="135" y="78" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#888" letter-spacing="1">+ SPOTLIGHT</text>
+      <!-- Stand -->
+      <line x1="135" y1="140" x2="135" y2="200" stroke="#3a3020" stroke-width="2"/>
+      <line x1="115" y1="200" x2="155" y2="200" stroke="#3a3020" stroke-width="1.5"/>
+
+      <!-- Spotlight beam — narrow, through canyon -->
+      <polygon points="220,120 226,119 452,138 452,145 226,128" fill="url(#spotBeam)" opacity="0.25"/>
+      <line x1="222" y1="120" x2="452" y2="140" stroke="#f5a623" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+      <text x="320" y="125" font-family="Bebas Neue" font-size="8" fill="#f5a623" opacity="0.6" letter-spacing="2">SPOTLIGHT BEAM</text>
+
+      <!-- Black Flag -->
+      <rect x="230" y="140" width="60" height="80" rx="1" fill="#0c0a07" stroke="#444" stroke-width="1.5"/>
+      <text x="260" y="188" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="#555" letter-spacing="1">FLAG</text>
+      <text x="260" y="198" text-anchor="middle" font-family="Bebas Neue" font-size="7" fill="#444">BLACK CARD</text>
+
+      <!-- Camera -->
+      <rect x="390" y="390" width="52" height="36" rx="2" fill="#1a1510" stroke="#888" stroke-width="1.5"/>
+      <circle cx="416" cy="408" r="10" fill="none" stroke="#aaa" stroke-width="1.5"/>
+      <circle cx="416" cy="408" r="4" fill="#333"/>
+      <!-- Tripod -->
+      <line x1="416" y1="426" x2="416" y2="468" stroke="#3a3020" stroke-width="2"/>
+      <text x="416" y="488" text-anchor="middle" font-family="Bebas Neue" font-size="9" fill="#888" letter-spacing="1">CAMERA</text>
+
+      <!-- Camera axis -->
+      <line x1="416" y1="390" x2="450" y2="255" stroke="#888" stroke-width="1" stroke-dasharray="6,3" opacity="0.4"/>
+
+      <!-- Angle labels -->
+      <text x="100" y="155" font-family="Bebas Neue" font-size="8" fill="#888" letter-spacing="1">ELEVATED</text>
+      <text x="100" y="165" font-family="Bebas Neue" font-size="8" fill="#888" letter-spacing="1">~60–70° HIGH</text>
+
+      <text x="580" y="310" font-family="Bebas Neue" font-size="8" fill="#888" letter-spacing="1">FLOOR LEVEL</text>
+      <text x="580" y="320" font-family="Bebas Neue" font-size="8" fill="#888" letter-spacing="1">AIMED AT WALL</text>
+
+      <!-- Light role labels with color coding -->
+      <rect x="30" y="455" width="10" height="10" fill="#f0ede8"/>
+      <text x="46" y="464" font-family="Bebas Neue" font-size="9" fill="#888" letter-spacing="1">KEY / PRODUCT (150c Spotlight)</text>
+
+      <rect x="30" y="475" width="10" height="10" fill="#e07b00"/>
+      <text x="46" y="484" font-family="Bebas Neue" font-size="9" fill="#888" letter-spacing="1">AMBIENT / BACKGROUND (300c)</text>
+
+      <rect x="30" y="495" width="10" height="10" fill="#444" stroke="#888" stroke-width="1"/>
+      <text x="46" y="504" font-family="Bebas Neue" font-size="9" fill="#888" letter-spacing="1">FLAG / NEGATIVE CONTROL</text>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ KEY INSIGHT ═══════════════════ -->
+<div class="insight">
+  <div>
+    <p class="insight-label">The Core Principle</p>
+    <p class="insight-num">∞</p>
+  </div>
+  <p class="insight-quote">
+    The cinder blocks aren't just props — they're <strong>architectural light control</strong>. 
+    The gap between the columns is a precision aperture that accepts only the spotlight beam 
+    and frames the product like a natural arch. The blocks also act as <strong>negative fill</strong>, 
+    absorbing any spill light that might contaminate the dark flanking sides.
+  </p>
+</div>
+
+
+<!-- ═══════════════════ WORKFLOW ═══════════════════ -->
+<section class="section">
+  <p class="section-label">04 — How To</p>
+  <h2 class="section-title">Step-by-Step <span class="light">Workflow</span></h2>
+
+  <div class="workflow-timeline">
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 1 · Environment</p>
+      <p class="wf-title">Kill All Ambient Light</p>
+      <p class="wf-body">Close blinds, turn off overhead lights. You need <strong>full darkness except for your two controlled sources</strong>. Any ambient light will contaminate the deep blacks around the product and gray out the shadow zones. This technique depends on absolute black negative space — you cannot fix that in post if the room is leaking light.</p>
+    </div>
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 2 · Build the Canyon</p>
+      <p class="wf-title">Assemble the Block Architecture</p>
+      <p class="wf-body">Stack two cinder blocks into each of two columns on your table surface. Leave a gap between them equal to about 1.5× the width of your product. <strong>The gap is the frame</strong> — too narrow and the product is cramped, too wide and the blocks don't provide enough negative fill. Place your product in the gap. Adjust with the turntable micro-rotation until label or feature faces camera directly.</p>
+      <div class="wf-callout">
+        <span class="wf-callout-icon">⚠</span>
+        <span>Cinder blocks are porous and matte — they absorb light beautifully without creating unwanted reflections. Avoid painted or glazed blocks as they create unpredictable bounce.</span>
+      </div>
+    </div>
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 3 · Light 1 Setup</p>
+      <p class="wf-title">Background Wash — Amaran 300c</p>
+      <p class="wf-body">Place the <strong>Amaran 300c on the floor</strong>, behind the table, aimed at the wall at roughly a 45° upward angle. Set the color to a warm amber or tungsten tone (2700K–3200K). Increase intensity until you see a warm, soft orb of light on the wall behind the product. This light should be <strong>visible through the canyon gap</strong> when viewed from camera position. It creates the glowing amber "portal" seen in the final shots. Do not overexpose — it should be warm and luminous, not blown out.</p>
+      <div class="wf-callout">
+        <span class="wf-callout-icon">💡</span>
+        <span>The 300c aimed at the wall is doing double duty: it's your background tone AND your product's rim/back lighting by bouncing off the wall and wrapping around the bottle from behind.</span>
+      </div>
+    </div>
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 4 · Light 2 Setup</p>
+      <p class="wf-title">Spotlight — Amaran 150c with Spotlight Attachment</p>
+      <p class="wf-body">Attach the <strong>spotlight/Fresnel barrel to the Amaran 150c</strong>. Mount on a C-stand at camera left, elevated high (approximately 60–70° above horizontal), aimed down through the canyon gap toward the product. The goal is a <strong>tight, focused beam that passes through the gap and hits the back face of the product</strong> — creating the internal glow effect visible through the translucent bottle. Dial in beam width using the spotlight's focusing ring — narrower for a sharper, more defined beam; slightly wider for more spread across the gap.</p>
+      <div class="wf-callout">
+        <span class="wf-callout-icon">🎯</span>
+        <span>The spotlight is your secret weapon. Without it, the 150c would flood the entire scene. The attachment focuses it into a controllable cone — you can aim it with surgical precision through the 4-inch gap between the blocks.</span>
+      </div>
+    </div>
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 5 · Flare Control</p>
+      <p class="wf-title">The "Cover and Reveal" Flag Technique</p>
+      <p class="wf-body">With both lights running, position the <strong>black foam core card between the Amaran 150c and the camera lens</strong>. The spotlight, despite being focused, will send light in the general direction of the camera — even a small amount hitting your lens will wash out contrast and create unwanted flare. The black flag intercepts this while still allowing the beam to reach the product through the gap. This is a <strong>manual dodge</strong> — you physically position it until flare disappears from the LCD preview. For video, this flag can be slowly pulled out of frame to create a dramatic "reveal" wipe from black to full exposure.</p>
+    </div>
+
+    <div class="wf-step">
+      <div class="wf-dot"></div>
+      <p class="wf-phase">Step 6 · Exposure &amp; Capture</p>
+      <p class="wf-title">Expose for the Product, Let Black Burn</p>
+      <p class="wf-body">Set your exposure to correctly render the product's color and translucency. <strong>Let the shadows go fully black</strong> — the ink-dark zones around the product are the entire mood of the shot. Shoot RAW. Aim for the product label to be readable (Image 15) without blowing the amber glow coming through the bottle. Check your histogram: the right side (highlights) should be near but not at the limit. The left side should spike hard at black — that's correct, not a mistake.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════ SHOT LIST ═══════════════════ -->
+<section class="section" style="background:var(--amber-pale);">
+  <p class="section-label">05 — Shot List</p>
+  <h2 class="section-title">Capture <span class="light">Sequence</span></h2>
+
+  <table class="shot-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Shot Name</th>
+        <th>Camera Settings</th>
+        <th>Light Config</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><span class="shot-num">1</span></td>
+        <td class="shot-name-cell">
+          <p class="sname">Pure Silhouette — No Fill</p>
+          <p class="sdesc">Only the 300c background light running. 150c spotlight off. Product appears as a pure dark silhouette against the glowing amber rectangle.</p>
+          <span class="badge hero">HERO A</span>
+        </td>
+        <td>
+          <div class="settings-block">
+            <div class="sline"><span class="skey">ISO</span><span class="sval">100–200</span></div>
+            <div class="sline"><span class="skey">AP</span><span class="sval">f/5.6–f/8</span></div>
+            <div class="sline"><span class="skey">SS</span><span class="sval">1/200s</span></div>
+          </div>
+        </td>
+        <td style="font-size:11px;color:var(--muted);">300c ON (amber, full)<br>150c Spotlight OFF<br>Flag: not needed</td>
+        <td style="font-size:11px;color:var(--muted);">Dramatic, editorial. Sells shape and silhouette. Good for teaser/opener in video edits.</td>
+      </tr>
+
+      <tr>
+        <td><span class="shot-num">2</span></td>
+        <td class="shot-name-cell">
+          <p class="sname">Full Lit — Glowing Product</p>
+          <p class="sdesc">Both lights running. 150c spotlight fires through gap from behind/above. Product glows from within. Label readable. This is the primary hero delivery image.</p>
+          <span class="badge hero">HERO B · LEAD</span>
+        </td>
+        <td>
+          <div class="settings-block">
+            <div class="sline"><span class="skey">ISO</span><span class="sval">160–320</span></div>
+            <div class="sline"><span class="skey">AP</span><span class="sval">f/5.6</span></div>
+            <div class="sline"><span class="skey">SS</span><span class="sval">1/160s</span></div>
+          </div>
+        </td>
+        <td style="font-size:11px;color:var(--muted);">300c ON (ambient amber)<br>150c ON (spotlight, through gap)<br>Flag: in position</td>
+        <td style="font-size:11px;color:var(--muted);">This is Image 15 — the full reveal. Balance the two lights so neither overpowers. The product should glow, not blow out.</td>
+      </tr>
+
+      <tr>
+        <td><span class="shot-num">3</span></td>
+        <td class="shot-name-cell">
+          <p class="sname">Tight Crop — Label Focus</p>
+          <p class="sdesc">Move camera closer or zoom in. Frame tight on label and mid-body of bottle. The amber glow through the glass visible on both sides of the label panel.</p>
+          <span class="badge alt">DETAIL</span>
+        </td>
+        <td>
+          <div class="settings-block">
+            <div class="sline"><span class="skey">ISO</span><span class="sval">160</span></div>
+            <div class="sline"><span class="skey">AP</span><span class="sval">f/4</span></div>
+            <div class="sline"><span class="skey">SS</span><span class="sval">1/200s</span></div>
+          </div>
+        </td>
+        <td style="font-size:11px;color:var(--muted);">Both lights ON<br>No change to light position<br>Only camera moves</td>
+        <td style="font-size:11px;color:var(--muted);">Open aperture slightly to let the edges of the frame fall into soft focus. Good for packaging detail shots.</td>
+      </tr>
+
+      <tr>
+        <td><span class="shot-num">4</span></td>
+        <td class="shot-name-cell">
+          <p class="sname">Block Texture — Environmental</p>
+          <p class="sdesc">Wide angle showing the full canyon rig. Product visible in gap with glow. Rough cinder block texture in amber light adds industrial/editorial texture to the set.</p>
+          <span class="badge alt">LIFESTYLE</span>
+        </td>
+        <td>
+          <div class="settings-block">
+            <div class="sline"><span class="skey">ISO</span><span class="sval">320</span></div>
+            <div class="sline"><span class="skey">AP</span><span class="sval">f/8</span></div>
+            <div class="sline"><span class="skey">SS</span><span class="sval">1/100s</span></div>
+          </div>
+        </td>
+        <td style="font-size:11px;color:var(--muted);">Both lights ON<br>Pull camera back<br>Show context</td>
+        <td style="font-size:11px;color:var(--muted);">Works as a BTS-adjacent shot that still looks intentional and editorial. Good for campaign texture variety.</td>
+      </tr>
+
+      <tr>
+        <td><span class="shot-num">5</span></td>
+        <td class="shot-name-cell">
+          <p class="sname">Video Reveal — Cover &amp; Pull</p>
+          <p class="sdesc">Start recording with black card fully blocking the spotlight. Slowly pull the card left — the amber light "wipes" across the product from right to left, revealing it dramatically.</p>
+          <span class="badge detail">VIDEO</span>
+        </td>
+        <td>
+          <div class="settings-block">
+            <div class="sline"><span class="skey">FPS</span><span class="sval">24 or 30</span></div>
+            <div class="sline"><span class="skey">SS</span><span class="sval">1/48 or 1/60</span></div>
+            <div class="sline"><span class="skey">AP</span><span class="sval">f/4–f/5.6</span></div>
+          </div>
+        </td>
+        <td style="font-size:11px;color:var(--muted);">300c ON<br>150c ON<br>Flag: manual pull</td>
+        <td style="font-size:11px;color:var(--muted);">The "cover and reveal" is a built-in camera move without actually moving the camera. Pull slowly for drama, fast for energy. Shoot 3–5 takes.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ═══════════════════ POST PRODUCTION ═══════════════════ -->
+<section class="section">
+  <p class="section-label">06 — Post</p>
+  <h2 class="section-title">Edit <span class="light">Settings</span></h2>
+
+  <div class="post-two-col">
+
+    <div class="post-panel">
+      <p class="post-panel-title">Exposure & Tone</p>
+      <p class="post-sub">Adobe Lightroom / Capture One</p>
+
+      <div class="adj-row">
+        <span class="adj-label">Exposure</span>
+        <div class="adj-bar"><div class="adj-fill neutral" style="width:45%;"></div></div>
+        <span class="adj-val">±0</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Contrast</span>
+        <div class="adj-bar"><div class="adj-fill neutral" style="width:65%;"></div></div>
+        <span class="adj-val">+25</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Highlights</span>
+        <div class="adj-bar"><div class="adj-fill cool" style="width:50%;"></div></div>
+        <span class="adj-val">−30</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Shadows</span>
+        <div class="adj-bar"><div class="adj-fill cool" style="width:70%;"></div></div>
+        <span class="adj-val">−50</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Blacks</span>
+        <div class="adj-bar"><div class="adj-fill cool" style="width:90%;"></div></div>
+        <span class="adj-val">−70</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Whites</span>
+        <div class="adj-bar"><div class="adj-fill warm" style="width:30%;"></div></div>
+        <span class="adj-val">+15</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Clarity</span>
+        <div class="adj-bar"><div class="adj-fill neutral" style="width:35%;"></div></div>
+        <span class="adj-val">+15</span>
+      </div>
+    </div>
+
+    <div class="post-panel">
+      <p class="post-panel-title">Color & Output</p>
+      <p class="post-sub">Color Grade + Export</p>
+
+      <div class="adj-row">
+        <span class="adj-label">Temp (WB)</span>
+        <div class="adj-bar"><div class="adj-fill warm" style="width:70%;"></div></div>
+        <span class="adj-val">+400K</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Orange Hue</span>
+        <div class="adj-bar"><div class="adj-fill warm" style="width:80%;"></div></div>
+        <span class="adj-val">+40 Sat</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Yellow Sat.</span>
+        <div class="adj-bar"><div class="adj-fill warm" style="width:55%;"></div></div>
+        <span class="adj-val">+25</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Shadow Tone</span>
+        <div class="adj-bar"><div class="adj-fill cool" style="width:20%;"></div></div>
+        <span class="adj-val">Neutral Black</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Grain Amount</span>
+        <div class="adj-bar"><div class="adj-fill neutral" style="width:25%;"></div></div>
+        <span class="adj-val">Light (15)</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Output PPI</span>
+        <div class="adj-bar"><div class="adj-fill neutral" style="width:100%;"></div></div>
+        <span class="adj-val">300 DPI</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Format</span>
+        <div class="adj-bar"><div class="adj-fill warm" style="width:100%;"></div></div>
+        <span class="adj-val">RAW → 16-bit TIF</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Post Note -->
+  <div style="margin-top:32px;padding:32px;background:var(--amber-pale);border:1px solid rgba(224,123,0,0.2);">
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;color:var(--amber-dark);margin-bottom:8px;">POST NOTE — PRESERVING THE AMBER</p>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;max-width:700px;">The amber was created in-camera by the warm LED color temperature. In post, your job is to <strong style="color:var(--char);">protect it, not build it</strong>. Pull blacks down to pure black, recover any blown highlights on the bottle cap/pump, and add a small amount of grain to sell the cinematic feel. Don't over-edit the warm tones — they're already exactly where they need to be from the Amaran 300c.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ FINAL OUTPUTS ═══════════════════ -->
+<section class="section dark">
+  <p class="section-label">07 — Deliverables</p>
+  <h2 class="section-title" style="color:var(--white);">Final <span class="light" style="color:var(--stone);">Outputs</span></h2>
+
+  <div class="outputs-grid">
+
+    <div class="output-card hero-card">
+      <p class="output-cat">Lead Image</p>
+      <p class="output-name">Full Reveal — Translucent Bottle with Glowing Amber Canyon</p>
+      <p class="output-desc">Both lights active. Product sits in the canyon gap, backlit by the 150c spotlight passing through the blocks, while the 300c paints the background amber. The bottle glows from within — the oil's natural color amplified by transmitted light. Dark flanking columns frame the product like a museum display. Black foreground and flanks create total depth. This is the campaign image.</p>
+      <div class="output-specs">
+        <span class="spec-pill">9:16 Portrait</span>
+        <span class="spec-pill">4:5 Social</span>
+        <span class="spec-pill">1:1 Square</span>
+        <span class="spec-pill">Full Bleed Print</span>
+        <span class="spec-pill">E-Commerce PDP</span>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <p class="output-cat">Alt Image A</p>
+      <p class="output-name">Pure Silhouette — Dark Shape in Amber Light</p>
+      <p class="output-desc">300c only. Product is a perfect dark silhouette against the glowing amber rectangle. No detail visible — just shape. Mysterious and editorial. Works as a teaser, a cover image, or an opener frame in a video sequence.</p>
+      <div class="output-specs">
+        <span class="spec-pill">Teaser / Social</span>
+        <span class="spec-pill">Video Opener</span>
+        <span class="spec-pill">Print Cover</span>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <p class="output-cat">Alt Image B</p>
+      <p class="output-name">Video Reveal — Cover &amp; Pull Wipe</p>
+      <p class="output-desc">Start fully covered by the black card flag. Record as the card is slowly pulled out of frame — the amber light sweeps left-to-right across the product in a natural wipe reveal. No cuts, no graphics. Pure light choreography.</p>
+      <div class="output-specs">
+        <span class="spec-pill">Reels / TikTok</span>
+        <span class="spec-pill">Product Launch</span>
+        <span class="spec-pill">Paid Ad</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

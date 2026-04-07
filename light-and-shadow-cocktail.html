@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Light & Shadow — Cinematic Cocktail Photography — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  :root {
+    --black: #080808;
+    --near-black: #111111;
+    --surface: #161616;
+    --card: #1c1c1c;
+    --border: #2a2a2a;
+    --red: #c0392b;
+    --red-glow: #e74c3c;
+    --amber: #e67e22;
+    --amber-light: #f39c12;
+    --white: #f0ede8;
+    --muted: #888888;
+    --accent-line: #3a3020;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(192,57,43,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 80%, rgba(230,126,34,0.06) 0%, transparent 60%),
+                var(--black);
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 20px;
+    margin-bottom: 60px;
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-meta-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-meta-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--red-glow);
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 0;
+    right: 120px;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    opacity: 0.5;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 30%;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── SECTION LAYOUT ── */
+  .section {
+    padding: 100px 60px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    padding-top: 8px;
+    min-width: 40px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--white);
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  /* ── GEAR GRID ── */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .gear-card {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .gear-card:hover { background: var(--card); }
+
+  .gear-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--red);
+    transition: height 0.4s ease;
+  }
+
+  .gear-card:hover::before { height: 100%; }
+
+  .gear-category {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .gear-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .gear-spec {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .gear-note {
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(192,57,43,0.08);
+    border-left: 2px solid var(--red);
+    font-size: 11px;
+    color: #aaa;
+    font-style: italic;
+  }
+
+  /* ── LIGHTING DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagram-title {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .diagram-svg-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .diagram-legend {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  /* ── SHOT LIST ── */
+  .shot-list {
+    display: grid;
+    gap: 2px;
+  }
+
+  .shot-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 140px 140px 120px;
+    gap: 2px;
+    align-items: stretch;
+  }
+
+  .shot-row.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .shot-cell {
+    background: var(--surface);
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+  }
+
+  .shot-row.header .shot-cell {
+    background: var(--near-black);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding: 16px 24px;
+  }
+
+  .shot-cell.num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: rgba(192,57,43,0.3);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .shot-cell.main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .shot-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .shot-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .shot-tag {
+    display: inline-block;
+    background: rgba(192,57,43,0.15);
+    color: var(--red-glow);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 4px;
+  }
+
+  .shot-cell.settings {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .setting-line {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .setting-key {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    min-width: 28px;
+  }
+
+  .setting-val {
+    color: var(--amber-light);
+    font-size: 11px;
+  }
+
+  /* ── WORKFLOW STEPS ── */
+  .workflow {
+    display: grid;
+    gap: 0;
+    counter-reset: step;
+  }
+
+  .workflow-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .workflow-step:last-child { border-bottom: 1px solid var(--border); }
+  .workflow-step:hover { background: var(--surface); }
+
+  .step-num-col {
+    background: var(--near-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: rgba(192,57,43,0.2);
+    line-height: 1;
+  }
+
+  .step-content {
+    padding: 32px 40px;
+  }
+
+  .step-phase {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .step-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 700px;
+  }
+
+  .step-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .step-tips {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tip {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 11px;
+    color: #777;
+  }
+
+  .tip::before {
+    content: '→';
+    color: var(--amber);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── POST-PRODUCTION ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+  }
+
+  .post-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .post-card-title span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 400;
+  }
+
+  .slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .slider-item {
+    display: grid;
+    grid-template-columns: 130px 1fr 50px;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .slider-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .slider-bar-wrap {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .slider-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--amber));
+  }
+
+  .slider-bar-fill.negative {
+    background: linear-gradient(90deg, #2980b9, #16a085);
+    margin-left: auto;
+  }
+
+  .slider-val {
+    font-size: 11px;
+    color: var(--amber-light);
+    text-align: right;
+  }
+
+  /* ── FINAL SHOTS GALLERY ── */
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2px;
+  }
+
+  .gallery-frame {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    aspect-ratio: 9/16;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-frame.wide {
+    aspect-ratio: 16/9;
+    grid-column: span 1;
+  }
+
+  .gallery-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    opacity: 0.07;
+    filter: blur(2px);
+  }
+
+  .gallery-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    position: relative;
+    z-index: 2;
+  }
+
+  .gallery-sub {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-top: 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── PRO TIPS CALLOUT ── */
+  .tips-banner {
+    background: linear-gradient(135deg, rgba(192,57,43,0.1) 0%, transparent 60%);
+    border: 1px solid rgba(192,57,43,0.3);
+    padding: 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tips-banner::after {
+    content: '"';
+    position: absolute;
+    right: 40px;
+    top: -30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(192,57,43,0.08);
+    line-height: 1;
+  }
+
+  .tips-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  .tips-banner-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    color: var(--white);
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .footer-note {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── UTILS ── */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--red);
+    margin: 0;
+  }
+
+  .label-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.25);
+    color: var(--red-glow);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero, .section { padding: 40px 24px; }
+    .shot-row { grid-template-columns: 40px 1fr; }
+    .shot-cell.settings, .shot-cell.angle, .shot-cell.priority { display: none; }
+    .post-grid { grid-template-columns: 1fr; }
+    .gallery-strip { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 16px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>Light & Shadow</em> — Cinematic Cocktail Photography</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-line"></div>
+  <div class="hero-glow"></div>
+
+  <p class="hero-eyebrow">Production Guide · Beverage / Cocktail Photography</p>
+  <h1 class="hero-title">Cinematic<br><em>Light &amp; Shadow</em></h1>
+  <p class="hero-subtitle">A complete field guide to the dark, dramatic, single-source lighting approach seen in high-end cocktail &amp; product work.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Subject</span>
+      <span class="hero-meta-value">Cocktail / Beverage</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Style</span>
+      <span class="hero-meta-value">Dark &amp; Cinematic</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Camera</span>
+      <span class="hero-meta-value">Fujifilm X-H2</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Primary Light</span>
+      <span class="hero-meta-value">Amaran / LED Panel</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Post</span>
+      <span class="hero-meta-value">Capture One</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ GEAR ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">01 ——</span>
+    <h2 class="section-title">Gear &amp;<br><em>Setup</em></h2>
+  </div>
+
+  <div class="gear-grid">
+
+    <div class="gear-card">
+      <p class="gear-category">Camera Body</p>
+      <p class="gear-name">Fujifilm X-H2</p>
+      <p class="gear-spec">APS-C 40MP · IBIS · Tethering via USB-C<br>Articulating touchscreen for live view monitoring</p>
+      <div class="gear-note">Use the articulating LCD for precise composition — crucial when shooting at table-level or elevated angles without touching the tripod.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Tripod &amp; Head</p>
+      <p class="gear-name">Sturdy Carbon / Aluminum Tripod</p>
+      <p class="gear-spec">Ball head with friction control<br>Red/black clamp-style (as seen) for fine adjustment</p>
+      <div class="gear-note">Lock down completely before shooting. Even a half-turn of looseness will cause micro-shake on long exposures.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Primary Light Source</p>
+      <p class="gear-name">Amaran LED Panel<br>(Ray 360c or Similar)</p>
+      <p class="gear-spec">Bi-color or RGBWW LED · Bowens-compatible<br>Barn doors or snoot recommended · No modifier for hard light</p>
+      <div class="gear-note">Used bare (no softbox) for maximum contrast and hard-edged light streaks across the surface. This is the entire look.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Backdrop</p>
+      <p class="gear-name">Black Foam Core Board</p>
+      <p class="gear-spec">Large rigid panel · Approx. 24"×36" minimum<br>Matte black surface — no sheen</p>
+      <div class="gear-note">Acts as both background and negative fill. Position directly behind the subject, perpendicular to the table, to absorb all spill and create deep shadow zones.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Shooting Surface</p>
+      <p class="gear-name">White / Marble-Look Acrylic or Vinyl</p>
+      <p class="gear-spec">Smooth reflective surface · Approx. 24"×36"<br>Lay flat across a dark-painted table or box</p>
+      <div class="gear-note">The white surface catches and reflects the beam of light, creating the dramatic arc/sweep effect visible in the final shots.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Tethering / Review</p>
+      <p class="gear-name">MacBook Pro + Capture One</p>
+      <p class="gear-spec">USB-C tether cable · Capture One Pro or Fujifilm version<br>Real-time histogram, focus zoom, exposure tools</p>
+      <div class="gear-note">Tethering lets you see ISO, shutter, and exposure in real time (visible: ISO 160 / 1/200s / 21mm in the screen captures). Non-negotiable for precise work.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Optional: Negative Fill</p>
+      <p class="gear-name">Second Black Board / V-Flat</p>
+      <p class="gear-spec">Position at camera left to kill any ambient bounce<br>Keeps shadow side fully crushed to black</p>
+      <div class="gear-note">The room in these shots has light walls. A V-flat on the opposite side of the key light prevents any wall bounce from contaminating the dark side.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Subject / Prop</p>
+      <p class="gear-name">Ribbed Rocks Glass + Red Cocktail</p>
+      <p class="gear-spec">Dried blood orange slice as garnish<br>Ridged glass texture catches light dramatically</p>
+      <div class="gear-note">The ridged glass acts as a natural prism — each facet picks up light differently, creating complex highlights that reward close-up macro shots.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ LIGHTING DIAGRAM ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">02 ——</span>
+    <h2 class="section-title">Lighting<br><em>Diagram</em></h2>
+  </div>
+
+  <div class="diagram-wrap">
+    <p class="diagram-title">Top-Down Floor Plan · Not to Scale</p>
+
+    <div class="diagram-svg-wrap">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;width:800px;">
+        <defs>
+          <radialGradient id="lightBeam" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#f0ede8;stop-opacity:0.9"/>
+            <stop offset="100%" style="stop-color:#f0ede8;stop-opacity:0"/>
+          </radialGradient>
+          <radialGradient id="subjectGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#c0392b;stop-opacity:0.6"/>
+            <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0"/>
+          </radialGradient>
+          <filter id="blur">
+            <feGaussianBlur stdDeviation="3"/>
+          </filter>
+        </defs>
+
+        <!-- Room background -->
+        <rect width="800" height="500" fill="#111111"/>
+
+        <!-- Grid lines subtle -->
+        <g stroke="#222" stroke-width="1" opacity="0.5">
+          <line x1="0" y1="100" x2="800" y2="100"/>
+          <line x1="0" y1="200" x2="800" y2="200"/>
+          <line x1="0" y1="300" x2="800" y2="300"/>
+          <line x1="0" y1="400" x2="800" y2="400"/>
+          <line x1="100" y1="0" x2="100" y2="500"/>
+          <line x1="200" y1="0" x2="200" y2="500"/>
+          <line x1="300" y1="0" x2="300" y2="500"/>
+          <line x1="400" y1="0" x2="400" y2="500"/>
+          <line x1="500" y1="0" x2="500" y2="500"/>
+          <line x1="600" y1="0" x2="600" y2="500"/>
+          <line x1="700" y1="0" x2="700" y2="500"/>
+        </g>
+
+        <!-- Shooting table surface -->
+        <rect x="180" y="160" width="340" height="220" rx="2" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
+        <text x="350" y="378" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#555" letter-spacing="2">SHOOTING SURFACE</text>
+
+        <!-- White acrylic on table -->
+        <rect x="200" y="170" width="300" height="200" rx="1" fill="#1e1e1e" stroke="#333" stroke-width="1"/>
+
+        <!-- Light beam visualization — angled from upper right -->
+        <polygon points="600,60 660,60 370,280 310,280" fill="url(#lightBeam)" opacity="0.06" filter="url(#blur)"/>
+        <polygon points="600,60 660,60 370,280 310,280" fill="none" stroke="#f0ede8" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.15"/>
+
+        <!-- Light beam center line -->
+        <line x1="630" y1="60" x2="340" y2="275" stroke="#f0ede8" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.3"/>
+
+        <!-- Subject glow on surface -->
+        <ellipse cx="340" cy="270" rx="50" ry="30" fill="url(#subjectGlow)" filter="url(#blur)"/>
+
+        <!-- Black backdrop -->
+        <rect x="180" y="100" width="340" height="55" fill="#090909" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="350" y="132" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#c0392b" letter-spacing="2">BLACK BACKDROP</text>
+
+        <!-- Subject: glass -->
+        <circle cx="340" cy="270" r="18" fill="none" stroke="#c0392b" stroke-width="2"/>
+        <circle cx="340" cy="270" r="6" fill="#c0392b" opacity="0.7"/>
+        <text x="340" y="302" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#c0392b" letter-spacing="1">SUBJECT</text>
+
+        <!-- LED Light fixture -->
+        <rect x="580" y="40" width="80" height="44" rx="2" fill="#1a1a1a" stroke="#f0ede8" stroke-width="1.5"/>
+        <rect x="592" y="48" width="56" height="28" rx="1" fill="#f0ede8" opacity="0.12"/>
+        <!-- Light emission circle -->
+        <circle cx="620" cy="62" r="10" fill="#f0ede8" opacity="0.5"/>
+        <circle cx="620" cy="62" r="5" fill="#f0ede8" opacity="0.8"/>
+        <text x="620" y="98" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#f0ede8" letter-spacing="1">KEY LIGHT</text>
+        <text x="620" y="110" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#888" letter-spacing="1">AMARAN LED</text>
+
+        <!-- Light stand -->
+        <line x1="620" y1="84" x2="620" y2="145" stroke="#555" stroke-width="2"/>
+        <line x1="598" y1="145" x2="642" y2="145" stroke="#555" stroke-width="1.5"/>
+
+        <!-- Camera -->
+        <rect x="340" y="400" width="52" height="36" rx="2" fill="#1a1a1a" stroke="#888" stroke-width="1.5"/>
+        <circle cx="366" cy="418" r="10" fill="none" stroke="#aaa" stroke-width="1.5"/>
+        <circle cx="366" cy="418" r="5" fill="#333"/>
+        <text x="366" y="452" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#888" letter-spacing="1">CAMERA</text>
+        <text x="366" y="463" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#666" letter-spacing="1">FUJIFILM X-H2</text>
+
+        <!-- Camera tripod -->
+        <line x1="366" y1="436" x2="366" y2="475" stroke="#555" stroke-width="2" opacity="0.6"/>
+
+        <!-- Shooting angle line from camera to subject -->
+        <line x1="366" y1="400" x2="340" y2="288" stroke="#888" stroke-width="1" stroke-dasharray="6,3" opacity="0.5"/>
+        <!-- Angle label -->
+        <text x="332" y="355" font-family="DM Mono, monospace" font-size="8" fill="#888">CAMERA AXIS</text>
+
+        <!-- Black negative fill board (camera left = subject right) -->
+        <rect x="100" y="185" width="16" height="180" rx="1" fill="#090909" stroke="#555" stroke-width="1"/>
+        <text x="40" y="278" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#555" letter-spacing="1" transform="rotate(-90 40 278)">NEG. FILL (OPT.)</text>
+
+        <!-- Laptop / Tether -->
+        <rect x="560" y="320" width="90" height="60" rx="2" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+        <rect x="568" y="328" width="74" height="44" rx="1" fill="#222"/>
+        <text x="605" y="395" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#555" letter-spacing="1">MACBOOK</text>
+        <text x="605" y="405" text-anchor="middle" font-family="DM Mono, monospace" font-size="7" fill="#444">CAPTURE ONE</text>
+        <!-- Tether cable -->
+        <path d="M 560 350 Q 480 370 392 418" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+        <!-- Angle indicator arc -->
+        <path d="M 620 62 L 630 90 A 60 60 0 0 0 660 40 Z" fill="none" stroke="#e67e22" stroke-width="1" opacity="0.5"/>
+        <text x="670" y="80" font-family="DM Mono, monospace" font-size="8" fill="#e67e22">~45° HIGH</text>
+        <text x="670" y="91" font-family="DM Mono, monospace" font-size="8" fill="#e67e22">SIDE ANGLE</text>
+
+        <!-- NORTH indicator / compass rose -->
+        <text x="760" y="470" text-anchor="end" font-family="DM Mono, monospace" font-size="8" fill="#333">TOP-DOWN VIEW</text>
+      </svg>
+    </div>
+
+    <div class="diagram-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#f0ede8;"></div>Key Light (LED Panel)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c0392b;"></div>Subject (Cocktail)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#090909;border:1px solid #555;"></div>Black Backdrop + Neg. Fill</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#888;"></div>Camera Position</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#555;"></div>Tether Cable (USB-C)</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ CAMERA SETTINGS ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">03 ——</span>
+    <h2 class="section-title">Camera<br><em>Settings</em></h2>
+  </div>
+
+  <div class="gear-grid">
+
+    <div class="gear-card">
+      <p class="gear-category">ISO</p>
+      <p class="gear-name">ISO 160</p>
+      <p class="gear-spec">Base ISO for maximum dynamic range and cleanest shadows. Do not push ISO in controlled studio light — shadow noise will destroy the dark zones.</p>
+      <div class="gear-note">Confirmed from Capture One readout in the BTS frames.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Shutter Speed</p>
+      <p class="gear-name">1/200s</p>
+      <p class="gear-spec">Fast enough to freeze any ambient flicker. Since the subject is static and on tripod, shutter speed is only a secondary exposure control here.</p>
+      <div class="gear-note">Confirmed from Capture One readout. For LED continuous lights, any speed above 1/100s eliminates banding risk.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Focal Length</p>
+      <p class="gear-name">21mm (equivalent)</p>
+      <p class="gear-spec">On APS-C — slightly wide, giving mild environmental context while staying relatively close to subject. Interesting perspective compression for the tabletop depth.</p>
+      <div class="gear-note">Confirmed from Capture One. Not the typical "safe" 85mm+ for product work — the slight wide creates a more dynamic, editorial feel.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Aperture</p>
+      <p class="gear-name">f/4 – f/8 (Recommended)</p>
+      <p class="gear-spec">Enough depth to keep the glass in focus while allowing natural background fade. For extreme macro garnish shots, open to f/2.8 or wider.</p>
+      <div class="gear-note">Final image shows the full glass sharp with background falling off cleanly — suggests f/5.6–f/8 territory for the hero shot.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">White Balance</p>
+      <p class="gear-name">Daylight / 5600K Custom</p>
+      <p class="gear-spec">Shoot RAW and set a consistent WB. The amber/warm shift visible in the final images suggests slight warmth added in post, not in-camera.</p>
+      <div class="gear-note">RAW gives full latitude to push WB in Capture One without quality loss. Set camera WB to "Auto" only as a reference — override in post.</div>
+    </div>
+
+    <div class="gear-card">
+      <p class="gear-category">Drive Mode</p>
+      <p class="gear-name">Single Shot / Remote Shutter</p>
+      <p class="gear-spec">Use a cable release or 2-second timer delay to eliminate camera shake entirely. Mirror lockup not needed on mirrorless.</p>
+      <div class="gear-note">For tethered shooting, fire from Capture One directly using tethered capture — zero vibration, immediate preview on large screen.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ SHOT LIST ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">04 ——</span>
+    <h2 class="section-title">Shot <em>List</em></h2>
+  </div>
+
+  <div class="shot-list">
+
+    <!-- Header -->
+    <div class="shot-row header">
+      <div class="shot-cell">#</div>
+      <div class="shot-cell">Shot / Description</div>
+      <div class="shot-cell">Camera Settings</div>
+      <div class="shot-cell">Light Position</div>
+      <div class="shot-cell">Priority</div>
+    </div>
+
+    <!-- Shot 1 -->
+    <div class="shot-row">
+      <div class="shot-cell num">1</div>
+      <div class="shot-cell main">
+        <p class="shot-name">Hero — Full Product, 3/4 Angle</p>
+        <p class="shot-desc">Glass centered slightly left-of-frame. Dramatic light sweep arc across white surface. Garnish detail visible. Black background fully crushed. This is the lead image.</p>
+        <span class="shot-tag">Hero Shot</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">ISO</span><span class="setting-val">160</span></div>
+        <div class="setting-line"><span class="setting-key">SS</span><span class="setting-val">1/200s</span></div>
+        <div class="setting-line"><span class="setting-key">FL</span><span class="setting-val">21mm</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">f/5.6</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Camera Right</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">High (45°+)</span></div>
+        <div class="setting-line"><span class="setting-key">MOD</span><span class="setting-val">Bare (No diff)</span></div>
+        <div class="setting-line"><span class="setting-key">OUT</span><span class="setting-val">Full power</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">● CRITICAL</span></div>
+    </div>
+
+    <!-- Shot 2 -->
+    <div class="shot-row">
+      <div class="shot-cell num">2</div>
+      <div class="shot-cell main">
+        <p class="shot-name">Extreme Macro — Garnish Detail</p>
+        <p class="shot-desc">Push in tight on the dried blood orange slice. Backlight transmission through the citrus membrane creates the amber/red internal glow. Glass rim in lower frame for context.</p>
+        <span class="shot-tag">Detail / Macro</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">ISO</span><span class="setting-val">160</span></div>
+        <div class="setting-line"><span class="setting-key">SS</span><span class="setting-val">1/100s</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">f/2.8</span></div>
+        <div class="setting-line"><span class="setting-key">FL</span><span class="setting-val">Longest avail.</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Behind / above</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">Rim from rear</span></div>
+        <div class="setting-line"><span class="setting-key">MOD</span><span class="setting-val">Bare</span></div>
+        <div class="setting-line"><span class="setting-key">OUT</span><span class="setting-val">Reduced 50%</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">● CRITICAL</span></div>
+    </div>
+
+    <!-- Shot 3 -->
+    <div class="shot-row">
+      <div class="shot-cell num">3</div>
+      <div class="shot-cell main">
+        <p class="shot-name">Low Angle — Rim / Table Level</p>
+        <p class="shot-desc">Camera drops to just above table surface. Garnish fills upper frame, glass body and rim visible below. Distortion from compressed perspective adds drama. Mimics a diner's point of view.</p>
+        <span class="shot-tag">Lifestyle / Alt</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">ISO</span><span class="setting-val">200</span></div>
+        <div class="setting-line"><span class="setting-key">SS</span><span class="setting-val">1/160s</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">f/4</span></div>
+        <div class="setting-line"><span class="setting-key">FL</span><span class="setting-val">21mm</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Camera Right</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">Same height</span></div>
+        <div class="setting-line"><span class="setting-key">MOD</span><span class="setting-val">Bare</span></div>
+        <div class="setting-line"><span class="setting-key">OUT</span><span class="setting-val">Full power</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">● HIGH</span></div>
+    </div>
+
+    <!-- Shot 4 -->
+    <div class="shot-row">
+      <div class="shot-cell num">4</div>
+      <div class="shot-cell main">
+        <p class="shot-name">Glass Detail — Ribbed Texture</p>
+        <p class="shot-desc">Frame tight on just the mid-section of the glass. Light raking across the ribbed surface creates repeating highlight lines. Red liquid glow visible through glass.</p>
+        <span class="shot-tag">Texture Detail</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">ISO</span><span class="setting-val">160</span></div>
+        <div class="setting-line"><span class="setting-key">SS</span><span class="setting-val">1/200s</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">f/2.8–f/4</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Side Rake</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">Level w/ glass</span></div>
+        <div class="setting-line"><span class="setting-key">MOD</span><span class="setting-val">Bare/Grid</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">○ MEDIUM</span></div>
+    </div>
+
+    <!-- Shot 5 -->
+    <div class="shot-row">
+      <div class="shot-cell num">5</div>
+      <div class="shot-cell main">
+        <p class="shot-name">Overhead / Flat Lay — Product + Garnish Spread</p>
+        <p class="shot-desc">Camera directly above the subject. Additional dried orange slices arranged around the glass. Shows the full color story. Good for social media square crop.</p>
+        <span class="shot-tag">Social / Alt</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">ISO</span><span class="setting-val">160</span></div>
+        <div class="setting-line"><span class="setting-key">SS</span><span class="setting-val">1/100s</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">f/8</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Overhead</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">90° above</span></div>
+        <div class="setting-line"><span class="setting-key">MOD</span><span class="setting-val">Diffused</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">○ OPTIONAL</span></div>
+    </div>
+
+    <!-- Shot 6 -->
+    <div class="shot-row">
+      <div class="shot-cell num">6</div>
+      <div class="shot-cell main">
+        <p class="shot-name">BTS / Making-Of Frame</p>
+        <p class="shot-desc">Pull back to show the full setup: light on stand, black backdrop, white surface, camera on tripod. Invaluable for social content and educational value. Shoot with a phone or second camera.</p>
+        <span class="shot-tag">BTS / Content</span>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">CAM</span><span class="setting-val">Phone / B-cam</span></div>
+        <div class="setting-line"><span class="setting-key">AP</span><span class="setting-val">Auto / Wide</span></div>
+      </div>
+      <div class="shot-cell settings">
+        <div class="setting-line"><span class="setting-key">POS</span><span class="setting-val">Behind Camera</span></div>
+        <div class="setting-line"><span class="setting-key">HT</span><span class="setting-val">Eye level</span></div>
+      </div>
+      <div class="shot-cell"><span class="label-pill">○ CONTENT</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ WORKFLOW ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">05 ——</span>
+    <h2 class="section-title">Production<br><em>Workflow</em></h2>
+  </div>
+
+  <div class="workflow">
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">1</span></div>
+      <div class="step-content">
+        <p class="step-phase">Pre-Production</p>
+        <p class="step-title">Surface & Backdrop Construction</p>
+        <p class="step-body">Position your table with the white/marble acrylic surface laid flat. Stand your <strong>large black foam board</strong> vertically at the back edge of the table, perpendicular to the surface. This creates a continuous seamless curve from surface to background — the classic product photography sweep, but DIY. Make sure the black board is large enough to fill your entire frame behind the subject.</p>
+        <div class="step-tips">
+          <p class="tip">Tape the board to the table edge or use a stand behind it to keep it upright.</p>
+          <p class="tip">A second black board on camera left acts as negative fill and keeps the shadow side clean.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">2</span></div>
+      <div class="step-content">
+        <p class="step-phase">Lighting Setup</p>
+        <p class="step-title">Position the Single Key Light</p>
+        <p class="step-body">Mount your LED panel on a light stand and position it at <strong>camera right, elevated 45°–60° above the subject</strong>, angled down and inward. Use the light <strong>bare with no modifier</strong> — no softbox, no diffusion. The hard, undiffused beam is what creates the sharp-edged light sweep across the white surface. Start with the light pointed slightly past the subject, toward the back of the surface, then dial in. Adjust the angle until you see a dramatic arc of light appear on the white surface in your camera's live view.</p>
+        <div class="step-tips">
+          <p class="tip">The further the light is from the subject axis, the longer and more dramatic the light sweep on the surface.</p>
+          <p class="tip">Tilt the panel slightly downward rather than aiming flat — this creates the oval/arc shadow shape on the table.</p>
+          <p class="tip">For the ribbed glass, try a tighter beam angle (barndoors or snoot) to rake across the texture.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">3</span></div>
+      <div class="step-content">
+        <p class="step-phase">Camera Setup</p>
+        <p class="step-title">Lock Down & Tether</p>
+        <p class="step-body">Mount your camera on a tripod — fully locked, no loose joints. Connect your USB-C tether cable from camera to MacBook running <strong>Capture One</strong>. Set your camera to tethered capture mode. This setup allows you to fire from the laptop, review exposures at full resolution on a large screen, and see real-time histogram data without touching the camera. Set camera to <strong>ISO 160, 1/200s, single-shot</strong>. Dial aperture for desired depth of field (start at f/5.6, test, adjust).</p>
+        <div class="step-tips">
+          <p class="tip">Use a right-angle USB-C adapter at the camera end to protect the port and reduce cable tension.</p>
+          <p class="tip">Enable Capture One's live view overlay / focus mask to nail focus on the glass rim or garnish.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">4</span></div>
+      <div class="step-content">
+        <p class="step-phase">Subject Styling</p>
+        <p class="step-title">Props, Liquid & Garnish Placement</p>
+        <p class="step-body">Fill the <strong>ribbed rocks glass</strong> with your cocktail liquid — here a deep red drink (Campari-based or similar). The darker and richer the liquid, the better it backlit glows. Position the dried blood orange slice on the rim. The <strong>dried (dehydrated) citrus</strong> is intentional — fresh slices look wet and chaotic, while dehydrated slices have a translucent membrane that transmits light beautifully, as visible in the macro shots. Place the glass approximately 1/3 of the way back from the front edge of the surface, center or slightly off-center.</p>
+        <div class="step-tips">
+          <p class="tip">Use a cocktail straw or spoon to adjust the liquid level without touching the glass (avoids fingerprints).</p>
+          <p class="tip">Have at least 3–4 dried orange slices on hand — you'll test multiple positions on the rim and as props.</p>
+          <p class="tip">Wear lint-free gloves when handling glassware to avoid fingerprints that show under harsh directional light.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">5</span></div>
+      <div class="step-content">
+        <p class="step-phase">Shooting</p>
+        <p class="step-title">Capture the Shot Sequence</p>
+        <p class="step-body">Work through your shot list systematically. Begin with the <strong>hero 3/4 angle</strong> — establish the lighting and exposure. Fire from Capture One. Examine at 100% zoom for focus, check histogram for shadow detail retention (you want the background crushed to pure black). Once the hero is dialed, begin <strong>moving the camera</strong> progressively closer and lower for the macro and rim shots. Do not adjust the light between shots unless intentionally changing the look — consistency in the light position is what makes a series of shots feel cohesive.</p>
+        <div class="step-tips">
+          <p class="tip">Shoot 5–10 frames per position — even tiny subject movements (liquid settling) change the shot.</p>
+          <p class="tip">For the macro garnish shot, you may need to reposition the light behind or beside the garnish to get the backlit transmission effect.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-step">
+      <div class="step-num-col"><span class="step-num">6</span></div>
+      <div class="step-content">
+        <p class="step-phase">Post-Production</p>
+        <p class="step-title">Edit in Capture One</p>
+        <p class="step-body">All editing visible in the BTS is done in <strong>Capture One Pro</strong> on a MacBook. The editing approach reinforces the dark, cinematic aesthetic: shadows are crushed, blacks go to absolute black, and the warm red/amber color story is amplified. A custom curve (S-curve with pulled-down blacks) is the foundation. Color grading shifts warm tones toward amber and cools the neutral/gray zones to a subtle teal, creating the classic warm-cool cinematic contrast. See the Post Settings reference below.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ POST PRODUCTION ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">06 ——</span>
+    <h2 class="section-title">Post-Production<br><em>Settings</em></h2>
+  </div>
+
+  <div class="post-grid">
+
+    <div class="post-card">
+      <p class="post-card-title">Exposure &amp; Tone <span>Capture One / Lightroom</span></p>
+      <div class="slider-row">
+        <div class="slider-item">
+          <span class="slider-label">Exposure</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:40%;"></div></div>
+          <span class="slider-val">−0.5</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Contrast</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:70%;"></div></div>
+          <span class="slider-val">+30</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Highlights</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill negative" style="width:55%;"></div></div>
+          <span class="slider-val">−40</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Shadows</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill negative" style="width:45%;"></div></div>
+          <span class="slider-val">−30</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Whites</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:30%;"></div></div>
+          <span class="slider-val">+10</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Blacks</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill negative" style="width:80%;"></div></div>
+          <span class="slider-val">−60</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Clarity</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:45%;"></div></div>
+          <span class="slider-val">+20</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <p class="post-card-title">Color Grading <span>HSL + Color Wheel</span></p>
+      <div class="slider-row">
+        <div class="slider-item">
+          <span class="slider-label">WB Temp</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:55%;background:linear-gradient(90deg,#e67e22,#f39c12);"></div></div>
+          <span class="slider-val">+200K</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Red Sat.</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:80%;background:linear-gradient(90deg,#c0392b,#e74c3c);"></div></div>
+          <span class="slider-val">+45</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Orange Sat.</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:70%;background:linear-gradient(90deg,#e67e22,#f39c12);"></div></div>
+          <span class="slider-val">+35</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Shadow Hue</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:30%;background:linear-gradient(90deg,#16a085,#1abc9c);"></div></div>
+          <span class="slider-val">Teal −15</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Highlight Hue</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:40%;background:linear-gradient(90deg,#e67e22,#f0ede8);"></div></div>
+          <span class="slider-val">Warm +20</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Vibrance</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:35%;"></div></div>
+          <span class="slider-val">+15</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <p class="post-card-title">Curve Shape <span>Custom S-Curve</span></p>
+      <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;">
+        <rect width="280" height="180" fill="#111" rx="2"/>
+        <line x1="0" y1="180" x2="280" y2="0" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="3,3"/>
+        <path d="M 0 180 C 30 180, 60 165, 90 150 C 120 135, 130 110, 150 90 C 170 70, 190 30, 220 10 C 240 0, 260 0, 280 0"
+              fill="none" stroke="#c0392b" stroke-width="2"/>
+        <circle cx="90" cy="150" r="4" fill="#e74c3c"/>
+        <circle cx="190" cy="30" r="4" fill="#e74c3c"/>
+        <text x="8" y="175" font-family="DM Mono" font-size="8" fill="#555">Shadows crushed</text>
+        <text x="160" y="20" font-family="DM Mono" font-size="8" fill="#555">Highlights retained</text>
+      </svg>
+    </div>
+
+    <div class="post-card">
+      <p class="post-card-title">Sharpening &amp; Noise <span>Output Settings</span></p>
+      <div class="slider-row">
+        <div class="slider-item">
+          <span class="slider-label">Sharpening</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:55%;"></div></div>
+          <span class="slider-val">150</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Radius</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:30%;"></div></div>
+          <span class="slider-val">0.8</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Threshold</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:20%;"></div></div>
+          <span class="slider-val">3</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Lum. Noise</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill negative" style="width:15%;"></div></div>
+          <span class="slider-val">Minimal</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Output PPI</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:90%;background:linear-gradient(90deg,#888,#aaa);"></div></div>
+          <span class="slider-val">300 DPI</span>
+        </div>
+        <div class="slider-item">
+          <span class="slider-label">Format</span>
+          <div class="slider-bar-wrap"><div class="slider-bar-fill" style="width:100%;background:linear-gradient(90deg,#555,#888);"></div></div>
+          <span class="slider-val">16-bit TIF</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ PRO TIP BANNER ═══════════════════════════════════════ -->
+<section style="padding: 0 60px 80px; border-top: none;">
+  <div class="tips-banner">
+    <p class="tips-banner-title">The Single Most Important Thing</p>
+    <p class="tips-banner-quote">"One hard, bare light. One black background. One white surface. Everything else is just arrangement. The light arc across the surface IS the photograph — not just the subject."</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ FINAL OUTPUTS ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-number">07 ——</span>
+    <h2 class="section-title">Final <em>Output</em><br>Reference</h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);padding:32px;display:flex;flex-direction:column;gap:16px;">
+      <p style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);">Shot A — Delivered</p>
+      <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);">Extreme Macro Garnish</p>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Close-up on the dried blood orange slice revealing the amber, red, and gold internal membrane. Light transmitted through the citrus tissue. Black background fully crushed. Glass rim barely visible at lower left for context and scale.</p>
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Crop / Use</p>
+        <p style="font-size:11px;color:var(--amber-light);">16:9 editorial · Social detail · Print crop</p>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);padding:32px;display:flex;flex-direction:column;gap:16px;border-left:2px solid var(--red);">
+      <p style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);">Shot B — Hero · LEAD</p>
+      <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);">Full Product — 3/4 Hero</p>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Complete glass with garnish, centered in a sea of near-black. The signature arc of white light sweeps across the white surface from camera right, creating depth and a sense of a stage. This is the lead/hero image of the entire series.</p>
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Crop / Use</p>
+        <p style="font-size:11px;color:var(--amber-light);">9:16 portrait · 4:5 social · Full bleed print</p>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);padding:32px;display:flex;flex-direction:column;gap:16px;">
+      <p style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);">Shot C — Delivered</p>
+      <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);">Low Angle Rim Shot</p>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Camera drops to just above table height. The garnish now dominates the upper frame. The glass rim and body create a rim-lit edge. Perspective dramatically compressed. Creates a sense of scale and intimacy, as if you're about to lift the drink.</p>
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Crop / Use</p>
+        <p style="font-size:11px;color:var(--amber-light);">9:16 reels · Menu / POS · Advertising</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

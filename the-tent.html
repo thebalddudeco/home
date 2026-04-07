@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tent — High-End Jewelry Photography — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #b08d4e;
+    --gold-bright: #d4aa68;
+    --gold-dim: rgba(176,141,78,0.1);
+    --gold-border: rgba(176,141,78,0.25);
+    --gem: #3a7a4a;
+    --gem-bright: #52a864;
+    --gem-dim: rgba(58,122,74,0.1);
+    --ink: #0f0e0d;
+    --charcoal: #1a1917;
+    --warm-dark: #201e1a;
+    --paper: #faf9f7;
+    --cream: #f3f0ea;
+    --muted: #6b6560;
+    --rule: #e5e0d8;
+    --card: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ══ COVER ══ */
+  .cover {
+    background: var(--charcoal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-radial {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(176,141,78,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(58,122,74,0.10) 0%, transparent 60%);
+  }
+
+  .cover-diamond {
+    position: absolute;
+    top: 50px; right: 60px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(176,141,78,0.15);
+    transform: rotate(45deg);
+    opacity: 0.5;
+  }
+  .cover-diamond::after {
+    content: '';
+    position: absolute;
+    inset: 24px;
+    border: 1px solid rgba(176,141,78,0.1);
+  }
+
+  .cover-overline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  h1.cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(68px, 11vw, 128px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 0.9;
+    color: #fff;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  h1.cover-title em { color: var(--gold-bright); font-style: normal; }
+
+  .cover-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    max-width: 480px;
+    margin-bottom: 44px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .cover-tags { display: flex; flex-wrap: wrap; gap: 10px; position: relative; }
+  .ctag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 5px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.35);
+  }
+  .ctag.gold { border-color: var(--gold-border); color: var(--gold-bright); background: var(--gold-dim); }
+  .ctag.gem  { border-color: rgba(58,122,74,0.35); color: var(--gem-bright); background: var(--gem-dim); }
+
+  .cover-id {
+    position: absolute; top: 64px; right: 64px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ══ LAYOUT ══ */
+  .page { max-width: 980px; margin: 0 auto; padding: 80px 48px; }
+  @media (max-width: 640px) { .page { padding: 48px 24px; } .cover { padding: 40px 28px; } }
+  .divider { border-top: 1px solid var(--rule); }
+
+  /* ══ SECTION HEADER ══ */
+  .sh {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 36px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sh-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--gold); flex-shrink: 0; }
+  .sh-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1; }
+
+  /* ══ CONCEPT BLOCK ══ */
+  .concept-wrap {
+    background: var(--warm-dark);
+    border-radius: 12px;
+    padding: 48px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-wrap::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 240px; height: 240px;
+    border: 1px solid rgba(176,141,78,0.08);
+    border-radius: 50%;
+  }
+  .concept-wrap::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    border: 1px solid rgba(176,141,78,0.05);
+    border-radius: 50%;
+  }
+  .concept-eyebrow { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.24em; color: var(--gold-bright); text-transform: uppercase; margin-bottom: 14px; position: relative; }
+  .concept-hl {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.3;
+    max-width: 580px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .concept-hl em { color: var(--gold-bright); font-style: normal; }
+  .concept-body { font-size: 14px; color: rgba(255,255,255,0.42); line-height: 1.7; max-width: 580px; position: relative; font-weight: 300; }
+
+  /* ══ PRINCIPLE CARDS ══ */
+  .prin-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  @media (max-width: 700px) { .prin-grid { grid-template-columns: 1fr; } }
+  .prin-card { background: var(--card); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: 8px; padding: 20px; }
+  .prin-roman { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 400; font-style: italic; color: var(--rule); line-height: 1; margin-bottom: 8px; }
+  .prin-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .prin-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ══ GEAR ══ */
+  .gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+  .gear-card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; }
+  .gear-card.hero { background: var(--warm-dark); border-color: var(--gold-border); }
+  .gear-cat { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .gear-card.hero .gear-cat { color: var(--gold-bright); }
+  .gear-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .gear-card.hero .gear-name { color: #fff; }
+  .gear-note { font-size: 12px; color: var(--muted); line-height: 1.45; }
+  .gear-card.hero .gear-note { color: rgba(255,255,255,0.4); }
+
+  .spec-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .spec-pill { font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 13px; border-radius: 4px; border: 1px solid var(--gold-border); color: var(--gold-bright); background: var(--gold-dim); }
+
+  /* ══ DIAGRAM ══ */
+  .diagram-wrap { background: var(--warm-dark); border-radius: 12px; padding: 36px 40px; margin-bottom: 24px; }
+  .diagram-cap { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 20px; }
+
+  /* ══ HOW THE TENT WORKS ══ */
+  .tent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  @media (max-width: 580px) { .tent-grid { grid-template-columns: 1fr; } }
+  .tent-card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 20px; }
+  .tent-card.dark { background: var(--warm-dark); border-color: var(--gold-border); }
+  .tent-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .tent-card.dark .tent-label { color: var(--gold-bright); }
+  .tent-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .tent-card.dark .tent-title { color: #fff; }
+  .tent-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .tent-card.dark .tent-body { color: rgba(255,255,255,0.4); }
+
+  /* ══ WORKFLOW ══ */
+  .workflow { display: flex; flex-direction: column; gap: 0; }
+  .wf-step { display: flex; gap: 20px; padding-bottom: 28px; position: relative; }
+  .wf-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 1px; background: var(--rule); }
+  .wf-dot { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--warm-dark); color: var(--gold-bright); font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .wf-body { padding-top: 8px; }
+  .wf-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .wf-text { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 640px; }
+
+  /* ══ SHOT CARDS ══ */
+  .shot-list { display: flex; flex-direction: column; gap: 20px; }
+  .shot-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .shot-head { display: flex; align-items: center; gap: 16px; padding: 16px 22px; background: var(--warm-dark); }
+  .shot-idx { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 400; font-style: italic; color: rgba(176,141,78,0.2); line-height: 1; min-width: 54px; }
+  .shot-meta { flex: 1; }
+  .shot-name { font-size: 15px; font-weight: 500; color: #fff; line-height: 1.3; margin-bottom: 5px; }
+  .shot-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 9px; border: 1px solid var(--gold-border); border-radius: 3px; color: var(--gold-bright); display: inline-block; }
+  .shot-body { padding: 20px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 580px) { .shot-body { grid-template-columns: 1fr; } }
+  .col-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .dot-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .dot-list li { font-size: 13px; color: #2a2218; display: flex; align-items: flex-start; gap: 10px; line-height: 1.45; }
+  .dot-list li::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+  .note-bar { grid-column: 1 / -1; background: var(--gold-dim); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 13px; color: #2a1f0d; font-style: italic; line-height: 1.55; }
+  .cam-pills { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .cam-pill { font-family: 'DM Mono', monospace; font-size: 11px; padding: 4px 11px; border-radius: 4px; background: var(--cream); border: 1px solid var(--rule); color: var(--muted); }
+
+  /* ══ TIPS ══ */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .tip-card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .tip-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; font-style: italic; color: var(--rule); line-height: 1; margin-bottom: 8px; }
+  .tip-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .tip-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ══ POST ══ */
+  .post-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 580px) { .post-grid { grid-template-columns: 1fr; } }
+  .post-card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .post-cat { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .post-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .post-body { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ══ FOOTER ══ */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.2); text-align: center; padding: 40px 48px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; line-height: 1.8; }
+  footer em { color: var(--gold-bright); font-style: normal; }
+
+  @media print { .cover { min-height: auto; page-break-after: always; } .shot-card { page-break-inside: avoid; } }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>The Tent</em> — High-End Jewelry Photography</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ══════════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-radial"></div>
+  <div class="cover-diamond"></div>
+  <div class="cover-id">GODOX GT600II · 1/28<br>DIFFUSION TENT RIG<br>JEWELRY / DIAMOND</div>
+
+  <div class="cover-overline">High-End Jewelry Photography Guide — Diamond Ring / Gemstone</div>
+
+  <h1 class="cover-title">The<br><em>Tent</em></h1>
+
+  <div class="cover-sub">
+    A professional diffusion tent system, a 600Ws strobe, a motorized turntable, and a reflective mirror surface — how one of the most technically demanding product genres is actually done.
+  </div>
+
+  <div class="cover-tags">
+    <span class="ctag gold">Godox GT600II</span>
+    <span class="ctag gold">Diffusion Tent</span>
+    <span class="ctag gold">Boom Arm Overhead Rig</span>
+    <span class="ctag gem">Fancy Green Diamond</span>
+    <span class="ctag">Motorized Turntable</span>
+    <span class="ctag">Mirror Reflective Surface</span>
+    <span class="ctag">Overhead Camera</span>
+    <span class="ctag">Pure White BG</span>
+  </div>
+</div>
+
+<!-- ══════════════════════ CONCEPT ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">01 / CONCEPT</div>
+    <div class="sh-title">The System</div>
+  </div>
+
+  <div class="concept-wrap">
+    <div class="concept-eyebrow">Core Architecture</div>
+    <div class="concept-hl">
+      The walls become the light.<br>
+      The camera shoots <em>through the tent,</em> not at it.
+    </div>
+    <div class="concept-body">
+      A diffusion tent is not a lightbox you put a product inside. It's a controlled luminance environment — white diffusion panels suspended around the product on all sides, lit from the outside. The strobe never touches the gem directly. Light passes through the panels, turning each one into a large, even, wraparound light source. The gem sees clean white panels in every direction it reflects — eliminating the room, the photographer, the stands, and the walls. Only the gem and its sparkle exist. The camera shoots through a precise gap in the tent, far enough back that the lens barrel doesn't reflect in the stone. This is the standard for high-end diamond and colored stone photography globally.
+    </div>
+  </div>
+
+  <div class="prin-grid">
+    <div class="prin-card">
+      <div class="prin-roman">I</div>
+      <div class="prin-title">Gems are mirrors, not subjects</div>
+      <div class="prin-body">A faceted gemstone reflects everything in its environment. You're not lighting the gem — you're controlling what it reflects. A diffusion tent creates a controlled, all-white environment that the gem reflects cleanly.</div>
+    </div>
+    <div class="prin-card">
+      <div class="prin-roman">II</div>
+      <div class="prin-title">The tent eliminates the room</div>
+      <div class="prin-body">Without a tent, the stone reflects the ceiling, the camera, the photographer's shirt. Every dark reflection kills brilliance. The tent replaces the room with a controlled white sphere — every facet reflects light, not shadow.</div>
+    </div>
+    <div class="prin-card">
+      <div class="prin-roman">III</div>
+      <div class="prin-title">Overhead = symmetry + fire</div>
+      <div class="prin-body">Looking straight down at a ring shows the full face of the setting and center stone simultaneously. The light hits the facets at the right angles to show fire (colored dispersion) and brilliance (white sparkle). Side angles show depth but lose face-up symmetry.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════ GEAR ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">02 / GEAR</div>
+    <div class="sh-title">The Full Rig</div>
+  </div>
+
+  <div class="gear-grid">
+    <div class="gear-card hero">
+      <div class="gear-cat">Primary Strobe</div>
+      <div class="gear-name">Godox GT600II</div>
+      <div class="gear-note">600Ws studio strobe. Confirmed power setting: 1/28.05 (approximately 1/5 to 1/6 power — middle-low output). Bare head, no modifier on the strobe itself. The diffusion panels ARE the modifier.</div>
+    </div>
+    <div class="gear-card hero">
+      <div class="gear-cat">The System — Primary Setup</div>
+      <div class="gear-name">Diffusion Tent — Suspended Panel Rig</div>
+      <div class="gear-note">Two to four large white diffusion panels (foam board or translucent white acrylic) suspended from a boom arm ceiling rig. Panels hang vertically around the product on 3–4 sides, open at top for the camera lens to shoot down through. The strobe fires into the panels from outside.</div>
+    </div>
+    <div class="gear-card hero">
+      <div class="gear-cat">Support Infrastructure</div>
+      <div class="gear-name">Ceiling Boom Arm Rig</div>
+      <div class="gear-note">Overhead boom arm system with multiple clamps and arms (visible in Images 10–11, 16–17). Allows panels to be suspended precisely at any height and angle. This is a dedicated jewelry studio rig — not improvised. Critical for repeatable panel positioning.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Camera</div>
+      <div class="gear-name">Nikon DSLR (D800/D850 series)</div>
+      <div class="gear-note">Visible in Image 5. Mounted overhead, lens pointing straight down through the tent gap. Macro or high-resolution lens. Remote trigger or tethered capture. Long focal length keeps the lens far enough from the gem that it doesn't show as a dark reflection in the stone.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Rotation</div>
+      <div class="gear-name">Motorized Turntable / Rotator</div>
+      <div class="gear-note">Black motorized rotation platform visible in Images 8, 9. Camera/USB connection for external control — shoots at set degree intervals for 360° product photography sequences. The ring sits on the turntable for automated multi-angle shooting.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Shooting Surface</div>
+      <div class="gear-name">Dark Mirror / Reflective Acrylic Plate</div>
+      <div class="gear-note">Dark gray/charcoal mirror surface on top of the turntable (visible in Images 6–7). Creates the clean mirror reflection below the ring — the reflection doubles the visual weight of the piece and adds luxury depth without additional lighting.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Diffusion Material</div>
+      <div class="gear-name">White Foam Board or Translucent Acrylic</div>
+      <div class="gear-note">Each panel is 60×80cm or larger. Must be perfectly clean and uniformly white — any yellowing or marks will read as color casts in the stone's facets. Replace panels regularly. Some setups use 4mm white Perspex (acrylic sheet) as it's rigid and wipes clean.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Accent Light</div>
+      <div class="gear-name">Small Blue LED Accent</div>
+      <div class="gear-note">Visible in Image 5 — a small blue LED positioned at the back of the tent interior. Not the primary light — used to introduce a subtle blue point of color into the green diamond's facets, enhancing its color play and making the stone appear more vivid.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Secondary Light</div>
+      <div class="gear-name">Small Strip / Wand Light (Optional)</div>
+      <div class="gear-note">Images 8–9 show a thin arm/wand light positioned at the back of the tent at an angle. Acts as a targeted rim/backlight for the gem that the tent alone can't provide — creates a concentrated sparkle on specific facets.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Product</div>
+      <div class="gear-name">Fancy Green Diamond Ring</div>
+      <div class="gear-note">Large cushion-cut fancy green diamond (~5–10ct center stone estimate) in platinum/white gold double halo setting with baguette and round brilliant diamonds. Extremely high-value gemstone — handle with extreme care, cotton gloves only.</div>
+    </div>
+  </div>
+
+  <!-- Power setting callout -->
+  <div style="background: var(--warm-dark); border-radius: 8px; padding: 20px 26px; margin-top: 14px;">
+    <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:12px;">Confirmed Strobe Settings — GT600II Display (Images 13–14)</div>
+    <div class="spec-row" style="margin-top:0;">
+      <span class="spec-pill">Power: 1/28.05</span>
+      <span class="spec-pill">~1/5 – 1/6 power</span>
+      <span class="spec-pill">Godox GT600II</span>
+      <span class="spec-pill">Bare head</span>
+      <span class="spec-pill">Shooting through tent panels</span>
+    </div>
+    <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:12px; font-style:italic;">Running the strobe at lower power means more precision over light intensity and faster recycle times for rapid sequential shooting. The diffusion panels also reduce effective output, so starting at mid-low power and adjusting is the correct approach.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════ HOW THE TENT WORKS ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">03 / TECHNIQUE</div>
+    <div class="sh-title">How the Tent Works</div>
+  </div>
+
+  <!-- Side-view diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-cap">Cross-Section — Overhead Camera Angle + Tent Diffusion System</div>
+    <svg viewBox="0 0 640 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-height:340px;display:block;">
+
+      <!-- Tent panels — left and right vertical -->
+      <rect x="80" y="60" width="18" height="200" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <rect x="542" y="60" width="18" height="200" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <text x="50" y="165" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)" transform="rotate(-90,50,165)">DIFFUSION PANEL L</text>
+      <text x="582" y="165" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)" transform="rotate(90,582,165)">DIFFUSION PANEL R</text>
+
+      <!-- Interior of tent — lit zone -->
+      <rect x="98" y="60" width="444" height="200" fill="rgba(255,255,255,0.03)" stroke="none"/>
+
+      <!-- Glow on panels from strobe hitting them -->
+      <rect x="80" y="100" width="18" height="80" rx="1" fill="rgba(255,255,255,0.35)" stroke="none"/>
+      <rect x="542" y="100" width="18" height="80" rx="1" fill="rgba(255,255,255,0.35)" stroke="none"/>
+
+      <!-- Turntable + mirror surface -->
+      <ellipse cx="320" cy="268" rx="80" ry="12" fill="rgba(60,50,40,0.8)" stroke="rgba(176,141,78,0.3)" stroke-width="1"/>
+      <rect x="240" y="256" width="160" height="14" rx="2" fill="rgba(50,40,30,0.9)" stroke="rgba(176,141,78,0.2)" stroke-width="0.5"/>
+      <text x="320" y="287" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(176,141,78,0.5)">MOTORIZED TURNTABLE</text>
+
+      <!-- Mirror/reflective acrylic on top -->
+      <ellipse cx="320" cy="252" rx="60" ry="8" fill="rgba(80,80,80,0.7)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/>
+      <text x="320" y="245" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(200,200,200,0.4)">MIRROR ACRYLIC</text>
+
+      <!-- Ring on mirror -->
+      <ellipse cx="320" cy="235" rx="22" ry="8" fill="rgba(200,200,200,0.5)" stroke="rgba(176,141,78,0.6)" stroke-width="1.5"/>
+      <ellipse cx="320" cy="227" rx="16" ry="5" fill="rgba(58,122,74,0.6)" stroke="rgba(82,168,100,0.7)" stroke-width="1"/>
+      <text x="320" y="218" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(82,168,100,0.8)">RING</text>
+
+      <!-- Ring reflection in mirror -->
+      <ellipse cx="320" cy="252" rx="22" ry="6" fill="rgba(176,141,78,0.12)" stroke="rgba(176,141,78,0.15)" stroke-width="0.5"/>
+      <text x="320" y="262" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">reflection</text>
+
+      <!-- Camera overhead — pointing down through gap -->
+      <rect x="280" y="20" width="80" height="40" rx="4" fill="rgba(40,35,30,0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <rect x="298" y="14" width="44" height="8" rx="2" fill="rgba(40,35,30,0.8)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Lens pointing down -->
+      <rect x="304" y="60" width="32" height="28" rx="16" fill="rgba(20,20,20,0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <text x="320" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)">NIKON</text>
+      <text x="320" y="12" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">OVERHEAD / INVERTED</text>
+
+      <!-- Camera sight line down to ring -->
+      <line x1="320" y1="88" x2="320" y2="225" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,4"/>
+      <polygon points="320,226 316,218 324,218" fill="rgba(255,255,255,0.12)"/>
+
+      <!-- Strobe left — firing into left panel -->
+      <rect x="10" y="120" width="54" height="38" rx="5" fill="rgba(30,25,20,0.9)" stroke="rgba(176,141,78,0.4)" stroke-width="1.5"/>
+      <circle cx="64" cy="139" r="7" fill="rgba(255,240,200,0.8)" stroke="rgba(255,220,160,0.6)" stroke-width="1"/>
+      <text x="37" y="135" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(176,141,78,0.8)">GT600II</text>
+      <text x="37" y="144" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(176,141,78,0.5)">1/28</text>
+      <!-- Beam into panel -->
+      <line x1="64" y1="139" x2="80" y2="139" stroke="rgba(255,230,160,0.6)" stroke-width="2"/>
+      <!-- Light scattering through panel -->
+      <line x1="98" y1="100" x2="250" y2="235" stroke="rgba(255,240,200,0.08)" stroke-width="1" stroke-dasharray="5,5"/>
+      <line x1="98" y1="130" x2="290" y2="235" stroke="rgba(255,240,200,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+      <line x1="98" y1="160" x2="320" y2="235" stroke="rgba(255,240,200,0.12)" stroke-width="1.5" stroke-dasharray="5,5"/>
+      <line x1="98" y1="140" x2="310" y2="230" stroke="rgba(255,240,200,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+      <text x="37" y="167" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.15)">BARE HEAD</text>
+
+      <!-- Right side — second strobe or reflected light -->
+      <line x1="542" y1="100" x2="400" y2="235" stroke="rgba(255,240,200,0.08)" stroke-width="1" stroke-dasharray="5,5"/>
+      <line x1="542" y1="140" x2="340" y2="230" stroke="rgba(255,240,200,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+      <line x1="542" y1="170" x2="350" y2="235" stroke="rgba(255,240,200,0.08)" stroke-width="1" stroke-dasharray="5,5"/>
+
+      <!-- Blue accent LED (back of tent) -->
+      <circle cx="320" cy="80" r="6" fill="rgba(60,100,220,0.6)" stroke="rgba(80,120,255,0.5)" stroke-width="1"/>
+      <text x="320" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(80,120,255,0.5)">BLUE ACCENT</text>
+      <line x1="320" y1="86" x2="320" y2="218" stroke="rgba(60,100,220,0.15)" stroke-width="1" stroke-dasharray="3,5"/>
+
+      <!-- Boom arm rig overhead suggestion -->
+      <line x1="80" y1="40" x2="560" y2="40" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+      <line x1="80" y1="40" x2="80" y2="60" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+      <line x1="560" y1="40" x2="560" y2="60" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+      <line x1="320" y1="40" x2="320" y2="22" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text x="200" y="36" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.15)">BOOM ARM RIG (ceiling mount)</text>
+
+      <!-- Legend -->
+      <rect x="42" y="308" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+      <text x="55" y="316" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Diffusion panel</text>
+      <line x1="170" y1="312" x2="196" y2="312" stroke="rgba(255,230,160,0.4)" stroke-width="1.5"/>
+      <text x="201" y="316" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Light through panels</text>
+      <rect x="365" y="308" width="8" height="8" rx="1" fill="rgba(60,50,40,0.8)" stroke="rgba(176,141,78,0.3)" stroke-width="0.5"/>
+      <text x="378" y="316" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Turntable + mirror</text>
+      <circle cx="520" cy="312" r="4" fill="rgba(60,100,220,0.5)"/>
+      <text x="529" y="316" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">Blue accent</text>
+    </svg>
+  </div>
+
+  <!-- How the tent physically works -->
+  <div class="tent-grid">
+    <div class="tent-card dark">
+      <div class="tent-label">The Core Principle</div>
+      <div class="tent-title" style="color:#fff;">Why gems need a tent</div>
+      <div class="tent-body">A faceted gemstone is a precision optical instrument — it reflects and refracts everything in its environment. Every surface in the room appears as a reflection in its facets. Dark reflections (ceiling, camera, you) read as dead zones in the stone — areas with no brilliance or fire. A tent replaces the room with a controlled white environment, so every facet reflects light. The gem looks 10× more alive.</div>
+    </div>
+    <div class="tent-card dark">
+      <div class="tent-label">Camera Gap Mechanics</div>
+      <div class="tent-title" style="color:#fff;">Shooting through, not into</div>
+      <div class="tent-body">The camera is positioned overhead with the lens barrel extended down through the gap between tent panels. The key: the lens must be far enough above the gem that the barrel opening doesn't appear as a dark circle in the stone's reflections. The further the camera, the longer the lens needed — typically 100mm macro minimum for small jewelry.</div>
+    </div>
+    <div class="tent-card">
+      <div class="tent-label">Panel Material</div>
+      <div class="tent-title">What the panels are made of</div>
+      <div class="tent-body">Heavy white foam board (Foamcore) works, but white Perspex/acrylic at 4–6mm is better — it's rigid, cleanable, and transmits light more evenly with less hot-spotting. The strobe fires into the outer face; the inner face becomes the light source. Panel size: 60×80cm minimum per side.</div>
+    </div>
+    <div class="tent-card">
+      <div class="tent-label">The Blue Accent LED</div>
+      <div class="tent-title">Enhancing the green diamond's fire</div>
+      <div class="tent-body">A small blue LED placed at the back of the tent introduces a point of blue-spectrum light. Green diamonds have natural color play between green and yellow — adding a complementary blue/cool point creates contrast dispersion fire within the stone. This technique is used specifically for colored diamonds to enhance their unique optical properties.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════ WORKFLOW ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">04 / WORKFLOW</div>
+    <div class="sh-title">Setup Sequence</div>
+  </div>
+
+  <div class="workflow">
+    <div class="wf-step">
+      <div class="wf-dot">1</div>
+      <div class="wf-body">
+        <div class="wf-title">Build the overhead boom arm rig</div>
+        <div class="wf-text">Mount the ceiling boom arm system (crossbar + drop arms). This rig holds the diffusion panels suspended in the air above the shooting table. The panels hang vertically on all sides — left, right, back, and optionally front. All mount points are on the overhead rig, so the table below remains clear. This is a dedicated installation, not a quick setup.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">2</div>
+      <div class="wf-body">
+        <div class="wf-title">Hang the diffusion panels</div>
+        <div class="wf-text">Suspend white foam board or translucent acrylic panels from the boom arms. Left panel, right panel, and back panel form a U-shape. Adjust height so the bottom edge is at or just below the level of the turntable surface. The front is left open for the camera, or a partial front panel is added with a cut-out for the lens. All panels should be plumb (perfectly vertical).</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">3</div>
+      <div class="wf-body">
+        <div class="wf-title">Position the GT600II strobe outside the tent</div>
+        <div class="wf-text">The Godox GT600II goes outside the tent, aimed at one of the diffusion panels (typically the main left or right panel). Bare head — no modifier on the strobe. The panel itself is the modifier. Set initial power to around 1/28 (as confirmed in Images 13–14) and adjust from there after test shots. More panels lit = softer, more even illumination of the stone.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">4</div>
+      <div class="wf-body">
+        <div class="wf-title">Place the motorized turntable inside the tent</div>
+        <div class="wf-text">Set the black motorized rotation platform on the shooting table inside the tent. Connect via USB or the control unit. Place the reflective dark mirror/acrylic plate on top of the turntable. This is the actual surface the ring will sit on. The mirror gives the product image a built-in reflection that reads as luxury and weight without additional setup.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">5</div>
+      <div class="wf-body">
+        <div class="wf-title">Clean and place the ring — cotton gloves only</div>
+        <div class="wf-text">Put on cotton gloves before handling the piece. Clean the ring with a soft cloth and compressed air. Place the ring on the mirror surface on the turntable. For the face-up shot (the hero), the ring should sit with the setting face-up — the center stone and all surrounding diamonds fully visible from above. Use wax or poster putty to stabilize the ring if needed.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">6</div>
+      <div class="wf-body">
+        <div class="wf-title">Add the blue accent LED inside the tent</div>
+        <div class="wf-text">Position a small blue LED at the back of the tent interior, aimed at the center stone at an angle. The intensity should be subtle — enough to introduce cool/blue reflections into specific facets of the green diamond, not enough to overwhelm the overall white light from the panels. This creates color contrast fire in the stone.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">7</div>
+      <div class="wf-body">
+        <div class="wf-title">Mount the camera overhead, lens through the tent gap</div>
+        <div class="wf-text">Mount the Nikon on an overhead arm or the top of the boom rig, pointing straight down. Lower the lens through the top gap of the tent. The lens barrel should be centered directly above the ring. Check that the barrel is not visible in the reflections of the stone — if it is, raise the camera higher or use a longer focal length. Tether to a laptop or use remote trigger.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">8</div>
+      <div class="wf-body">
+        <div class="wf-title">Shoot face-up hero — adjust light and panels</div>
+        <div class="wf-text">Take test shots and review on the tethered laptop. Check: are all facets of the stone reflecting light? Is there any dark zone (dark reflection showing through)? Adjust panel positions and strobe direction until all areas of the stone sparkle. The final hero (Image 18) shows pure white background and every facet of the green diamond lit and active. This is achieved when the tent completely fills the stone's reflective environment.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">9</div>
+      <div class="wf-body">
+        <div class="wf-title">Run the 360° turntable sequence</div>
+        <div class="wf-text">Once the single hero shot is captured, engage the motorized turntable for the 360° sequence. Program the rotation interval — typically every 10° for 36 frames (full 360°) or every 5° for 72 frames. The camera triggers on each stop. Review all frames for consistent exposure and focus across the rotation. The turntable ensures perfectly smooth rotation that would be impossible by hand.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════ SHOTS ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">05 / SHOTS</div>
+    <div class="sh-title">Shot Breakdown</div>
+  </div>
+
+  <div class="shot-list">
+
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-idx">A</div>
+        <div class="shot-meta">
+          <div class="shot-name">Initial setup — tent partially built, ring placement test on mirror surface</div>
+          <span class="shot-badge">Setup / Staging</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="col-label">What's Happening (Images 1–5)</div>
+          <ul class="dot-list">
+            <li>Overhead boom arm rig being assembled and panels hung</li>
+            <li>Camera positioned above, lens threading down into tent gap</li>
+            <li>Ring on mirror/acrylic surface — small white gemstone visible</li>
+            <li>White paper sheet under the entire setup as a floor catch</li>
+            <li>Photographer checking camera angle by looking through the tent</li>
+            <li>Blue LED visible in background in Image 5 — positioned at back</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">Critical Setup Checks</div>
+          <ul class="dot-list">
+            <li>Is the lens centered directly above the ring?</li>
+            <li>Is the camera barrel visible in the stone's reflections?</li>
+            <li>Are all panels hanging vertical and plumb?</li>
+            <li>Is the turntable centered below the camera axis?</li>
+            <li>Is the strobe aimed at the panel, not directly at the product?</li>
+          </ul>
+        </div>
+        <div class="note-bar">The setup phase for a jewelry tent rig takes 45–90 minutes. There are no shortcuts — every millimeter of panel position affects what the stone reflects. Budget time accordingly and don't rush the initial positioning.</div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-idx">B</div>
+        <div class="shot-meta">
+          <div class="shot-name">Mirror surface test — ring on reflective acrylic, top-down angle</div>
+          <span class="shot-badge">Test Shot / Reflection</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="col-label">Setup (Images 6–7)</div>
+          <ul class="dot-list">
+            <li>Ring upright on dark gray mirror/acrylic surface</li>
+            <li>Clean vertical reflection visible below the ring</li>
+            <li>White diffusion panel visible above — softbox acting as top fill</li>
+            <li>All-around soft light — stone facets catching white panels</li>
+            <li>This is the BTS view — the camera sees straight down</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">The Reflection</div>
+          <ul class="dot-list">
+            <li>Dark mirror creates a symmetrical downward reflection</li>
+            <li>Reflection should be sharp, not blurry — keep mirror clean</li>
+            <li>Gap between ring and reflection reads as separation/floating</li>
+            <li>From above: ring + reflection creates a figure-8 symmetry</li>
+            <li>This composition is used for the reflective surface hero frame</li>
+          </ul>
+        </div>
+        <div class="note-bar">The mirror reflection reads as confidence and luxury. It doubles the visual mass of the ring and creates a graphic symmetry that works powerfully in both editorial and e-commerce contexts. Keep the acrylic immaculate — any dust shows as a break in the reflection.</div>
+        <div class="cam-pills">
+          <span class="cam-pill">Dark mirror acrylic</span>
+          <span class="cam-pill">Overhead angle</span>
+          <span class="cam-pill">Full tent wrap</span>
+          <span class="cam-pill">Reflection in frame</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head">
+        <div class="shot-idx">C</div>
+        <div class="shot-meta">
+          <div class="shot-name">Turntable rig — 360° sequence setup, ring on rotation platform</div>
+          <span class="shot-badge">360° Product Sequence</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="col-label">Turntable Setup (Images 8–9)</div>
+          <ul class="dot-list">
+            <li>Black motorized platform with control buttons — USB/remote connected</li>
+            <li>Mirror acrylic plate mounted on top of the turntable</li>
+            <li>Ring positioned on mirror plate, face-up, centered</li>
+            <li>Camera overhead — same position as hero face-up shot</li>
+            <li>Small wand/strip light at back of tent visible — targeted rim accent</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">360° Sequence Protocol</div>
+          <ul class="dot-list">
+            <li>Set interval: every 10° (36 frames) or every 5° (72 frames)</li>
+            <li>Camera triggers on turntable stop, not during rotation</li>
+            <li>Check frame 1 and frame 36 match (ring returns to start)</li>
+            <li>Review all frames — some angles will show different brilliance</li>
+            <li>Turntable must not wobble — any vertical movement = blur</li>
+          </ul>
+        </div>
+        <div class="note-bar">The motorized turntable is not optional for professional jewelry work — even a single degree of angular inconsistency per frame creates a jittery, unprofessional 360° animation. Manual rotation produces unusable results for spinning video.</div>
+        <div class="cam-pills">
+          <span class="cam-pill">Motorized rotation</span>
+          <span class="cam-pill">36–72 frames</span>
+          <span class="cam-pill">Remote trigger</span>
+          <span class="cam-pill">Tethered review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card" style="border-color: var(--gold-border);">
+      <div class="shot-head" style="background: #0f0c08;">
+        <div class="shot-idx" style="color:rgba(176,141,78,0.25);">D</div>
+        <div class="shot-meta">
+          <div class="shot-name">Final hero — face-up, pure white background, full diamond reveal</div>
+          <span class="shot-badge" style="border-color:rgba(176,141,78,0.6); color:var(--gold-bright);">Final Hero Image</span>
+        </div>
+      </div>
+      <div class="shot-body">
+        <div>
+          <div class="col-label">Final Composition (Image 18)</div>
+          <ul class="dot-list">
+            <li>Ring perfectly centered, face-up, slight upward tilt toward camera</li>
+            <li>Pure white background — tent panels completely blown to white</li>
+            <li>No reflection in this frame — white paper surface, not mirror</li>
+            <li>Center green diamond: every facet lit, clear fire and brilliance</li>
+            <li>Baguette halo: all stones bright, no dark zones</li>
+            <li>Rose gold prongs visible — warm accent against platinum setting</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">Technical Achievement</div>
+          <ul class="dot-list">
+            <li>Pure white background from tent panels overexposed slightly</li>
+            <li>Stone perfectly focused — macro at f/11–f/16 for full DOF</li>
+            <li>Every facet of the halo diamonds individually readable</li>
+            <li>Green diamond shows both brilliance (white) and fire (spectral)</li>
+            <li>Zero photographer/camera/room visible in any facet reflection</li>
+            <li>Requires extensive cloning in post for any remaining dark reflections</li>
+          </ul>
+        </div>
+        <div class="note-bar">Image 18 is a post-processed hero. The raw out-of-camera result is close but never this perfect — small dark reflections in stone facets must be cloned out, and the white background may be composited from a pure white layer. This is standard in high-end jewelry photography. The shooting provides 90% of the result; post provides the final 10%.</div>
+        <div class="cam-pills">
+          <span class="cam-pill">Overhead face-up</span>
+          <span class="cam-pill">Pure white BG</span>
+          <span class="cam-pill">f/11–f/16</span>
+          <span class="cam-pill">Full macro</span>
+          <span class="cam-pill">Post-processed</span>
+          <span class="cam-pill">GT600II 1/28</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════ TIPS ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">06 / TIPS</div>
+    <div class="sh-title">Jewelry Photography Essentials</div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">I</div>
+      <div class="tip-title">Cotton gloves — always, without exception</div>
+      <div class="tip-body">A single fingerprint on a diamond or a platinum setting requires 20 minutes of retouching. Put on cotton gloves before touching any piece. Keep a microfiber cloth and compressed air within reach. Clean every time you handle the jewelry.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">II</div>
+      <div class="tip-title">Tether to a laptop or monitor</div>
+      <div class="tip-body">You cannot evaluate stone brilliance accurately on a 3" camera LCD. Tether to a calibrated monitor and evaluate at 100% zoom. Dark reflections and dead facets that look fine on the camera screen are obvious at full resolution on a large display.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">III</div>
+      <div class="tip-title">Macro stacking for full sharpness</div>
+      <div class="tip-body">For high-value pieces where every detail matters, shoot focus-stacked images — 20–50 frames at slightly different focus distances, merged in Helicon Focus or Photoshop. This gives edge-to-edge sharpness impossible at any single aperture, even f/16.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">IV</div>
+      <div class="tip-title">The lens must not appear in the stone</div>
+      <div class="tip-body">If the camera lens barrel shows as a dark circle in the gem's table facet, you're too close. Move the camera up and use a longer focal length. A 100mm macro at 30cm gives a different perspective than a 200mm macro at 60cm — same field of view, but the longer lens keeps the barrel far enough away.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">V</div>
+      <div class="tip-title">Clone dark reflections in post — it's standard</div>
+      <div class="tip-body">No tent perfectly eliminates all dark reflections in a faceted stone. Some facets will always catch the camera, a stand leg, or the tent gap. Professional jewelry retouchers clone these out by painting in neighboring facet reflections. This is not deceptive — it's correcting the optical limitations of the setup.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">VI</div>
+      <div class="tip-title">f/11–f/16 for jewelry, not f/5.6</div>
+      <div class="tip-body">The depth of a ring from the front of the center stone to the back of the setting can be 8–12mm. At macro distances, f/5.6 will only get you 2–3mm of sharp zone. Use f/11–f/16 for full setting sharpness, or focus-stack. The tent provides enough light for these smaller apertures.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">VII</div>
+      <div class="tip-title">Black cards create contrast in diamonds</div>
+      <div class="tip-body">All-white environments make colorless diamonds look bright but flat — they have no contrast between facets, so they look like frosted glass. Introduce one or two small black cards inside the tent at specific angles. The black reflections in certain facets create the contrast that makes a diamond look like a diamond.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">VIII</div>
+      <div class="tip-title">Accent colored lights for colored stones</div>
+      <div class="tip-body">The blue LED in this setup is used specifically for the green diamond. Colored gemstones benefit from a light source that complements or contrasts their hue. An emerald benefits from a daylight blue accent; a ruby benefits from a warm accent that deepens the red. Study the stone's optical properties before setting your accent.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">IX</div>
+      <div class="tip-title">Mirror surface alternatives</div>
+      <div class="tip-body">The dark mirror acrylic surface can be replaced with: black marble tile (heavy, permanent, high-end), dark plexiglass/acrylic sheet (lightweight, portable), a mirror-finish metal sheet, or a luxury fabric. Each creates a different reflection quality. Match the surface to the brand positioning of the piece.</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="sh">
+      <div class="sh-num">07 / POST</div>
+      <div class="sh-title">Retouching & Delivery</div>
+    </div>
+
+    <div class="post-grid">
+      <div class="post-card">
+        <div class="post-cat">Background</div>
+        <div class="post-title">Pure white extraction</div>
+        <div class="post-body">The tent creates a near-white background in camera. In post, make it pure white (#ffffff) using Levels or Curves to pull the background to absolute white without blowing the platinum setting. A clean path/mask around the ring gives you independent control of background vs. product tones.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Stone Retouching</div>
+        <div class="post-title">Clone dark reflections, enhance fire</div>
+        <div class="post-body">Identify any dark reflections in the gem's facets (camera barrel, stand legs, gap in tent). Clone neighboring lit facets over the dark ones. The human eye doesn't know where each facet's reflection "should" come from — it just expects consistency. Enhance color in the center stone by selective saturation boosts using the Hue/Saturation layer.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Metal Retouching</div>
+        <div class="post-title">Platinum — brighten, not yellow</div>
+        <div class="post-body">Platinum and white gold can appear slightly warm or gray in camera. Bring the metal to a cool, bright silver — desaturate any yellow-warmth tones using selective color. The metal should look like polished chrome, not silver or tin. Dodge the highest catchlights on prongs and settings for luxury finish.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">360° Delivery</div>
+        <div class="post-title">Consistent grade across all frames</div>
+        <div class="post-body">For 360° sequences, develop one frame in Lightroom/ACR to the final grade, then sync settings to all frames in the sequence. Render as a sequence of JPEGs and compile to SpinViewer, 360° HTML widget, or the client's platform. Check the first and last frame match — the rotation should loop seamlessly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FOOTER ══ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

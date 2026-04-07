@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Define the Shape — Lighting Dark Products — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --void: #000000;
+    --near-black: #0a0a0a;
+    --dark: #111111;
+    --surface: #181818;
+    --mid: #282828;
+    --rule: #2a2a2a;
+    --muted: #666666;
+    --silver: #aaaaaa;
+    --white: #f5f5f5;
+    --accent: #e8e8e8;
+    --gold: #c8a84b;
+    --gold-dim: rgba(200,168,75,0.1);
+    --gold-border: rgba(200,168,75,0.25);
+    --state1: #cc4444;
+    --state2: #4488cc;
+    --state3: #44aa66;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--near-black);
+    color: var(--white);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ══ COVER ══ */
+  .cover {
+    min-height: 100vh;
+    background: var(--void);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-scan {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px
+    );
+    pointer-events: none;
+  }
+
+  .state-bars {
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .state-bars .s1 { flex: 1; background: var(--state1); opacity: 0.8; }
+  .state-bars .s2 { flex: 1; background: var(--state2); opacity: 0.8; }
+  .state-bars .s3 { flex: 1; background: var(--state3); opacity: 0.8; }
+
+  .cover-overline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  h1.cover-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(60px, 10vw, 114px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  h1.cover-title .muted { color: var(--muted); font-weight: 300; }
+
+  .cover-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 44px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .cover-tags { display: flex; flex-wrap: wrap; gap: 10px; position: relative; }
+  .ctag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 5px 13px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+  .ctag.s1 { border-color: rgba(204,68,68,0.4); color: var(--state1); background: rgba(204,68,68,0.06); }
+  .ctag.s2 { border-color: rgba(68,136,204,0.4); color: var(--state2); background: rgba(68,136,204,0.06); }
+  .ctag.s3 { border-color: rgba(68,170,102,0.4); color: var(--state3); background: rgba(68,170,102,0.06); }
+  .ctag.gold { border-color: var(--gold-border); color: var(--gold); background: var(--gold-dim); }
+
+  .cover-id {
+    position: absolute; top: 64px; right: 64px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--rule);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ══ LAYOUT ══ */
+  .page { max-width: 980px; margin: 0 auto; padding: 80px 48px; }
+  @media (max-width: 640px) { .page { padding: 48px 24px; } .cover { padding: 40px 28px; } }
+  .divider { border-top: 1px solid var(--rule); }
+
+  /* ══ SECTION HEADER ══ */
+  .sh { display: flex; align-items: baseline; gap: 18px; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .sh-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); flex-shrink: 0; }
+  .sh-title { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: var(--white); line-height: 1; }
+
+  /* ══ CONCEPT ══ */
+  .concept-hero {
+    background: var(--dark);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 44px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--state1) 33%, var(--state2) 33%, var(--state2) 66%, var(--state3) 66%);
+  }
+  .concept-eyebrow { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.24em; color: var(--muted); text-transform: uppercase; margin-bottom: 14px; }
+  .concept-headline { font-size: clamp(22px, 3.5vw, 34px); font-weight: 700; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; max-width: 560px; margin-bottom: 16px; }
+  .concept-body { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 580px; font-weight: 300; }
+
+  /* ══ STATE SYSTEM ══ */
+  .state-blocks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px; }
+
+  .state-block {
+    background: var(--dark);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .state-head {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .state-pip {
+    width: 6px;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+  .state-pip.s1 { background: var(--state1); }
+  .state-pip.s2 { background: var(--state2); }
+  .state-pip.s3 { background: var(--state3); }
+
+  .state-head-inner { padding: 16px 22px; flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .state-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; flex-shrink: 0; }
+  .state-num.s1 { color: var(--state1); }
+  .state-num.s2 { color: var(--state2); }
+  .state-num.s3 { color: var(--state3); }
+  .state-title { font-size: 16px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; flex: 1; }
+  .state-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .state-badge.s1 { border: 1px solid rgba(204,68,68,0.4); color: var(--state1); background: rgba(204,68,68,0.06); }
+  .state-badge.s2 { border: 1px solid rgba(68,136,204,0.4); color: var(--state2); background: rgba(68,136,204,0.06); }
+  .state-badge.s3 { border: 1px solid rgba(68,170,102,0.4); color: var(--state3); background: rgba(68,170,102,0.06); }
+
+  .state-body { padding: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 580px) { .state-body { grid-template-columns: 1fr; } }
+
+  .sb-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .dot-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .dot-list li { font-size: 13px; color: var(--silver); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45; font-weight: 300; }
+  .dot-list li::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot-list.s1 li::before { background: var(--state1); }
+  .dot-list.s2 li::before { background: var(--state2); }
+  .dot-list.s3 li::before { background: var(--state3); }
+
+  .result-bar {
+    grid-column: 1 / -1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.55;
+    font-weight: 300;
+    font-style: italic;
+  }
+  .result-bar.s1 { background: rgba(204,68,68,0.06); border-left: 3px solid var(--state1); color: #dda0a0; }
+  .result-bar.s2 { background: rgba(68,136,204,0.06); border-left: 3px solid var(--state2); color: #9cc0e8; }
+  .result-bar.s3 { background: rgba(68,170,102,0.06); border-left: 3px solid var(--state3); color: #90c8a0; }
+
+  /* ══ COMPARISON TABLE ══ */
+  .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+  .compare-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 400;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--silver);
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    font-weight: 300;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .row-label { font-weight: 500; color: var(--white); white-space: nowrap; }
+  .state-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .s1-dot { background: var(--state1); }
+  .s2-dot { background: var(--state2); }
+  .s3-dot { background: var(--state3); }
+
+  /* ══ GEAR ══ */
+  .gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+  .gear-card { background: var(--dark); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; }
+  .gear-cat { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .gear-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .gear-note { font-size: 12px; color: var(--muted); line-height: 1.45; font-weight: 300; }
+
+  /* ══ DIAGRAM ══ */
+  .diagram-wrap { background: var(--void); border: 1px solid var(--rule); border-radius: 12px; padding: 36px 40px; margin-bottom: 24px; }
+  .diagram-cap { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rule); margin-bottom: 20px; }
+
+  /* ══ WORKFLOW ══ */
+  .workflow { display: flex; flex-direction: column; gap: 0; }
+  .wf-step { display: flex; gap: 20px; padding-bottom: 28px; position: relative; }
+  .wf-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 1px; background: var(--rule); }
+  .wf-dot { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--dark); border: 1px solid var(--rule); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .wf-body { padding-top: 8px; }
+  .wf-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 5px; }
+  .wf-text { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 640px; font-weight: 300; }
+
+  /* ══ TIPS ══ */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .tip-card { background: var(--dark); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .tip-num { font-family: 'DM Mono', monospace; font-size: 28px; font-weight: 500; color: var(--rule); line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .tip-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 5px; }
+  .tip-body { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+  /* ══ DARK PRODUCT RULES ══ */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  @media (max-width: 580px) { .rule-grid { grid-template-columns: 1fr; } }
+  .rule-card { background: var(--dark); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .rule-card.bad { border-left: 3px solid var(--state1); }
+  .rule-card.good { border-left: 3px solid var(--state3); }
+  .rule-verdict { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+  .rule-card.bad .rule-verdict { color: var(--state1); }
+  .rule-card.good .rule-verdict { color: var(--state3); }
+  .rule-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 5px; }
+  .rule-body { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+  /* ══ POST ══ */
+  .post-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 580px) { .post-grid { grid-template-columns: 1fr; } }
+  .post-card { background: var(--dark); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .post-cat { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .post-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+  .post-body { font-size: 13px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+  /* ══ FOOTER ══ */
+  footer { background: var(--void); color: var(--rule); text-align: center; padding: 40px 48px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; line-height: 1.8; border-top: 1px solid var(--rule); }
+  footer em { color: var(--muted); font-style: normal; }
+
+  @media print { .cover { min-height: auto; page-break-after: always; } }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>Define the Shape</em> — Lighting Dark Products</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ══════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-scan"></div>
+  <div class="state-bars"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
+
+  <div class="cover-id">
+    @DAKASTUDIO<br>
+    BOM / BB CREAM<br>
+    3-STATE BUILD
+  </div>
+
+  <div class="cover-overline">Product Photography — Progressive Lighting Guide</div>
+
+  <h1 class="cover-title">DEFINE<br><span class="muted">THE</span><br>SHAPE</h1>
+
+  <div class="cover-sub">
+    How three lighting states — key harshed, key diffused, fill diffused — progressively build form definition on an all-black matte product. A masterclass in using light to sculpt.
+  </div>
+
+  <div class="cover-tags">
+    <span class="ctag s1">State 1: Key Harsh</span>
+    <span class="ctag s2">State 2: Key Diffused</span>
+    <span class="ctag s3">State 3: + Fill Diffused</span>
+    <span class="ctag gold">Dark Product System</span>
+    <span class="ctag">Sony A7-Series</span>
+    <span class="ctag">Foam Board Diffusion</span>
+    <span class="ctag">Black BG V-Flat</span>
+  </div>
+</div>
+
+<!-- ══════════════════ CONCEPT ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">01 / CONCEPT</div>
+    <div class="sh-title">Why dark products are hard</div>
+  </div>
+
+  <div class="concept-hero">
+    <div class="concept-eyebrow">Core Problem</div>
+    <div class="concept-headline">A matte black tube absorbs light. You're not lighting the surface — you're defining its edges.</div>
+    <div class="concept-body">
+      Most products reflect or transmit light — giving the photographer something to work with. A matte black cosmetics tube does neither. Its surface absorbs nearly all light that hits it, giving you almost nothing back. The only way to reveal its form is through contrast: making the edges of the tube visible against the dark background by controlling exactly where light grazes the surface. Too much light and the tube goes flat. Too little and it disappears entirely. The three-state build in this shoot is a masterclass in using progressive edge definition to reveal a product's shape without compromising its premium black aesthetic.
+    </div>
+  </div>
+
+  <div class="rule-grid">
+    <div class="rule-card bad">
+      <div class="rule-verdict">Wrong approach</div>
+      <div class="rule-title">More light = more visible</div>
+      <div class="rule-body">This is true for light-colored products. For dark matte products, flooding light washes out edge contrast and makes the tube appear gray or flat. The product looks cheaper, not brighter.</div>
+    </div>
+    <div class="rule-card bad">
+      <div class="rule-verdict">Wrong approach</div>
+      <div class="rule-title">Single frontal key light</div>
+      <div class="rule-body">A key light aimed directly at the front face of a dark tube creates a hotspot and eliminates the dimensional edge contrast that gives the tube its shape. The result is a flat, dim, undefined product silhouette.</div>
+    </div>
+    <div class="rule-card good">
+      <div class="rule-verdict">Correct approach</div>
+      <div class="rule-title">Rim/edge lighting from the side</div>
+      <div class="rule-body">Side lighting grazes the surface of the tube, catching the curved edges and making them glow against the black background. This edge contrast is what defines the cylindrical shape without flooding the matte face.</div>
+    </div>
+    <div class="rule-card good">
+      <div class="rule-verdict">Correct approach</div>
+      <div class="rule-title">Two-source: key + fill, both diffused</div>
+      <div class="rule-body">A diffused key from one side defines one edge. A diffused fill from the opposite side defines the other edge. Together they create a tube that appears three-dimensional and lit from within — without any direct frontal light.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ THE THREE STATES ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">02 / STATES</div>
+    <div class="sh-title">The Three-State Build</div>
+  </div>
+
+  <div class="state-blocks">
+
+    <!-- STATE 1 -->
+    <div class="state-block">
+      <div class="state-head">
+        <div class="state-pip s1"></div>
+        <div class="state-head-inner">
+          <div>
+            <div class="state-num s1">STATE 01</div>
+            <div class="state-title">Key Light — Harshed (bare bulb)</div>
+          </div>
+          <span class="state-badge s1">Harsh / No Diffusion</span>
+        </div>
+      </div>
+      <div class="state-body">
+        <div>
+          <div class="sb-label">Setup (Images 1–5)</div>
+          <ul class="dot-list s1">
+            <li>Single bare-bulb or reflector-dish light, camera-left</li>
+            <li>No diffusion modifier — raw hard light output</li>
+            <li>Light aimed directly at the product from the side</li>
+            <li>Black V-flat backdrop in the background — no ambient</li>
+            <li>Image 2 shows this clearly: single small round bulb, left side, labeled "1. Key light (harshed)"</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sb-label">Result (Image 5)</div>
+          <ul class="dot-list s1">
+            <li>One bright, harsh specular edge on the left side of the tube</li>
+            <li>Label text partially readable but harsh lighting creates uneven tones</li>
+            <li>Product appears flat — no right-edge definition visible</li>
+            <li>The hard light creates hot spots rather than smooth edge glow</li>
+            <li>Shape impression: barely visible — reads more as a silhouette</li>
+          </ul>
+        </div>
+        <div class="result-bar s1">State 1 verdict: The tube is technically lit but has no dimensional form. The hard key alone reveals only one edge with harsh quality — the product looks flat and underlit. This is the starting point, not the target.</div>
+      </div>
+    </div>
+
+    <!-- STATE 2 -->
+    <div class="state-block">
+      <div class="state-head">
+        <div class="state-pip s2"></div>
+        <div class="state-head-inner">
+          <div>
+            <div class="state-num s2">STATE 02</div>
+            <div class="state-title">Key Light — Diffused (foam board softbox)</div>
+          </div>
+          <span class="state-badge s2">Soft / Diffused Key</span>
+        </div>
+      </div>
+      <div class="state-body">
+        <div>
+          <div class="sb-label">Setup (Images 6–9)</div>
+          <ul class="dot-list s2">
+            <li>Same bare-bulb light, same camera-left position</li>
+            <li>Large white foam board held between the light and the product</li>
+            <li>Image 6 shows the photographer holding the foam board in front of the bare light — this IS the softbox</li>
+            <li>The foam board diffuses and enlarges the effective light source</li>
+            <li>Labeled "2. Key light (diffused)" in the video</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sb-label">Result (Image 9)</div>
+          <ul class="dot-list s2">
+            <li>Left edge of tube: soft, even glow — no harsh hot spot</li>
+            <li>Label text becomes clearly readable across the full face</li>
+            <li>The tube body shows subtle tonal graduation from lit to shadow</li>
+            <li>Background remains near-black — no spill</li>
+            <li>The foam board diffusion creates a large, even source from the light's same position</li>
+          </ul>
+        </div>
+        <div class="result-bar s2">State 2 verdict: The diffusion transforms the harsh single-edge result into a clean, professional look. The label is readable. The left edge is defined. But the right side of the tube has no definition — it merges with the black background. One edge ≠ full shape.</div>
+      </div>
+    </div>
+
+    <!-- STATE 3 -->
+    <div class="state-block">
+      <div class="state-head">
+        <div class="state-pip s3"></div>
+        <div class="state-head-inner">
+          <div>
+            <div class="state-num s3">STATE 03</div>
+            <div class="state-title">Key + Fill — Both Diffused (final setup)</div>
+          </div>
+          <span class="state-badge s3">Full Shape Definition</span>
+        </div>
+      </div>
+      <div class="state-body">
+        <div>
+          <div class="sb-label">Setup (Images 10–15)</div>
+          <ul class="dot-list s3">
+            <li>Key light from State 2 remains in place — diffused, camera-left</li>
+            <li>Second fill light added: small portable LED panel, camera-right</li>
+            <li>Image 11: photographer holds a compact rectangular battery LED — this is the fill</li>
+            <li>Fill is positioned camera-right, slightly weaker than key — 1:2 or 1:3 ratio</li>
+            <li>Labeled "3. Fill light (diffused)" — the fill is also diffused, not bare</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sb-label">Result (Image 15)</div>
+          <ul class="dot-list s3">
+            <li>Left edge: clean key highlight — tube defined on left side</li>
+            <li>Right edge: soft fill highlight — tube defined on right side</li>
+            <li>Full cylindrical form is now readable: the tube reads as 3D</li>
+            <li>Label: fully illuminated, gold foil and white text both readable</li>
+            <li>Cap at bottom: separated from the tube body, visible as its own element</li>
+            <li>Background: pure black — no spill from either source</li>
+          </ul>
+        </div>
+        <div class="result-bar s3">State 3 verdict: Both edges are defined, the form is readable, the label is fully legible. The tube exists in three-dimensional space against the black void. This is the deliverable state — two diffused sources, symmetrically placed, balanced in power ratio.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ COMPARISON ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">03 / COMPARISON</div>
+    <div class="sh-title">State-by-State Analysis</div>
+  </div>
+
+  <div style="background: var(--dark); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th><span class="state-dot s1-dot"></span>State 1 — Key Harsh</th>
+          <th><span class="state-dot s2-dot"></span>State 2 — Key Diffused</th>
+          <th><span class="state-dot s3-dot"></span>State 3 — Key + Fill</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">Left edge</td>
+          <td>Hard, harsh, overexposed</td>
+          <td>Soft, even, controlled</td>
+          <td>Soft, even, controlled</td>
+        </tr>
+        <tr>
+          <td class="row-label">Right edge</td>
+          <td>None — merges with BG</td>
+          <td>None — merges with BG</td>
+          <td>Soft fill highlight — visible</td>
+        </tr>
+        <tr>
+          <td class="row-label">Label readability</td>
+          <td>Partial — harsh shadows</td>
+          <td>Good — even illumination</td>
+          <td>Full — all text readable</td>
+        </tr>
+        <tr>
+          <td class="row-label">Shape impression</td>
+          <td>Flat / silhouette-like</td>
+          <td>Semi-dimensional</td>
+          <td>Full 3D cylinder form</td>
+        </tr>
+        <tr>
+          <td class="row-label">Light quality</td>
+          <td>Hard specular</td>
+          <td>Soft wrap</td>
+          <td>Soft wrap both sides</td>
+        </tr>
+        <tr>
+          <td class="row-label">Number of sources</td>
+          <td>1 — bare bulb</td>
+          <td>1 — diffused</td>
+          <td>2 — key + fill diffused</td>
+        </tr>
+        <tr>
+          <td class="row-label">Gold foil text</td>
+          <td>Barely visible</td>
+          <td>Visible</td>
+          <td>Fully legible, metallic sheen</td>
+        </tr>
+        <tr>
+          <td class="row-label">Deliverable quality</td>
+          <td>Not usable — establish only</td>
+          <td>Usable — minimum viable</td>
+          <td>Hero deliverable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-cap">Top-Down Layout — State 3 Final Setup</div>
+    <svg viewBox="0 0 620 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-height:290px;display:block;">
+
+      <!-- Black backdrop -->
+      <rect x="170" y="20" width="200" height="14" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <text x="270" y="15" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)">BLACK V-FLAT BACKDROP</text>
+
+      <!-- Shooting table -->
+      <rect x="170" y="134" width="200" height="10" rx="1" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <text x="270" y="158" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.15)">WHITE SHOOTING TABLE</text>
+
+      <!-- Product tube (dark matte, standing upright) -->
+      <rect x="252" y="60" width="36" height="75" rx="5" fill="rgba(20,20,20,0.95)" stroke="rgba(80,80,80,0.4)" stroke-width="1"/>
+      <!-- Left edge glow from key -->
+      <rect x="252" y="60" width="5" height="75" rx="3" fill="rgba(204,68,68,0.3)" stroke="none"/>
+      <!-- Right edge glow from fill -->
+      <rect x="283" y="60" width="5" height="75" rx="3" fill="rgba(68,170,102,0.25)" stroke="none"/>
+      <!-- Label zone -->
+      <rect x="257" y="78" width="26" height="30" rx="1" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+      <text x="270" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)">BOM TUBE</text>
+
+      <!-- KEY LIGHT LEFT — bare bulb then diffusion -->
+      <!-- Diffusion panel (foam board) -->
+      <rect x="95" y="55" width="12" height="90" rx="2" fill="rgba(204,68,68,0.2)" stroke="rgba(204,68,68,0.4)" stroke-width="1"/>
+      <text x="78" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(204,68,68,0.5)" transform="rotate(-90,78,100)">FOAM BOARD DIFFUSION</text>
+
+      <!-- Bare bulb behind diffusion -->
+      <circle cx="70" cy="100" r="9" fill="rgba(255,240,200,0.8)" stroke="rgba(255,220,160,0.6)" stroke-width="1"/>
+      <text x="48" y="125" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(204,68,68,0.6)">KEY LIGHT</text>
+      <text x="48" y="134" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(204,68,68,0.4)">BARE BULB</text>
+
+      <!-- Light stand -->
+      <line x1="70" y1="110" x2="70" y2="240" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+      <line x1="56" y1="240" x2="84" y2="240" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+      <!-- Beams: bare bulb → diffusion panel -->
+      <line x1="79" y1="100" x2="95" y2="100" stroke="rgba(255,220,160,0.5)" stroke-width="1.5"/>
+
+      <!-- Diffusion beams → product left edge -->
+      <line x1="107" y1="65" x2="252" y2="75" stroke="rgba(204,68,68,0.2)" stroke-width="1" stroke-dasharray="5,4"/>
+      <line x1="107" y1="100" x2="252" y2="97" stroke="rgba(204,68,68,0.3)" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="107" y1="135" x2="252" y2="120" stroke="rgba(204,68,68,0.2)" stroke-width="1" stroke-dasharray="5,4"/>
+      <text x="180" y="95" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(204,68,68,0.4)">DIFFUSED KEY BEAM</text>
+
+      <!-- FILL LIGHT RIGHT — portable LED panel -->
+      <rect x="450" y="60" width="50" height="80" rx="4" fill="rgba(68,170,102,0.1)" stroke="rgba(68,170,102,0.35)" stroke-width="1"/>
+      <text x="475" y="105" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(68,170,102,0.6)">PORTABLE</text>
+      <text x="475" y="115" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(68,170,102,0.5)">LED PANEL</text>
+      <text x="475" y="150" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(68,170,102,0.4)">FILL LIGHT</text>
+
+      <!-- Fill beams → product right edge -->
+      <line x1="450" y1="80" x2="290" y2="75" stroke="rgba(68,170,102,0.2)" stroke-width="1" stroke-dasharray="5,4"/>
+      <line x1="450" y1="100" x2="290" y2="97" stroke="rgba(68,170,102,0.3)" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="450" y1="120" x2="290" y2="118" stroke="rgba(68,170,102,0.2)" stroke-width="1" stroke-dasharray="5,4"/>
+      <text x="380" y="88" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(68,170,102,0.4)">DIFFUSED FILL BEAM</text>
+
+      <!-- Camera -->
+      <rect x="235" y="185" width="62" height="40" rx="5" fill="rgba(30,30,30,0.95)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <rect x="242" y="189" width="48" height="18" rx="3" fill="rgba(50,50,50,0.5)"/>
+      <text x="266" y="202" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)">SONY</text>
+      <text x="266" y="212" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">A7</text>
+      <text x="266" y="238" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.15)">LEOFOTO TRIPOD</text>
+
+      <!-- Camera sight line -->
+      <line x1="266" y1="185" x2="270" y2="136" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,4"/>
+      <polygon points="270,136 266,144 274,144" fill="rgba(255,255,255,0.08)"/>
+
+      <!-- Key/Fill ratio annotation -->
+      <text x="270" y="270" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)">KEY : FILL RATIO = 2:1 or 3:1 (key stronger)</text>
+
+      <!-- Legend -->
+      <line x1="42" y1="254" x2="68" y2="254" stroke="rgba(204,68,68,0.5)" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="73" y="258" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.25)">Key beam (diffused)</text>
+      <line x1="260" y1="254" x2="286" y2="254" stroke="rgba(68,170,102,0.5)" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="291" y="258" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.25)">Fill beam (diffused)</text>
+    </svg>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ GEAR ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">04 / GEAR</div>
+    <div class="sh-title">Full Kit</div>
+  </div>
+
+  <div class="gear-grid">
+    <div class="gear-card">
+      <div class="gear-cat">Key Light Source</div>
+      <div class="gear-name">Small Bare-Bulb / Reflector Dish Light</div>
+      <div class="gear-note">Compact strobe or continuous LED with bare reflector dish. Positioned camera-left on a light stand. Used both bare (State 1) and diffused via foam board (States 2 & 3).</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Key Light Modifier</div>
+      <div class="gear-name">White Foam Board (hand-held)</div>
+      <div class="gear-note">The "diffusion" is a large white foam board held between the bare light and the product. No dedicated softbox needed — this is the entire modifier system. Image 6 shows the technique in action.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Fill Light</div>
+      <div class="gear-name">Portable Battery LED Panel</div>
+      <div class="gear-note">Small rectangular portable LED (like an Aputure AL-MX or similar). Held or mounted camera-right. Provides soft diffused fill to define the right edge of the tube. Power: ~1/2 the key output.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Camera</div>
+      <div class="gear-name">Sony A7-Series Mirrorless</div>
+      <div class="gear-note">Same camera/tripod combo as the dakastudio Chanel guide. Sony A7 body with a Samsung Galaxy tablet used as an external tethering monitor (visible Image 12). Leofoto tripod.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Background</div>
+      <div class="gear-name">Black V-Flat / Backdrop Panel</div>
+      <div class="gear-note">Large black panel hung from crossbar behind the product. Pure black — absorbs any spill from the key or fill. The black background is what makes the edge highlights "pop" — the product's lit edges contrast against pure void.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Product</div>
+      <div class="gear-name">BOM Beauty of Majesty — BB Cream Tube</div>
+      <div class="gear-note">Matte black squeezable tube, ~15cm tall. White logo and gold foil text on black surface. Extremely challenging product: all-black matte exterior that absorbs all light except at glancing angles.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Monitor</div>
+      <div class="gear-name">Samsung Galaxy Tablet (tethered)</div>
+      <div class="gear-note">Used as a live tethering display. Allows the photographer to see the exact effect of each lighting state without approaching the camera. Visible in Image 12 on a tablet stand beside the camera.</div>
+    </div>
+    <div class="gear-card">
+      <div class="gear-cat">Support</div>
+      <div class="gear-name">Shooting Table + Leofoto Tripod</div>
+      <div class="gear-note">White-surface tabletop at standard product shooting height. Leofoto carbon fiber tripod — same rig as the Three Steps guide, suggesting this may be the same photographer/studio (dakastudio branding in filename).</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ WORKFLOW ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">05 / WORKFLOW</div>
+    <div class="sh-title">Setup Sequence</div>
+  </div>
+
+  <div class="workflow">
+    <div class="wf-step">
+      <div class="wf-dot">1</div>
+      <div class="wf-body">
+        <div class="wf-title">Set the black backdrop — kill all ambient</div>
+        <div class="wf-text">Hang the black V-flat or backdrop panel from the crossbar behind the product. Switch off all room lights. The black environment is non-negotiable — any ambient will grey out the background and reduce the edge contrast on which this entire technique depends. The room should be completely dark except for your controlled sources.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">2</div>
+      <div class="wf-body">
+        <div class="wf-title">Place the product upright, center frame</div>
+        <div class="wf-text">Stand the tube upright on the white table, centered in the composition. The camera shoots from the front at slightly-above-product-level — enough to see the top edge of the cap. Confirm the label is facing the camera directly. Use poster putty at the base if the tube doesn't stand stably on its small cap.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">3</div>
+      <div class="wf-body">
+        <div class="wf-title">State 1: Set bare key light, camera-left — shoot test</div>
+        <div class="wf-text">Position the bare-bulb light on a stand, camera-left, at roughly product height. Aim it toward the left edge of the tube at about 60–70° from the camera axis. Shoot a test frame — this is State 1. The result should be a single harsh highlight on the left edge. Photograph this for your before/after sequence. This state is not deliverable — it's documentation.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">4</div>
+      <div class="wf-body">
+        <div class="wf-title">State 2: Add foam board diffusion — shoot test</div>
+        <div class="wf-text">Hold a large white foam board between the bare key light and the product. The foam board should be large enough to intercept the entire light beam — approximately 50×70cm. You are now holding your own softbox. The effective light source becomes the foam board face, not the bare bulb. Shoot a test frame — this is State 2. Compare to State 1. The left edge should now be soft and wrap more gently.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">5</div>
+      <div class="wf-body">
+        <div class="wf-title">Mount or hold the foam board in position</div>
+        <div class="wf-text">Once the foam board position is confirmed, you need to hold it in place — either by hand, clamped to a stand, or taped to a secondary stand. The foam board must remain stationary for the final shots. The key-to-product angle and the board distance from the light directly affect the softness of the output — document the position before locking it in.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">6</div>
+      <div class="wf-body">
+        <div class="wf-title">State 3: Add portable LED fill, camera-right — shoot final</div>
+        <div class="wf-text">Power on the portable LED panel and position it camera-right, aimed at the right edge of the tube. Start at approximately half the brightness of the key — you want a 2:1 or 3:1 key-to-fill ratio. The fill defines the right edge without competing with the key's primary light. Check the tethered tablet for the live result. Adjust fill power until both edges of the tube are clearly defined with the key edge noticeably brighter. This is State 3 — the deliverable.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">7</div>
+      <div class="wf-body">
+        <div class="wf-title">Balance and shoot final selects</div>
+        <div class="wf-text">Fine-tune the key-to-fill ratio while watching the tethered display. The tube should show: a bright left edge (key), a softer right edge (fill), a readable front face (label legible), and a pure black background. Shoot 10–15 frames with minor product rotation adjustments — even 5° changes how the gold foil text catches the key light. Select frames where both foil text and logo are at their most legible.</div>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-dot">8</div>
+      <div class="wf-body">
+        <div class="wf-title">Shoot the comparison composite (optional)</div>
+        <div class="wf-text">Images 16–17 show a vertical composite with all three states labeled. Shoot State 1, 2, and 3 selects, then composite them into a single comparison frame in post. Position the tube at the same place in frame in all three shots to enable clean alignment. This is a valuable educational and portfolio asset — the before/during/after progression is more compelling than any single final image.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ TIPS ══ -->
+<div class="page">
+  <div class="sh">
+    <div class="sh-num">06 / TIPS</div>
+    <div class="sh-title">Dark Product Photography</div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-title">Edge contrast, not surface brightness</div>
+      <div class="tip-body">For dark matte products, your goal is never to illuminate the surface — it's to create visible contrast between the product's edges and the black background. Side lighting that grazes edges is more effective than any amount of frontal fill.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-title">The foam board IS the softbox</div>
+      <div class="tip-body">You don't need an expensive softbox for diffusion. A large white foam board held between the bare bulb and the product achieves the same result — it becomes a large, even light source. The bare bulb hits the board, the board softens and spreads the output. Free technique.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-title">2:1 key-to-fill ratio for shape clarity</div>
+      <div class="tip-body">For dark tube products, a 2:1 or 3:1 key-to-fill power ratio gives you visible edge contrast without flattening the form. If both sides are equally bright, the tube looks like a flat rectangle. The asymmetry in lighting power creates the perception of volume.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-title">Black backdrop at distance from product</div>
+      <div class="tip-body">Position the black backdrop further from the product to ensure no spill light from the key or fill bounces back into frame. A backdrop too close to the product can receive light spill that makes the background appear gray rather than black — killing the dramatic effect.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">05</div>
+      <div class="tip-title">Gold foil requires specific angles</div>
+      <div class="tip-body">Metallic foil print (like the "Cover Flex" text on this tube) only becomes visible at specific angles where the key light reflects off it toward the camera. Rotate the product in small increments until the foil text lights up. This is why you shoot multiple frames with slight product rotation.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">06</div>
+      <div class="tip-title">Tether to a large display — not the camera LCD</div>
+      <div class="tip-body">Edge quality on a dark matte product is nearly impossible to evaluate on a 3" camera LCD. The Samsung Galaxy tablet tether visible in this shoot is essential — it lets you see the precise quality of the edge highlight in real time. Evaluate at full resolution on a large, calibrated screen.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">07</div>
+      <div class="tip-title">Document each state — the comparison is the content</div>
+      <div class="tip-body">Shooting all three states separately means you have educational BTS content as a byproduct of your commercial shoot. The before/after comparison (Images 16–17) is more compelling content than the final image alone. Always shoot your lighting progression — it takes 10 minutes and creates weeks of content.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">08</div>
+      <div class="tip-title">Fill adds shape, not brightness</div>
+      <div class="tip-body">The common mistake with fill lights is to use them to increase overall brightness. For dark products, the fill's job is shape definition — making the opposite edge of the product visible. Keep fill power controlled; if the product starts looking gray instead of black, the fill is too strong.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">09</div>
+      <div class="tip-title">This system works for any dark matte cylinder</div>
+      <div class="tip-body">The progressive edge-definition system applies to any dark cylindrical or rectangular product: dark glass bottles, matte black cans, premium skincare tubes, deodorant sticks, whiskey bottles with matte labels. The same three-state build produces results regardless of specific product geometry.</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="sh">
+      <div class="sh-num">07 / POST</div>
+      <div class="sh-title">Finishing the Final Image</div>
+    </div>
+
+    <div class="post-grid">
+      <div class="post-card">
+        <div class="post-cat">Background</div>
+        <div class="post-title">Crush to pure black — no gray zones</div>
+        <div class="post-body">The background should already be near-black from the dark room. In post, use Curves to set the black point precisely — pull the darkest area to pure black (#000000). Any gray in the background reads as a mistake. Check at 100% zoom for any light spill near the product edges.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Edge Highlights</div>
+        <div class="post-title">Protect the rim — don't blow it out</div>
+        <div class="post-body">The left edge highlight should be bright but not pure white — it should retain just enough texture to read as a cylinder edge, not a flat white stripe. Use Highlight recovery or a luminance mask to protect the specular rim from clipping. A slightly blown edge looks like a stick, not a tube.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">Label Retouching</div>
+        <div class="post-title">Dodge white text, enhance gold foil</div>
+        <div class="post-body">The white logo and text may appear slightly gray on the dark tube under studio light. Dodge carefully to bring white text to 90–95% white. For the gold foil text, add a selective Hue/Saturation adjustment to slightly boost yellow/gold saturation — this makes the foil pop without affecting the black tube body.</div>
+      </div>
+      <div class="post-card">
+        <div class="post-cat">The Comparison Composite</div>
+        <div class="post-title">Align all three states precisely</div>
+        <div class="post-body">For the State 1 / State 2 / State 3 comparison frame (like Images 16–17), layer all three frames in Photoshop and use the tube's position to align each layer. Add text labels. Keep the background pure black so the composite reads as seamless. Export as a vertical crop for social media formats.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

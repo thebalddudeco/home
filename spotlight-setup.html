@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Spotlight Setup — Two Light Drama — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+  :root {
+    --black:      #060504;
+    --near-black: #0e0b08;
+    --surface:    #16120d;
+    --card:       #1f1a12;
+    --border:     #2e2618;
+    --amber:      #d4700a;
+    --amber-glow: #f08c1a;
+    --amber-pale: #f5c06a;
+    --cream:      #f0e8d8;
+    --muted:      #7a6a50;
+    --orange-bg:  rgba(212,112,10,0.08);
+    --shadow-col: #0a0805;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* grain texture */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px;
+    background: var(--near-black);
+    border-right: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* The simulated final shot background in hero */
+  .hero-right-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 80% at 50% 50%, rgba(212,112,10,0.7) 0%, rgba(212,112,10,0.3) 30%, transparent 65%),
+      var(--black);
+  }
+
+  /* Shadow columns simulated */
+  .hero-col-left {
+    position: absolute;
+    top: 0; left: 0;
+    width: 25%; height: 100%;
+    background: linear-gradient(to right, #000 60%, transparent);
+    z-index: 2;
+  }
+  .hero-col-right {
+    position: absolute;
+    top: 0; right: 0;
+    width: 25%; height: 100%;
+    background: linear-gradient(to left, #000 60%, transparent);
+    z-index: 2;
+  }
+
+  /* Product bottle silhouette SVG */
+  .hero-bottle {
+    position: relative;
+    z-index: 3;
+    opacity: 0.9;
+  }
+
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: slideIn 0.7s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 100px);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: slideIn 0.9s ease forwards 0.5s;
+  }
+
+  .hero-title .accent { color: var(--amber-glow); }
+
+  .hero-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--amber);
+    margin: 28px 0;
+    opacity: 0;
+    animation: slideIn 0.7s ease forwards 0.7s;
+  }
+
+  .hero-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 380px;
+    opacity: 0;
+    animation: slideIn 0.7s ease forwards 0.9s;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+    opacity: 0;
+    animation: slideIn 0.7s ease forwards 1.1s;
+  }
+
+  .tag {
+    border: 1px solid var(--border);
+    background: var(--orange-bg);
+    color: var(--amber-pale);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 90px 70px;
+    border-top: 1px solid var(--border);
+  }
+
+  .s-head {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    margin-bottom: 56px;
+  }
+
+  .s-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--amber);
+  }
+
+  .s-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 70px);
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+  }
+
+  .s-title .a { color: var(--amber-glow); }
+
+  /* ── TECHNIQUE CONCEPT ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .concept-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .concept-card:hover { background: var(--card); }
+
+  .concept-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .concept-card:hover::after { opacity: 1; }
+
+  .concept-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: rgba(212,112,10,0.08);
+    line-height: 1;
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    letter-spacing: 0;
+  }
+
+  .concept-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 14px;
+  }
+
+  .concept-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .concept-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+  }
+
+  .concept-desc strong { color: var(--cream); }
+
+  /* ── GEAR STRIP ── */
+  .gear-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+
+  .gear-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .gear-item:hover { background: var(--card); }
+
+  .gear-item::before {
+    content: attr(data-n);
+    position: absolute;
+    top: 16px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: rgba(212,112,10,0.07);
+    line-height: 1;
+  }
+
+  .gear-cat {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .gear-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.25;
+  }
+
+  .gear-sub {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PROP BUILD ── */
+  .prop-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    counter-reset: prop;
+  }
+
+  .prop-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    counter-increment: prop;
+  }
+
+  .prop-step::before {
+    content: counter(prop);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(212,112,10,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 12px;
+    right: 20px;
+  }
+
+  .prop-step-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 2;
+  }
+
+  .prop-step-desc {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+  }
+
+  .prop-step-desc strong { color: var(--amber-pale); }
+
+  .prop-step-note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: rgba(212,112,10,0.06);
+    border-left: 2px solid var(--amber);
+    font-size: 10px;
+    color: #8a7050;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── LIGHTING DIAGRAM ── */
+  .diagram-outer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 60px;
+  }
+
+  .diagram-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  /* ── COVER + REVEAL TECHNIQUE ── */
+  .cr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .cr-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    position: relative;
+  }
+
+  .cr-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    color: rgba(212,112,10,0.06);
+    line-height: 0.9;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+
+  .cr-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cr-phase {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cr-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+  }
+  .cr-body strong { color: var(--cream); }
+
+  /* ── SHOT LIST TABLE ── */
+  .shot-table {
+    display: grid;
+    gap: 2px;
+  }
+
+  .shot-row {
+    display: grid;
+    grid-template-columns: 56px 1.8fr 1fr 1fr 0.8fr;
+    gap: 2px;
+  }
+
+  .shot-row.th .sc {
+    background: var(--near-black);
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    padding: 14px 20px;
+  }
+
+  .sc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 22px 20px;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+  }
+
+  .shot-row:not(.th):hover .sc { background: var(--card); }
+
+  .sc.idx {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: rgba(212,112,10,0.2);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .sc.main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .sc-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .sc-desc { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+  .sc-badge {
+    display: inline-block;
+    background: rgba(212,112,10,0.12);
+    border: 1px solid rgba(212,112,10,0.25);
+    color: var(--amber-glow);
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 2px;
+  }
+
+  .sc.settings {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .sv { color: var(--amber-pale); font-size: 11px; }
+  .sk { font-size: 8px; color: var(--muted); letter-spacing: 0.1em; min-width: 28px; display: inline-block; }
+
+  /* ── POST SETTINGS ── */
+  .post-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .post-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+  }
+
+  .post-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .post-subtitle {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 28px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 48px;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .bar-lbl { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  .bar-track { height: 2px; background: var(--border); position: relative; }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--amber-glow));
+  }
+
+  .bar-fill.neg {
+    background: linear-gradient(90deg, #2a6060, #1a9090);
+    margin-left: auto;
+  }
+
+  .bar-val { font-size: 10px; color: var(--amber-pale); text-align: right; }
+
+  /* ── FINAL OUTPUTS ── */
+  .output-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .output-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .output-card.hero-card {
+    border-left: 2px solid var(--amber);
+  }
+
+  .output-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .output-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .output-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .output-desc strong { color: var(--cream); }
+
+  .output-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .output-spec {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    background: rgba(212,112,10,0.08);
+    border: 1px solid var(--border);
+    color: var(--amber-pale);
+  }
+
+  /* ── PRO TIPS BLOCK ── */
+  .tips-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 48px 56px;
+  }
+
+  .tips-block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--amber-glow);
+    margin-bottom: 28px;
+  }
+
+  .tip-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .tip-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+
+  .tip-text { font-size: 11px; color: var(--muted); line-height: 1.7; }
+  .tip-text strong { color: var(--cream); }
+
+  /* ── COMPARISON EXPLAINER ── */
+  .compare-strip {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .compare-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px;
+  }
+
+  .compare-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    align-self: stretch;
+  }
+
+  .compare-vs-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+
+  .compare-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .compare-sub {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .compare-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--near-black);
+  }
+
+  .footer-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+  }
+
+  .footer-note {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { min-height: 100vh; }
+    .section { padding: 60px 28px; }
+    .gear-strip { grid-template-columns: 1fr 1fr; }
+    .prop-steps { grid-template-columns: 1fr 1fr; }
+    .concept-grid, .cr-grid, .post-cols, .output-grid { grid-template-columns: 1fr; }
+    .shot-row { grid-template-columns: 40px 1fr; }
+    .sc.settings, .sc:nth-child(4), .sc:nth-child(5) { display: none; }
+    .shot-row.th .sc:nth-child(n+4) { display: none; }
+    .compare-strip { grid-template-columns: 1fr; }
+    .compare-vs { display: none; }
+    .tip-list { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 12px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>The Spotlight Setup</em> — Two Light Drama</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Production Guide · Volume 02 · 2-Light Spotlight Technique</p>
+    <h1 class="hero-title">THE<br><span class="accent">SPOTLIGHT</span><br>SETUP</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">A 2-light system using an Amaran 300c background wash and an Amaran 150c with a Fresnel/spotlight attachment to produce controlled, theatrical product isolation — the "cover and reveal" method.</p>
+    <div class="hero-tags">
+      <span class="tag">Amaran 150c + Spotlight</span>
+      <span class="tag">Amaran 300c BG</span>
+      <span class="tag">Cinder Block Props</span>
+      <span class="tag">Cover &amp; Reveal</span>
+      <span class="tag">Warm Amber Grade</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-col-left"></div>
+    <div class="hero-col-right"></div>
+    <!-- Simplified bottle silhouette -->
+    <svg class="hero-bottle" viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" width="180">
+      <defs>
+        <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#d4700a;stop-opacity:0.2"/>
+          <stop offset="40%" style="stop-color:#d4700a;stop-opacity:0.6"/>
+          <stop offset="100%" style="stop-color:#d4700a;stop-opacity:0.1"/>
+        </linearGradient>
+      </defs>
+      <!-- pump top -->
+      <rect x="88" y="0" width="24" height="60" rx="4" fill="url(#bottleGrad)" opacity="0.7"/>
+      <rect x="80" y="55" width="40" height="20" rx="3" fill="url(#bottleGrad)" opacity="0.7"/>
+      <!-- neck -->
+      <path d="M 70 75 Q 60 90, 55 120 L 145 120 Q 140 90, 130 75 Z" fill="url(#bottleGrad)" opacity="0.7"/>
+      <!-- body -->
+      <path d="M 55 120 Q 20 160, 25 260 Q 28 340, 50 380 L 150 380 Q 172 340, 175 260 Q 180 160, 145 120 Z" fill="url(#bottleGrad)" opacity="0.6"/>
+      <!-- base -->
+      <rect x="48" y="375" width="104" height="16" rx="3" fill="url(#bottleGrad)" opacity="0.5"/>
+      <!-- label area -->
+      <rect x="45" y="200" width="110" height="120" rx="0" fill="rgba(0,0,0,0.2)" opacity="0.4"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════ TECHNIQUE CONCEPT ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">01 ——</span>
+    <h2 class="s-title">THE <span class="a">CONCEPT</span></h2>
+  </div>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <span class="concept-icon">BG</span>
+      <p class="concept-label">Light 1 — Background</p>
+      <p class="concept-name">Amaran 300c — Floor Wash</p>
+      <p class="concept-desc">The 300c is placed on the floor directly behind the table, aimed upward at the wall. Set to a <strong>warm amber/orange color (approx. 2700–3200K)</strong>, it creates a large glowing oval on the background. This becomes the "window" that the product is silhouetted against. The cinder block props frame the left and right edges of this glow, creating natural column shadows. The BG light is always on — it's the foundation of the entire look.</p>
+    </div>
+
+    <div class="concept-card">
+      <span class="concept-icon">SP</span>
+      <p class="concept-label">Light 2 — Key Spotlight</p>
+      <p class="concept-name">Amaran 150c + Spotlight / Fresnel Attachment</p>
+      <p class="concept-desc">The 150c with the spotlight snoot (the long black cylindrical attachment visible in the BTS frames) is mounted on a light stand at <strong>camera left, aimed precisely down at the product</strong>. The Fresnel/spotlight attachment dramatically narrows the beam — think a 10–15° spot — so it illuminates only the product, not the surroundings. This is what separates the product from the background rather than flattening everything into the same orange wash. Color matched to the BG light (~2700K warm amber) for a cohesive tonal story.</p>
+    </div>
+
+    <div class="concept-card">
+      <span class="concept-label">Prop Architecture</span>
+      <p class="concept-name">Cinder Block U-Formation</p>
+      <p class="concept-desc">Standard cinder/concrete blocks are stacked into a <strong>U or H shape</strong> — two vertical columns of 2 blocks each, with a horizontal block bridging at the base (which sits on a small wireless trigger or lazy susan riser). The product is placed in the <strong>gap between the two vertical columns</strong>. The blocks serve multiple functions: they act as <strong>natural gobos</strong> blocking light spill from reaching the sides, they provide hard shadow columns that frame the product, and they give a raw, architectural texture contrast to the smooth product bottle.</p>
+    </div>
+
+    <div class="concept-card">
+      <span class="concept-label">The Signature Technique</span>
+      <p class="concept-name">"Cover and Reveal"</p>
+      <p class="concept-desc">A large <strong>black foam board is used in front of the Amaran 150c spotlight</strong> to manually block and unblock the beam. When the board is in front of the light, only the background glow (300c) is visible — the product appears as a silhouette. When the board is pulled away, the spotlight hits the product and reveals full detail. This creates a <strong>dynamic transition moment</strong> ideal for video/Reels content — a cinematic "reveal" that transitions from moody silhouette to full product shot in a single continuous clip.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ GEAR ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">02 ——</span>
+    <h2 class="s-title">GEAR &amp; <span class="a">KIT</span></h2>
+  </div>
+
+  <div class="gear-strip">
+
+    <div class="gear-item" data-n="A">
+      <p class="gear-cat">BG Light</p>
+      <p class="gear-name">Amaran 300c</p>
+      <p class="gear-sub">RGBWW LED Panel<br>300W equivalent<br>Floor-mount position<br>Angled upward at wall</p>
+    </div>
+
+    <div class="gear-item" data-n="B">
+      <p class="gear-cat">Key Light</p>
+      <p class="gear-name">Amaran 150c<br>+ Spotlight Attachment</p>
+      <p class="gear-sub">150W RGBWW LED<br>Bowens mount<br>Fresnel/spot snoot<br>~10–20° beam angle</p>
+    </div>
+
+    <div class="gear-item" data-n="C">
+      <p class="gear-cat">Props</p>
+      <p class="gear-name">Cinder / Concrete Blocks</p>
+      <p class="gear-sub">Standard 8"×8"×16"<br>6–8 blocks needed<br>Stacked in U/H formation<br>Small riser for product base</p>
+    </div>
+
+    <div class="gear-item" data-n="D">
+      <p class="gear-cat">Camera</p>
+      <p class="gear-name">Mirrorless Body + Tripod</p>
+      <p class="gear-sub">Any mirrorless system<br>Heavy-duty tripod (locked)<br>Ball head + L-plate<br>Remote / timer release</p>
+    </div>
+
+    <div class="gear-item" data-n="E">
+      <p class="gear-cat">Blocking Tool</p>
+      <p class="gear-name">Black Foam Core Board</p>
+      <p class="gear-sub">Approx. 18"×24"<br>Matte black both sides<br>Used to block spotlight<br>For cover &amp; reveal effect</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════ PROP BUILD STEPS ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">03 ——</span>
+    <h2 class="s-title">PROP <span class="a">BUILD</span></h2>
+  </div>
+
+  <div class="prop-steps">
+
+    <div class="prop-step">
+      <p class="prop-step-title">Step 1 — Place Riser Base</p>
+      <p class="prop-step-desc">Set a small <strong>wireless trigger, lazy susan, or extra block fragment</strong> flat on the shooting surface. This elevates the product slightly above the table level and creates a visual base for the composition. The riser also lets you rotate the product without disturbing the blocks.</p>
+      <p class="prop-step-note">Seen in the BTS: a small black cube (wireless trigger base) used as the central riser before blocks are stacked.</p>
+    </div>
+
+    <div class="prop-step">
+      <p class="prop-step-title">Step 2 — First Vertical Columns</p>
+      <p class="prop-step-desc">Stand <strong>two blocks vertically</strong> side by side with a gap between them — this gap is where the product will sit. Space them approximately <strong>product-width + 20–30% wider</strong> on each side. The inner faces of the blocks will catch shadow from the spotlight and create the column framing effect.</p>
+      <p class="prop-step-note">Frames 2–3 in the BTS show this stage. Position the blocks at the back-center of the table.</p>
+    </div>
+
+    <div class="prop-step">
+      <p class="prop-step-title">Step 3 — Stack the Columns</p>
+      <p class="prop-step-desc">Add a second block on top of each vertical column to build height. The final column height should be <strong>taller than the product</strong> so the blocks visually tower over it, reinforcing the architectural framing. The horizontal block placed across the base (frame 6) creates the "plinth" for the product to sit on top of the riser.</p>
+      <p class="prop-step-note">Total build: 2 columns of 2 blocks each + 1 horizontal base block = 5 blocks minimum.</p>
+    </div>
+
+    <div class="prop-step">
+      <p class="prop-step-title">Step 4 — Place Product in Gap</p>
+      <p class="prop-step-desc">Set the product <strong>centered in the gap between the two columns</strong>, on top of the riser. The columns should frame the product with roughly equal space on each side. The background glow from the 300c should now be partially visible behind the product, peeking through the gap — this is the "window" that creates the backlit silhouette.</p>
+      <p class="prop-step-note">Check the framing in camera live view — adjust block spacing until the BG glow is perfectly centered behind the product label area.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════ LIGHTING DIAGRAM ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">04 ——</span>
+    <h2 class="s-title">LIGHTING <span class="a">DIAGRAM</span></h2>
+  </div>
+
+  <div class="diagram-outer">
+    <p class="diagram-label">Top-Down Floor Plan · 2-Light Diagram · Not to Scale</p>
+
+    <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;display:block;margin:0 auto;">
+      <defs>
+        <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#d4700a;stop-opacity:0.7"/>
+          <stop offset="100%" style="stop-color:#d4700a;stop-opacity:0"/>
+        </radialGradient>
+        <radialGradient id="spotGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#f5c06a;stop-opacity:0.9"/>
+          <stop offset="100%" style="stop-color:#f5c06a;stop-opacity:0"/>
+        </radialGradient>
+        <filter id="gblur"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="sblur"><feGaussianBlur stdDeviation="2"/></filter>
+      </defs>
+
+      <!-- Room -->
+      <rect width="900" height="560" fill="#0e0b08"/>
+
+      <!-- Grid -->
+      <g stroke="#1e1a12" stroke-width="1">
+        <line x1="0" y1="112" x2="900" y2="112"/>
+        <line x1="0" y1="224" x2="900" y2="224"/>
+        <line x1="0" y1="336" x2="900" y2="336"/>
+        <line x1="0" y1="448" x2="900" y2="448"/>
+        <line x1="112" y1="0" x2="112" y2="560"/>
+        <line x1="225" y1="0" x2="225" y2="560"/>
+        <line x1="337" y1="0" x2="337" y2="560"/>
+        <line x1="450" y1="0" x2="450" y2="560"/>
+        <line x1="562" y1="0" x2="562" y2="560"/>
+        <line x1="675" y1="0" x2="675" y2="560"/>
+        <line x1="787" y1="0" x2="787" y2="560"/>
+      </g>
+
+      <!-- Wall -->
+      <rect x="0" y="0" width="900" height="80" fill="#161210"/>
+      <text x="450" y="48" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#3a3020" letter-spacing="3">WALL / BACKGROUND SURFACE</text>
+
+      <!-- BG Light glow on wall -->
+      <ellipse cx="680" cy="80" rx="120" ry="70" fill="url(#bgGlow)" filter="url(#gblur)" opacity="0.8"/>
+      <ellipse cx="680" cy="80" rx="60" ry="35" fill="#d4700a" opacity="0.3" filter="url(#sblur)"/>
+
+      <!-- Table -->
+      <rect x="280" y="190" width="380" height="240" rx="2" fill="#1a1510" stroke="#2e2618" stroke-width="1.5"/>
+      <text x="470" y="448" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#3a3020" letter-spacing="3">TABLE SURFACE</text>
+
+      <!-- Cinder blocks (top-down rectangles) -->
+      <!-- Left column (2 blocks stacked — seen top down as one wider rect) -->
+      <rect x="390" y="260" width="40" height="80" rx="1" fill="#252015" stroke="#3a3020" stroke-width="1.5"/>
+      <text x="410" y="305" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#4a4030">BLK</text>
+
+      <!-- Right column -->
+      <rect x="510" y="260" width="40" height="80" rx="1" fill="#252015" stroke="#3a3020" stroke-width="1.5"/>
+      <text x="530" y="305" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#4a4030">BLK</text>
+
+      <!-- Horizontal base block -->
+      <rect x="390" y="340" width="160" height="36" rx="1" fill="#252015" stroke="#3a3020" stroke-width="1.5"/>
+      <text x="470" y="362" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#4a4030">BASE BLOCK</text>
+
+      <!-- Product in gap -->
+      <rect x="442" y="265" width="56" height="80" rx="2" fill="#1a0e08" stroke="#d4700a" stroke-width="1.5"/>
+      <text x="470" y="308" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#d4700a" letter-spacing="1">PROD</text>
+
+      <!-- BG glow through gap — amber glow behind product -->
+      <ellipse cx="470" cy="290" rx="28" ry="40" fill="url(#bgGlow)" opacity="0.6" filter="url(#sblur)"/>
+
+      <!-- Product spotlight beam from left -->
+      <polygon points="130,160 180,170 500,300 460,330" fill="#f5c06a" opacity="0.04" filter="url(#gblur)"/>
+      <line x1="155" y1="165" x2="470" y2="300" stroke="#f5c06a" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.25"/>
+
+      <!-- Spotlight hit on product -->
+      <ellipse cx="470" cy="305" rx="20" ry="30" fill="url(#spotGlow)" opacity="0.5" filter="url(#sblur)"/>
+
+      <!-- Amaran 150c + spotlight — camera left position -->
+      <rect x="90" y="140" width="80" height="50" rx="3" fill="#181410" stroke="#f5c06a" stroke-width="1.5"/>
+      <rect x="100" y="148" width="60" height="34" rx="2" fill="#f5c06a" opacity="0.1"/>
+      <circle cx="130" cy="165" r="10" fill="#f5c06a" opacity="0.5"/>
+      <circle cx="130" cy="165" r="5" fill="#f5c06a" opacity="0.9"/>
+      <!-- Spotlight tube -->
+      <rect x="168" y="155" width="40" height="18" rx="4" fill="#111" stroke="#f5c06a" stroke-width="1"/>
+      <text x="130" y="205" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#f5c06a" letter-spacing="1">KEY SPOT</text>
+      <text x="130" y="216" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#7a6a50">AMARAN 150c</text>
+      <text x="130" y="226" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#7a6a50">+ SPOTLIGHT ATT.</text>
+
+      <!-- Light stand for 150c -->
+      <line x1="130" y1="190" x2="130" y2="245" stroke="#3a3020" stroke-width="2"/>
+      <line x1="110" y1="245" x2="150" y2="245" stroke="#3a3020" stroke-width="1.5"/>
+
+      <!-- Amaran 300c on floor — bottom right of table area -->
+      <rect x="660" y="400" width="80" height="50" rx="2" fill="#181410" stroke="#d4700a" stroke-width="1.5"/>
+      <rect x="670" y="408" width="60" height="34" rx="1" fill="#d4700a" opacity="0.1"/>
+      <!-- Arrow upward indicating angle -->
+      <line x1="700" y1="400" x2="680" y2="90" stroke="#d4700a" stroke-width="1" stroke-dasharray="6,4" opacity="0.4"/>
+      <polygon points="676,100 680,85 684,100" fill="#d4700a" opacity="0.4"/>
+      <text x="700" y="468" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#d4700a" letter-spacing="1">BG WASH</text>
+      <text x="700" y="479" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#7a6a50">AMARAN 300c</text>
+      <text x="700" y="489" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#7a6a50">FLOOR MOUNT ↑</text>
+
+      <!-- Camera -->
+      <rect x="430" y="480" width="80" height="50" rx="2" fill="#181410" stroke="#7a6a50" stroke-width="1.5"/>
+      <circle cx="470" cy="505" r="14" fill="none" stroke="#aaa" stroke-width="1.5"/>
+      <circle cx="470" cy="505" r="7" fill="#252015"/>
+      <text x="470" y="544" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#7a6a50">CAMERA</text>
+      <!-- Camera axis to subject -->
+      <line x1="470" y1="480" x2="470" y2="376" stroke="#7a6a50" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+
+      <!-- Black foam board for cover/reveal -->
+      <rect x="252" y="248" width="14" height="80" rx="1" fill="#050402" stroke="#3a3020" stroke-width="1"/>
+      <text x="235" y="295" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#3a3020" transform="rotate(-90 235 295)">BLACK BOARD — COVER/REVEAL</text>
+
+      <!-- Legend -->
+      <circle cx="28" cy="480" r="6" fill="#f5c06a" opacity="0.8"/>
+      <text x="42" y="484" font-family="Space Mono" font-size="8" fill="#7a6a50">Key Spot (150c)</text>
+      <circle cx="28" cy="498" r="6" fill="#d4700a" opacity="0.8"/>
+      <text x="42" y="502" font-family="Space Mono" font-size="8" fill="#7a6a50">BG Wash (300c)</text>
+      <rect x="22" y="511" width="12" height="8" fill="#252015" stroke="#3a3020"/>
+      <text x="42" y="520" font-family="Space Mono" font-size="8" fill="#7a6a50">Cinder Blocks</text>
+      <rect x="22" y="528" width="12" height="8" fill="#d4700a" stroke="#d4700a" fill-opacity="0.2"/>
+      <text x="42" y="536" font-family="Space Mono" font-size="8" fill="#7a6a50">Product</text>
+
+      <text x="878" y="548" text-anchor="end" font-family="Space Mono" font-size="7" fill="#2e2618">TOP-DOWN VIEW</text>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════ COVER + REVEAL TECHNIQUE ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">05 ——</span>
+    <h2 class="s-title">COVER <span class="a">&amp; REVEAL</span></h2>
+  </div>
+
+  <div class="cr-grid">
+    <div class="cr-card">
+      <p class="cr-num">1</p>
+      <p class="cr-phase">Phase 1 — Blocked State</p>
+      <p class="cr-title">The Silhouette</p>
+      <p class="cr-body">Hold the <strong>black foam board in front of the Amaran 150c spotlight</strong>, completely blocking its output. The only active light is the 300c background wash. The product appears as a <strong>clean dark silhouette</strong> against the warm amber/orange background oval — architectural, moody, graphic. This is the "before" state of the reveal.</p>
+    </div>
+
+    <div class="cr-card">
+      <p class="cr-num">2</p>
+      <p class="cr-phase">Phase 2 — Mid-Reveal</p>
+      <p class="cr-title">The Transition</p>
+      <p class="cr-body">For video/Reels: <strong>slowly pull the black board away</strong> from the spotlight while recording. As the board moves, the spotlight gradually illuminates the product. You get a seamless transition from dark silhouette to fully lit product in a single take. The key is a slow, smooth, consistent pull — practice the motion before filming.</p>
+    </div>
+
+    <div class="cr-card">
+      <p class="cr-num">3</p>
+      <p class="cr-phase">Phase 3 — Revealed State</p>
+      <p class="cr-title">Full Product Detail</p>
+      <p class="cr-body">Board fully removed — the <strong>spotlight now hits the product directly</strong>, revealing all label text, bottle shape, material texture, and color. The warm BG glow still wraps the product from behind. You now have two usable states: the dramatic silhouette and the detailed product shot — <strong>two looks from one setup</strong>.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2px;">
+    <div class="concept-card" style="border-top:none;">
+      <p class="concept-label">Pro Note — For Still Photography</p>
+      <p class="concept-name" style="font-size:16px;">Shoot Both States as Separate Stills</p>
+      <p class="concept-desc">Even for still photography (not video), shoot the silhouette state (board in) and the revealed state (board out) as separate frames. The silhouette version often performs better as a social media teaser, while the revealed version is the hero product image. <strong>You get two deliverables from the same setup without moving a single light.</strong> Composite them in post for a split-frame comparison if desired.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ SHOT LIST ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">06 ——</span>
+    <h2 class="s-title">SHOT <span class="a">LIST</span></h2>
+  </div>
+
+  <div class="shot-table">
+
+    <div class="shot-row th">
+      <div class="sc">#</div>
+      <div class="sc">Shot / Intent</div>
+      <div class="sc">Camera Settings</div>
+      <div class="sc">Light State</div>
+      <div class="sc">Priority</div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">1</div>
+      <div class="sc main">
+        <p class="sc-name">Silhouette Hero</p>
+        <p class="sc-desc">Board fully blocking the 150c. Product as clean dark shape against amber oval. Maximum graphic impact. Columns of shadow on both sides from the cinder blocks.</p>
+        <span class="sc-badge">● Lead Image</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">ISO</span> <span class="sv">160–400</span></div>
+        <div><span class="sk">SS</span> <span class="sv">1/100s</span></div>
+        <div><span class="sk">AP</span> <span class="sv">f/5.6</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">BG</span> <span class="sv">300c ON</span></div>
+        <div><span class="sk">KEY</span> <span class="sv">BLOCKED</span></div>
+        <div><span class="sk">BOARD</span> <span class="sv">In front</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● CRITICAL</span></div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">2</div>
+      <div class="sc main">
+        <p class="sc-name">Full Reveal — Product Detail</p>
+        <p class="sc-desc">Board removed. Spotlight fully illuminating product. All label detail, bottle form, material texture visible. BG glow frames from behind. Both lights contributing.</p>
+        <span class="sc-badge">● Hero Shot</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">ISO</span> <span class="sv">160</span></div>
+        <div><span class="sk">SS</span> <span class="sv">1/200s</span></div>
+        <div><span class="sk">AP</span> <span class="sv">f/5.6–f/8</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">BG</span> <span class="sv">300c ON</span></div>
+        <div><span class="sk">KEY</span> <span class="sv">150c ON</span></div>
+        <div><span class="sk">BOARD</span> <span class="sv">Removed</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● CRITICAL</span></div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">3</div>
+      <div class="sc main">
+        <p class="sc-name">Video Reveal — Cover to Reveal</p>
+        <p class="sc-desc">Record video while slowly pulling the board away from the 150c. Start with 3 seconds of silhouette, then 3–4 second slow reveal, then hold on fully lit product. Cut into Reels edit.</p>
+        <span class="sc-badge">Video / Reels</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">FPS</span> <span class="sv">24 / 30fps</span></div>
+        <div><span class="sk">ISO</span> <span class="sv">800–1600</span></div>
+        <div><span class="sk">SS</span> <span class="sv">1/48 or 1/60</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">BG</span> <span class="sv">300c ON</span></div>
+        <div><span class="sk">KEY</span> <span class="sv">150c ON</span></div>
+        <div><span class="sk">BOARD</span> <span class="sv">Pull away</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">● HIGH</span></div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">4</div>
+      <div class="sc main">
+        <p class="sc-name">3/4 Angle — Product + Block Texture</p>
+        <p class="sc-desc">Camera repositioned slightly to the side to see the rough texture of the cinder blocks. Adds materiality contrast between raw concrete and refined product packaging.</p>
+        <span class="sc-badge">Alt Angle</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">ISO</span> <span class="sv">160–320</span></div>
+        <div><span class="sk">AP</span> <span class="sv">f/4</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">BG</span> <span class="sv">300c ON</span></div>
+        <div><span class="sk">KEY</span> <span class="sv">150c ON</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ MEDIUM</span></div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">5</div>
+      <div class="sc main">
+        <p class="sc-name">BG Light Only — Ambient Still</p>
+        <p class="sc-desc">Turn off the 150c entirely. Let only the 300c background wash illuminate the scene. The entire composition glows warm amber — architectural, environmental. Useful as a mood/context frame.</p>
+        <span class="sc-badge">Mood / Ambient</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">ISO</span> <span class="sv">800</span></div>
+        <div><span class="sk">SS</span> <span class="sv">1/60s</span></div>
+        <div><span class="sk">AP</span> <span class="sv">f/2.8</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">BG</span> <span class="sv">300c ON</span></div>
+        <div><span class="sk">KEY</span> <span class="sv">OFF</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ OPTIONAL</span></div>
+    </div>
+
+    <div class="shot-row">
+      <div class="sc idx">6</div>
+      <div class="sc main">
+        <p class="sc-name">BTS Documentation</p>
+        <p class="sc-desc">Pull back with a phone or second camera to capture the full setup: table, blocks, both lights, camera rig, the cover-and-reveal technique in action. Essential social content.</p>
+        <span class="sc-badge">Content / BTS</span>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">CAM</span> <span class="sv">Phone / B-cam</span></div>
+      </div>
+      <div class="sc settings">
+        <div><span class="sk">ALL</span> <span class="sv">Lights on</span></div>
+      </div>
+      <div class="sc"><span class="sc-badge">○ CONTENT</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════ COMPARISON — SILHOUETTE VS REVEALED ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">07 ——</span>
+    <h2 class="s-title">TWO <span class="a">LOOKS</span></h2>
+  </div>
+
+  <div class="compare-strip">
+    <div class="compare-panel">
+      <p class="compare-sub">State 1 — 300c Only / Board Blocking 150c</p>
+      <p class="compare-title">The Silhouette Look</p>
+      <p class="compare-body">Pure product shape against a glowing amber/orange rectangle. All surface detail, label text, and color disappear. What remains is <strong>form, proportion, and architecture</strong>. The cinder block columns frame it on both sides in deep shadow. This look is dramatic, teaser-worthy, and works powerfully as a social hook or short-form video opener. The product's silhouette must be strong enough to be recognizable — bottle shapes, fragrance flacons, and serum dropper bottles all excel at this.</p>
+    </div>
+
+    <div class="compare-vs">
+      <p class="compare-vs-text">VS</p>
+    </div>
+
+    <div class="compare-panel">
+      <p class="compare-sub">State 2 — Both Lights / 150c Revealed</p>
+      <p class="compare-title">The Detail Look</p>
+      <p class="compare-body">Both lights on, board removed. The 150c spotlight hits the product at a precise angle — revealing <strong>label text, material quality, liquid content, and brand identity</strong>. The warm BG glow still wraps from behind, creating rim separation and maintaining the amber color story. The cinder block columns now show their own warm-lit texture, grounding the composition. This is the hero deliverable — the image that runs in ads, on the product page, or in editorial.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ POST PRODUCTION ═══════ -->
+<section class="section">
+  <div class="s-head">
+    <span class="s-num">08 ——</span>
+    <h2 class="s-title">POST <span class="a">SETTINGS</span></h2>
+  </div>
+
+  <div class="post-cols">
+
+    <div class="post-block">
+      <p class="post-title">Exposure &amp; Tone</p>
+      <p class="post-subtitle">Capture One / Lightroom</p>
+      <div class="bar-row"><p class="bar-lbl">Exposure</p><div class="bar-track"><div class="bar-fill neg" style="width:30%;"></div></div><p class="bar-val">−0.3</p></div>
+      <div class="bar-row"><p class="bar-lbl">Contrast</p><div class="bar-track"><div class="bar-fill" style="width:65%;"></div></div><p class="bar-val">+25</p></div>
+      <div class="bar-row"><p class="bar-lbl">Highlights</p><div class="bar-track"><div class="bar-fill neg" style="width:50%;"></div></div><p class="bar-val">−30</p></div>
+      <div class="bar-row"><p class="bar-lbl">Shadows</p><div class="bar-track"><div class="bar-fill neg" style="width:70%;"></div></div><p class="bar-val">−50</p></div>
+      <div class="bar-row"><p class="bar-lbl">Blacks</p><div class="bar-track"><div class="bar-fill neg" style="width:80%;"></div></div><p class="bar-val">−65</p></div>
+      <div class="bar-row"><p class="bar-lbl">Clarity</p><div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div><p class="bar-val">+18</p></div>
+    </div>
+
+    <div class="post-block">
+      <p class="post-title">Color Grading</p>
+      <p class="post-subtitle">Warm Amber Cinematic Grade</p>
+      <div class="bar-row"><p class="bar-lbl">WB Temp</p><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#d4700a,#f08c1a);"></div></div><p class="bar-val">+300K</p></div>
+      <div class="bar-row"><p class="bar-lbl">Orange Sat.</p><div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#d4700a,#f5c06a);"></div></div><p class="bar-val">+40</p></div>
+      <div class="bar-row"><p class="bar-lbl">Yellow Sat.</p><div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#d4a010,#f5c06a);"></div></div><p class="bar-val">+20</p></div>
+      <div class="bar-row"><p class="bar-lbl">Shadow Tint</p><div class="bar-track"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,#301806,#5a3010);"></div></div><p class="bar-val">Warm+</p></div>
+      <div class="bar-row"><p class="bar-lbl">Vibrance</p><div class="bar-track"><div class="bar-fill" style="width:30%;"></div></div><p class="bar-val">+12</p></div>
+      <div class="bar-row"><p class="bar-lbl">Dehaze</p><div class="bar-track"><div class="bar-fill" style="width:25%;"></div></div><p class="bar-val">+10</p></div>
+    </div>
+
+    <div class="post-block">
+      <p class="post-title">S-Curve — Amber Grade</p>
+      <p class="post-subtitle">Custom Tone Curve</p>
+      <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;">
+        <rect width="320" height="200" fill="#111" rx="2"/>
+        <line x1="0" y1="200" x2="320" y2="0" stroke="#1e1a12" stroke-width="1" stroke-dasharray="3,3"/>
+        <!-- Warm curve — shadows crushed harder, mids lifted slightly for warmth -->
+        <path d="M 0 200 C 40 200, 60 185, 90 168 C 120 148, 135 120, 155 100 C 175 78, 200 35, 240 15 C 270 3, 295 0, 320 0"
+              fill="none" stroke="#d4700a" stroke-width="2.5"/>
+        <circle cx="90" cy="168" r="4" fill="#f5c06a"/>
+        <circle cx="200" cy="35" r="4" fill="#f5c06a"/>
+        <text x="10" y="194" font-family="Space Mono" font-size="7" fill="#3a3020">Deep blacks</text>
+        <text x="180" y="26" font-family="Space Mono" font-size="7" fill="#3a3020">Amber highs</text>
+      </svg>
+    </div>
+
+    <div class="post-block">
+      <p class="post-title">Key Editing Notes</p>
+      <p class="post-subtitle">Silhouette vs Detail — Separate Treatments</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px;">
+        <div style="padding:14px;background:rgba(212,112,10,0.06);border-left:2px solid var(--amber);">
+          <p style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;">Silhouette Frame</p>
+          <p style="font-size:10px;color:var(--muted);line-height:1.7;">Crush blacks aggressively. The product should be near-black with zero visible detail. Background oval should be pure, saturated amber-orange. Increase contrast significantly. Reduce exposure to keep the shadow zones impenetrable.</p>
+        </div>
+        <div style="padding:14px;background:rgba(212,112,10,0.06);border-left:2px solid var(--amber);">
+          <p style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;">Revealed Frame</p>
+          <p style="font-size:10px;color:var(--muted);line-height:1.7;">Lift shadows slightly to reveal label text. Pull highlights to control the BG oval blowout. Increase clarity and texture to render product detail crisply. Color grade warm but protect the product label area from over-tinting with selective color masking.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════ PRO TIPS ═══════ -->
+<section style="padding:0 70px 80px;border-top:none;">
+  <div class="tips-block">
+    <p class="tips-block-title">PRO TIPS — SPOTLIGHT TECHNIQUE</p>
+    <div class="tip-list">
+      <div class="tip-item">
+        <div class="tip-icon">01</div>
+        <p class="tip-text"><strong>Match light temperatures.</strong> Both the 300c and 150c should be set to the same color temperature (approx. 2800–3200K) for a cohesive warm amber story. If they're different, you'll get a color cast battle that reads as dirty rather than intentional.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">02</div>
+        <p class="tip-text"><strong>The BG oval size matters.</strong> Position the 300c to create a glow that's just wider than the gap between your cinder block columns. Too narrow and the blocks block it entirely. Too wide and you lose the framing effect. Adjust by moving the 300c closer (smaller, brighter oval) or further (larger, softer oval).</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">03</div>
+        <p class="tip-text"><strong>Spotlight zoom = product fit.</strong> Most spotlight attachments have a zoom ring. Start wide, then tighten until the beam fits exactly over the product and not the blocks. A circle of light that's slightly larger than the product is ideal — it gives a subtle spillover without flooding the blocks with light.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">04</div>
+        <p class="tip-text"><strong>Block gap precision.</strong> The gap between the two cinder block columns should match the product width ±20–30%. Too tight and you lose the framing effect; too wide and the product looks lost. Check in live view with both lights on before committing to the block position.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">05</div>
+        <p class="tip-text"><strong>Translucent products = maximum impact.</strong> This technique is most powerful with translucent or semi-transparent products — perfume flacons, serum bottles, hair oil, amber glass. The BG light transmits through the liquid/glass in the revealed state, adding a glowing interior that's difficult to replicate any other way.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">06</div>
+        <p class="tip-text"><strong>Practice the reveal pull before filming.</strong> The cover-and-reveal motion should be smooth, steady, and consistent. Practice 5–6 times without filming first. The board should clear the beam completely in 3–4 seconds — not too fast (jarring) and not too slow (boring). Rehearse the endpoint so the fully revealed state is stable before you cut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ FOOTER ═══════ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>

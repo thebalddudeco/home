@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whisky Smoke — Five Setups, One Campaign — The Bald Dude Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --accent:#ff4f42;
+  --white:#f5f4f0;
+  --mid:rgba(245,244,240,.45);
+  --dim:rgba(245,244,240,.18);
+  --mono:'DM Mono',monospace;
+  --sans:'Open Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;cursor:none;font-size:15px;line-height:1.7}
+
+/* HUD CURSOR */
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .3s}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
+.nav-logo:hover{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.28);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.nav-book{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(245,244,240,.5);border-bottom:1px solid rgba(255,79,66,.4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-book:hover{color:var(--white);border-color:var(--white)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+.ham span{display:block;width:22px;height:1px;background:rgba(245,244,240,.55)}
+
+/* PAGE HEADER */
+.guide-header{
+  padding:8rem 2.5rem 3rem;
+  border-bottom:.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.gh-left{}
+.gh-eye{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.gh-eye::before{content:'';width:20px;height:1px;background:var(--accent)}
+.gh-title{font-family:var(--sans);font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white)}
+.gh-title em{font-style:italic}
+.gh-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:2.2;flex-shrink:0}
+
+/* GUIDE CONTENT WRAPPER */
+.guide-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2.5rem 6rem;
+}
+
+/* TYPOGRAPHY RESETS FOR GUIDE CONTENT */
+.guide-content h1,.guide-content h2,.guide-content h3,.guide-content h4{
+  font-family:var(--sans);font-weight:300;color:var(--white);
+  letter-spacing:-.01em;margin:2.5rem 0 1rem;line-height:1.15;
+}
+.guide-content h1{font-size:clamp(2rem,4vw,3.5rem);font-style:italic;margin-top:0}
+.guide-content h2{font-size:clamp(1.4rem,3vw,2.25rem);padding-top:1rem;border-top:.5px solid var(--border);margin-top:3rem}
+.guide-content h3{font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,244,240,.85)}
+.guide-content h4{font-size:1rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:400;font-style:normal}
+.guide-content p{color:var(--mid);line-height:1.85;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content strong{color:var(--white);font-weight:400}
+.guide-content em{color:rgba(245,244,240,.7);font-style:italic}
+.guide-content ul,.guide-content ol{color:var(--mid);padding-left:1.5rem;margin-bottom:1.25rem;font-size:14px;font-weight:300}
+.guide-content li{margin-bottom:.4rem;line-height:1.7}
+.guide-content code{font-family:var(--mono);font-size:12px;background:var(--surface2);padding:.15rem .4rem;color:var(--accent)}
+.guide-content pre{background:var(--surface2);padding:1.25rem;overflow-x:auto;margin-bottom:1.5rem;border-left:2px solid var(--accent)}
+.guide-content pre code{background:transparent;padding:0}
+.guide-content blockquote{border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--mid)}
+.guide-content hr{border:none;border-top:.5px solid var(--border);margin:2.5rem 0}
+.guide-content table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:13px;font-family:var(--mono)}
+.guide-content th{text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border2);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.guide-content td{padding:.6rem 1rem;border-bottom:.5px solid var(--border);color:var(--mid)}
+.guide-content tr:hover td{color:var(--white)}
+.guide-content img{max-width:100%;display:block;margin:2rem auto}
+.guide-content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,79,66,.3);transition:border-color .2s}
+.guide-content a:hover{border-color:var(--accent)}
+
+/* SVG/DIAGRAM CONTAINERS */
+.guide-content svg{max-width:100%;height:auto;display:block;margin:2rem auto}
+.guide-content .diagram,.guide-content .lighting-diagram,.guide-content [class*="diagram"],[class*="setup"],[class*="layout"]{
+  background:var(--surface);border:.5px solid var(--border);padding:1.5rem;margin:2rem 0;overflow:auto;
+}
+
+/* Stat/spec blocks */
+.guide-content .spec-block,.guide-content .setup,.guide-content .card,.guide-content .setup-card{
+  background:var(--surface);border:.5px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0;
+}
+.guide-content .label,.guide-content .step-label,.guide-content .tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+}
+.guide-content .note,.guide-content .tip{
+  background:var(--surface2);border-left:2px solid var(--accent);
+  padding:.75rem 1.25rem;margin:1.25rem 0;font-size:13px;color:var(--mid);font-family:var(--mono);
+}
+
+/* PAGE FOOTER */
+.guide-footer{padding:2.5rem 2.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.gf-link{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,244,240,.28);text-decoration:none;transition:color .2s}
+.gf-link:hover{color:var(--white)}
+.gf-copy{font-family:var(--mono);font-size:9px;color:rgba(245,244,240,.1);letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .guide-header{flex-direction:column;align-items:flex-start;padding:7rem 1.5rem 2.5rem}
+  .gh-meta{text-align:left}
+  .guide-content{padding:3rem 1.5rem 5rem}
+  .guide-footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
+
+
+:root {
+  --void:    #050300;
+  --deep:    #0c0800;
+  --rich:    #120d02;
+  --card:    #1a1205;
+  --border:  #2e2008;
+  --amber:   #b86a00;
+  --gold:    #d4920a;
+  --gold-lt: #f0b830;
+  --cream:   #f0e4c8;
+  --smoke:   #8a8880;
+  --muted:   #6a5835;
+  --ember:   #c43010;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: 'Overpass Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999;
+}
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--void);
+}
+
+/* Radial glow from center */
+.hero-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(184,106,0,0.18) 0%, rgba(180,80,0,0.08) 40%, transparent 70%);
+  z-index: 1;
+}
+
+/* Smoke wisps decoration */
+.hero-smoke {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 300px;
+  background: linear-gradient(to top, rgba(184,106,0,0.06) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-inner {
+  position: relative; z-index: 3;
+  padding: 0 80px 0;
+}
+
+.hero-brand {
+  font-family: 'Overpass Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--amber);
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(48px, 9vw, 130px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.4s;
+}
+
+.hero-title .fire { color: var(--gold); }
+.hero-title .sub-line {
+  font-weight: 400;
+  font-size: 0.42em;
+  letter-spacing: 0.15em;
+  display: block;
+  color: var(--smoke);
+  margin-top: 8px;
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+}
+
+.hero-rule {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, var(--amber), transparent);
+  margin: 32px 0;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.7s;
+}
+
+.hero-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.9s;
+}
+
+.hero-setups {
+  display: flex;
+  gap: 0;
+  margin-top: 56px;
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 1.1s;
+}
+
+.hero-setup-item {
+  flex: 1;
+  padding: 24px 32px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-setup-item:last-child { border-right: none; }
+
+.hsi-num {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+  text-transform: uppercase;
+}
+
+.hsi-name {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.hsi-tech {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ══ SETUP SECTION ══ */
+.setup-section {
+  border-top: 1px solid var(--border);
+}
+
+.setup-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.setup-num-block {
+  padding: 40px 48px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.sn-tag {
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.sn-num {
+  font-family: 'Cinzel', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(184,106,0,0.12);
+  line-height: 0.9;
+}
+
+.sn-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.4;
+  max-width: 120px;
+}
+
+.setup-title-block {
+  padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.setup-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 3vw, 42px);
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.setup-title .g { color: var(--gold); }
+
+.setup-subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.setup-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.stag {
+  background: rgba(184,106,0,0.1);
+  border: 1px solid rgba(184,106,0,0.2);
+  color: var(--gold-lt);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+/* Setup body */
+.setup-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  padding: 2px;
+}
+
+.setup-body.three-col { grid-template-columns: 1fr 1fr 1fr; }
+.setup-body.four-col { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.sb {
+  background: var(--deep);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.sb:hover { background: var(--rich); }
+
+.sb::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--amber), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sb:hover::after { opacity: 1; }
+
+.sb-cat {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.sb-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.sb-body {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.sb-body strong { color: var(--cream); font-weight: 600; }
+
+.sb-note {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(184,106,0,0.07);
+  border-left: 2px solid var(--amber);
+  font-size: 10px;
+  color: #5a4020;
+  font-style: italic;
+}
+
+.sb-n {
+  position: absolute;
+  bottom: 12px; right: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 80px;
+  color: rgba(184,106,0,0.04);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* setup result card */
+.result-card {
+  background: var(--deep);
+  padding: 48px 56px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.rc-label {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.rc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.rc-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.rc-body strong { color: var(--cream); font-weight: 600; }
+
+.rc-specs {
+  display: grid;
+  gap: 10px;
+}
+
+.rc-spec-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rsr-key {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rsr-val {
+  font-size: 11px;
+  color: var(--gold-lt);
+}
+
+/* ══ LIGHTING DIAGRAM ══ */
+.diag-section {
+  border-top: 1px solid var(--border);
+  padding: 72px 80px;
+}
+
+.diag-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  margin-bottom: 48px;
+}
+
+.diag-title span { color: var(--gold); }
+
+.diagrams-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.diag-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 40px;
+}
+
+.diag-card-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 28px;
+}
+
+/* ══ TECHNIQUE BREAKDOWN ══ */
+.technique-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  border-top: 1px solid var(--border);
+}
+
+.tech-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.tech-card:hover { background: var(--rich); }
+
+.tech-icon {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.tech-name {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.tech-body {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.tech-body strong { color: var(--cream); font-weight: 600; }
+
+.tech-bg-n {
+  position: absolute;
+  top: 10px; right: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 100px;
+  color: rgba(184,106,0,0.04);
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+/* ══ MASTER SHOT LIST ══ */
+.shot-section {
+  border-top: 1px solid var(--border);
+  padding: 72px 80px;
+}
+
+.shot-section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  margin-bottom: 48px;
+}
+.shot-section-title span { color: var(--gold); }
+
+.shot-tbl { display: grid; gap: 2px; }
+
+.sr {
+  display: grid;
+  grid-template-columns: 44px 28px 1.6fr 1fr 0.8fr 100px;
+  gap: 2px;
+}
+
+.sr.hdr .sc {
+  background: rgba(5,3,0,0.9);
+  font-size: 7px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+}
+
+.sc {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 20px 18px;
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  transition: background 0.25s;
+}
+
+.sr:not(.hdr):hover .sc { background: var(--rich); }
+
+.sc.setup-dot {
+  justify-content: center;
+  font-size: 16px;
+}
+
+.sc.idx {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: rgba(184,106,0,0.15);
+  justify-content: center;
+}
+
+.sc.info {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.sc-t {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.sc-d { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+.sc-b {
+  display: inline-block;
+  background: rgba(184,106,0,0.1);
+  border: 1px solid rgba(184,106,0,0.2);
+  color: var(--gold-lt);
+  font-size: 7px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  margin-top: 2px;
+}
+
+.sc.cam {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.ck { font-size: 7px; color: var(--muted); letter-spacing: 0.1em; min-width: 24px; display: inline-block; }
+.cv { color: var(--gold-lt); font-size: 10px; }
+
+/* setup color dots */
+.dot-1 { color: #d4920a; }
+.dot-2 { color: #3a8aaa; }
+.dot-3 { color: #8a8880; }
+.dot-4 { color: #c43010; }
+.dot-5 { color: #b89060; }
+
+/* ══ POST GUIDE ══ */
+.post-section {
+  border-top: 1px solid var(--border);
+  padding: 72px 80px;
+}
+
+.post-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  margin-bottom: 48px;
+}
+.post-title span { color: var(--gold); }
+
+.post-setups-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.post-setup {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 40px;
+}
+
+.ps-label {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+
+.ps-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 48px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+.bl { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.bt { height: 2px; background: var(--border); }
+
+.bf { height: 100%; background: linear-gradient(90deg, var(--amber), var(--gold)); }
+.bf.neg { background: linear-gradient(90deg, #303020, #606020); margin-left: auto; }
+.bf.blue { background: linear-gradient(90deg, #204050, #2a6080); }
+.bf.red { background: linear-gradient(90deg, #501010, #902020); }
+
+.bv { font-size: 9px; color: var(--gold-lt); text-align: right; }
+
+/* ══ PROPS GUIDE ══ */
+.props-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.prop-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.3s;
+}
+.prop-card:hover { background: var(--rich); }
+
+.prop-cat {
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.prop-name {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.prop-body {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.prop-body strong { color: var(--cream); font-weight: 600; }
+
+/* ══ FOOTER ══ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--void);
+}
+
+.footer-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--amber);
+}
+
+.footer-note {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 960px) {
+  .hero-inner, .shot-section, .diag-section, .post-section, .footer { padding-left: 28px; padding-right: 28px; }
+  .hero-setups { flex-direction: column; }
+  .setup-body, .setup-body.three-col, .setup-body.four-col { grid-template-columns: 1fr 1fr; }
+  .result-card, .diagrams-grid { grid-template-columns: 1fr; gap: 28px; }
+  .technique-row { grid-template-columns: 1fr 1fr; }
+  .props-grid { grid-template-columns: 1fr 1fr; }
+  .post-setups-grid { grid-template-columns: 1fr; }
+  .sr { grid-template-columns: 36px 20px 1fr; }
+  .sc.cam, .sc:nth-child(5), .sc:nth-child(6) { display: none; }
+  .sr.hdr .sc:nth-child(n+5) { display: none; }
+  .setup-num-block { min-width: auto; padding: 28px; }
+  .setup-title-block { padding: 28px; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="hud-cursor">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
+    <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-tr"><path d="M36,2 L46,2 L46,12" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-bl"><path d="M2,36 L2,46 L12,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-br"><path d="M46,36 L46,46 L36,46" stroke-width="1.8" stroke-linecap="square"/></g>
+    <g class="c-at"><polyline points="20,8 24,3 28,8" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <g class="c-ab"><polyline points="20,40 24,45 28,40" stroke-width="1.3" stroke-linejoin="round"/></g>
+    <line x1="11" y1="11" x2="37" y2="37" stroke-width="1"/>
+    <line x1="37" y1="11" x2="11" y2="37" stroke-width="1"/>
+    <circle cx="24" cy="24" r="2.2" fill="#ff4f42" stroke="none"/>
+  </svg>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">TBD.Co</a>
+  <ul class="nav-links">
+    <li><a href="../events.html">Events</a></li>
+    <li><a href="../portraits.html">Portraits</a></li>
+    <li><a href="../couples.html">Couples</a></li>
+    <li><a href="../street.html">Street</a></li>
+    <li><a href="../product.html">Product</a></li>
+    <li><a href="../gear.html">Gear</a></li>
+    <li><a href="../guides.html" class="active">Guides</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-book">Book a Session</a>
+  <button class="ham" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="guide-header">
+  <div class="gh-left">
+    <div class="gh-eye">Photo Guide — Lighting</div>
+    <h1 class="gh-title"><em>Whisky Smoke</em> — Five Setups, One Campaign</h1>
+  </div>
+  <div class="gh-meta">
+    The Bald Dude Co.<br>
+    thebalddude.co<br>
+    Lighting
+  </div>
+</div>
+
+<div class="guide-content">
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-smoke"></div>
+
+  <div class="hero-inner">
+    <p class="hero-brand">Vol. 04 · Multi-Setup Campaign Production · Godox Lighting System</p>
+    <h1 class="hero-title">
+      WHISKY<br>
+      <span class="fire">SMOKE</span>
+      <span class="sub-line">Five setups. Four products. One campaign.</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">A complete production breakdown for the Beardo Whisky Smoke Bourbon campaign — spotlight, water mist, smoke &amp; beans, live water pour, and a full product line family shot. Each setup decoded shot by shot.</p>
+  </div>
+
+  <div class="hero-setups">
+    <div class="hero-setup-item">
+      <p class="hsi-num">Setup 01</p>
+      <p class="hsi-name">Spotlight + Turntable</p>
+      <p class="hsi-tech">EDP Flacon · Marble Riser · Zeapon</p>
+    </div>
+    <div class="hero-setup-item">
+      <p class="hsi-num">Setup 02</p>
+      <p class="hsi-name">Water Mist Spray</p>
+      <p class="hsi-tech">Body Wash · Reflective Acrylic · Ice</p>
+    </div>
+    <div class="hero-setup-item">
+      <p class="hsi-num">Setup 03</p>
+      <p class="hsi-name">Smoke + Coffee Beans</p>
+      <p class="hsi-tech">Lip Balm · Fog Machine · Bean Sea</p>
+    </div>
+    <div class="hero-setup-item">
+      <p class="hsi-num">Setup 04</p>
+      <p class="hsi-name">Live Water Pour</p>
+      <p class="hsi-tech">Luxury Soap · Glass Sheet · F-Clamp</p>
+    </div>
+    <div class="hero-setup-item" style="border-right:none;">
+      <p class="hsi-num">Setup 05</p>
+      <p class="hsi-name">Smoke + Family Hero</p>
+      <p class="hsi-tech">All Products · Wood Risers · Fog</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SETUP 01 — SPOTLIGHT + TURNTABLE
+══════════════════════════════════════════════════ -->
+<section class="setup-section">
+  <div class="setup-header">
+    <div class="setup-num-block">
+      <p class="sn-tag">Setup</p>
+      <p class="sn-num">01</p>
+      <p class="sn-label">Spotlight overhead · Turntable · EDP Flacon</p>
+    </div>
+    <div class="setup-title-block">
+      <h2 class="setup-title">SPOTLIGHT <span class="g">OVERHEAD</span><br>+ TURNTABLE</h2>
+      <p class="setup-subtitle">Godox Fresnel/spotlight aimed straight down — product on marble riser, Zeapon motorized turntable for rotation video</p>
+      <div class="setup-tags">
+        <span class="stag">Godox Spotlight</span>
+        <span class="stag">Zeapon Turntable</span>
+        <span class="stag">Marble Cube Riser</span>
+        <span class="stag">Two Side Softboxes</span>
+        <span class="stag">Beardo EDP 50ml</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-body four-col" style="padding:2px;">
+    <div class="sb">
+      <span class="sb-n">A</span>
+      <p class="sb-cat">Primary Light</p>
+      <p class="sb-title">Godox Spotlight / Fresnel — Overhead</p>
+      <p class="sb-body">The spotlight is mounted on a boom arm <strong>directly above the subject</strong>, aimed straight down. The narrow Fresnel beam (approx. 10–20°) creates a theatrical pool of light on the marble riser and bottle top only — nothing else in the scene is lit. The visible beam shaft in the BTS frame is caused by <strong>smoke or haze in the air</strong> catching the concentrated beam.</p>
+      <div class="sb-note">Boom arm must be rated for the head weight. The light overhangs the table — counterbalance with sandbags on the stand base.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">B</span>
+      <p class="sb-cat">Side Fill Panels</p>
+      <p class="sb-title">Two Large Honeycomb Softboxes — Flanking</p>
+      <p class="sb-body">Two Godox <strong>large rectangular softboxes with honeycomb grids</strong> are positioned on each side of the shooting area — not to add fill, but to <strong>control the shadow depth</strong> on the flanking walls. They appear barely active or off in the final shot — the result is near-total black on both sides with the product as the sole lit element. In the BTS they glow softly, suggesting they may be set to very low power.</p>
+      <div class="sb-note">Honeycomb grid keeps light from spilling into the background — critical for keeping the wall behind pure black.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">C</span>
+      <p class="sb-cat">Product Rig</p>
+      <p class="sb-title">Zeapon Motorized Turntable + Marble Cube Riser</p>
+      <p class="sb-body">The product sits on a <strong>white marble cube riser</strong> (approx. 4"×4"×4") which is positioned on top of a <strong>Zeapon motorized turntable</strong>. The turntable provides smooth, programmable 360° rotation — used for video content (spin reveal Reels). For stills, it allows precise product angle control without touching the bottle. The marble riser elevates the product and adds a luxury material contrast.</p>
+      <div class="sb-note">The Zeapon turntable is confirmed by the blue Zeapon-branded unit visible in the BTS frame under the marble riser.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">D</span>
+      <p class="sb-cat">Surface &amp; Background</p>
+      <p class="sb-title">Dark Fabric Draped Table — Zero Background</p>
+      <p class="sb-body">The shooting table is draped in <strong>dark brown/chocolate fabric</strong> that absorbs most of the spill from the spotlight. No background setup is needed — the unlit room walls fall to pure black naturally because the spotlight is so directional. The final image has a <strong>seamless black-to-dark-brown gradient</strong> at the base without any visible background seam.</p>
+      <div class="sb-note">Room must be blacked out — any ambient light from windows or ceiling fixtures will contaminate the shadow areas and kill the effect.</div>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div>
+      <p class="rc-label">Final Shot — Setup 01</p>
+      <p class="rc-title">BEARDO WHISKY SMOKE EDP<br>Spotlight Isolation</p>
+      <p class="rc-body">The final image shows the amber EDP flacon <strong>glowing internally</strong> from the overhead spotlight — the warm orange liquid transmits the beam down through the glass. The marble riser catches a tight circle of warm light. Background is pure black. A subtle warm halo in the upper right corner suggests a slight backscatter from the smoke/haze in the air, adding atmospheric depth. <strong>Zero visible surface, zero background</strong> — the product floats in darkness.</p>
+    </div>
+    <div class="rc-specs">
+      <div class="rc-spec-row"><p class="rsr-key">Light</p><p class="rsr-val">Godox Spotlight — 100% power overhead</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Fill</p><p class="rsr-val">None / Side softboxes off or minimal</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Riser</p><p class="rsr-val">White marble cube + Zeapon turntable</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Surface</p><p class="rsr-val">Dark brown fabric — no reflection</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">ISO</p><p class="rsr-val">160–400</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Style</p><p class="rsr-val">Total black isolation · Warm amber glow</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SETUP 02 — WATER MIST SPRAY
+══════════════════════════════════════════════════ -->
+<section class="setup-section">
+  <div class="setup-header">
+    <div class="setup-num-block">
+      <p class="sn-tag">Setup</p>
+      <p class="sn-num">02</p>
+      <p class="sn-label">Parabolic overhead · Water mist spray · Body wash</p>
+    </div>
+    <div class="setup-title-block">
+      <h2 class="setup-title">PARABOLIC <span class="g">OVERHEAD</span><br>+ WATER MIST</h2>
+      <p class="setup-subtitle">Godox large parabolic umbrella overhead · pump sprayer for water mist · reflective black acrylic surface · ice &amp; bark props</p>
+      <div class="setup-tags">
+        <span class="stag">Godox Parabolic</span>
+        <span class="stag">Strip Softbox Side</span>
+        <span class="stag">Water Pump Spray</span>
+        <span class="stag">Black Acrylic Surface</span>
+        <span class="stag">Ice + Bark Props</span>
+        <span class="stag">Body Wash 200ml</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-body" style="padding:2px;grid-template-columns:1fr 1fr 1fr;">
+    <div class="sb">
+      <span class="sb-n">A</span>
+      <p class="sb-cat">Primary Light</p>
+      <p class="sb-title">Godox Large Parabolic — Overhead Boom</p>
+      <p class="sb-body">A <strong>large Godox parabolic reflector</strong> (120cm+ diameter) with honeycomb grid is mounted overhead on a boom arm. The parabolic shape concentrates light more directionally than a standard softbox, creating a harder, more specular highlight on the glossy bottle body while still maintaining some diffusion. It also <strong>backlights the airborne water mist</strong>, making each droplet appear as a bright sparkle against the dark background.</p>
+      <div class="sb-note">The water droplets in the BTS frame are clearly backlit by this overhead source — confirming it as the key light during the spray moment.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">B</span>
+      <p class="sb-cat">Secondary Light</p>
+      <p class="sb-title">Godox Strip Softbox — Side Key</p>
+      <p class="sb-body">A <strong>Godox strip softbox with honeycomb grid</strong> is positioned camera right, approximately at table height. This provides a thin vertical specular highlight along the body wash bottle's edge — creating the separation between the near-black bottle and the dark background. Without this side strip, the glossy black bottle would vanish entirely against the dark set.</p>
+      <div class="sb-note">Strip softboxes are the standard solution for separating dark glossy products from dark backgrounds. The honeycomb ensures it doesn't spill into the background.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">C</span>
+      <p class="sb-cat">The Water Mist Technique</p>
+      <p class="sb-title">Pump Sprayer — Mist While Shooting</p>
+      <p class="sb-body">The operator uses a <strong>standard garden pump spray bottle</strong> (green bottle visible in BTS) filled with water, sprayed upward into the frame from camera left or above while the camera is firing. The spray is backlit by the overhead parabolic — each individual water droplet is frozen by a <strong>fast shutter speed (1/1000s+)</strong>. Requires continuous shooting burst mode and selecting the best frame from 10–20 spray attempts.</p>
+      <div class="sb-note">Only water in the sprayer — no glycerin or product additives needed. The fine mist nozzle creates a more uniform droplet cloud than a coarse setting.</div>
+    </div>
+  </div>
+
+  <div class="setup-body" style="padding:2px;grid-template-columns:1fr 1fr;">
+    <div class="sb">
+      <span class="sb-n">D</span>
+      <p class="sb-cat">Surface</p>
+      <p class="sb-title">Black Reflective Acrylic — Mirror Surface</p>
+      <p class="sb-body">The shooting surface is a <strong>large black acrylic or polished black tile sheet</strong> creating a mirror-like reflection of the product and props. This doubles the visual information — product + reflection — and adds depth. The reflection of the overhead parabolic also appears as a bright soft oval in the surface, creating a second light source "below" the product. Surface must be kept immaculately clean — every water drop or fingerprint is visible.</p>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">E</span>
+      <p class="sb-cat">Props</p>
+      <p class="sb-title">Ice Chunks + Wood Bark — Brand Storytelling</p>
+      <p class="sb-body">Ice chunks are placed camera left; a piece of <strong>rough wood bark or driftwood</strong> camera right. These props reinforce the "Whisky Smoke Bourbon" brand narrative — ice for the cocktail serve, wood/bark for the smoke and barrel aging. Both props are wet-down before shooting so they catch the overhead light with texture detail. Ice must be shot quickly — <strong>15–20 minute window</strong> before it becomes water.</p>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div>
+      <p class="rc-label">Final Shot — Setup 02</p>
+      <p class="rc-title">BEARDO BODY WASH 200ml<br>Water Mist Isolation</p>
+      <p class="rc-body">The body wash stands on the <strong>black reflective acrylic</strong>, perfectly mirrored below. Water droplets — each individually frozen at 1/1000s — hang suspended throughout the upper 2/3 of the frame. Ice chunks frame the left, wood bark the right. The bottle has a thin vertical specular edge from the strip softbox, separating it from the dark background. The <strong>water mist is the story</strong> — it transforms a standard product shot into an environmental narrative about freshness and power.</p>
+    </div>
+    <div class="rc-specs">
+      <div class="rc-spec-row"><p class="rsr-key">Key</p><p class="rsr-val">Godox Parabolic — overhead boom</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Fill</p><p class="rsr-val">Strip softbox — camera right, low</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Surface</p><p class="rsr-val">Black reflective acrylic</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Shutter</p><p class="rsr-val">1/1000s+ to freeze droplets</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Drive</p><p class="rsr-val">Burst / continuous — select best</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Props</p><p class="rsr-val">Ice (camera L) + bark (camera R)</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SETUP 03 — SMOKE + COFFEE BEANS
+══════════════════════════════════════════════════ -->
+<section class="setup-section">
+  <div class="setup-header">
+    <div class="setup-num-block">
+      <p class="sn-tag">Setup</p>
+      <p class="sn-num">03</p>
+      <p class="sn-label">Parabolic + smoke machine · Coffee beans · Lip balm</p>
+    </div>
+    <div class="setup-title-block">
+      <h2 class="setup-title">PARABOLIC <span class="g">+ SMOKE</span><br>+ COFFEE BEANS</h2>
+      <p class="setup-subtitle">Same Godox parabolic rig · fog machine or dry ice for atmospheric smoke · coffee/peppercorn bean surface · product spike for stability</p>
+      <div class="setup-tags">
+        <span class="stag">Godox Parabolic</span>
+        <span class="stag">Fog Machine</span>
+        <span class="stag">Coffee / Peppercorn Beans</span>
+        <span class="stag">Product Spike / Stand</span>
+        <span class="stag">Beardo Lip Balm</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-body" style="padding:2px;grid-template-columns:1fr 1fr 1fr 1fr;">
+    <div class="sb">
+      <span class="sb-n">A</span>
+      <p class="sb-cat">Lighting</p>
+      <p class="sb-title">Same Parabolic Rig — Overhead</p>
+      <p class="sb-body">The same Godox large parabolic overhead setup is used. For the coffee bean scene, the light rakes across the <strong>textured bean surface</strong>, creating depth and shadow between individual beans. The parabolic is positioned slightly more angled (not straight overhead) to achieve a sidelight effect across the bean field, increasing texture drama.</p>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">B</span>
+      <p class="sb-cat">Atmosphere</p>
+      <p class="sb-title">Fog Machine — Low Ground-Level Smoke</p>
+      <p class="sb-body">A <strong>fog machine or dry ice cooler</strong> is used to produce dense, low-lying white smoke that hugs the table surface. The smoke is directed from off-frame toward the product. The overhead parabolic backlights the smoke, creating volumetric wisps visible as a silver/white haze around the base of the product. Smoke is introduced <strong>just before shooting</strong> — it dissipates in 30–60 seconds.</p>
+      <div class="sb-note">Dry ice + warm water produces heavier, lower-lying smoke that stays at surface level. Standard fog machines produce lighter smoke that rises quickly.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">C</span>
+      <p class="sb-cat">Surface / Props</p>
+      <p class="sb-title">Coffee / Peppercorn Beans — Full Coverage</p>
+      <p class="sb-body">The table surface is <strong>completely covered in dark brown beans</strong> (appears to be a mix of coffee beans and peppercorns, or possibly roasted coffee beans only). They are spread edge-to-edge with depth — the product sits within the sea of beans, surrounded on all sides. The irregular, organic texture of the beans creates a natural depth-of-field effect at wide apertures — sharp at product level, blurring into abstraction at the edges.</p>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">D</span>
+      <p class="sb-cat">Product Stability</p>
+      <p class="sb-title">Product Spike — Hidden in Beans</p>
+      <p class="sb-body">The <strong>thin black product spike or pin</strong> is pressed into the table surface through the bean layer — the lip balm tube is slid over or held by the spike, keeping it perfectly upright in the unstable bean environment. The spike is invisible in the final shot because it's surrounded by beans. Alternative: a small ring stand or sticky wax (museum putty) under the base.</p>
+      <div class="sb-note">The spike is visible in the BTS frame (frame 5) — confirmed as the black vertical element in the center of the bean field.</div>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div>
+      <p class="rc-label">Final Shot — Setup 03</p>
+      <p class="rc-title">BEARDO LIP BALM<br>Coffee Smoke Atmosphere</p>
+      <p class="rc-body">The slim lip balm tube emerges from a <strong>sea of coffee/peppercorn beans</strong>, slightly left of center. White/silver smoke wisps curl at the base and float upward. Background is absolute black — the beans fall off into darkness at the edges. The beans in the foreground and background are beautifully out of focus (shallow DoF), creating a blurred frame for the sharp product. The <strong>smoke makes the light visible</strong> — volumetric rays appear above the bean field.</p>
+    </div>
+    <div class="rc-specs">
+      <div class="rc-spec-row"><p class="rsr-key">Key</p><p class="rsr-val">Godox Parabolic — overhead, slight angle</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Atmosphere</p><p class="rsr-val">Fog machine — ground-level dense smoke</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Surface</p><p class="rsr-val">Coffee/peppercorn beans — full coverage</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Stability</p><p class="rsr-val">Product spike hidden under beans</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">DoF</p><p class="rsr-val">Shallow — f/2.8 for bean blur</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Timing</p><p class="rsr-val">Shoot within 30s of smoke introduction</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SETUP 04 — LIVE WATER POUR
+══════════════════════════════════════════════════ -->
+<section class="setup-section">
+  <div class="setup-header">
+    <div class="setup-num-block">
+      <p class="sn-tag">Setup</p>
+      <p class="sn-num">04</p>
+      <p class="sn-label">Glass sheet platform · Live water pour · Amber gel BG · Soap</p>
+    </div>
+    <div class="setup-title-block">
+      <h2 class="setup-title">LIVE WATER <span class="g">POUR</span><br>+ GLASS PLATFORM</h2>
+      <p class="setup-subtitle">Glass/acrylic sheet clamped to workbench with F-clamps · water poured directly onto glass while shooting · warm orange gel background</p>
+      <div class="setup-tags">
+        <span class="stag">Glass / Acrylic Sheet</span>
+        <span class="stag">F-Clamp Workbench</span>
+        <span class="stag">Live Water Pour</span>
+        <span class="stag">Orange Gel BG Light</span>
+        <span class="stag">Beardo Luxury Soap</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-body" style="padding:2px;grid-template-columns:1fr 1fr 1fr;">
+    <div class="sb">
+      <span class="sb-n">A</span>
+      <p class="sb-cat">Platform Rig</p>
+      <p class="sb-title">Glass / Acrylic Sheet — Clamped Workbench</p>
+      <p class="sb-body">A large <strong>piece of thick glass or clear acrylic</strong> (approximately 24"×24") is clamped to a wooden workbench frame using <strong>red woodworking F-clamps</strong> at each corner. The glass extends past the bench — this overhang allows water poured on the glass to flow and drip off the edge, creating the cascade effect visible in the final shot. The product sits on the glass surface in the center. The transparent glass allows a background light to show through beneath/behind it.</p>
+      <div class="sb-note">Thick glass (6mm+) or 10mm acrylic preferred — thin glass flexes and can crack under water movement and product weight.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">B</span>
+      <p class="sb-cat">Water Technique</p>
+      <p class="sb-title">Live Pour — Blue Cup from Off-Frame</p>
+      <p class="sb-body">Water is poured <strong>directly from a blue plastic cup</strong> onto the glass platform while the camera fires in burst mode. The pour is directed from camera right, slightly behind the product so the cascading water wraps around and drips in front of and to the sides. The operator pours in a <strong>controlled arc</strong> rather than a single stream — this creates the wide waterfall effect visible in the final shot. The glass edge acts as a natural waterfall lip.</p>
+      <div class="sb-note">High shutter speed (1/500s–1/1000s) freezes the water in mid-motion. Lower speeds (1/60s–1/125s) blur it into silky flows. Both are valid — choose intent first.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">C</span>
+      <p class="sb-cat">Background Light</p>
+      <p class="sb-title">Warm Orange / Amber Gel BG — Gradient Sweep</p>
+      <p class="sb-body">A light source behind the glass platform is gelled with an <strong>orange/amber CTO gel</strong>, creating the warm gradient background visible in the final shot. The light shines through the glass, reflecting in the water surface, and creates the rich amber-to-dark-brown gradient from top to bottom. This warm BG color is the entire color story of the soap shot — complementing the orange soap bar's color exactly.</p>
+      <div class="sb-note">Position the BG light behind and below the glass edge — this allows it to catch the water cascade from behind, backlighting the falling water against the warm color.</div>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div>
+      <p class="rc-label">Final Shot — Setup 04</p>
+      <p class="rc-title">BEARDO WHISKY SMOKE SOAP<br>Live Water Pour</p>
+      <p class="rc-body">The soap bar sits stacked (bar + boxed top) on the glass platform. A <strong>live water cascade</strong> pours from camera right and spills off the glass edge — frozen mid-pour. The warm amber/orange background gradient glows through, reflected in the moving water surfaces. Falling water droplets frame both sides of the soap stack. The glass platform itself disappears under the water, making it appear the soap is <strong>perched on the edge of a waterfall</strong>.</p>
+    </div>
+    <div class="rc-specs">
+      <div class="rc-spec-row"><p class="rsr-key">Platform</p><p class="rsr-val">Thick glass — F-clamped workbench</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">BG Light</p><p class="rsr-val">Orange CTO gel — behind platform</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Water</p><p class="rsr-val">Blue cup pour from camera right</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Shutter</p><p class="rsr-val">1/500s–1/1000s for freeze</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Drive</p><p class="rsr-val">Burst mode — 10+ pours, select best</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Cleanup</p><p class="rsr-val">Towels + 10min dry-down between setups</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SETUP 05 — SMOKE + FAMILY HERO
+══════════════════════════════════════════════════ -->
+<section class="setup-section">
+  <div class="setup-header">
+    <div class="setup-num-block">
+      <p class="sn-tag">Setup</p>
+      <p class="sn-num">05</p>
+      <p class="sn-label">Fog machine + all products · Wood riser set · Low front snoot</p>
+    </div>
+    <div class="setup-title-block">
+      <h2 class="setup-title">SMOKE <span class="g">+ FAMILY</span><br>HERO SHOT</h2>
+      <p class="setup-subtitle">Full Beardo Whisky Smoke product line · fog machine atmosphere · geometric wood risers · low front snooted key light</p>
+      <div class="setup-tags">
+        <span class="stag">Fog Machine</span>
+        <span class="stag">Geometric Wood Risers</span>
+        <span class="stag">Snooted Front Low Key</span>
+        <span class="stag">Side Strip Softbox</span>
+        <span class="stag">All 4 Products</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-body" style="padding:2px;grid-template-columns:1fr 1fr 1fr 1fr;">
+    <div class="sb">
+      <span class="sb-n">A</span>
+      <p class="sb-cat">Key Light</p>
+      <p class="sb-title">Snooted LED — Low Front, Raking Across Wood</p>
+      <p class="sb-body">A <strong>snooted or grid-equipped LED panel</strong> is positioned at a very low angle (almost floor level), camera left, aimed across the wood surface at the products. This raking light catches every texture grain in the wooden risers and warms the front of the products dramatically. The BTS frame shows a compact LED head on a floor stand aimed across the table at near-horizontal angle. This is the <strong>primary separation light</strong> in the family shot.</p>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">B</span>
+      <p class="sb-cat">Atmosphere</p>
+      <p class="sb-title">Fog Machine — Full Scene Haze</p>
+      <p class="sb-body">A fog machine fills the <strong>entire shooting area</strong> with atmospheric haze — not just the base, but throughout the whole scene. This is a full-room atmospheric fog, not the ground-level dry ice used in Setup 03. The haze makes the snooted side light visible as <strong>volumetric shafts and rays</strong> that cut across the scene and are visible in the BTS frame drifting toward the softbox. Adds cinematic depth and a moody, aged atmosphere.</p>
+      <div class="sb-note">Let fog settle for 60 seconds before shooting — immediate fog is too dense. Aim for a light, even haze rather than a thick cloud.</div>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">C</span>
+      <p class="sb-cat">Product Risers</p>
+      <p class="sb-title">Geometric Wood Riser Set — Height Variation</p>
+      <p class="sb-body">Multiple <strong>geometric wooden risers</strong> — cubes, cylinders, wedge shapes, and a large tree-slice/log cross-section — are used to create a <strong>three-tier height arrangement</strong>. The EDP flacon (hero product) is centered and highest. The body wash is to the right on a mid-height riser. The soap sits at the base level front-center. The lip balm is small and flanks at left on a low riser. This creates a <strong>hierarchy of visual importance</strong>.</p>
+    </div>
+
+    <div class="sb">
+      <span class="sb-n">D</span>
+      <p class="sb-cat">Composition</p>
+      <p class="sb-title">Front-On Hero — Low Angle, 3/4 Tilt</p>
+      <p class="sb-body">The camera is at a <strong>low 3/4 angle</strong> looking slightly up at the product arrangement. This makes the products look imposing and heroic rather than small. The warm wood risers in the foreground fall slightly out of focus at the edges. The black background fades to total darkness. The fog catches the side light, creating depth layers: <strong>lit products → dark mid zone → lit haze layer → black background</strong>.</p>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div>
+      <p class="rc-label">Final Shot — Setup 05</p>
+      <p class="rc-title">BEARDO WHISKY SMOKE<br>Full Product Family Hero</p>
+      <p class="rc-body">All four products arranged on a <strong>curated set of warm wood geometric risers</strong> at different heights. The EDP flacon anchors the center at the highest point. Warm snooted light rakes from camera left, catching the grain of every wooden surface and giving the amber liquid in the EDP bottle an internal glow. Atmospheric fog creates visible depth layers — the products sit within the haze. Background is absolute black. The composition reads as <strong>luxury, warmth, and craft</strong> — exactly right for a bourbon-inspired grooming line.</p>
+    </div>
+    <div class="rc-specs">
+      <div class="rc-spec-row"><p class="rsr-key">Key</p><p class="rsr-val">Snooted LED — floor level, camera left</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Fill</p><p class="rsr-val">Strip softbox — camera right, low</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Fog</p><p class="rsr-val">Full scene haze — settle 60s before shoot</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Risers</p><p class="rsr-val">Geometric wood set — 3-tier hierarchy</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Angle</p><p class="rsr-val">Low 3/4 — camera slightly below product line</p></div>
+      <div class="rc-spec-row"><p class="rsr-key">Deliverable</p><p class="rsr-val">Hero collection / campaign hero frame</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ LIGHTING DIAGRAM ══════════ -->
+<section class="diag-section">
+  <h2 class="diag-title">LIGHTING <span>DIAGRAMS</span></h2>
+
+  <div class="diagrams-grid">
+
+    <!-- Setup 01 diagram -->
+    <div class="diag-card">
+      <p class="diag-card-title">Setup 01 — Spotlight Overhead + Turntable</p>
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+        <rect width="420" height="320" fill="#0c0800"/>
+        <g stroke="#2e2008" stroke-width="1">
+          <line x1="0" y1="80" x2="420" y2="80"/><line x1="0" y1="160" x2="420" y2="160"/>
+          <line x1="0" y1="240" x2="420" y2="240"/><line x1="105" y1="0" x2="105" y2="320"/>
+          <line x1="210" y1="0" x2="210" y2="320"/><line x1="315" y1="0" x2="315" y2="320"/>
+        </g>
+        <!-- Spotlight overhead -->
+        <rect x="175" y="10" width="70" height="40" rx="4" fill="#1a1205" stroke="#d4920a" stroke-width="1.5"/>
+        <circle cx="210" cy="30" r="12" fill="#d4920a" opacity="0.6"/>
+        <circle cx="210" cy="30" r="6" fill="#d4920a" opacity="0.9"/>
+        <!-- Fresnel tube -->
+        <rect x="197" y="48" width="26" height="30" rx="3" fill="#0c0800" stroke="#b86a00" stroke-width="1"/>
+        <text x="210" y="92" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#d4920a">FRESNEL</text>
+        <text x="210" y="101" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">OVERHEAD</text>
+        <!-- Beam cone -->
+        <polygon points="197,78 223,78 235,200 185,200" fill="#d4920a" opacity="0.06"/>
+        <line x1="210" y1="78" x2="210" y2="200" stroke="#d4920a" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"/>
+        <!-- Table -->
+        <rect x="120" y="200" width="180" height="10" rx="1" fill="#1a1205" stroke="#2e2008"/>
+        <!-- Marble riser -->
+        <rect x="185" y="175" width="50" height="28" rx="1" fill="#2e2820" stroke="#d4920a" stroke-width="1.2"/>
+        <!-- Zeapon turntable -->
+        <rect x="178" y="196" width="64" height="14" rx="2" fill="#1a1205" stroke="#6a5835" stroke-width="1"/>
+        <text x="210" y="207" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#6a5835">ZEAPON</text>
+        <!-- Product -->
+        <rect x="198" y="155" width="24" height="24" rx="2" fill="#b86a00" opacity="0.7"/>
+        <!-- Softboxes sides -->
+        <rect x="20" y="140" width="50" height="100" rx="2" fill="#1a1205" stroke="#3a3020" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="45" y="195" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#3a3020">SB L</text>
+        <rect x="350" y="140" width="50" height="100" rx="2" fill="#1a1205" stroke="#3a3020" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="375" y="195" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#3a3020">SB R</text>
+        <!-- Camera -->
+        <rect x="170" y="270" width="80" height="40" rx="2" fill="#1a1205" stroke="#6a5835" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="12" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="6" fill="#2e2008"/>
+        <text x="210" y="318" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">CAMERA</text>
+        <text x="210" y="132" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">GODOX SPOTLIGHT</text>
+      </svg>
+    </div>
+
+    <!-- Setup 02 diagram -->
+    <div class="diag-card">
+      <p class="diag-card-title">Setup 02 — Parabolic Overhead + Water Mist</p>
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+        <rect width="420" height="320" fill="#0c0800"/>
+        <g stroke="#2e2008" stroke-width="1">
+          <line x1="0" y1="80" x2="420" y2="80"/><line x1="0" y1="160" x2="420" y2="160"/>
+          <line x1="0" y1="240" x2="420" y2="240"/><line x1="105" y1="0" x2="105" y2="320"/>
+          <line x1="210" y1="0" x2="210" y2="320"/><line x1="315" y1="0" x2="315" y2="320"/>
+        </g>
+        <!-- Parabolic overhead — large circle -->
+        <ellipse cx="210" cy="36" rx="70" ry="28" fill="#1a1205" stroke="#d4920a" stroke-width="1.5"/>
+        <ellipse cx="210" cy="36" rx="50" ry="18" fill="#d4920a" opacity="0.08"/>
+        <circle cx="210" cy="36" r="10" fill="#d4920a" opacity="0.5"/>
+        <text x="210" y="40" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#d4920a">PARA</text>
+        <!-- Beam wide -->
+        <polygon points="140,64 280,64 260,200 160,200" fill="#d4920a" opacity="0.05"/>
+        <!-- Table -->
+        <rect x="100" y="200" width="220" height="10" rx="1" fill="#1a1205" stroke="#2e2008"/>
+        <!-- Black acrylic surface -->
+        <rect x="115" y="192" width="190" height="12" rx="1" fill="#0a0804" stroke="#3a3020" stroke-width="1"/>
+        <text x="210" y="186" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#3a3020">BLACK ACRYLIC</text>
+        <!-- Product -->
+        <rect x="196" y="160" width="28" height="36" rx="2" fill="#1a1205" stroke="#d4920a" stroke-width="1.2"/>
+        <!-- Ice prop -->
+        <polygon points="130,185 155,170 160,192 135,195" fill="#2a4050" opacity="0.8" stroke="#3a6080" stroke-width="1"/>
+        <!-- Bark prop -->
+        <path d="M 265 190 Q 280 175, 295 180 Q 310 185, 305 195 Q 285 200, 265 195 Z" fill="#3a2810" stroke="#5a4020" stroke-width="1"/>
+        <!-- Water spray from left -->
+        <path d="M 60 130 Q 130 160, 200 175" fill="none" stroke="#3a6080" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <circle cx="85" cy="140" r="2" fill="#3a6080" opacity="0.7"/>
+        <circle cx="110" cy="152" r="2" fill="#3a6080" opacity="0.7"/>
+        <circle cx="140" cy="162" r="2" fill="#3a6080" opacity="0.7"/>
+        <circle cx="165" cy="155" r="2" fill="#3a6080" opacity="0.7"/>
+        <text x="55" y="125" font-family="Overpass Mono" font-size="7" fill="#3a6080">SPRAY</text>
+        <!-- Strip softbox right -->
+        <rect x="360" y="155" width="20" height="70" rx="2" fill="#1a1205" stroke="#d4920a" stroke-width="1"/>
+        <text x="370" y="200" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#d4920a" transform="rotate(-90 370 200)">STRIP SB</text>
+        <!-- Camera -->
+        <rect x="170" y="270" width="80" height="40" rx="2" fill="#1a1205" stroke="#6a5835" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="12" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="6" fill="#2e2008"/>
+        <text x="210" y="318" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">CAMERA</text>
+      </svg>
+    </div>
+
+    <!-- Setup 04 diagram -->
+    <div class="diag-card">
+      <p class="diag-card-title">Setup 04 — Glass Platform + Live Water Pour</p>
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+        <rect width="420" height="320" fill="#0c0800"/>
+        <g stroke="#2e2008" stroke-width="1">
+          <line x1="0" y1="80" x2="420" y2="80"/><line x1="0" y1="160" x2="420" y2="160"/>
+          <line x1="0" y1="240" x2="420" y2="240"/><line x1="105" y1="0" x2="105" y2="320"/>
+          <line x1="210" y1="0" x2="210" y2="320"/><line x1="315" y1="0" x2="315" y2="320"/>
+        </g>
+        <!-- Background amber light -->
+        <ellipse cx="210" cy="130" rx="80" ry="100" fill="#b86a00" opacity="0.08" filter="url(#bgblur)"/>
+        <rect x="50" y="100" width="20" height="40" rx="2" fill="#1a1205" stroke="#c43010" stroke-width="1"/>
+        <text x="60" y="150" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#c43010">GEL</text>
+        <text x="60" y="158" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#c43010">BG LT</text>
+        <line x1="70" y1="120" x2="150" y2="180" stroke="#b86a00" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.4"/>
+        <!-- Workbench frame -->
+        <line x1="100" y1="220" x2="320" y2="220" stroke="#5a4020" stroke-width="3"/>
+        <line x1="110" y1="220" x2="110" y2="280" stroke="#5a4020" stroke-width="2"/>
+        <line x1="310" y1="220" x2="310" y2="280" stroke="#5a4020" stroke-width="2"/>
+        <!-- F-clamps -->
+        <rect x="98" y="210" width="14" height="20" rx="1" fill="#cc2010" opacity="0.8"/>
+        <rect x="308" y="210" width="14" height="20" rx="1" fill="#cc2010" opacity="0.8"/>
+        <!-- Glass sheet -->
+        <rect x="100" y="195" width="220" height="8" rx="1" fill="#1a3040" stroke="#3a6080" stroke-width="1.2" opacity="0.8"/>
+        <text x="210" y="188" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#3a6080">GLASS PLATFORM</text>
+        <!-- Water cascade from right -->
+        <path d="M 310 150 Q 290 175, 285 195" fill="none" stroke="#3a6080" stroke-width="3" opacity="0.6"/>
+        <!-- Water dripping off edge -->
+        <path d="M 320 196 Q 335 220, 340 250 Q 345 270, 335 290" fill="none" stroke="#3a6080" stroke-width="2" opacity="0.5"/>
+        <path d="M 310 196 Q 325 230, 328 260" fill="none" stroke="#3a6080" stroke-width="1.5" opacity="0.4"/>
+        <text x="350" y="145" text-anchor="end" font-family="Overpass Mono" font-size="7" fill="#3a6080">POUR</text>
+        <!-- Soap product -->
+        <rect x="188" y="165" width="44" height="34" rx="2" fill="#b86a00" opacity="0.7"/>
+        <rect x="188" y="149" width="44" height="20" rx="1" fill="#1a1205" stroke="#d4920a" stroke-width="1"/>
+        <!-- Camera -->
+        <rect x="170" y="270" width="80" height="40" rx="2" fill="#1a1205" stroke="#6a5835" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="12" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        <circle cx="210" cy="290" r="6" fill="#2e2008"/>
+        <text x="210" y="318" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">CAMERA</text>
+      </svg>
+    </div>
+
+    <!-- Setup 05 diagram -->
+    <div class="diag-card">
+      <p class="diag-card-title">Setup 05 — Full Family Hero + Fog + Wood Risers</p>
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+        <rect width="420" height="320" fill="#0c0800"/>
+        <g stroke="#2e2008" stroke-width="1">
+          <line x1="0" y1="80" x2="420" y2="80"/><line x1="0" y1="160" x2="420" y2="160"/>
+          <line x1="0" y1="240" x2="420" y2="240"/><line x1="105" y1="0" x2="105" y2="320"/>
+          <line x1="210" y1="0" x2="210" y2="320"/><line x1="315" y1="0" x2="315" y2="320"/>
+        </g>
+        <!-- Fog wisps -->
+        <ellipse cx="210" cy="180" rx="140" ry="40" fill="#8a8880" opacity="0.05"/>
+        <ellipse cx="160" cy="190" rx="80" ry="30" fill="#8a8880" opacity="0.04"/>
+        <text x="250" y="155" font-family="Overpass Mono" font-size="7" fill="#3a3020">FOG</text>
+        <!-- Low snooted light camera left -->
+        <rect x="20" y="195" width="60" height="28" rx="3" fill="#1a1205" stroke="#d4920a" stroke-width="1.5"/>
+        <circle cx="50" cy="209" r="8" fill="#d4920a" opacity="0.5"/>
+        <circle cx="50" cy="209" r="4" fill="#d4920a" opacity="0.9"/>
+        <!-- Snoot -->
+        <rect x="78" y="204" width="30" height="10" rx="3" fill="#0c0800" stroke="#b86a00" stroke-width="1"/>
+        <text x="50" y="240" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#d4920a">SNOOT</text>
+        <text x="50" y="248" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#6a5835">LOW FRONT</text>
+        <!-- Light rays across surface -->
+        <line x1="108" y1="209" x2="320" y2="200" stroke="#d4920a" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.25"/>
+        <line x1="108" y1="215" x2="320" y2="210" stroke="#d4920a" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.15"/>
+        <!-- Strip softbox right -->
+        <rect x="370" y="155" width="20" height="80" rx="2" fill="#1a1205" stroke="#b86a00" stroke-width="1"/>
+        <text x="380" y="200" text-anchor="middle" font-family="Overpass Mono" font-size="6" fill="#b86a00" transform="rotate(-90 380 200)">STRIP</text>
+        <!-- Table surface -->
+        <rect x="100" y="215" width="240" height="10" rx="1" fill="#2e2008" stroke="#3a2010"/>
+        <!-- Wood risers (top down) + products -->
+        <rect x="155" y="185" width="36" height="32" rx="1" fill="#3a2810" stroke="#5a3820" stroke-width="1"/>
+        <rect x="195" y="170" width="36" height="47" rx="1" fill="#3a2810" stroke="#5a3820" stroke-width="1"/>
+        <rect x="237" y="185" width="36" height="32" rx="1" fill="#3a2810" stroke="#5a3820" stroke-width="1"/>
+        <rect x="140" y="196" width="20" height="20" rx="1" fill="#3a2810" stroke="#5a3820" stroke-width="1"/>
+        <!-- Products on risers -->
+        <rect x="162" y="172" width="22" height="14" rx="1" fill="#1a1205" stroke="#d4920a" stroke-width="1"/>
+        <rect x="203" y="150" width="20" height="22" rx="2" fill="#b86a00" opacity="0.8"/>
+        <rect x="244" y="172" width="14" height="14" rx="1" fill="#1a1205" stroke="#d4920a" stroke-width="1"/>
+        <rect x="143" y="188" width="14" height="10" rx="1" fill="#1a1205" stroke="#b86a00" stroke-width="0.8"/>
+        <!-- Camera -->
+        <rect x="170" y="268" width="80" height="40" rx="2" fill="#1a1205" stroke="#6a5835" stroke-width="1.2"/>
+        <circle cx="210" cy="288" r="12" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        <circle cx="210" cy="288" r="6" fill="#2e2008"/>
+        <text x="210" y="316" text-anchor="middle" font-family="Overpass Mono" font-size="7" fill="#6a5835">CAMERA</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ TECHNIQUES REFERENCE ══════════ -->
+<section style="border-top:1px solid var(--border);padding:72px 80px;">
+  <h2 class="diag-title" style="margin-bottom:40px;">KEY <span style="color:var(--gold);">TECHNIQUES</span></h2>
+
+  <div class="technique-row">
+    <div class="tech-card">
+      <span class="tech-bg-n">I</span>
+      <p class="tech-icon">Technique 01</p>
+      <p class="tech-name">Beam Shaft Visualization</p>
+      <p class="tech-body">The visible <strong>light beam shaft</strong> in Setup 01 is created by atmospheric particles — smoke, haze, or dust — suspended in the air, scattering the tight spotlight beam. Without particles in the air, the beam is invisible. Introduce a <strong>light fog before shooting</strong> to make spotlight shafts visible. Control the density: too thick = obscures product, too thin = no visible shaft.</p>
+    </div>
+
+    <div class="tech-card">
+      <span class="tech-bg-n">II</span>
+      <p class="tech-icon">Technique 02</p>
+      <p class="tech-name">Water Droplet Freeze</p>
+      <p class="tech-body">To freeze individual airborne <strong>water droplets</strong>, you need shutter speed at or above <strong>1/1000s</strong>. At this speed, droplets moving at spray velocity (2–5 m/s) move less than 5mm during exposure — appearing frozen. Use <strong>burst/continuous shooting</strong> — fire 10+ frames during each spray. Most frames will have poor droplet placement. Select the best 1–3.</p>
+    </div>
+
+    <div class="tech-card">
+      <span class="tech-bg-n">III</span>
+      <p class="tech-icon">Technique 03</p>
+      <p class="tech-name">Motorized Turntable — Video</p>
+      <p class="tech-body">The Zeapon turntable provides <strong>programmable smooth rotation</strong> — set to 360° over 10–30 seconds for video. Camera stays locked on tripod while product rotates. Use a <strong>24fps or 30fps frame rate</strong> with 180° shutter rule (1/48s or 1/60s) for natural motion blur. The rotation adds cinematic production value that's near-impossible to achieve by hand-spinning a product consistently.</p>
+    </div>
+
+    <div class="tech-card">
+      <span class="tech-bg-n">IV</span>
+      <p class="tech-icon">Technique 04</p>
+      <p class="tech-name">Live Water Pour — Glass Edge</p>
+      <p class="tech-body">The key to the water pour shot: the glass sheet must <strong>overhang the edge</strong> of the clamped workbench. This creates the natural waterfall lip. Pour from one consistent direction (camera right or left — not straight on). <strong>Practice the pour motion</strong> 5 times before camera rolls — consistency of the arc determines the composition of the falling water. Shoot 15–20 pours, keep the best 3.</p>
+    </div>
+
+    <div class="tech-card">
+      <span class="tech-bg-n">V</span>
+      <p class="tech-icon">Technique 05</p>
+      <p class="tech-name">Coffee Bean Sea — Product Stability</p>
+      <p class="tech-body">Small or cylindrical products cannot stand upright in an unstable bean field without support. Use a <strong>thin metal product spike</strong> (or museum putty / poster tack at the base) pressed through the beans into the table below. The spike is completely invisible once surrounded by beans. Pre-test the spike angle with a stand-in object before committing to the full bean layout.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ MASTER SHOT LIST ══════════ -->
+<section class="shot-section">
+  <h2 class="shot-section-title">MASTER <span>SHOT LIST</span></h2>
+
+  <div class="shot-tbl">
+    <div class="sr hdr">
+      <div class="sc">#</div>
+      <div class="sc">S</div>
+      <div class="sc">Shot / Intent</div>
+      <div class="sc">Camera Settings</div>
+      <div class="sc">Light State</div>
+      <div class="sc">Priority</div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">1</div>
+      <div class="sc setup-dot dot-1">●</div>
+      <div class="sc info">
+        <p class="sc-t">EDP — Spotlight Isolation (Static)</p>
+        <p class="sc-d">Turntable locked. Spotlight only. Marble riser. Dark background. Amber bottle glow.</p>
+        <span class="sc-b">● Hero / Lead</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span><span class="cv">160–320</span></div>
+        <div><span class="ck">AP</span><span class="cv">f/5.6–f/8</span></div>
+        <div><span class="ck">SS</span><span class="cv">1/200s</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">SPOT</span><span class="cv">100% OH</span></div>
+        <div><span class="ck">FILL</span><span class="cv">OFF</span></div>
+        <div><span class="ck">FOG</span><span class="cv">Light haze</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● CRITICAL</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">2</div>
+      <div class="sc setup-dot dot-1">●</div>
+      <div class="sc info">
+        <p class="sc-t">EDP — 360° Rotation Video (Turntable)</p>
+        <p class="sc-d">Zeapon programmed for 30s rotation. 24fps video. Same spotlight. Product spins while camera holds.</p>
+        <span class="sc-b">Video / Reels</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">FPS</span><span class="cv">24fps</span></div>
+        <div><span class="ck">SS</span><span class="cv">1/48s</span></div>
+        <div><span class="ck">ISO</span><span class="cv">400–800</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">SPOT</span><span class="cv">100%</span></div>
+        <div><span class="ck">TURN</span><span class="cv">30s/360°</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● HIGH</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">3</div>
+      <div class="sc setup-dot dot-2">●</div>
+      <div class="sc info">
+        <p class="sc-t">Body Wash — Water Mist Freeze</p>
+        <p class="sc-d">Acrylic surface. Ice L, bark R. Spray water into frame. Burst mode, select best droplet frame.</p>
+        <span class="sc-b">● Hero</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">ISO</span><span class="cv">400</span></div>
+        <div><span class="ck">SS</span><span class="cv">1/1000s+</span></div>
+        <div><span class="ck">DRIVE</span><span class="cv">BURST</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">PARA</span><span class="cv">OH key</span></div>
+        <div><span class="ck">STRIP</span><span class="cv">R side</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● CRITICAL</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">4</div>
+      <div class="sc setup-dot dot-3">●</div>
+      <div class="sc info">
+        <p class="sc-t">Lip Balm — Coffee Beans + Smoke</p>
+        <p class="sc-d">Bean sea surface. Product spike. Fog machine. Shallow DoF on beans. Shoot 30s after fog intro.</p>
+        <span class="sc-b">● Hero</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">AP</span><span class="cv">f/2.8</span></div>
+        <div><span class="ck">ISO</span><span class="cv">320–640</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">PARA</span><span class="cv">OH angled</span></div>
+        <div><span class="ck">FOG</span><span class="cv">Dense floor</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● CRITICAL</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">5</div>
+      <div class="sc setup-dot dot-4">●</div>
+      <div class="sc info">
+        <p class="sc-t">Luxury Soap — Live Water Pour (Freeze)</p>
+        <p class="sc-d">Glass platform clamped. Orange BG gel light behind. Pour from camera right while in burst mode.</p>
+        <span class="sc-b">● Hero</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">SS</span><span class="cv">1/500s–1/1000s</span></div>
+        <div><span class="ck">DRIVE</span><span class="cv">BURST</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">BG</span><span class="cv">Orange gel</span></div>
+        <div><span class="ck">KEY</span><span class="cv">Front/top</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● CRITICAL</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">6</div>
+      <div class="sc setup-dot dot-5">●</div>
+      <div class="sc info">
+        <p class="sc-t">All Products — Family Hero (Still)</p>
+        <p class="sc-d">Wood riser arrangement. All 4 products. Low snooted front light. Full scene haze. Low 3/4 angle.</p>
+        <span class="sc-b">● Campaign Hero</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">AP</span><span class="cv">f/5.6–f/8</span></div>
+        <div><span class="ck">ISO</span><span class="cv">400</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">KEY</span><span class="cv">Snoot low L</span></div>
+        <div><span class="ck">FOG</span><span class="cv">Full scene</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● CRITICAL</span></div>
+    </div>
+
+    <div class="sr">
+      <div class="sc idx">7</div>
+      <div class="sc setup-dot dot-5">●</div>
+      <div class="sc info">
+        <p class="sc-t">All Products — Family Hero (Video + Smoke)</p>
+        <p class="sc-d">Same riser setup. Fog machine rolling. Camera slowly dollies in or push in post. Smoke drifts through frame during recording.</p>
+        <span class="sc-b">Video / Campaign</span>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">FPS</span><span class="cv">24fps</span></div>
+        <div><span class="ck">ISO</span><span class="cv">800–1600</span></div>
+      </div>
+      <div class="sc cam">
+        <div><span class="ck">KEY</span><span class="cv">Snoot low</span></div>
+        <div><span class="ck">FOG</span><span class="cv">Continuous</span></div>
+      </div>
+      <div class="sc"><span class="sc-b">● HIGH</span></div>
+    </div>
+
+  </div>
+
+  <!-- Setup legend -->
+  <div style="display:flex;gap:20px;margin-top:16px;flex-wrap:wrap;">
+    <div style="display:flex;gap:8px;align-items:center;"><span style="color:#d4920a;font-size:14px;">●</span><span style="font-size:9px;color:var(--muted);letter-spacing:0.1em;">Setup 01 — Spotlight/EDP</span></div>
+    <div style="display:flex;gap:8px;align-items:center;"><span style="color:#3a8aaa;font-size:14px;">●</span><span style="font-size:9px;color:var(--muted);letter-spacing:0.1em;">Setup 02 — Water Mist/Body Wash</span></div>
+    <div style="display:flex;gap:8px;align-items:center;"><span style="color:#8a8880;font-size:14px;">●</span><span style="font-size:9px;color:var(--muted);letter-spacing:0.1em;">Setup 03 — Smoke/Beans/Lip Balm</span></div>
+    <div style="display:flex;gap:8px;align-items:center;"><span style="color:#c43010;font-size:14px;">●</span><span style="font-size:9px;color:var(--muted);letter-spacing:0.1em;">Setup 04 — Water Pour/Soap</span></div>
+    <div style="display:flex;gap:8px;align-items:center;"><span style="color:#b89060;font-size:14px;">●</span><span style="font-size:9px;color:var(--muted);letter-spacing:0.1em;">Setup 05 — Family Hero/All Products</span></div>
+  </div>
+</section>
+
+
+<!-- ══════════ POST GUIDE ══════════ -->
+<section class="post-section">
+  <h2 class="post-title">POST-PRODUCTION <span>GUIDE</span></h2>
+
+  <div class="post-setups-grid">
+
+    <div class="post-setup">
+      <p class="ps-label">Setup 01 &amp; 03 — Amber/Warm Dark Grade</p>
+      <p class="ps-title">EDP Spotlight &amp; Lip Balm Smoke</p>
+      <div class="bar-row"><p class="bl">Blacks</p><div class="bt"><div class="bf neg" style="width:80%;"></div></div><p class="bv">−65</p></div>
+      <div class="bar-row"><p class="bl">Shadows</p><div class="bt"><div class="bf neg" style="width:60%;"></div></div><p class="bv">−45</p></div>
+      <div class="bar-row"><p class="bl">Contrast</p><div class="bt"><div class="bf" style="width:70%;"></div></div><p class="bv">+30</p></div>
+      <div class="bar-row"><p class="bl">Highlights</p><div class="bt"><div class="bf neg" style="width:40%;"></div></div><p class="bv">−25</p></div>
+      <div class="bar-row"><p class="bl">WB Temp</p><div class="bt"><div class="bf" style="width:55%;"></div></div><p class="bv">+300K</p></div>
+      <div class="bar-row"><p class="bl">Orange Sat</p><div class="bt"><div class="bf" style="width:65%;"></div></div><p class="bv">+35</p></div>
+      <div class="bar-row"><p class="bl">Clarity</p><div class="bt"><div class="bf" style="width:25%;"></div></div><p class="bv">+15</p></div>
+    </div>
+
+    <div class="post-setup">
+      <p class="ps-label">Setup 02 — Dark Blue-Cold Grade</p>
+      <p class="ps-title">Body Wash Water Mist</p>
+      <div class="bar-row"><p class="bl">Blacks</p><div class="bt"><div class="bf neg" style="width:85%;"></div></div><p class="bv">−70</p></div>
+      <div class="bar-row"><p class="bl">Highlights</p><div class="bt"><div class="bf" style="width:30%;"></div></div><p class="bv">+15</p></div>
+      <div class="bar-row"><p class="bl">WB Temp</p><div class="bt"><div class="bf neg" style="width:35%;background:linear-gradient(90deg,#203040,#2a5070);"></div></div><p class="bv">−100K</p></div>
+      <div class="bar-row"><p class="bl">Blue Sat</p><div class="bt"><div class="bf blue" style="width:30%;"></div></div><p class="bv">+18</p></div>
+      <div class="bar-row"><p class="bl">Orange Sat</p><div class="bt"><div class="bf" style="width:40%;"></div></div><p class="bv">+20</p></div>
+      <div class="bar-row"><p class="bl">Contrast</p><div class="bt"><div class="bf" style="width:65%;"></div></div><p class="bv">+28</p></div>
+      <div class="bar-row"><p class="bl">Clarity</p><div class="bt"><div class="bf" style="width:30%;"></div></div><p class="bv">+20</p></div>
+    </div>
+
+    <div class="post-setup">
+      <p class="ps-label">Setup 04 — Warm Orange Campaign Grade</p>
+      <p class="ps-title">Soap Water Pour</p>
+      <div class="bar-row"><p class="bl">WB Temp</p><div class="bt"><div class="bf" style="width:75%;"></div></div><p class="bv">+500K</p></div>
+      <div class="bar-row"><p class="bl">Orange Sat</p><div class="bt"><div class="bf" style="width:75%;"></div></div><p class="bv">+45</p></div>
+      <div class="bar-row"><p class="bl">Highlights</p><div class="bt"><div class="bf neg" style="width:50%;"></div></div><p class="bv">−35</p></div>
+      <div class="bar-row"><p class="bl">Blacks</p><div class="bt"><div class="bf neg" style="width:40%;"></div></div><p class="bv">−30</p></div>
+      <div class="bar-row"><p class="bl">Vibrance</p><div class="bt"><div class="bf" style="width:30%;"></div></div><p class="bv">+15</p></div>
+      <div class="bar-row"><p class="bl">Clarity</p><div class="bt"><div class="bf" style="width:20%;"></div></div><p class="bv">+10</p></div>
+    </div>
+
+    <div class="post-setup">
+      <p class="ps-label">Setup 05 — Whisky Amber Campaign Grade</p>
+      <p class="ps-title">Family Hero — All Products</p>
+      <div class="bar-row"><p class="bl">WB Temp</p><div class="bt"><div class="bf" style="width:50%;"></div></div><p class="bv">+200K</p></div>
+      <div class="bar-row"><p class="bl">Shadows</p><div class="bt"><div class="bf neg" style="width:55%;"></div></div><p class="bv">−40</p></div>
+      <div class="bar-row"><p class="bl">Blacks</p><div class="bt"><div class="bf neg" style="width:70%;"></div></div><p class="bv">−55</p></div>
+      <div class="bar-row"><p class="bl">Contrast</p><div class="bt"><div class="bf" style="width:60%;"></div></div><p class="bv">+25</p></div>
+      <div class="bar-row"><p class="bl">Orange Sat</p><div class="bt"><div class="bf" style="width:55%;"></div></div><p class="bv">+28</p></div>
+      <div class="bar-row"><p class="bl">Clarity</p><div class="bt"><div class="bf" style="width:35%;"></div></div><p class="bv">+18</p></div>
+      <div class="bar-row"><p class="bl">Dehaze</p><div class="bt"><div class="bf" style="width:20%;"></div></div><p class="bv">+8</p></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ PROPS GUIDE ══════════ -->
+<section style="border-top:1px solid var(--border);padding:72px 80px;">
+  <h2 class="diag-title" style="margin-bottom:40px;">PROPS &amp; <span style="color:var(--gold);">MATERIALS</span></h2>
+
+  <div class="props-grid">
+    <div class="prop-card">
+      <p class="prop-cat">Setup 01</p>
+      <p class="prop-name">White Marble Cube Riser</p>
+      <p class="prop-body">4"×4"×4" marble or faux-marble cube. White surface catches the overhead spotlight as a clean circle of light. Contrast between the cool white marble and warm amber bottle adds material richness. Available at home decor stores or photo prop suppliers. <strong>Wipe dry before shooting</strong> — any water marks are visible under the spotlight.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">Setup 01</p>
+      <p class="prop-name">Zeapon Motorized Turntable</p>
+      <p class="prop-body">Zeapon brand motorized product turntable — programmable rotation speed and direction. Used for video 360° spins. For stills, allows precise angle increments without touching the product. Max load: check model spec — ensure it handles the marble riser + product combined weight. <strong>Battery or USB powered</strong>.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">Setup 02</p>
+      <p class="prop-name">Ice Chunks + Drift Wood / Bark</p>
+      <p class="prop-body">Large irregular ice chunks (not cubed — break a block) and a section of rough wood bark or driftwood. Both props reinforce the "whisky on the rocks / bourbon barrel" narrative. Pre-wet the wood before shooting so it catches light with surface moisture. Shoot ice within <strong>15 minutes of pulling from freezer</strong> — it begins to look dull and dry as it melts/evaporates.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">Setup 03</p>
+      <p class="prop-name">Coffee / Peppercorn Beans</p>
+      <p class="prop-body">Standard coffee beans or a mix of coffee beans and black peppercorns (the darkness of peppercorns reads as more dramatic under studio light). <strong>Buy 2–3kg</strong> for full coverage at 1–2" depth. The beans can be reused across multiple shoots. Store in sealed bags between sessions. Dark roast coffee beans produce the best visual texture — avoid light roast beans which appear tan and flat.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">Setup 04</p>
+      <p class="prop-name">Thick Glass / Clear Acrylic Sheet</p>
+      <p class="prop-body"><strong>10mm tempered glass or 12mm clear acrylic</strong> sheet, approximately 24"×24". Clamped to a wood workbench frame with F-clamps. The smooth surface shows water movement beautifully. Acrylic is lighter and safer than glass — preferred for dynamic water shooting where stress on the surface is unpredictable. Clean with microfiber before shooting.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">Setup 05</p>
+      <p class="prop-name">Geometric Wood Riser Set</p>
+      <p class="prop-body">A curated set of wooden risers in multiple forms: <strong>cube, cylinder, wedge, and cross-slice log</strong>. Dark-stained warm wood preferred — the amber tone complements the bourbon brand palette. Each piece should be sanded smooth and sealed (matte varnish) so it doesn't absorb moisture from the fog or condensation. The variety of shapes creates visual movement across the composition.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">All Setups</p>
+      <p class="prop-name">Pump Spray Bottle</p>
+      <p class="prop-body">Standard garden pump sprayer with a fine-mist nozzle setting. Filled with plain water (distilled preferred — no mineral deposits on product surface). Used for the water mist shots (Setup 02) and also for pre-wetting props (bark, soap, glass surface) before any setup. <strong>Keep one dedicated clean sprayer</strong> for product use only — no cleaning chemicals.</p>
+    </div>
+
+    <div class="prop-card">
+      <p class="prop-cat">All Setups</p>
+      <p class="prop-name">Fog Machine</p>
+      <p class="prop-body">Standard DJ/event fog machine or professional haze machine. Fog machines produce thick, fast-dispersing clouds best for ground-level effects (Setup 03). Haze machines produce a finer, more even atmospheric haze that persists longer — better for full-scene atmospheric haze (Setup 05). <strong>Keep a fan off-frame</strong> to direct and clear fog between takes — too much buildup obscures the product.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FOOTER ══════════ -->
+</div>
+
+<div class="guide-footer">
+  <a href="../guides.html" class="gf-link">&#8592; All Guides</a>
+  <span class="gf-copy">The Bald Dude Co.™</span>
+  <a href="../index.html#contact" class="gf-link">Book a Session &#8594;</a>
+</div>
+
+<script>
+const apt=document.getElementById('hud-cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,ax=mx,ay=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function a(){ax+=(mx-ax)*.16;ay+=(my-ay)*.16;apt.style.left=Math.round(ax)+'px';apt.style.top=Math.round(ay)+'px';requestAnimationFrame(a)})();
+document.addEventListener('mousedown',()=>apt.classList.add('clicking'));
+document.addEventListener('mouseup',()=>apt.classList.remove('clicking'));
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>apt.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>apt.classList.remove('hovering'));
+});
+document.addEventListener('mouseleave',()=>{apt.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{apt.style.opacity='1'});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60));
+function toggleMobile(){
+  const ul=document.querySelector('.nav-links');
+  const bk=document.querySelector('.nav-book');
+  const open=ul.style.display==='flex';
+  ul.style.cssText=open?'':'display:flex;flex-direction:column;position:fixed;top:65px;left:0;right:0;padding:2rem;background:rgba(13,13,13,.97);backdrop-filter:blur(8px);border-bottom:.5px solid rgba(255,255,255,.06);z-index:99;gap:1.5rem';
+  if(bk)bk.style.display=open?'':'none';
+}
+</script>
+</body>
+</html>
