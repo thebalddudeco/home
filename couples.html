@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couples — The Bald Dude Co.</title>
-<meta name="description" content="NYC couples and engagement photography.">
+<title>Product — The Bald Dude Co.</title>
+<meta name="description" content="NYC product photography — coffee, spirits, footwear.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -20,20 +20,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--black);color:#f5f4f0;font-family:var(--sans);overflow-x:hidden;cursor:none}
 
-/* ── APERTURE CURSOR ── */
-.cur-aperture{
-  position:fixed;width:40px;height:40px;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  opacity:1;
-}
-.cur-aperture svg{
-  width:100%;height:100%;
-  transform-origin:center;
-  transition:transform .32s cubic-bezier(.4,0,.2,1);
-}
-.cur-aperture.clicking svg{transform:rotate(55deg) scale(0.42)}
-.cur-aperture.hovering svg{transform:scale(1.3)}
+
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.75rem 2.5rem}
 .nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
@@ -94,10 +81,24 @@ ul.wl{list-style:none}
   .wi-type{display:none}
   .wi-year{display:none}
 }
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
 </style>
 </head>
 <body>
-
 <div id="hud-cursor">
   <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
     <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
@@ -112,14 +113,16 @@ ul.wl{list-style:none}
   </svg>
 </div>
 
+
+
 <nav>
   <a href="index.html" class="nav-logo">TBD.Co</a>
   <ul class="nav-links">
     <li><a href="events.html">Events</a></li>
     <li><a href="portraits.html">Portraits</a></li>
-    <li><a href="couples.html" class="active">Couples</a></li>
+    <li><a href="couples.html">Couples</a></li>
     <li><a href="street.html">Street</a></li>
-    <li><a href="product.html">Product</a></li>
+    <li><a href="product.html" class="active">Product</a></li>
     
   </ul>
   <a href="index.html#contact" class="nav-book">Book a Session</a>
@@ -131,12 +134,12 @@ ul.wl{list-style:none}
 <div class="page-header">
   <div class="ph-left">
     <div class="ph-eyebrow">Selected Work</div>
-    <h1 class="ph-title"><em>Couples</em></h1>
+    <h1 class="ph-title"><em>Product</em></h1>
   </div>
   <div class="ph-meta">
     Brooklyn, NYC<br>
     2019 — Present<br>
-    04 Projects
+    05 Projects
   </div>
 </div>
 
@@ -148,37 +151,46 @@ ul.wl{list-style:none}
   <ul class="wl">
     
       <li>
-        <a class="wi" href="https://thebalddude.co/steven-and-jasmine" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.co/salomon-shoes" target="_blank" rel="noopener">
           <span class="wi-num">01</span>
-          <span class="wi-name">Steven & Jasmine</span>
-          <span class="wi-type">Engagement Session</span>
+          <span class="wi-name">Salomon Shoes</span>
+          <span class="wi-type">Product / Footwear</span>
           <span class="wi-year">2025</span>
           <span class="wi-arr">&#8599;</span>
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/kenny-and-karina" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.co/johnnie-walker" target="_blank" rel="noopener">
           <span class="wi-num">02</span>
-          <span class="wi-name">Kenny & Karina</span>
-          <span class="wi-type">Couples Session</span>
+          <span class="wi-name">Johnnie Walker</span>
+          <span class="wi-type">Product / Spirits</span>
           <span class="wi-year">2025</span>
           <span class="wi-arr">&#8599;</span>
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/lance-and-kelsie" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.co/forchewn" target="_blank" rel="noopener">
           <span class="wi-num">03</span>
-          <span class="wi-name">Lance & Kelsie</span>
-          <span class="wi-type">Engagement Session</span>
+          <span class="wi-name">Forchewn Coffee</span>
+          <span class="wi-type">Product / Beverage</span>
           <span class="wi-year">2025</span>
           <span class="wi-arr">&#8599;</span>
         </a>
       </li>
       <li>
-        <a class="wi" href="https://thebalddude.co/ben-and-melinda" target="_blank" rel="noopener">
+        <a class="wi" href="https://thebalddude.co/tribe-coffee" target="_blank" rel="noopener">
           <span class="wi-num">04</span>
-          <span class="wi-name">Ben & Melinda</span>
-          <span class="wi-type">Couples Session</span>
+          <span class="wi-name">Tribe Coffee</span>
+          <span class="wi-type">Product / Beverage</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr">&#8599;</span>
+        </a>
+      </li>
+      <li>
+        <a class="wi" href="https://thebalddude.co/beach-break-beans" target="_blank" rel="noopener">
+          <span class="wi-num">05</span>
+          <span class="wi-name">Beach Break Beans</span>
+          <span class="wi-type">Product / Beverage</span>
           <span class="wi-year">2024</span>
           <span class="wi-arr">&#8599;</span>
         </a>
@@ -187,9 +199,9 @@ ul.wl{list-style:none}
 </div>
 
 <div class="page-footer">
-  <a href="portraits.html" class="pf-link">&#8592; Portraits</a>
+  <a href="street.html" class="pf-link">&#8592; Street</a>
   <span class="pf-copy">The Bald Dude Co.™</span>
-  <a href="street.html" class="pf-link">Street &#8594;</a>
+  <a href="index.html" class="pf-link">Home &#8594;</a>
 </div>
 
 <script>
