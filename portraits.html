@@ -20,20 +20,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--black);color:#f5f4f0;font-family:var(--sans);overflow-x:hidden;cursor:none}
 
-/* ── APERTURE CURSOR ── */
-.cur-aperture{
-  position:fixed;width:40px;height:40px;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  opacity:1;
-}
-.cur-aperture svg{
-  width:100%;height:100%;
-  transform-origin:center;
-  transition:transform .32s cubic-bezier(.4,0,.2,1);
-}
-.cur-aperture.clicking svg{transform:rotate(55deg) scale(0.42)}
-.cur-aperture.hovering svg{transform:scale(1.3)}
+
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.75rem 2.5rem}
 .nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,244,240,.6);text-decoration:none;transition:color .2s}
@@ -94,10 +81,24 @@ ul.wl{list-style:none}
   .wi-type{display:none}
   .wi-year{display:none}
 }
+#hud-cursor{position:fixed;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:1;transition:opacity .15s}
+#hud-cursor svg{width:100%;height:100%;overflow:visible}
+#hud-cursor .c-tl,#hud-cursor .c-tr,#hud-cursor .c-bl,#hud-cursor .c-br,#hud-cursor .c-at,#hud-cursor .c-ab{transition:transform .22s cubic-bezier(.2,0,.3,1)}
+#hud-cursor.hovering .c-tl{transform:translate(-3px,-3px)}
+#hud-cursor.hovering .c-tr{transform:translate(3px,-3px)}
+#hud-cursor.hovering .c-bl{transform:translate(-3px,3px)}
+#hud-cursor.hovering .c-br{transform:translate(3px,3px)}
+#hud-cursor.hovering .c-at{transform:translateY(-3px)}
+#hud-cursor.hovering .c-ab{transform:translateY(3px)}
+#hud-cursor.clicking .c-tl{transform:translate(6px,6px)}
+#hud-cursor.clicking .c-tr{transform:translate(-6px,6px)}
+#hud-cursor.clicking .c-bl{transform:translate(6px,-6px)}
+#hud-cursor.clicking .c-br{transform:translate(-6px,-6px)}
+#hud-cursor.clicking .c-at{transform:translateY(5px)}
+#hud-cursor.clicking .c-ab{transform:translateY(-5px)}
 </style>
 </head>
 <body>
-
 <div id="hud-cursor">
   <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff4f42" stroke-linecap="round">
     <g class="c-tl"><path d="M2,12 L2,2 L12,2" stroke-width="1.8" stroke-linecap="square"/></g>
@@ -112,6 +113,8 @@ ul.wl{list-style:none}
   </svg>
 </div>
 
+
+
 <nav>
   <a href="index.html" class="nav-logo">TBD.Co</a>
   <ul class="nav-links">
@@ -120,6 +123,8 @@ ul.wl{list-style:none}
     <li><a href="couples.html">Couples</a></li>
     <li><a href="street.html">Street</a></li>
     <li><a href="product.html">Product</a></li>
+    <li><a href="gear.html">Gear</a></li>
+    <li><a href="guides.html">Guides</a></li>
     
   </ul>
   <a href="index.html#contact" class="nav-book">Book a Session</a>
