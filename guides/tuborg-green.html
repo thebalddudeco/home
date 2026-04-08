@@ -150,9 +150,7 @@
 
   /* ── LAYOUT ── */
   .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 80px 48px;
+            padding: 80px 48px;
   }
 
   @media (max-width: 640px) {
@@ -559,6 +557,7 @@
   body {
     background: #0d0d0d !important;
     color: #f5f4f0 !important;
+    overflow-x: hidden;
     font-family: 'Open Sans', sans-serif !important;
     padding-top: 80px;
     padding-bottom: 60px;
@@ -573,7 +572,7 @@
   }
 
   /* Page/content areas */
-  .page, [class*="page"], .content, [class*="content"], .main, main {
+  .page, [class*="page"], .content, [class*="content"], .main {
     background: #0d0d0d !important;
     color: #f5f4f0 !important;
   }
@@ -1460,5 +1459,25 @@
 </div>
 
 
+
+<script>
+(function(){
+  var nav = document.getElementById('mainNav');
+  if(!nav) return;
+  // Start with no background
+  nav.style.background = 'transparent';
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 60){
+      nav.style.background = 'rgba(13,13,13,0.92)';
+      nav.style.backdropFilter = 'blur(10px)';
+      nav.style.borderBottom = '0.5px solid rgba(255,255,255,0.07)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = '';
+      nav.style.borderBottom = '';
+    }
+  });
+})();
+</script>
 </body>
 </html>
