@@ -492,7 +492,7 @@
   }
 
   /* Page/content areas */
-  .page, [class*="page"], .content, [class*="content"], .main, main {
+  .page, [class*="page"], .content, [class*="content"], .main {
     background: #0d0d0d !important;
     color: #f5f4f0 !important;
   }
@@ -975,5 +975,12 @@
 </div>
 
 
+<script>
+  function toggleShot(card) {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.shot-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) card.classList.add('active');
+  }
+</script>
 </body>
 </html>
