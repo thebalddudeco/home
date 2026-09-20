@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.0.2
+- **Current release:** 2.1.0
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
@@ -16,7 +16,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Site map
 
-- `/` — primary portfolio, about section, contact form, social links, and music feature
+- `/` — primary portfolio, about section, category-aware service inquiry cards, social links, and music feature
 - `/work/` — Events, Editorial Fashion, Street, Studio Editorial, and Wedding galleries
 - `/playlists/` — playlist archive and Spotify links
 

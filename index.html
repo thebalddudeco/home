@@ -225,14 +225,16 @@
       <div class="contact-dialog-shell">
         <button class="contact-dialog-close" type="button" aria-label="Close contact form"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
         <div class="contact-dialog-intro">
-          <p class="label">New work / New York + worldwide</p>
-          <h2 id="contact-form-title">Tell me what<br />we’re making.</h2>
-          <p>Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.</p>
+          <p class="label" data-contact-kicker>New work / New York + worldwide</p>
+          <h2 id="contact-form-title" data-contact-title>Tell me what<br />we’re making.</h2>
+          <p class="contact-dialog-price" data-contact-price>Custom commissions / quoted to scope</p>
+          <p data-contact-copy>Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.</p>
         </div>
         <form class="contact-form" action="https://formsubmit.co/info@thebalddude.co" method="POST">
           <input type="hidden" name="_subject" value="NEW CLIENT" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="Requested Service" value="General inquiry" data-service-field />
+          <input type="hidden" name="Starting Price Range" value="Custom quote" data-price-field />
           <input class="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
           <label><span>Name *</span><input type="text" name="Name" autocomplete="name" required /></label>
           <label><span>Email *</span><input type="email" name="email" autocomplete="email" required /></label>

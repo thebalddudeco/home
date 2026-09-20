@@ -264,7 +264,57 @@ const contactDialog = document.querySelector('.contact-dialog');
 const contactForm = document.querySelector('.contact-form');
 const contactStatus = document.querySelector('.contact-form-status');
 const contactServiceField = document.querySelector('[data-service-field]');
+const contactPriceField = document.querySelector('[data-price-field]');
 const contactProjectType = document.querySelector('[data-project-type]');
+const contactKicker = document.querySelector('[data-contact-kicker]');
+const contactTitle = document.querySelector('[data-contact-title]');
+const contactPrice = document.querySelector('[data-contact-price]');
+const contactCopy = document.querySelector('[data-contact-copy]');
+
+const contactCards = {
+  'Fashion + Editorial': {
+    kicker: 'Campaigns / lookbooks / street stories',
+    title: 'Make it<br />editorial.',
+    price: 'Starting range / $950–$3,200+',
+    fieldPrice: '$950–$3,200+',
+    copy: 'Tell me about the collection, talent, locations, deliverables, and where the photographs will live. I’ll shape the right level of production around the story.'
+  },
+  'Events + Backstage': {
+    kicker: 'Fashion week / red carpet / after dark',
+    title: 'Put me<br />in the room.',
+    price: 'Starting range / $1,250–$3,750+',
+    fieldPrice: '$1,250–$3,750+',
+    copy: 'Share the date, venue, run of show, access, guest count, and turnaround needs. Coverage can include arrivals, backstage, atmosphere, portraits, details, and fast social selects.'
+  },
+  Portraits: {
+    kicker: 'Artists / founders / people with presence',
+    title: 'Step into<br />the frame.',
+    price: 'Starting range / $650–$1,350',
+    fieldPrice: '$650–$1,350',
+    copy: 'Tell me who the photographs are for, how you want to be seen, and where the images will be used. We’ll build the location, styling, and direction around your point of view.'
+  },
+  Weddings: {
+    kicker: 'Courthouse / intimate / beautifully unforced',
+    title: 'Let it feel<br />like yours.',
+    price: 'Starting range / $1,250–$2,750+',
+    fieldPrice: '$1,250–$2,750+',
+    copy: 'Share your date, ceremony location, guest count, timeline, and the moments that matter most. Expect candid storytelling, decisive flash, and portraits with real editorial presence.'
+  },
+  Commercial: {
+    kicker: 'Product / brand / social campaigns',
+    title: 'Build the<br />campaign.',
+    price: 'Creative fees / $1,500–$5,000+',
+    fieldPrice: '$1,500–$5,000+ creative fee',
+    copy: 'Tell me about the brand, campaign, deliverables, usage, timeline, and production needs. Licensing, studio, talent, crew, styling, equipment, and travel are quoted to scope.'
+  },
+  default: {
+    kicker: 'New work / New York + worldwide',
+    title: 'Tell me what<br />we’re making.',
+    price: 'Custom commissions / quoted to scope',
+    fieldPrice: 'Custom quote',
+    copy: 'Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.'
+  }
+};
 
 const enhancedSelects = [];
 
@@ -395,8 +445,14 @@ if (contactDialog && contactForm) {
     trigger.addEventListener('click', (event) => {
       event.preventDefault();
       const service = trigger.dataset.service || '';
+      const card = contactCards[service] || contactCards.default;
 
       if (contactServiceField) contactServiceField.value = service || 'General inquiry';
+      if (contactPriceField) contactPriceField.value = card.fieldPrice;
+      if (contactKicker) contactKicker.textContent = card.kicker;
+      if (contactTitle) contactTitle.innerHTML = card.title;
+      if (contactPrice) contactPrice.textContent = card.price;
+      if (contactCopy) contactCopy.textContent = card.copy;
       if (contactProjectType) {
         contactProjectType.value = service;
         contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
@@ -446,6 +502,7 @@ if (contactDialog && contactForm) {
 
       contactForm.reset();
       if (contactServiceField) contactServiceField.value = 'General inquiry';
+      if (contactPriceField) contactPriceField.value = contactCards.default.fieldPrice;
       window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {

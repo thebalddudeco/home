@@ -2,6 +2,19 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.1.0] — 2026-09-20
+
+### Added
+
+- Category-specific inquiry-card headlines, supporting copy, and pricing guidance for all five services.
+- Premium starting ranges for Portraits, Fashion + Editorial, Events + Backstage, Weddings, and Commercial work.
+- Starting-price context in submitted inquiry data.
+
+### Changed
+
+- Service buttons now open a contact experience tailored to the selected category.
+- Commercial inquiries now clarify that licensing and production costs are quoted separately.
+
 ## [2.0.2] — 2026-09-20
 
 ### Changed

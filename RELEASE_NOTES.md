@@ -1,5 +1,19 @@
 # Release notes
 
+## Version 2.1.0 — September 20, 2026
+
+Version 2.1.0 turns the shared contact form into five distinct service inquiry experiences.
+
+### Service-specific inquiries
+
+- Each service button now opens with its own headline, positioning copy, and preselected project type.
+- Portraits display a $650–$1,350 starting range.
+- Fashion + Editorial displays a $950–$3,200+ starting range.
+- Events + Backstage displays a $1,250–$3,750+ starting range.
+- Weddings displays a $1,250–$2,750+ starting range.
+- Commercial displays a $1,500–$5,000+ creative-fee range and notes that licensing and production are quoted separately.
+- The selected service and its pricing context are included with every submitted inquiry.
+
 ## Version 2.0.2 — September 20, 2026
 
 Version 2.0.2 realigns the public brand language with Justin von Braun’s current photographic focus.
