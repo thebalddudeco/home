@@ -2,6 +2,27 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.0.1] — 2026-09-20
+
+### Added
+
+- Complete 35-file production asset inventory.
+- Deployment, DNS, verification, and rollback documentation.
+- Current gallery counts and external-service architecture in the README.
+
+### Changed
+
+- Finalized the GitHub Pages custom-domain configuration replacing Pixieset.
+- Added all four recommended GitHub Pages apex addresses.
+- Updated repository metadata, release documentation, and production status.
+- Verified the repository assets against the production build with SHA-256.
+
+### Preserved
+
+- Google Workspace MX records.
+- Previous production site on `pre-redesign-2026-09-20`.
+- Original gallery source photographs outside the public curation manifest.
+
 ## [2.0.0] — 2026-09-20
 
 ### Added
@@ -15,7 +36,7 @@ All notable production changes to The Bald Dude Co. website are recorded here.
 
 ### Changed
 
-- Renamed the visible Street Photography section heading to Street.
+- Renamed the visible Street Photography heading to Street.
 - Curated Penthouse Show from 96 public frames to 41 editorial selections.
 - Updated spacing, typography, alignment, and responsive behavior throughout the site.
 - Moved production hosting to GitHub Pages from the `home` repository.
