@@ -1,0 +1,30 @@
+# Changelog
+
+All notable production changes to The Bald Dude Co. website are recorded here.
+
+## [2.0.0] — 2026-09-20
+
+### Added
+
+- New main portfolio design and navigation system.
+- Separate Work archive with five carousel galleries.
+- Infinite previous/next carousel wrapping.
+- Subject-aware focal positions for selected 3:4 image crops.
+- Playlist page and current production media assets.
+- GitHub Pages custom-domain configuration.
+
+### Changed
+
+- Renamed the visible Street Photography section heading to Street.
+- Curated Penthouse Show from 96 public frames to 41 editorial selections.
+- Updated spacing, typography, alignment, and responsive behavior throughout the site.
+- Moved production hosting to GitHub Pages from the `home` repository.
+
+### Removed
+
+- Emily and Pedro photographs from the public Wedding gallery.
+- Superseded portfolio markup and styling from the production branch.
+
+## [1.2.0] — 2026-04-10
+
+- Added MP4 media support and synchronized portfolio copy.
