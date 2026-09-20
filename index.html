@@ -6,19 +6,43 @@
     <meta name="description" content="The Bald Dude Co. — Brooklyn photographer Justin von Braun. Fashion, portraits, events, commercial work, and weddings with New York energy." />
     <title>The Bald Dude Co. — New York Photographer</title>
     <link rel="icon" type="image/png" href="assets/brand-favicon.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260919-6" />
   </head>
   <body>
     <header class="site-header">
       <a class="mark" href="#top" aria-label="The Bald Dude Co. home"><img src="assets/brand-mark.png" alt="" /></a>
-      <nav aria-label="Primary navigation">
-        <a href="#work">Gallery</a>
-        <a href="#about">About</a>
-        <a href="#contact-form" data-contact-form>Contact</a>
-      </nav>
-      <p class="system-note"><span>Powered by:</span> Human instinct™</p>
-      <a class="archive-link" href="#work">NYC Archive →</a>
+      <p class="nav-signal"><span>Press access</span><b>New York / Worldwide</b></p>
+      <div class="nav-controls">
+        <button class="menu-trigger" type="button" aria-controls="site-menu" aria-expanded="false"><span>Index</span><b>01—05</b></button>
+        <a class="booking-link" href="#contact-form" data-contact-form>Book me <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+      </div>
     </header>
+
+    <dialog id="site-menu" class="nav-screen" aria-labelledby="menu-title">
+      <div class="nav-preview" aria-hidden="true">
+        <img class="is-active" src="assets/nav-work-dscf1028.jpg" alt="" data-nav-preview="0" />
+        <img src="assets/sony-rooftop-motion-poster.jpg" alt="" data-nav-preview="1" />
+        <img src="assets/justin-von-braun-portrait.png" alt="" data-nav-preview="2" />
+        <img src="assets/nav-sound.jpg" alt="" data-nav-preview="3" />
+        <img src="assets/nav-contact-dscf0773.jpg" alt="" data-nav-preview="4" />
+      </div>
+      <header class="nav-screen-head">
+        <p><span>Private view</span><b id="menu-title">The NYC Index</b></p>
+        <button class="menu-close" type="button" aria-label="Close menu"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+      </header>
+      <nav class="nav-index" aria-label="Site index">
+        <a href="work/" data-nav-link data-nav-target="0"><span>01</span><b>Work</b><em>Five galleries / selected archive</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+        <a href="https://www.instagram.com/thebalddude.dng/reels/" target="_blank" rel="noopener noreferrer" data-nav-link data-nav-target="1"><span>02</span><b>Motion</b><em>Reels / backstage / after dark</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+        <a href="#about" data-nav-link data-nav-target="2"><span>03</span><b>About</b><em>Justin von Braun / Brooklyn</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+        <a href="playlists/" data-nav-link data-nav-target="3"><span>04</span><b>Sound</b><em>Playlists / rooms / after dark</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+        <a href="#contact-form" data-nav-link data-nav-target="4" data-contact-form><span>05</span><b>Contact</b><em>Bookings / commissions / trouble</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+      </nav>
+      <footer class="nav-screen-foot">
+        <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer">Instagram <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+        <span>40.7128° N / 74.0060° W</span>
+        <span>© 2026 / All photographs reserved</span>
+      </footer>
+    </dialog>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
@@ -42,7 +66,7 @@
         <p class="clock">40.7128° N / 74.0060° W</p>
         <p class="status">Direct flash <i></i> Real moments</p>
         <p class="hero-sequence"><span>01</span> / 05 &nbsp; Mixed media</p>
-        <a class="enter" href="#work"><span>Enter<br />the work</span><b>↘</b></a>
+        <a class="enter" href="#work"><span>Enter my<br />studio</span><b class="material-symbols-outlined" aria-hidden="true">arrow_outward</b></a>
       </section>
 
       <section class="ticker" aria-label="Photography specialties">
@@ -53,7 +77,7 @@
       <section id="work" class="work" aria-labelledby="work-title">
         <div class="section-head">
           <p>Selected archive / 2026</p>
-          <h2 id="work-title">The city<br />doesn’t pose.</h2>
+          <h2 id="work-title">The city<br />doesn’<span class="apostrophe-gap">t</span> pose.</h2>
           <p class="section-no">001—008</p>
         </div>
 
@@ -89,7 +113,7 @@
         </div>
       </section>
 
-      <section class="reels" aria-labelledby="reels-title">
+      <section id="reels" class="reels" aria-labelledby="reels-title">
         <header class="reels-head">
           <p class="label">Motion archive / sound off, pulse on</p>
           <h2 id="reels-title">The flash<br />keeps moving.</h2>
@@ -133,7 +157,6 @@
           <h2 id="about-title">The Bald Dude behind the flash.</h2>
           <p>I’m Justin von Braun—a Brooklyn-based photographer, videographer, and founder of The Bald Dude Co. I photograph cinematic portraits, fashion, events, products, and intimate wedding stories for people and brands who want their images polished, but still alive.</p>
           <p>My approach is built around strong light, thoughtful direction, and knowing when to let a real moment unfold. Red carpet, courthouse, backstage, sidewalk, or campaign: the goal is always an image with presence and a clear point of view.</p>
-          <a class="text-link" href="https://www.thebalddude.co/about/">More about Justin ↗</a>
         </div>
       </section>
 
@@ -143,44 +166,54 @@
           <h2 id="services-title">Available for</h2>
         </header>
         <div class="service-list">
-          <a href="#contact-form" data-contact-form data-service="Fashion + Editorial"><span>01</span><b>Fashion + Editorial</b><em>Campaigns / lookbooks / street stories</em><i>↗</i></a>
-          <a href="#contact-form" data-contact-form data-service="Events + Backstage"><span>02</span><b>Events + Backstage</b><em>Launches / fashion week / after dark</em><i>↗</i></a>
-          <a href="#contact-form" data-contact-form data-service="Portraits"><span>03</span><b>Portraits</b><em>Artists / founders / people with a point of view</em><i>↗</i></a>
-          <a href="#contact-form" data-contact-form data-service="Weddings"><span>04</span><b>Weddings</b><em>Courthouse / intimate / beautifully unforced</em><i>↗</i></a>
-          <a href="#contact-form" data-contact-form data-service="Commercial"><span>05</span><b>Commercial</b><em>Product / brand / social campaigns</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Fashion + Editorial"><span>01</span><b>Fashion + Editorial</b><em>Campaigns / lookbooks / street stories</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+          <a href="#contact-form" data-contact-form data-service="Events + Backstage"><span>02</span><b>Events + Backstage</b><em>Launches / fashion week / after dark</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+          <a href="#contact-form" data-contact-form data-service="Portraits"><span>03</span><b>Portraits</b><em>Artists / founders / people with a point of view</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+          <a href="#contact-form" data-contact-form data-service="Weddings"><span>04</span><b>Weddings</b><em>Courthouse / intimate / beautifully unforced</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
+          <a href="#contact-form" data-contact-form data-service="Commercial"><span>05</span><b>Commercial</b><em>Product / brand / social campaigns</em><i class="material-symbols-outlined" aria-hidden="true">arrow_outward</i></a>
         </div>
       </section>
 
       <section id="contact" class="contact" aria-labelledby="contact-title">
         <p class="label">Bookings / collaborations / beautiful trouble</p>
         <h2 id="contact-title">Get in front<br />of my camera.</h2>
-        <a class="contact-cta" href="#contact-form" data-contact-form>Start a project <span>↗</span></a>
+        <a class="contact-cta" href="#contact-form" data-contact-form>Start a project <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
         <section class="instagram-feed" aria-labelledby="instagram-title">
           <header class="instagram-feed-head">
             <h3 id="instagram-title">Your story is already happening.<br />Let’s photograph it well.</h3>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer">Instagram / @thebalddude.dng ↗</a>
+            <p class="instagram-feed-meta"><span class="instagram-live-dot" aria-hidden="true"></span><span data-instagram-status>Live from Instagram</span> <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer">@thebalddude.dng <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a></p>
           </header>
-          <div class="instagram-grid">
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-01.jpg" alt="Model in sunglasses and a patterned look photographed with direct flash" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-02.jpg" alt="Model in leopard print leaning into a direct-flash portrait" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-03.jpg" alt="Close direct-flash portrait of a model with curly hair" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-04.jpg" alt="Model in a black evening look posing after dark" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-05.jpg" alt="Direct-flash portrait of a model in a textured peach look" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-06.jpg" alt="Smiling model in a burgundy evening look" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-07.jpg" alt="Close direct-flash portrait of a model waving" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-08.jpg" alt="Model in a zebra-print halter look photographed candidly" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-09.jpg" alt="Model in a pale embellished look posing backstage" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-10.jpg" alt="Direct-flash portrait of a model in a white top" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-11.jpg" alt="Model in a black tailored look photographed at an event" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-12.jpg" alt="Model in a sheer red fashion look photographed with direct flash" loading="lazy" /></a>
+          <div class="instagram-grid" data-instagram-feed aria-live="polite">
+            <p class="instagram-feed-message">Connecting to Instagram…</p>
+          </div>
+        </section>
+        <section class="sound-footer" aria-labelledby="sound-footer-title">
+          <header class="sound-footer-head">
+            <div>
+              <p class="label">Main rotation / curated by The Bald Dude</p>
+              <h3 id="sound-footer-title">In the Cavern</h3>
+            </div>
+            <a href="playlists/">Enter the Sound Index <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+          </header>
+          <div class="sound-footer-player">
+            <span class="sound-footer-number" aria-hidden="true">01</span>
+            <iframe
+              title="Spotify playlist: IN THE CAVERN"
+              src="https://open.spotify.com/embed/playlist/0LhM5t4RpB4R3aYvGeKY3e?utm_source=generator&amp;theme=0&amp;si=3fea590ef729406c"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allowfullscreen
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
           </div>
         </section>
         <div class="contact-footer">
           <p class="footer-brand"><img src="assets/brand-stacked.png" alt="The Bald Dude" /><span>Brooklyn, New York</span></p>
           <div>
-            <a href="https://www.instagram.com/thebalddude.dng/">Instagram ↗</a>
-            <a href="https://www.youtube.com/@thebalddudefoto">YouTube ↗</a>
-            <a href="https://www.pinterest.com/thebalddudeco/">Pinterest ↗</a>
+            <a href="https://www.instagram.com/thebalddude.dng/">Instagram <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+            <a href="https://www.youtube.com/@thebalddudefoto">YouTube <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+            <a href="https://www.pinterest.com/thebalddudeco/">Pinterest <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
           </div>
           <p>© 2026<br />All photographs reserved.</p>
         </div>
@@ -189,7 +222,7 @@
 
     <dialog id="contact-form" class="contact-dialog" aria-labelledby="contact-form-title">
       <div class="contact-dialog-shell">
-        <button class="contact-dialog-close" type="button" aria-label="Close contact form">×</button>
+        <button class="contact-dialog-close" type="button" aria-label="Close contact form"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
         <div class="contact-dialog-intro">
           <p class="label">New work / New York + worldwide</p>
           <h2 id="contact-form-title">Tell me what<br />we’re making.</h2>
@@ -231,7 +264,7 @@
           <label class="contact-form-wide"><span>Tell me about the project *</span><textarea name="Project Details" rows="6" required></textarea></label>
           <div class="contact-form-actions contact-form-wide">
             <p class="contact-form-status" role="status" aria-live="polite"></p>
-            <button type="submit">Send inquiry <span>↗</span></button>
+            <button type="submit">Send inquiry <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></button>
           </div>
         </form>
       </div>

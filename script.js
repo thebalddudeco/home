@@ -1,12 +1,103 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const checkerTargets = document.querySelectorAll('.shot, .portrait-wrap, .instagram-grid a');
+let checkerTargetIndex = 0;
 
-checkerTargets.forEach((target, targetIndex) => {
+const siteMenu = document.querySelector('.nav-screen');
+const menuTrigger = document.querySelector('.menu-trigger');
+const menuClose = document.querySelector('.menu-close');
+const menuLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+const menuPreviews = Array.from(document.querySelectorAll('[data-nav-preview]'));
+const menuPreview = document.querySelector('.nav-preview');
+
+const syncMenuDividers = () => {
+  if (!siteMenu?.open || !menuPreview || !menuLinks.length) return;
+  const menuRect = siteMenu.getBoundingClientRect();
+  const previewRect = menuPreview.getBoundingClientRect();
+  const cutRatio = Number.parseFloat(getComputedStyle(menuPreview).getPropertyValue('--cut-ratio')) || 0;
+  const cutAtTop = previewRect.left + previewRect.width * cutRatio;
+  const cutAtBottom = previewRect.left;
+
+  menuLinks.forEach((link) => {
+    const rowBottom = link.getBoundingClientRect().bottom;
+    const progress = Math.min(1, Math.max(0, (rowBottom - menuRect.top) / menuRect.height));
+    const cutEdge = cutAtTop + (cutAtBottom - cutAtTop) * progress;
+    link.style.setProperty('--line-width', `${Math.max(0, cutEdge - menuRect.left - 12)}px`);
+  });
+};
+
+const selectMenuPreview = (targetIndex) => {
+  menuPreviews.forEach((preview) => {
+    preview.classList.toggle('is-active', preview.dataset.navPreview === String(targetIndex));
+  });
+};
+
+if (siteMenu && menuTrigger) {
+  menuTrigger.addEventListener('click', () => {
+    selectMenuPreview(0);
+    siteMenu.showModal();
+    menuTrigger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+    requestAnimationFrame(syncMenuDividers);
+  });
+
+  const closeSiteMenu = () => {
+    if (siteMenu.open) siteMenu.close();
+  };
+
+  menuClose?.addEventListener('click', closeSiteMenu);
+  menuLinks.forEach((link) => {
+    const showLinkPreview = () => selectMenuPreview(link.dataset.navTarget);
+    link.addEventListener('pointerenter', showLinkPreview);
+    link.addEventListener('focus', showLinkPreview);
+    link.addEventListener('click', closeSiteMenu);
+  });
+
+  siteMenu.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeSiteMenu();
+  });
+  siteMenu.addEventListener('close', () => {
+    menuTrigger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  });
+  window.addEventListener('resize', syncMenuDividers);
+  document.fonts?.ready.then(syncMenuDividers);
+}
+
+const aboutPortrait = document.querySelector('.portrait-wrap');
+const aboutTitle = document.querySelector('#about-title');
+const aboutWordmark = document.querySelector('.about-wordmark');
+let aboutAlignmentFrame;
+
+const syncAboutPortrait = () => {
+  if (!aboutPortrait || !aboutTitle) return;
+  aboutPortrait.style.marginTop = '0px';
+  if (window.matchMedia('(max-width: 760px)').matches) return;
+
+  const capOffset = parseFloat(getComputedStyle(aboutTitle).fontSize) * 0.065;
+  const offset = Math.round(aboutTitle.getBoundingClientRect().top - aboutPortrait.getBoundingClientRect().top + capOffset);
+  aboutPortrait.style.marginTop = `${Math.max(0, offset)}px`;
+};
+
+const queueAboutPortraitSync = () => {
+  window.cancelAnimationFrame(aboutAlignmentFrame);
+  aboutAlignmentFrame = window.requestAnimationFrame(syncAboutPortrait);
+};
+
+queueAboutPortraitSync();
+window.addEventListener('load', queueAboutPortraitSync);
+window.addEventListener('resize', queueAboutPortraitSync);
+aboutWordmark?.addEventListener('load', queueAboutPortraitSync, { once: true });
+document.fonts?.ready.then(queueAboutPortraitSync);
+
+const initializeCheckerReveal = (target) => {
+  if (target.classList.contains('checker-reveal')) return;
+  const targetIndex = checkerTargetIndex;
+  checkerTargetIndex += 1;
   target.classList.add('checker-reveal');
 
   if (reducedMotion) {
     target.classList.add('visible');
-    return;
+    return target;
   }
 
   const grid = document.createElement('span');
@@ -24,7 +115,10 @@ checkerTargets.forEach((target, targetIndex) => {
   }
 
   target.appendChild(grid);
-});
+  return target;
+};
+
+document.querySelectorAll('.shot, .portrait-wrap, .instagram-grid a').forEach(initializeCheckerReveal);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -45,6 +139,67 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 
 document.querySelectorAll('.reveal, .checker-reveal').forEach((item) => observer.observe(item));
+
+const addInstagramHoverIcon = (link) => {
+  if (link.querySelector('.instagram-hover-icon')) return;
+  const icon = document.createElement('span');
+  icon.className = 'instagram-hover-icon material-symbols-outlined';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = 'arrow_outward';
+  link.appendChild(icon);
+};
+
+document.querySelectorAll('.instagram-grid a').forEach(addInstagramHoverIcon);
+
+const instagramFeed = document.querySelector('[data-instagram-feed]');
+const instagramStatus = document.querySelector('[data-instagram-status]');
+if (instagramFeed) {
+  fetch('/api/instagram-feed', { headers: { Accept: 'application/json' } })
+    .then((response) => {
+      if (!response.ok) throw new Error('Instagram feed unavailable');
+      return response.json();
+    })
+    .then(({ images }) => {
+      if (!Array.isArray(images) || images.length === 0) throw new Error('Instagram feed empty');
+
+      const fragment = document.createDocumentFragment();
+      images.slice(0, 12).forEach((item, index) => {
+        const link = document.createElement('a');
+        link.href = 'https://www.instagram.com/thebalddude.dng/';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `Open @thebalddude.dng on Instagram — recent post ${index + 1}`);
+
+        const image = document.createElement('img');
+        image.src = item.url;
+        image.alt = `Recent Instagram post from @thebalddude.dng, item ${index + 1}`;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        link.appendChild(image);
+        addInstagramHoverIcon(link);
+        initializeCheckerReveal(link);
+        fragment.appendChild(link);
+      });
+
+      instagramFeed.replaceChildren(fragment);
+      instagramFeed.querySelectorAll('.checker-reveal').forEach((item) => observer.observe(item));
+      if (instagramStatus) instagramStatus.textContent = 'Live from Instagram';
+    })
+    .catch(() => {
+      instagramFeed.closest('.instagram-feed')?.classList.add('is-fallback');
+      if (instagramStatus) instagramStatus.textContent = 'Feed temporarily unavailable';
+      const message = document.createElement('p');
+      message.className = 'instagram-feed-message';
+      message.append('Instagram could not refresh this moment. ');
+      const profileLink = document.createElement('a');
+      profileLink.href = 'https://www.instagram.com/thebalddude.dng/';
+      profileLink.target = '_blank';
+      profileLink.rel = 'noopener noreferrer';
+      profileLink.textContent = 'View the live profile';
+      message.appendChild(profileLink);
+      instagramFeed.replaceChildren(message);
+    });
+}
 
 const clock = document.querySelector('.clock');
 if (clock) {
@@ -111,6 +266,130 @@ const contactStatus = document.querySelector('.contact-form-status');
 const contactServiceField = document.querySelector('[data-service-field]');
 const contactProjectType = document.querySelector('[data-project-type]');
 
+const enhancedSelects = [];
+
+const enhanceSelect = (select, index) => {
+  const wrapper = document.createElement('div');
+  const trigger = document.createElement('button');
+  const triggerText = document.createElement('span');
+  const menu = document.createElement('div');
+  const menuId = `contact-select-menu-${index + 1}`;
+  const options = Array.from(select.options);
+  let activeIndex = Math.max(select.selectedIndex, 0);
+
+  wrapper.className = 'custom-select is-enhanced';
+  trigger.className = 'custom-select-trigger';
+  trigger.type = 'button';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-controls', menuId);
+  menu.className = 'custom-select-menu';
+  menu.id = menuId;
+  menu.hidden = true;
+  menu.setAttribute('role', 'listbox');
+
+  select.parentNode.insertBefore(wrapper, select);
+  wrapper.append(select, trigger, menu);
+  trigger.appendChild(triggerText);
+
+  const optionButtons = options.map((option, optionIndex) => {
+    const button = document.createElement('button');
+    button.className = 'custom-select-option';
+    button.type = 'button';
+    button.setAttribute('role', 'option');
+    button.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+    button.tabIndex = -1;
+    button.textContent = option.textContent;
+    button.addEventListener('click', () => selectOption(optionIndex));
+    menu.appendChild(button);
+    return button;
+  });
+
+  const syncFromNative = () => {
+    const selectedIndex = Math.max(select.selectedIndex, 0);
+    activeIndex = selectedIndex;
+    triggerText.textContent = options[selectedIndex]?.textContent || 'Choose one';
+    optionButtons.forEach((button, optionIndex) => {
+      button.setAttribute('aria-selected', optionIndex === selectedIndex ? 'true' : 'false');
+    });
+  };
+
+  const setActive = (nextIndex, focus = true) => {
+    activeIndex = Math.min(Math.max(nextIndex, 0), optionButtons.length - 1);
+    optionButtons.forEach((button, optionIndex) => button.classList.toggle('is-active', optionIndex === activeIndex));
+    if (focus) {
+      optionButtons[activeIndex]?.focus();
+      optionButtons[activeIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  };
+
+  const close = (restoreFocus = false) => {
+    wrapper.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    menu.hidden = true;
+    optionButtons.forEach((button) => button.classList.remove('is-active'));
+    if (restoreFocus) trigger.focus();
+  };
+
+  const open = (preferredIndex = select.selectedIndex) => {
+    enhancedSelects.forEach((item) => {
+      if (item.wrapper !== wrapper) item.close();
+    });
+    wrapper.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    menu.hidden = false;
+    setActive(Math.max(preferredIndex, 0));
+  };
+
+  function selectOption(optionIndex) {
+    select.selectedIndex = optionIndex;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    close(true);
+  }
+
+  trigger.addEventListener('click', () => {
+    if (wrapper.classList.contains('is-open')) close();
+    else open();
+  });
+
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      open(event.key === 'ArrowDown' ? Math.max(select.selectedIndex, 0) : optionButtons.length - 1);
+    }
+  });
+
+  menu.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setActive(activeIndex + (event.key === 'ArrowDown' ? 1 : -1));
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      setActive(event.key === 'Home' ? 0 : optionButtons.length - 1);
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      selectOption(activeIndex);
+    } else if (event.key === 'Escape' || event.key === 'Tab') {
+      close(event.key === 'Escape');
+    }
+  });
+
+  select.addEventListener('change', syncFromNative);
+  select.addEventListener('invalid', (event) => {
+    event.preventDefault();
+    open();
+  });
+  syncFromNative();
+  enhancedSelects.push({ wrapper, close, syncFromNative });
+};
+
+document.querySelectorAll('.contact-form select').forEach(enhanceSelect);
+document.addEventListener('click', (event) => {
+  enhancedSelects.forEach((item) => {
+    if (!item.wrapper.contains(event.target)) item.close();
+  });
+});
+
 if (contactDialog && contactForm) {
   document.querySelectorAll('[data-contact-form]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
@@ -118,7 +397,10 @@ if (contactDialog && contactForm) {
       const service = trigger.dataset.service || '';
 
       if (contactServiceField) contactServiceField.value = service || 'General inquiry';
-      if (contactProjectType) contactProjectType.value = service;
+      if (contactProjectType) {
+        contactProjectType.value = service;
+        contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
+      }
       if (contactStatus) {
         contactStatus.textContent = '';
         contactStatus.classList.remove('is-error');
@@ -164,6 +446,7 @@ if (contactDialog && contactForm) {
 
       contactForm.reset();
       if (contactServiceField) contactServiceField.value = 'General inquiry';
+      window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {
       if (contactStatus) {
