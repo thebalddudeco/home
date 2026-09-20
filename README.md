@@ -1,13 +1,13 @@
 # The Bald Dude Co.
 
-Production repository for [www.thebalddude.co](https://www.thebalddude.co), the photography portfolio of The Bald Dude Co.
+Production repository for [www.thebalddude.co](https://www.thebalddude.co), the high-flash editorial fashion and paparazzi-style photography portfolio of Justin von Braun and The Bald Dude Co.
 
 ![Release](https://img.shields.io/github/v/release/thebalddudeco/home?display_name=tag)
 ![GitHub Pages](https://img.shields.io/github/deployments/thebalddudeco/home/github-pages?label=GitHub%20Pages)
 
 ## Production status
 
-- **Current release:** 2.0.1
+- **Current release:** 2.0.2
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains

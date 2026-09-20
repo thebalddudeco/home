@@ -1,5 +1,17 @@
 # Release notes
 
+## Version 2.0.2 — September 20, 2026
+
+Version 2.0.2 realigns the public brand language with Justin von Braun’s current photographic focus.
+
+### Brand positioning
+
+- Rewrote the About section around high-flash editorial fashion and paparazzi-style photography.
+- Extended that positioning across fashion events, weddings, portraits, campaigns, and brand work.
+- Updated the hero introduction, specialty ticker, manifesto, and service descriptions.
+- Updated the home and Work metadata used by search engines and link previews.
+- Updated the repository description and documentation to match the live website.
+
 ## Version 2.0.1 — September 20, 2026
 
 Version 2.0.1 completes the repository and production-hosting alignment for the redesigned portfolio.

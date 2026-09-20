@@ -2,6 +2,14 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.0.2] — 2026-09-20
+
+### Changed
+
+- Repositioned the public brand around high-flash editorial fashion and paparazzi-style photography.
+- Rewrote the full About section to reflect Justin von Braun’s current focus.
+- Aligned the hero, specialty ticker, manifesto, services, page metadata, README, and repository description with the new positioning.
+
 ## [2.0.1] — 2026-09-20
 
 ### Added
