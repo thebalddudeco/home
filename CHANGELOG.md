@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.1.2] — 2026-09-20
+
+### Changed
+
+- Each service inquiry card now supplies its own estimated-budget ranges.
+- Budget choices begin at the published minimum for the selected service and scale upward without presenting below-minimum options.
+
 ## [2.1.1] — 2026-09-20
 
 ### Fixed

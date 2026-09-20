@@ -266,6 +266,7 @@ const contactStatus = document.querySelector('.contact-form-status');
 const contactServiceField = document.querySelector('[data-service-field]');
 const contactPriceField = document.querySelector('[data-price-field]');
 const contactProjectType = document.querySelector('[data-project-type]');
+const contactBudgetSelect = document.querySelector('[data-budget-select]');
 const contactKicker = document.querySelector('[data-contact-kicker]');
 const contactTitle = document.querySelector('[data-contact-title]');
 const contactPrice = document.querySelector('[data-contact-price]');
@@ -277,6 +278,7 @@ const contactCards = {
     title: 'Make it<br />editorial.',
     price: 'Starting range / $950–$3,200+',
     fieldPrice: '$950–$3,200+',
+    budgets: ['$950–$1,500', '$1,500–$2,500', '$2,500–$3,200', '$3,200–$5,000', '$5,000+'],
     copy: 'Tell me about the collection, talent, locations, deliverables, and where the photographs will live. I’ll shape the right level of production around the story.'
   },
   'Events + Backstage': {
@@ -284,6 +286,7 @@ const contactCards = {
     title: 'Put me<br />in the room.',
     price: 'Starting range / $1,250–$3,750+',
     fieldPrice: '$1,250–$3,750+',
+    budgets: ['$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
     copy: 'Share the date, venue, run of show, access, guest count, and turnaround needs. Coverage can include arrivals, backstage, atmosphere, portraits, details, and fast social selects.'
   },
   Portraits: {
@@ -291,6 +294,7 @@ const contactCards = {
     title: 'Step into<br />the frame.',
     price: 'Starting range / $650–$1,350',
     fieldPrice: '$650–$1,350',
+    budgets: ['$650–$1,000', '$1,000–$1,350', '$1,350–$2,000', '$2,000+'],
     copy: 'Tell me who the photographs are for, how you want to be seen, and where the images will be used. We’ll build the location, styling, and direction around your point of view.'
   },
   Weddings: {
@@ -298,6 +302,7 @@ const contactCards = {
     title: 'Let it feel<br />like yours.',
     price: 'Starting range / $1,250–$2,750+',
     fieldPrice: '$1,250–$2,750+',
+    budgets: ['$1,250–$1,750', '$1,750–$2,250', '$2,250–$2,750', '$2,750–$4,000', '$4,000+'],
     copy: 'Share your date, ceremony location, guest count, timeline, and the moments that matter most. Expect candid storytelling, decisive flash, and portraits with real editorial presence.'
   },
   Commercial: {
@@ -305,6 +310,7 @@ const contactCards = {
     title: 'Build the<br />campaign.',
     price: 'Creative fees / $1,500–$5,000+',
     fieldPrice: '$1,500–$5,000+ creative fee',
+    budgets: ['$1,500–$2,500', '$2,500–$3,750', '$3,750–$5,000', '$5,000–$7,500', '$7,500+'],
     copy: 'Tell me about the brand, campaign, deliverables, usage, timeline, and production needs. Licensing, studio, talent, crew, styling, equipment, and travel are quoted to scope.'
   },
   default: {
@@ -312,6 +318,7 @@ const contactCards = {
     title: 'Tell me what<br />we’re making.',
     price: 'Custom commissions / quoted to scope',
     fieldPrice: 'Custom quote',
+    budgets: ['Under $1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000+'],
     copy: 'Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.'
   }
 };
@@ -324,7 +331,8 @@ const enhanceSelect = (select, index) => {
   const triggerText = document.createElement('span');
   const menu = document.createElement('div');
   const menuId = `contact-select-menu-${index + 1}`;
-  const options = Array.from(select.options);
+  let options = Array.from(select.options);
+  let optionButtons = [];
   let activeIndex = Math.max(select.selectedIndex, 0);
 
   wrapper.className = 'custom-select is-enhanced';
@@ -341,19 +349,6 @@ const enhanceSelect = (select, index) => {
   select.parentNode.insertBefore(wrapper, select);
   wrapper.append(select, trigger, menu);
   trigger.appendChild(triggerText);
-
-  const optionButtons = options.map((option, optionIndex) => {
-    const button = document.createElement('button');
-    button.className = 'custom-select-option';
-    button.type = 'button';
-    button.setAttribute('role', 'option');
-    button.setAttribute('aria-selected', option.selected ? 'true' : 'false');
-    button.tabIndex = -1;
-    button.textContent = option.textContent;
-    button.addEventListener('click', () => selectOption(optionIndex));
-    menu.appendChild(button);
-    return button;
-  });
 
   const syncFromNative = () => {
     const selectedIndex = Math.max(select.selectedIndex, 0);
@@ -397,6 +392,36 @@ const enhanceSelect = (select, index) => {
     close(true);
   }
 
+  const renderOptions = () => {
+    options = Array.from(select.options);
+    menu.replaceChildren();
+    optionButtons = options.map((option, optionIndex) => {
+      const button = document.createElement('button');
+      button.className = 'custom-select-option';
+      button.type = 'button';
+      button.setAttribute('role', 'option');
+      button.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+      button.tabIndex = -1;
+      button.textContent = option.textContent;
+      button.addEventListener('click', () => selectOption(optionIndex));
+      menu.appendChild(button);
+      return button;
+    });
+    syncFromNative();
+  };
+
+  const setOptions = (labels) => {
+    select.replaceChildren();
+    ['Choose a range', ...labels, 'Not sure yet'].forEach((label, optionIndex) => {
+      const option = document.createElement('option');
+      option.value = optionIndex === 0 ? '' : label;
+      option.textContent = label;
+      option.selected = optionIndex === 0;
+      select.appendChild(option);
+    });
+    renderOptions();
+  };
+
   trigger.addEventListener('click', () => {
     if (wrapper.classList.contains('is-open')) close();
     else open();
@@ -429,8 +454,8 @@ const enhanceSelect = (select, index) => {
     event.preventDefault();
     open();
   });
-  syncFromNative();
-  enhancedSelects.push({ wrapper, close, syncFromNative });
+  renderOptions();
+  enhancedSelects.push({ select, wrapper, close, syncFromNative, setOptions });
 };
 
 document.querySelectorAll('.contact-form select').forEach(enhanceSelect);
@@ -453,6 +478,8 @@ if (contactDialog && contactForm) {
       if (contactTitle) contactTitle.innerHTML = card.title;
       if (contactPrice) contactPrice.textContent = card.price;
       if (contactCopy) contactCopy.textContent = card.copy;
+      const budgetControl = enhancedSelects.find((item) => item.select === contactBudgetSelect);
+      budgetControl?.setOptions(card.budgets);
       if (contactProjectType) {
         contactProjectType.value = service;
         contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
@@ -503,6 +530,8 @@ if (contactDialog && contactForm) {
       contactForm.reset();
       if (contactServiceField) contactServiceField.value = 'General inquiry';
       if (contactPriceField) contactPriceField.value = contactCards.default.fieldPrice;
+      const budgetControl = enhancedSelects.find((item) => item.select === contactBudgetSelect);
+      budgetControl?.setOptions(contactCards.default.budgets);
       window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {
