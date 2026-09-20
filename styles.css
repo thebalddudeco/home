@@ -206,12 +206,13 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .footer-brand span { display: block; padding-bottom: 4px; }
 .contact-footer div { display: flex; gap: 18px; }
 .contact-footer a { text-decoration: none; }
-.contact-dialog { width: min(1260px, calc(100vw - 24px)); max-height: calc(100svh - 24px); padding: 0; border: 2px solid var(--acid); background: var(--ink); color: white; box-shadow: 18px 18px 0 var(--acid); }
+.contact-dialog { width: min(1500px, calc(100vw - 32px)); max-height: calc(100svh - 24px); padding: 0; border: 2px solid var(--acid); background: var(--ink); color: white; box-shadow: 18px 18px 0 var(--acid); }
 .contact-dialog::backdrop { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
-.contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(470px, .95fr) minmax(0, 1.05fr); gap: clamp(64px, 5vw, 88px); padding: clamp(32px, 4vw, 56px); }
+.contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(560px, .95fr) minmax(520px, 1.05fr); gap: clamp(72px, 5vw, 104px); padding: clamp(32px, 4vw, 56px); }
 .contact-dialog-close { position: absolute; z-index: 2; top: 12px; right: 16px; padding: 0; border: 0; background: transparent; color: var(--acid); font: 400 2.5rem/1 var(--font-body); cursor: pointer; }
 .contact-dialog-close:hover { color: white; }
-.contact-dialog-intro h2 { max-width: 100%; margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(3.4rem, 6vw, 6.4rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
+.contact-dialog-intro { min-width: 0; }
+.contact-dialog-intro h2 { max-width: 100%; margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(3.4rem, 5vw, 5.8rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
 .contact-dialog-price { width: fit-content; margin: 28px 0 0; padding: 10px 12px 8px; border: 1px solid var(--acid); color: var(--acid); font: 900 clamp(.9rem, 1.3vw, 1.1rem)/1.15 var(--font-display); letter-spacing: .03em; text-transform: uppercase; }
 .contact-dialog-intro > p:last-child { max-width: 39rem; margin-top: 20px; font-size: 1rem; line-height: 1.55; }
 .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 16px; align-content: start; }
@@ -297,6 +298,12 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
   .checker-reveal-grid { display: none; }
+}
+@media (max-width: 1180px) {
+  .contact-dialog { width: min(900px, calc(100vw - 24px)); }
+  .contact-dialog-shell { grid-template-columns: 1fr; gap: 34px; padding: 58px clamp(24px, 5vw, 48px) 36px; }
+  .contact-dialog-intro h2 { max-width: 12ch; font-size: clamp(3.4rem, 9vw, 5.8rem); }
+  .contact-dialog-intro > p:last-child { max-width: 46rem; }
 }
 @media (max-width: 760px) {
   body { border-width: 8px; }

@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.1.1] — 2026-09-20
+
+### Fixed
+
+- Widened every service inquiry card on large screens so display headlines remain clear of the form fields.
+- Stacked the inquiry-card introduction above the form at tablet widths before the two-column layout can collide.
+
 ## [2.1.0] — 2026-09-20
 
 ### Added

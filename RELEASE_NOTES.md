@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.1.1 — September 20, 2026
+
+Version 2.1.1 corrects the responsive layout of every category-specific inquiry card. The modal is wider on large displays, with more separation between the headline and form, and switches to a stacked layout at tablet widths to prevent any overlap.
+
 ## Version 2.1.0 — September 20, 2026
 
 Version 2.1.0 turns the shared contact form into five distinct service inquiry experiences.

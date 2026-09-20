@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.1.0
+- **Current release:** 2.1.1
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
