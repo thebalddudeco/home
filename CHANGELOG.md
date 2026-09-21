@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.2.1] — 2026-09-21
+
+### Fixed
+
+- Replaced the unsupported `/api/instagram-feed` request with the repository's twelve-image Instagram grid.
+- Removed the unavailable-feed state so the homepage social gallery renders reliably on GitHub Pages.
+
 ## [2.2.0] — 2026-09-21
 
 ### Changed

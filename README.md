@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.2.0
+- **Current release:** 2.2.1
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
@@ -48,7 +48,7 @@ See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for the complete inventory.
 - **Hugging Face:** public Work-gallery media and manifest
 - **FormSubmit:** contact-form delivery to `info@thebalddude.co`
 - **Spotify:** embedded playlist and playlist links
-- **Instagram:** profile and reel links; the static site displays a graceful fallback when the former server-side feed endpoint is unavailable
+- **Instagram:** a reliable twelve-image curated grid backed by repository assets, with every tile linking to `@thebalddude.dng`
 
 ## Publishing and domain routing
 

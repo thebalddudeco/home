@@ -117,56 +117,6 @@ const addInstagramHoverIcon = (link) => {
 
 document.querySelectorAll('.instagram-grid a').forEach(addInstagramHoverIcon);
 
-const instagramFeed = document.querySelector('[data-instagram-feed]');
-const instagramStatus = document.querySelector('[data-instagram-status]');
-if (instagramFeed) {
-  fetch('/api/instagram-feed', { headers: { Accept: 'application/json' } })
-    .then((response) => {
-      if (!response.ok) throw new Error('Instagram feed unavailable');
-      return response.json();
-    })
-    .then(({ images }) => {
-      if (!Array.isArray(images) || images.length === 0) throw new Error('Instagram feed empty');
-
-      const fragment = document.createDocumentFragment();
-      images.slice(0, 12).forEach((item, index) => {
-        const link = document.createElement('a');
-        link.href = 'https://www.instagram.com/thebalddude.dng/';
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.classList.add('reveal');
-        link.setAttribute('aria-label', `Open @thebalddude.dng on Instagram — recent post ${index + 1}`);
-
-        const image = document.createElement('img');
-        image.src = item.url;
-        image.alt = `Recent Instagram post from @thebalddude.dng, item ${index + 1}`;
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        link.appendChild(image);
-        addInstagramHoverIcon(link);
-        fragment.appendChild(link);
-      });
-
-      instagramFeed.replaceChildren(fragment);
-      instagramFeed.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
-      if (instagramStatus) instagramStatus.textContent = 'Live from Instagram';
-    })
-    .catch(() => {
-      instagramFeed.closest('.instagram-feed')?.classList.add('is-fallback');
-      if (instagramStatus) instagramStatus.textContent = 'Feed temporarily unavailable';
-      const message = document.createElement('p');
-      message.className = 'instagram-feed-message';
-      message.append('Instagram could not refresh this moment. ');
-      const profileLink = document.createElement('a');
-      profileLink.href = 'https://www.instagram.com/thebalddude.dng/';
-      profileLink.target = '_blank';
-      profileLink.rel = 'noopener noreferrer';
-      profileLink.textContent = 'View the live profile';
-      message.appendChild(profileLink);
-      instagramFeed.replaceChildren(message);
-    });
-}
-
 const clock = document.querySelector('.clock');
 if (clock) {
   const updateClock = () => {

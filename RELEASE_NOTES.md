@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.2.1 — September 21, 2026
+
+Version 2.2.1 restores the homepage Instagram gallery. GitHub Pages cannot run the former server-side feed endpoint, so the site now renders its twelve curated Instagram photographs directly from the repository. Every tile links to `@thebalddude.dng`, and the broken loading and unavailable states have been removed.
+
 ## Version 2.2.0 — September 21, 2026
 
 Version 2.2.0 simplifies the homepage presentation. The hero is now a single Sony Focus Show photograph supplied by Justin, with no video or rotating frames. Portfolio, portrait, and Instagram images now enter with a clean fade-and-rise transition instead of the checkerboard reveal.
