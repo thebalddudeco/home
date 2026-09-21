@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.1.2
+- **Current release:** 2.2.0
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
@@ -39,7 +39,7 @@ Penthouse Show is curated to 41 editorial photographs. Original source files rem
 
 ## Repository assets
 
-The `assets/` directory contains all 35 production assets used by the static site: brand marks, editorial stills, navigation images, Instagram fallbacks, posters, and motion files. The repository copy was SHA-256 compared with the current production build with zero missing, extra, or mismatched files.
+The `assets/` directory contains all 36 production assets used by the static site: brand marks, editorial stills, navigation images, Instagram fallbacks, posters, and motion files. The homepage hero uses the original `DSCF0768.jpg` Sony Focus Show photograph, preserved byte-for-byte as `hero-sony-focus-dscf0768.jpg`.
 
 See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for the complete inventory.
 

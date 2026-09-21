@@ -2,6 +2,18 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.2.0] — 2026-09-21
+
+### Changed
+
+- Replaced the mixed-media homepage hero rotation with the single supplied Sony Focus Show photograph `DSCF0768.jpg`.
+- Replaced checkerboard image reveals with a restrained fade-and-rise transition.
+
+### Removed
+
+- Homepage hero video playback, slideshow timing, flash transitions, and sequence counting.
+- Checkerboard tile generation and animation from portfolio, portrait, and Instagram image reveals.
+
 ## [2.1.2] — 2026-09-20
 
 ### Changed

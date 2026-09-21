@@ -1,9 +1,9 @@
 # Production asset manifest
 
-Audit date: September 20, 2026  
-Production assets: **35**  
-Missing assets: **0**  
-Unexpected assets: **0**  
+Audit date: September 21, 2026
+Production assets: **36**
+Missing assets: **0**
+Unexpected assets: **0**
 SHA-256 mismatches: **0**
 
 This inventory covers the assets committed to `assets/` and used by the static GitHub Pages site. The larger Work-gallery archive remains in the public `TheBaldDudeCo/website-gallery` Hugging Face dataset and is intentionally not duplicated here.
@@ -15,11 +15,12 @@ This inventory covers the assets committed to `assets/` and used by the static G
 - `brand-stacked.png`
 - `brand-wordmark.png`
 
-## Portfolio and editorial stills — 10
+## Portfolio and editorial stills — 11
 
 - `chrome-visor.jpg`
 - `hero-backstage-gaze.jpg`
 - `hero-model.jpg`
+- `hero-sony-focus-dscf0768.jpg`
 - `hero-structured-black.jpg`
 - `justin-von-braun-portrait.png`
 - `leopard-crown.jpg`

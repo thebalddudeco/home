@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.2.0 — September 21, 2026
+
+Version 2.2.0 simplifies the homepage presentation. The hero is now a single Sony Focus Show photograph supplied by Justin, with no video or rotating frames. Portfolio, portrait, and Instagram images now enter with a clean fade-and-rise transition instead of the checkerboard reveal.
+
 ## Version 2.1.2 — September 20, 2026
 
 Version 2.1.2 aligns the estimated-budget dropdown with each service’s published pricing. Selecting Fashion + Editorial, Events + Backstage, Portraits, Weddings, or Commercial now loads category-specific tiers beginning at that service’s minimum price.
