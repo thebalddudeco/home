@@ -157,9 +157,9 @@ const contactCards = {
   'Events + Backstage': {
     kicker: 'Fashion week / red carpet / after dark',
     title: 'Put me<br />in the room.',
-    price: 'Starting range / $1,250–$3,750+',
-    fieldPrice: '$1,250–$3,750+',
-    budgets: ['$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
+    price: 'Starting range / $750–$3,750+',
+    fieldPrice: '$750–$3,750+',
+    budgets: ['$750–$1,250', '$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
     copy: 'Share the date, venue, run of show, access, guest count, and turnaround needs. Coverage can include arrivals, backstage, atmosphere, portraits, details, and fast social selects.'
   },
   Portraits: {

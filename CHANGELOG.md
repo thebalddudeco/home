@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.2.2] — 2026-09-21
+
+### Changed
+
+- Lowered the Events + Backstage starting price from $1,250 to $750.
+- Updated the Events + Backstage inquiry budget menu to begin at $750–$1,250 while preserving the existing higher tiers.
+
 ## [2.2.1] — 2026-09-21
 
 ### Fixed

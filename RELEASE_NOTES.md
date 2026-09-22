@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.2.2 — September 21, 2026
+
+Version 2.2.2 updates Events + Backstage coverage to begin at $750. Its inquiry card now presents a $750–$3,750+ starting range, and its category-specific estimated-budget menu begins at $750–$1,250 before continuing through the existing higher tiers.
+
 ## Version 2.2.1 — September 21, 2026
 
 Version 2.2.1 restores the homepage Instagram gallery. GitHub Pages cannot run the former server-side feed endpoint, so the site now renders its twelve curated Instagram photographs directly from the repository. Every tile links to `@thebalddude.dng`, and the broken loading and unavailable states have been removed.
