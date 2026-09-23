@@ -1,5 +1,11 @@
 # Release notes
 
+## Version 2.4.0 — September 23, 2026
+
+Version 2.4.0 adds “Vows in Print,” a new editorial wedding story directly beneath the homepage's Flash First selected-work section. Six photographs from Joyce + Alex's New York wedding move from the courthouse confetti exit through direct-flash portraits, city architecture, subway movement, and an exuberant final frame.
+
+The accompanying language positions wedding coverage as paparazzi instinct with an editorial finish: candid enough to remain true to the day, and polished enough to feel magazine-worthy. A dedicated call to action opens the existing Weddings inquiry experience with its service and pricing context already selected. The layout is fully responsive, with intentional crops and sequencing across desktop and smaller screens.
+
 ## Version 2.3.2 — September 23, 2026
 
 Version 2.3.2 removes the Fashion4Ukraine “Blue Hour” photograph from the homepage. The selected-work wall now contains five published photographs; no replacement has been added while a separate, editorially weighted candidate collection is under review.

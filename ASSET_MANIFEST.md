@@ -1,7 +1,7 @@
 # Production asset manifest
 
 Audit date: September 23, 2026
-Baseline production assets: **38**
+Baseline production assets: **44**
 Missing assets: **0**
 Unexpected assets: **0**
 SHA-256 mismatches: **0**
@@ -15,7 +15,7 @@ This inventory covers the assets committed to `assets/` and used by the static G
 - `brand-stacked.png`
 - `brand-wordmark.png`
 
-## Portfolio and editorial stills — 13
+## Portfolio and editorial stills — 19
 
 - `chrome-visor.jpg`
 - `fashion4ukraine-blue-hour.jpg`
@@ -30,6 +30,12 @@ This inventory covers the assets committed to `assets/` and used by the static G
 - `ruffle-afterdark.jpg`
 - `runway-floral.jpg`
 - `runway-white.jpg`
+- `wedding-joyce-alex-arcade.jpg`
+- `wedding-joyce-alex-carry.jpg`
+- `wedding-joyce-alex-confetti.jpg`
+- `wedding-joyce-alex-couch.jpg`
+- `wedding-joyce-alex-subway.jpg`
+- `wedding-joyce-alex-sunglasses.jpg`
 
 ## Motion and poster assets — 6
 

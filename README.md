@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.3.2
+- **Current release:** 2.4.0
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
@@ -16,7 +16,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Site map
 
-- `/` — primary portfolio, about section, category-aware service inquiry cards, social links, and music feature
+- `/` — primary portfolio, Joyce + Alex editorial wedding feature, about section, category-aware service inquiry cards, social links, and music feature
 - `/work/` — Events, Editorial Fashion, Street, Studio Editorial, and Wedding galleries
 - `/playlists/` — playlist archive and Spotify links
 
@@ -39,7 +39,7 @@ Penthouse Show is curated to 41 editorial photographs. Fashion4Ukraine adds 39 c
 
 ## Repository assets
 
-The `assets/` directory contains 38 baseline production assets used by the static site, plus the most recently synchronized Instagram images when live sync is configured. The homepage hero uses the original `DSCF0768.jpg` Sony Focus Show photograph, preserved byte-for-byte as `hero-sony-focus-dscf0768.jpg`.
+The `assets/` directory contains 44 baseline production assets used by the static site, plus the most recently synchronized Instagram images when live sync is configured. The homepage hero uses the original `DSCF0768.jpg` Sony Focus Show photograph, preserved byte-for-byte as `hero-sony-focus-dscf0768.jpg`. The six-image “Vows in Print” feature draws from the Joyce + Alex wedding edits and introduces the site's editorial, paparazzi-style wedding coverage directly on the homepage.
 
 See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for the complete inventory.
 

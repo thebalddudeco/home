@@ -2,6 +2,18 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.4.0] — 2026-09-23
+
+### Added
+
+- Added “Vows in Print,” a six-image Joyce + Alex wedding feature directly beneath Selected Work.
+- Added a dedicated Weddings inquiry call to action inside the new feature.
+
+### Changed
+
+- Expanded the homepage wedding positioning around direct flash, candid movement, editorial composition, and a magazine-worthy finish.
+- Added a responsive two-column wedding layout that becomes a paced single- and two-column story on smaller screens.
+
 ## [2.3.2] — 2026-09-23
 
 ### Changed
