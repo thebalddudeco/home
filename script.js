@@ -239,6 +239,17 @@ const contactCards = {
   }
 };
 
+const applyContactCard = (service = '') => {
+  const card = contactCards[service] || contactCards.default;
+
+  if (contactServiceField) contactServiceField.value = service || 'General inquiry';
+  if (contactPriceField) contactPriceField.value = card.fieldPrice;
+  if (contactKicker) contactKicker.textContent = card.kicker;
+  if (contactTitle) contactTitle.innerHTML = card.title;
+  if (contactPrice) contactPrice.textContent = card.price;
+  if (contactCopy) contactCopy.textContent = card.copy;
+};
+
 const enhancedSelects = [];
 
 const enhanceSelect = (select, index) => {
@@ -375,6 +386,7 @@ const enhanceSelect = (select, index) => {
 };
 
 document.querySelectorAll('.contact-form select').forEach(enhanceSelect);
+contactProjectType?.addEventListener('change', () => applyContactCard(contactProjectType.value));
 document.addEventListener('click', (event) => {
   enhancedSelects.forEach((item) => {
     if (!item.wrapper.contains(event.target)) item.close();
@@ -386,16 +398,6 @@ if (contactDialog && contactForm) {
     trigger.addEventListener('click', (event) => {
       event.preventDefault();
       const service = trigger.dataset.service || '';
-      const card = contactCards[service] || contactCards.default;
-
-      if (contactServiceField) contactServiceField.value = service || 'General inquiry';
-      if (contactPriceField) contactPriceField.value = card.fieldPrice;
-      if (contactKicker) contactKicker.textContent = card.kicker;
-      if (contactTitle) contactTitle.innerHTML = card.title;
-      if (contactPrice) contactPrice.textContent = card.price;
-      if (contactCopy) contactCopy.textContent = card.copy;
-      const budgetControl = enhancedSelects.find((item) => item.select === contactBudgetSelect);
-      budgetControl?.setOptions(card.budgets);
       if (contactProjectType) {
         contactProjectType.value = service;
         contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
@@ -444,10 +446,7 @@ if (contactDialog && contactForm) {
       if (!response.ok || result.success === false) throw new Error('Submission failed');
 
       contactForm.reset();
-      if (contactServiceField) contactServiceField.value = 'General inquiry';
-      if (contactPriceField) contactPriceField.value = contactCards.default.fieldPrice;
-      const budgetControl = enhancedSelects.find((item) => item.select === contactBudgetSelect);
-      budgetControl?.setOptions(contactCards.default.budgets);
+      applyContactCard();
       window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {
