@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.3.1 — September 23, 2026
+
+Version 2.3.1 refines the live Instagram gallery interaction. Hovering or keyboard-focusing a post now reveals a small pink arrow in the lower-right corner instead of covering the photograph with a full-tile pink overlay. The existing image zoom remains, but the photograph stays fully visible.
+
 ## Version 2.3.0 — September 23, 2026
 
 Version 2.3.0 expands the portfolio while clarifying how prospective clients move through the site.

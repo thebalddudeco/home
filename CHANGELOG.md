@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.3.1] — 2026-09-23
+
+### Changed
+
+- Replaced the Instagram gallery's full-image pink hover wash with a compact pink arrow that appears in the lower-right corner.
+- Preserved image visibility while retaining the existing hover zoom and keyboard-focus feedback.
+
 ## [2.3.0] — 2026-09-23
 
 ### Added
