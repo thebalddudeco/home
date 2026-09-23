@@ -2,6 +2,15 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.4.1] — 2026-09-23
+
+### Changed
+
+- Replaced the homepage SoHo Afterparty reel with the supplied 38-second Fashion4Ukraine backstage film.
+- Expanded the motion archive to three equally sized, side-by-side video cards instead of the previous staggered mosaic.
+- Added a second 17-second Fashion4Ukraine direct-flash film alongside the Sony Focus Show rooftop film.
+- Updated both new reel posters, accessible descriptions, titles, context labels, and runtimes to match the footage.
+
 ## [2.4.0] — 2026-09-23
 
 ### Added

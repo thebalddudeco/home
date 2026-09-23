@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 2.4.1 — September 23, 2026
+
+Version 2.4.1 rebuilds the homepage motion archive as a clean row of three equally sized videos rather than a staggered mosaic. The former SoHo Afterparty card is replaced by the supplied 38-second Fashion4Ukraine backstage film, a second 17-second Fashion4Ukraine direct-flash film joins the row, and the Sony Focus Show rooftop film remains in place. New poster frames, titles, context labels, runtimes, and accessible descriptions match the footage. On smaller screens, the same three-card row becomes a horizontal snap-scrolling strip instead of collapsing into a mosaic.
+
 ## Version 2.4.0 — September 23, 2026
 
 Version 2.4.0 adds “Vows in Print,” a new editorial wedding story directly beneath the homepage's Flash First selected-work section. Six photographs from Joyce + Alex's New York wedding move from the courthouse confetti exit through direct-flash portraits, city architecture, subway movement, and an exuberant final frame.

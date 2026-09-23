@@ -1,7 +1,7 @@
 # Production asset manifest
 
 Audit date: September 23, 2026
-Baseline production assets: **44**
+Baseline production assets: **46**
 Missing assets: **0**
 Unexpected assets: **0**
 SHA-256 mismatches: **0**
@@ -37,12 +37,14 @@ This inventory covers the assets committed to `assets/` and used by the static G
 - `wedding-joyce-alex-subway.jpg`
 - `wedding-joyce-alex-sunglasses.jpg`
 
-## Motion and poster assets — 6
+## Motion and poster assets — 8
 
 - `hero-doorway-model.mp4`
 - `hero-mirror-model.mp4`
-- `soho-afterparty-poster.jpg`
-- `soho-afterparty.mp4`
+- `fashion4ukraine-after-dark-poster.jpg`
+- `fashion4ukraine-after-dark.mp4`
+- `fashion4ukraine-backstage-poster.jpg`
+- `fashion4ukraine-backstage.mp4`
 - `sony-rooftop-motion-poster.jpg`
 - `sony-rooftop-motion.mp4`
 

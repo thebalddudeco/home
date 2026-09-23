@@ -153,10 +153,9 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .reels-head .label, .reels-head > p { margin: 0; }
 .reels-head h2 { margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 9.5rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
 .reels-head > p:last-child { max-width: 24rem; padding-bottom: 8px; font-size: .75rem; line-height: 1.55; text-transform: uppercase; }
-.reel-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr); gap: clamp(18px, 3vw, 48px); align-items: start; }
+.reel-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 30px); align-items: start; }
 .reel-card { position: relative; margin: 0; border: 1px solid var(--line); background: #111; overflow: hidden; }
-.reel-card-primary { aspect-ratio: 9 / 12; max-height: 78svh; justify-self: end; }
-.reel-card-secondary { width: 82%; aspect-ratio: 9 / 16; margin-top: 13vw; transform: rotate(1.2deg); }
+.reel-card-primary, .reel-card-secondary, .reel-card-tertiary { width: 100%; aspect-ratio: 3 / 4; max-height: none; margin: 0; transform: none; justify-self: stretch; }
 .reel-card::before { content: "● LIVE"; position: absolute; z-index: 2; top: 12px; left: 12px; padding: 5px 7px; background: var(--acid); color: var(--ink); font-size: .62rem; font-weight: 700; letter-spacing: .08em; }
 .reel-card video { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08) saturate(.95); }
 .reel-card figcaption { position: absolute; z-index: 2; inset: auto 0 0; display: flex; justify-content: space-between; gap: 16px; padding: 50px 13px 13px; background: linear-gradient(transparent, rgba(0,0,0,.9)); text-transform: uppercase; font-size: .64rem; }
@@ -348,10 +347,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .wedding-frame-carry { grid-column: 1 / -1; margin-top: 0; }
   .reels-head { grid-template-columns: 1fr; }
   .reels-head h2 { grid-row: 2; }
-  .reel-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .reel-card-primary, .reel-card-secondary { width: 100%; max-height: none; margin-top: 0; justify-self: auto; }
-  .reel-card-primary { aspect-ratio: 9 / 14; }
-  .reel-card-secondary { aspect-ratio: 9 / 16; transform: none; }
+  .reel-grid { grid-template-columns: repeat(3, minmax(76vw, 1fr)); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+  .reel-card-primary, .reel-card-secondary, .reel-card-tertiary { width: 100%; aspect-ratio: 3 / 4; max-height: none; margin: 0; transform: none; justify-self: auto; scroll-snap-align: start; }
   .reel-card figcaption { display: block; }
   .reel-card figcaption span { display: block; margin-top: 4px; }
   .about { grid-template-columns: 1fr; }
