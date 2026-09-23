@@ -1,5 +1,27 @@
 # Release notes
 
+## Version 2.3.0 — September 23, 2026
+
+Version 2.3.0 expands the portfolio while clarifying how prospective clients move through the site.
+
+### Homepage and inquiries
+
+- The final About paragraph now describes an editorial approach built around energy, polish, point of view, and making subjects feel confident and seen.
+- The top-right Book Me button now moves directly to Available For, where visitors choose the service that fits their project before opening its tailored inquiry card.
+- Two Fashion4Ukraine photographs now appear in the homepage selected-work wall.
+
+### Work archive
+
+- Added a dedicated eight-frame Fashion4Ukraine Events album.
+- Added a dedicated 31-frame Fashion4Ukraine Editorial Fashion album.
+- The public archive now contains 720 photographs across 22 albums. Originals remain untouched.
+
+### Instagram
+
+- Added a scheduled, no-cost feed sync built on Meta's official Instagram API.
+- The synchronization downloads the latest twelve post images during a private GitHub Actions job, keeping the access token out of the public site.
+- The current curated twelve-image grid remains visible whenever the token has not been connected or a refresh cannot complete.
+
 ## Version 2.2.2 — September 21, 2026
 
 Version 2.2.2 updates Events + Backstage coverage to begin at $750. Its inquiry card now presents a $750–$3,750+ starting range, and its category-specific estimated-budget menu begins at $750–$1,250 before continuing through the existing higher tiers.

@@ -151,7 +151,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .about-copy { min-width: 0; }
 .about-copy > p:not(.label) { width: min(100%, 790px); max-width: none; font-size: clamp(1rem, 1.45vw, 1.28rem); line-height: 1.55; }
 .text-link { display: inline-block; margin-top: 22px; padding-bottom: 3px; border-bottom: 2px solid; text-transform: uppercase; text-decoration: none; font-weight: 700; }
-.services { padding: clamp(70px, 10vw, 145px) var(--page-gutter); background: var(--paper); color: var(--ink); }
+.services { scroll-margin-top: 74px; padding: clamp(70px, 10vw, 145px) var(--page-gutter); background: var(--paper); color: var(--ink); }
 .services header { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 65px; }
 .services h2 { font-size: clamp(3rem, 7vw, 7.2rem); line-height: var(--display-leading); }
 .service-list { border-top: 2px solid var(--ink); }

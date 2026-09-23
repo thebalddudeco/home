@@ -117,6 +117,49 @@ const addInstagramHoverIcon = (link) => {
 
 document.querySelectorAll('.instagram-grid a').forEach(addInstagramHoverIcon);
 
+const instagramGrid = document.querySelector('[data-instagram-grid]');
+const instagramStatus = document.querySelector('[data-instagram-status]');
+
+const renderInstagramFeed = (feed) => {
+  if (!instagramGrid || !Array.isArray(feed?.items) || !feed.items.length) return;
+  const fragment = document.createDocumentFragment();
+
+  feed.items.slice(0, 12).forEach((item) => {
+    const link = document.createElement('a');
+    link.className = 'reveal visible';
+    link.href = item.permalink || 'https://www.instagram.com/thebalddude.dng/';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', 'View this post from @thebalddude.dng on Instagram');
+
+    const image = document.createElement('img');
+    image.src = item.image;
+    image.alt = item.alt || 'Recent photograph from @thebalddude.dng on Instagram';
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    link.appendChild(image);
+    addInstagramHoverIcon(link);
+    fragment.appendChild(link);
+  });
+
+  instagramGrid.replaceChildren(fragment);
+  if (instagramStatus) instagramStatus.textContent = 'Live Instagram';
+};
+
+if (instagramGrid) {
+  fetch('instagram-feed.json', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Instagram feed request failed: ${response.status}`);
+      return response.json();
+    })
+    .then((feed) => {
+      if (feed?.source === 'instagram-api') renderInstagramFeed(feed);
+    })
+    .catch(() => {
+      // The curated repository grid remains visible if the scheduled live sync is unavailable.
+    });
+}
+
 const clock = document.querySelector('.clock');
 if (clock) {
   const updateClock = () => {

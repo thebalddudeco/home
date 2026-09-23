@@ -7,7 +7,7 @@ Production repository for [www.thebalddude.co](https://www.thebalddude.co), the 
 
 ## Production status
 
-- **Current release:** 2.2.2
+- **Current release:** 2.3.0
 - **Hosting:** GitHub Pages from the root of `main`
 - **Custom domain:** `www.thebalddude.co`
 - **Domain and DNS manager:** Squarespace Domains
@@ -28,18 +28,18 @@ The current public manifest contains:
 
 | Gallery | Frames |
 | --- | ---: |
-| Events | 70 |
-| Editorial Fashion | 331 |
+| Events | 78 |
+| Editorial Fashion | 362 |
 | Street | 98 |
 | Studio Editorial | 127 |
 | Wedding | 55 |
-| **Total** | **681** |
+| **Total** | **720** |
 
-Penthouse Show is curated to 41 editorial photographs. Original source files remain untouched; public gallery membership and ordering are controlled by the Hugging Face `archive.json` manifest.
+Penthouse Show is curated to 41 editorial photographs. Fashion4Ukraine adds 39 curated photographs across dedicated Events and Editorial Fashion albums. Original source files remain untouched; public gallery membership and ordering are controlled by the Hugging Face `archive.json` manifest.
 
 ## Repository assets
 
-The `assets/` directory contains all 36 production assets used by the static site: brand marks, editorial stills, navigation images, Instagram fallbacks, posters, and motion files. The homepage hero uses the original `DSCF0768.jpg` Sony Focus Show photograph, preserved byte-for-byte as `hero-sony-focus-dscf0768.jpg`.
+The `assets/` directory contains 38 baseline production assets used by the static site, plus the most recently synchronized Instagram images when live sync is configured. The homepage hero uses the original `DSCF0768.jpg` Sony Focus Show photograph, preserved byte-for-byte as `hero-sony-focus-dscf0768.jpg`.
 
 See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for the complete inventory.
 
@@ -48,7 +48,7 @@ See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for the complete inventory.
 - **Hugging Face:** public Work-gallery media and manifest
 - **FormSubmit:** contact-form delivery to `info@thebalddude.co`
 - **Spotify:** embedded playlist and playlist links
-- **Instagram:** a reliable twelve-image curated grid backed by repository assets, with every tile linking to `@thebalddude.dng`
+- **Instagram:** an official Instagram API sync runs daily through GitHub Actions when the repository secret is configured; the twelve-image curated repository grid remains as a no-cost fallback
 
 ## Publishing and domain routing
 

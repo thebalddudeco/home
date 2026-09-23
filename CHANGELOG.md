@@ -2,6 +2,20 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.3.0] — 2026-09-23
+
+### Added
+
+- Added 39 curated Fashion4Ukraine photographs to dedicated Events and Editorial Fashion albums in the Hugging Face-backed Work archive.
+- Added two Fashion4Ukraine photographs to the homepage selected-work wall.
+- Added a no-cost scheduled Instagram sync using Meta's official Instagram API, with the existing curated grid retained as a resilient fallback.
+
+### Changed
+
+- Rewrote the final About paragraph for a clearer editorial point of view and more human client language.
+- Changed the top-right Book Me link to jump to the category-specific Available For service choices.
+- Updated Work archive totals and documentation to 720 photographs.
+
 ## [2.2.2] — 2026-09-21
 
 ### Changed

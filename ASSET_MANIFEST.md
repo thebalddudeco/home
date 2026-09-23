@@ -1,7 +1,7 @@
 # Production asset manifest
 
-Audit date: September 21, 2026
-Production assets: **36**
+Audit date: September 23, 2026
+Baseline production assets: **38**
 Missing assets: **0**
 Unexpected assets: **0**
 SHA-256 mismatches: **0**
@@ -15,9 +15,11 @@ This inventory covers the assets committed to `assets/` and used by the static G
 - `brand-stacked.png`
 - `brand-wordmark.png`
 
-## Portfolio and editorial stills — 11
+## Portfolio and editorial stills — 13
 
 - `chrome-visor.jpg`
+- `fashion4ukraine-blue-hour.jpg`
+- `fashion4ukraine-petal-flash.jpg`
 - `hero-backstage-gaze.jpg`
 - `hero-model.jpg`
 - `hero-sony-focus-dscf0768.jpg`

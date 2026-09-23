@@ -82,7 +82,7 @@ const createMediaCard = (item, albumName, index) => {
 
 const loadArchive = async () => {
   try {
-    const response = await fetch(`${archiveUrl}?v=4`, { mode: 'cors' });
+    const response = await fetch(`${archiveUrl}?v=5`, { mode: 'cors', cache: 'no-store' });
     if (!response.ok) throw new Error(`Archive request failed with ${response.status}`);
     const archive = await response.json();
 
