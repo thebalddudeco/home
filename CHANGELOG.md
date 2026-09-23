@@ -2,6 +2,13 @@
 
 All notable production changes to The Bald Dude Co. website are recorded here.
 
+## [2.3.2] — 2026-09-23
+
+### Changed
+
+- Removed the Fashion4Ukraine “Blue Hour” photograph from the homepage selected-work wall.
+- Reduced the selected-work sequence to five published photographs while a more editorially balanced replacement set is reviewed offline.
+
 ## [2.3.1] — 2026-09-23
 
 ### Changed
