@@ -216,9 +216,9 @@ const contactCards = {
   Weddings: {
     kicker: 'Courthouse / intimate / beautifully unforced',
     title: 'Let it feel<br />like yours.',
-    price: 'Starting range / $1,250–$2,750+',
-    fieldPrice: '$1,250–$2,750+',
-    budgets: ['$1,250–$1,750', '$1,750–$2,250', '$2,250–$2,750', '$2,750–$4,000', '$4,000+'],
+    price: 'Starting range / $750–$2,750+',
+    fieldPrice: '$750–$2,750+',
+    budgets: ['$750–$1,250', '$1,250–$1,750', '$1,750–$2,250', '$2,250–$2,750', '$2,750–$4,000', '$4,000+'],
     copy: 'Share your date, ceremony location, guest count, timeline, and the moments that matter most. Expect candid storytelling, decisive flash, and portraits with real editorial presence.'
   },
   Commercial: {
