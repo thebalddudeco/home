@@ -99,6 +99,14 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .ticker { display: flex; overflow: hidden; background: var(--acid); color: var(--ink); border-block: 1px solid var(--ink); font-family: var(--font-display); font-size: clamp(1.25rem, 2.6vw, 2.65rem); font-weight: 900; text-transform: uppercase; white-space: nowrap; }
 .ticker div { min-width: max-content; padding: 11px 0 9px; animation: ticker 22s linear infinite; }
 @keyframes ticker { to { transform: translateX(-100%); } }
+.service-intro { padding: clamp(60px, 9vw, 130px) var(--page-gutter); background: var(--ink); color: white; }
+.service-intro > .label { margin: 0 0 clamp(35px, 5vw, 70px); color: var(--acid); }
+.service-intro-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, .75fr); gap: clamp(28px, 7vw, 110px); align-items: end; }
+.service-intro h2 { max-width: 12ch; margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(3rem, 7vw, 7.5rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
+.service-intro-grid > div { max-width: 34rem; font-size: clamp(1rem, 1.35vw, 1.2rem); line-height: 1.55; }
+.service-intro-grid > div p { margin: 0; }
+.service-intro-note { margin-top: 20px !important; color: var(--acid); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.service-intro .text-link { color: white; }
 .work { position: relative; overflow: hidden; padding: clamp(70px, 11vw, 160px) var(--page-gutter); background: var(--paper); color: var(--ink); }
 .section-head { display: grid; grid-template-columns: minmax(160px, .5fr) 1.6fr minmax(220px, .65fr); align-items: end; column-gap: clamp(20px, 3vw, 46px); margin-bottom: clamp(60px, 9vw, 120px); }
 .section-head p { margin: 0; text-transform: uppercase; font-size: .72rem; }
@@ -108,6 +116,16 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .section-head .apostrophe-gap { display: inline-block; margin-left: .03em; }
 .section-head > p:last-child { justify-self: start; }
 .section-no { writing-mode: vertical-rl; }
+.case-studies { padding: clamp(70px, 10vw, 145px) var(--page-gutter); background: var(--acid); color: var(--ink); }
+.case-studies-head { display: grid; grid-template-columns: minmax(170px,.6fr) minmax(0,1.4fr); gap: 30px; align-items: end; margin-bottom: 58px; }
+.case-studies-head .label { margin: 0; font-weight: 700; text-transform: uppercase; }
+.case-studies h2 { margin: 0; font-family: var(--font-display); font-size: clamp(3rem, 7vw, 7.5rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
+.case-study-list { border-top: 2px solid var(--ink); }
+.case-study-list a { display: grid; grid-template-columns: 50px 1fr 44px; gap: 18px; align-items: center; min-height: 92px; border-bottom: 2px solid var(--ink); color: var(--ink); text-decoration: none; transition: padding .18s ease, background .14s ease; }
+.case-study-list a:hover, .case-study-list a:focus-visible { padding-inline: 18px; background: var(--ink); color: white; outline: 0; }
+.case-study-list span { font-size: .72rem; font-weight: 700; }
+.case-study-list b { font-family: var(--font-display); font-size: clamp(1.25rem, 2.6vw, 2.8rem); line-height: 1; text-transform: uppercase; }
+.case-study-list i { color: var(--acid); font-size: 2.2rem; font-style: normal; text-align: right; }
 .image-wall { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-areas: "wide wide wide wide wide wide wide wide portrait portrait portrait portrait" "quote quote quote quote tall tall tall tall square square square square" "quote quote quote quote tall tall tall tall close close close close"; grid-template-rows: clamp(470px, 46vw, 820px) repeat(2, clamp(280px, 28vw, 500px)); gap: clamp(10px, 1.1vw, 18px); align-items: stretch; }
 .shot { position: relative; margin: 0; overflow: hidden; background: #111; }
 .shot img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08) saturate(.92); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
@@ -334,6 +352,11 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .hero-sequence { right: auto; bottom: 148px; left: 14px; }
   h1 { margin-bottom: 14px; font-size: clamp(3.7rem, 20vw, 6.4rem); }
   .hero-subcopy { max-width: 84vw; margin-bottom: 16px; font-size: .9rem; }
+  .service-intro-grid { grid-template-columns: 1fr; gap: 28px; }
+  .service-intro h2 { max-width: 10ch; }
+  .case-studies-head { grid-template-columns: 1fr; gap: 24px; }
+  .case-study-list a { grid-template-columns: 32px 1fr 30px; gap: 10px; }
+  .case-study-list b { font-size: clamp(1.2rem, 6vw, 2rem); }
   .enter { width: 210px; height: auto; }
   .section-head { grid-template-columns: 1fr auto; }
   .section-head h2 { grid-column: 1 / -1; grid-row: 2; }
