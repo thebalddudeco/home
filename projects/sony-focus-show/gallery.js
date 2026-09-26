@@ -5,8 +5,8 @@
   const root = '../../assets/sony-focus-show/';
   const fragment = document.createDocumentFragment();
   const videoFigure = document.createElement('figure');
-  videoFigure.className = 'project-video project-video-vertical';
-  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/sony-rooftop-motion-poster.jpg"><source src="../../assets/sony-rooftop-motion.mp4" type="video/mp4" /></video><figcaption><b>Motion / Rooftop</b><span>Sony Focus Show / NYC</span></figcaption>';
+  videoFigure.className = 'project-feature project-video project-video-landscape';
+  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/sony-rooftop-motion-poster.jpg"><source src="../../assets/sony-focus-show-feature.mp4" type="video/mp4" /></video><figcaption><b>Motion / Focus Show</b><span>Sony Focus Show / NYC</span></figcaption>';
   fragment.appendChild(videoFigure);
   files.forEach((file, index) => {
     const figure = document.createElement('figure');
