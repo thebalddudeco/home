@@ -20,6 +20,8 @@
 .project-gallery .project-feature { grid-column: 1 / -1; }
 .project-gallery .project-feature img { aspect-ratio: 16 / 9; }
 .project-gallery .project-video video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--ink); }
+.project-gallery .project-video-portrait video { aspect-ratio: 3 / 4; }
+.project-gallery .project-video-vertical video { aspect-ratio: 9 / 16; }
 .project-gallery figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0 0; font-size: .68rem; font-weight: 700; text-transform: uppercase; }
 .project-gallery figcaption span { color: #555; }
 .project-next { padding: clamp(70px,10vw,145px) var(--page-gutter); background: var(--acid); }
