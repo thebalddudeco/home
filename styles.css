@@ -86,6 +86,8 @@ a { color: inherit; }
 .intro-copy span { background: var(--acid); color: var(--ink); padding: 2px 5px; font-weight: 700; }
 .location { position: absolute !important; top: clamp(184px, 14vw, 228px); right: var(--page-gutter); margin: 0; font-size: .65rem; line-height: 1.45; text-align: right; text-transform: uppercase; }
 h1 { margin: 0 0 26px; font-family: var(--font-display); font-size: clamp(4.3rem, 12.8vw, 12rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
+#hero-title { width: 100%; min-width: 0; max-width: 100%; font-size: clamp(4rem, 11vw, 12rem); overflow-wrap: anywhere; }
+#hero-title span, #hero-title strong { max-width: 100%; }
 .hero h1 { margin-left: -.08em; }
 h1 span { display: block; color: transparent; -webkit-text-stroke: clamp(1px, .13vw, 3px) white; }
 h1 strong { display: block; color: var(--acid); font-weight: inherit; }
@@ -357,6 +359,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .hero-brand { display: none; }
   .hero-sequence { right: auto; bottom: 148px; left: 14px; }
   h1 { margin-bottom: 14px; font-size: clamp(3.7rem, 20vw, 6.4rem); }
+  #hero-title { font-size: clamp(3.7rem, 20vw, 6.4rem); }
   .hero-subcopy { max-width: 84vw; margin-bottom: 16px; font-size: .9rem; }
   .service-intro-grid { grid-template-columns: 1fr; gap: 28px; }
   .service-intro h2 { max-width: 10ch; }
