@@ -19,6 +19,7 @@
 .service-hero > .service-lede { grid-column: 1; max-width: 42rem; }
 .service-hero > h1 { grid-column: 1 / -1; }
 .service-hero .hero-line { white-space: nowrap; }
+.service-hero { row-gap: 0; }
 .service-directory { padding: clamp(60px,9vw,130px) var(--page-gutter); background: var(--acid); color: var(--ink); }
 .service-directory h2, .service-process h2, .service-detail-grid h2, .service-cta h2 { margin: 24px 0 55px; font-family: var(--font-display); font-size: clamp(3rem,7vw,7.5rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
 .service-cards { border-top: 2px solid var(--ink); }
