@@ -7,11 +7,11 @@
   const gallery = document.querySelector('.project-gallery');
   if (!gallery) return;
   const files = ['DSCF0001.jpg','DSCF0005.jpg','DSCF0009.jpg','DSCF0011.jpg','DSCF0015.jpg','DSCF0019.jpg','DSCF0021.jpg','DSCF0028.jpg','DSCF0034.jpg','DSCF0046.jpg','DSCF0059.jpg','DSCF0063.jpg','DSCF0066.jpg','DSCF0072.jpg','DSCF0076.jpg','DSCF0090.jpg','DSCF0094.jpg','DSCF0104.jpg','DSCF0111.jpg','DSCF0113.jpg','DSCF0126.jpg','DSCF0134.jpg','DSCF0141.jpg','DSCF0155.jpg','DSCF0182.jpg','DSCF0195.jpg','DSCF0224.jpg','DSCF0234.jpg','DSCF0259.jpg','DSCF0275.jpg','DSCF0314.jpg','DSCF0335.jpg','DSCF0392.jpg','DSCF0440.jpg','DSCF0463.jpg','DSCF0478.jpg','DSCF0490.jpg','DSCF0533.jpg','DSCF0588.jpg','DSCF0625.jpg'];
-  const root = '../../assets/joyce-alex/';
+  const root = 'https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/joyce-alex/';
   const fragment = document.createDocumentFragment();
   const videoFigure = document.createElement('figure');
   videoFigure.className = 'project-feature project-video project-video-landscape';
-  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/joyce-alex/DSCF0001.jpg"><source src="../../assets/joyce-alex/joyce-alex-5.mp4" type="video/mp4" /></video><figcaption><b>Motion / 5</b><span>Joyce + Alex / New York</span></figcaption>';
+  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/joyce-alex/DSCF0001.jpg"><source src="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/joyce-alex/joyce-alex-5.mp4" type="video/mp4" /></video><figcaption><b>Motion / 5</b><span>Joyce + Alex / New York</span></figcaption>';
   fragment.appendChild(videoFigure);
   files.forEach((file, index) => {
     const figure = document.createElement('figure');

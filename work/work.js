@@ -110,7 +110,7 @@ const loadArchive = async () => {
     carousels.forEach((carousel) => {
       const track = carousel.querySelector('[data-carousel-track]');
       const count = carousel.querySelector('[data-gallery-count]');
-      const fallback = (localGallery[carousel.dataset.gallery] || []).map((file) => ({ type: 'image', url: '../assets/' + file, width: 3, height: 4 }));
+      const fallback = (localGallery[carousel.dataset.gallery] || []).map((file) => ({ type: 'image', url: 'https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/' + file, width: 3, height: 4 }));
       const fragment = document.createDocumentFragment();
       fallback.forEach((item, index) => fragment.appendChild(createMediaCard(item, carousel.dataset.gallery.replaceAll('-', ' '), index)));
       track.replaceChildren(fragment);

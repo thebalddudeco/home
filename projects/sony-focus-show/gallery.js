@@ -8,11 +8,11 @@
   if (!gallery) return;
   document.querySelector('.project-header p b')?.replaceChildren(document.createTextNode('Sony x Focus / NYC'));
   const files = ['DSCF0743.jpg','DSCF0745.jpg','DSCF0763.jpg','DSCF0765.jpg','DSCF0766.jpg','DSCF0768.jpg','DSCF0773.jpg','DSCF0774.jpg','DSCF0778.jpg','DSCF0785.jpg','DSCF0787.jpg','DSCF0791.jpg','DSCF0795.jpg','DSCF0798.jpg','DSCF0804.jpg','DSCF0809.jpg','DSCF0824.jpg','DSCF0837.jpg','DSCF0839.jpg','DSCF0851.jpg','DSCF0874.jpg','DSCF0877.jpg','DSCF0881.jpg','DSCF0888.jpg','DSCF0891.jpg','DSCF0904.jpg','DSCF0908.jpg','DSCF0914.jpg','DSCF0916.jpg','DSCF0922.jpg','DSCF0928.jpg','DSCF0932.jpg','DSCF0936.jpg','DSCF0939.jpg','DSCF0945.jpg','DSCF0946.jpg','DSCF0952.jpg','DSCF0957.jpg','DSCF0966.jpg','DSCF0970.jpg','DSCF0971.jpg','DSCF0976.jpg','DSCF0977.jpg','DSCF0978.jpg','DSCF0979.jpg','DSCF0980.jpg','DSCF0982.jpg','DSCF0990.jpg','DSCF0992.jpg','DSCF0999.jpg','DSCF1002.jpg','DSCF1005.jpg','DSCF1006.jpg','DSCF1009.jpg','DSCF1010.jpg','DSCF1016.jpg','DSCF1021.jpg','DSCF1023.jpg','DSCF1024.jpg','DSCF1025.jpg','DSCF1026.jpg','DSCF1028.jpg','DSCF1036.jpg','DSCF1037.jpg','DSCF1041.jpg','DSCF1044.jpg','DSCF1047.jpg','DSCF1050.jpg','DSCF1054.jpg','DSCF1055.jpg','DSCF1056.jpg','DSCF1057.jpg','DSCF1060.jpg','DSCF1061.jpg','DSCF1064.jpg','DSCF1065.jpg','DSCF1066.jpg','DSCF1067.jpg','DSCF1079.jpg','DSCF1097.jpg','DSCF1106.jpg','DSCF1109.jpg','DSCF1110.jpg','DSCF1112.jpg','DSCF1116.jpg','DSCF1118.jpg'];
-  const root = '../../assets/sony-focus-show/';
+  const root = 'https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/sony-focus-show/';
   const fragment = document.createDocumentFragment();
   const videoFigure = document.createElement('figure');
   videoFigure.className = 'project-feature project-video project-video-landscape';
-  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/sony-rooftop-motion-poster.jpg"><source src="../../assets/sony-focus-show-feature.mp4?v=20260928-1" type="video/mp4" /></video><figcaption><b>Motion / Focus</b><span>Sony x Focus / NYC</span></figcaption>';
+  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/sony-rooftop-motion-poster.jpg"><source src="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/sony-focus-show/sony-focus-show-feature.mp4?v=20260928-1" type="video/mp4" /></video><figcaption><b>Motion / Focus</b><span>Sony x Focus / NYC</span></figcaption>';
   fragment.appendChild(videoFigure);
   files.forEach((file, index) => {
     const figure = document.createElement('figure');
