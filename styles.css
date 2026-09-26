@@ -108,7 +108,10 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .service-intro-note { margin-top: 20px !important; color: var(--acid); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .service-intro .text-link { color: white; }
 .work { position: relative; overflow: hidden; padding: clamp(70px, 11vw, 160px) var(--page-gutter); background: var(--paper); color: var(--ink); }
-.section-head { display: grid; grid-template-columns: minmax(160px, .5fr) 1.6fr minmax(220px, .65fr); align-items: end; column-gap: clamp(20px, 3vw, 46px); margin-bottom: clamp(60px, 9vw, 120px); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: clamp(20px, 3vw, 46px); margin-bottom: clamp(60px, 9vw, 120px); }
+.section-head-copy { display: flex; flex-direction: column; align-items: flex-start; }
+.section-head-copy h2 { order: 1; }
+.section-head-copy p { order: 2; }
 .section-head p { margin: 0; text-transform: uppercase; font-size: .72rem; }
 .section-head > p:first-child { font-weight: 700; }
 .section-head h2, .about h2, .services h2, .contact h2 { margin: 0; font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: var(--display-tracking); }
@@ -117,7 +120,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .section-head > p:last-child { justify-self: start; }
 .section-no { writing-mode: vertical-rl; }
 .case-studies { padding: clamp(70px, 10vw, 145px) var(--page-gutter); background: var(--acid); color: var(--ink); }
-.case-studies-head { display: grid; grid-template-columns: minmax(170px,.6fr) minmax(0,1.4fr); gap: 30px; align-items: end; margin-bottom: 58px; }
+.case-studies-head { display: grid; grid-template-columns: minmax(0,1fr); gap: 24px; align-items: end; margin-bottom: 58px; }
 .case-studies-head .label { margin: 0; font-weight: 700; text-transform: uppercase; }
 .case-studies h2 { margin: 0; font-family: var(--font-display); font-size: clamp(3rem, 7vw, 7.5rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
 .case-study-list { border-top: 2px solid var(--ink); }
@@ -168,7 +171,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .wedding-frame-carry { grid-column: 8 / -1; aspect-ratio: 1.12; margin-top: -2vw; }
 .reels { position: relative; padding: clamp(75px, 11vw, 155px) var(--page-gutter); overflow: hidden; background: var(--ink); color: white; }
 .reels::before { content: "REC"; position: absolute; top: -3vw; right: -1.5vw; color: transparent; -webkit-text-stroke: 1px rgba(255,0,76,.2); font-family: var(--font-display); font-size: clamp(8rem, 28vw, 30rem); font-weight: 900; line-height: 1; pointer-events: none; }
-.reels-head { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(160px, .5fr) 1.6fr minmax(220px, .65fr); column-gap: clamp(20px, 3vw, 46px); align-items: end; margin-bottom: clamp(45px, 7vw, 95px); }
+.reels-head { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .65fr); column-gap: clamp(20px, 3vw, 46px); align-items: end; margin-bottom: clamp(45px, 7vw, 95px); }
+.reels-head .section-head-copy { grid-column: 1; }
 .reels-head .label, .reels-head > p { margin: 0; }
 .reels-head h2 { margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 9.5rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
 .reels-head > p:last-child { max-width: 24rem; padding-bottom: 8px; font-size: .75rem; line-height: 1.55; text-transform: uppercase; }
