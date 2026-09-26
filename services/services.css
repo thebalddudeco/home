@@ -38,7 +38,7 @@
 .service-process-copy h2 { max-width: none; }
 .service-process-copy > div { max-width: 42rem; font-size: clamp(1rem,1.3vw,1.18rem); line-height: 1.6; }
 .service-process-copy > div p { margin: 0; }
-.service-process h2, .service-detail-grid h2 { margin: 0; max-width: 10ch; }
+.service-detail-grid h2 { margin: 0; max-width: 10ch; }
 .service-process > div, .service-detail-grid > div:last-child { max-width: 42rem; font-size: clamp(1rem,1.3vw,1.18rem); line-height: 1.6; }
 .service-process > div p, .service-detail-grid > div:last-child p { margin: 0; }
 .service-button { display: inline-flex; align-items: center; gap: 18px; margin-top: 28px; padding: 16px 18px; background: var(--acid); color: var(--ink); font-weight: 900; text-decoration: none; text-transform: uppercase; }
@@ -66,7 +66,7 @@
   .service-cards em { display: none; }
   .service-process, .service-detail-grid { grid-template-columns: 1fr; gap: 28px; }
   .service-process-copy { grid-template-columns: 1fr; gap: 28px; }
-  .service-process h2, .service-detail-grid h2 { max-width: 9ch; }
+  .service-detail-grid h2 { max-width: 9ch; }
   .service-detail-grid ul { grid-template-columns: 1fr; }
   .service-footer { flex-wrap: wrap; }
   .service-footer span { width: 100%; }
