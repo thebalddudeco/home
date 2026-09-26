@@ -9,7 +9,7 @@
 .service-close .material-symbols-outlined { font-size: clamp(3rem,4.5vw,4.8rem); transform: rotate(-45deg); transition: transform .24s cubic-bezier(.2,.8,.2,1); }
 .service-close:hover, .service-close:focus-visible { outline: 0; background: var(--ink); color: var(--acid); }
 .service-close:hover .material-symbols-outlined, .service-close:focus-visible .material-symbols-outlined { transform: rotate(0); }
-.service-hero, .service-detail-hero { min-height: min(70svh,760px); display: grid; grid-template-columns: minmax(0,1.35fr) minmax(260px,.65fr); grid-template-rows: auto 1fr auto; gap: 24px 56px; align-items: end; padding: clamp(54px,8vw,120px) clamp(18px,5vw,76px); background: var(--ink); color: white; overflow: hidden; }
+.service-hero, .service-detail-hero { min-height: min(70svh,760px); display: grid; grid-template-columns: minmax(0,1.35fr) minmax(260px,.65fr); grid-template-rows: auto 1fr auto; gap: 24px 56px; align-items: end; padding: clamp(54px,8vw,120px) var(--page-gutter); background: var(--ink); color: white; overflow: hidden; }
 .service-hero::after, .service-detail-hero::after { content: "DIRECT FLASH"; grid-column: 1 / -1; position: absolute; right: -1vw; top: 16%; color: transparent; -webkit-text-stroke: 1px rgba(255,0,76,.35); font-family: var(--font-display); font-size: clamp(5rem,15vw,16rem); line-height: .78; transform: rotate(-8deg); pointer-events: none; }
 .service-hero > *, .service-detail-hero > * { position: relative; z-index: 1; }
 .service-kicker { margin: 0; color: var(--acid); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
