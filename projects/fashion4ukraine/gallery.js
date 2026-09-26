@@ -2,7 +2,7 @@
   document.querySelector('.project-close')?.setAttribute('href', '../../');
   const style = document.createElement('link');
   style.rel = 'stylesheet';
-  style.href = '../project.css?v=20260926-3';
+  style.href = '../project.css?v=20260928-2';
   document.head.appendChild(style);
   const gallery = document.querySelector('.project-gallery');
   if (!gallery) return;
@@ -10,11 +10,12 @@
   const root = '../../assets/fashion4ukraine/';
   const fragment = document.createDocumentFragment();
   const videoFigure = document.createElement('figure');
-  videoFigure.className = 'project-video project-video-portrait';
+  videoFigure.className = 'project-gallery-tile project-video project-video-portrait';
   videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/fashion4ukraine/DSCF0112.jpg"><source src="../../assets/fashion4ukraine/fashion4ukraine-1.mp4" type="video/mp4" /></video><figcaption><b>Motion / 1</b><span>Fashion4Ukraine / Backstage</span></figcaption>';
   fragment.appendChild(videoFigure);
   files.forEach((file, index) => {
     const figure = document.createElement('figure');
+    figure.className = 'project-gallery-tile';
     const image = document.createElement('img');
     image.src = root + file;
     image.alt = 'Fashion4Ukraine backstage photograph ' + (index + 1);

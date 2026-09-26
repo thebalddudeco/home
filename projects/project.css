@@ -16,6 +16,7 @@
 .project-hero > p:last-child { max-width: 31rem; margin: 0 0 8px; font-size: clamp(1rem,1.45vw,1.3rem); line-height: 1.5; }
 .project-gallery { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(10px,1.2vw,18px); padding: clamp(40px,7vw,100px) var(--page-gutter); background: var(--paper); }
 .project-gallery figure { margin: 0; }
+.project-gallery .project-gallery-tile { grid-column: auto !important; }
 .project-gallery img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: contrast(1.07) saturate(.94); }
 .project-gallery .project-feature { grid-column: 1 / -1; }
 .project-gallery .project-feature img { aspect-ratio: 16 / 9; }
