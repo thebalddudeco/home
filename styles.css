@@ -23,12 +23,12 @@ a { color: inherit; }
 .mark, .nav-signal, .nav-controls { pointer-events: auto; }
 .mark { flex: 0 0 82px; display: grid; place-items: center; overflow: hidden; background: var(--acid); color: var(--ink); text-decoration: none; }
 .mark img { display: block; width: 54px; height: 40px; object-fit: contain; }
-.nav-signal { display: grid; align-content: center; gap: 3px; min-width: 210px; margin: 0; padding: 0 16px; border: 1px solid var(--line); border-left: 0; background: rgba(4,5,7,.9); text-transform: uppercase; }
+.nav-signal { display: grid; align-content: center; gap: 3px; min-width: 210px; margin: 0; padding: 0 16px; border: 1px solid var(--line); border-left: 0; background: var(--ink); text-transform: uppercase; }
 .nav-signal span { color: var(--acid); font-size: .6rem; font-weight: 700; letter-spacing: .12em; }
 .nav-signal b { font-size: .66rem; letter-spacing: .035em; }
 .nav-controls { display: flex; margin-left: auto; }
 .menu-trigger, .booking-link { min-width: 150px; border: 1px solid var(--line); padding: 0 18px; text-transform: uppercase; text-decoration: none; font: 700 .76rem/1 var(--font-body); cursor: pointer; }
-.menu-trigger { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: rgba(4,5,7,.92); color: white; }
+.menu-trigger { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--ink); color: white; }
 .menu-trigger b { color: var(--acid); font-size: .58rem; }
 .menu-trigger:hover, .menu-trigger:focus-visible { outline: 0; background: white; color: var(--ink); }
 .booking-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-left: 0; background: var(--acid); color: var(--ink); }
