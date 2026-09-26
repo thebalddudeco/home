@@ -1,4 +1,8 @@
 (() => {
+  const style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.href = '../project.css?v=20260926-3';
+  document.head.appendChild(style);
   const gallery = document.querySelector('.project-gallery');
   if (!gallery) return;
   document.querySelector('.project-header p b')?.replaceChildren(document.createTextNode('Sony x Focus / NYC'));
