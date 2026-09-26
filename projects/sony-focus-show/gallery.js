@@ -11,7 +11,7 @@
   const fragment = document.createDocumentFragment();
   const videoFigure = document.createElement('figure');
   videoFigure.className = 'project-feature project-video project-video-landscape';
-  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/sony-rooftop-motion-poster.jpg"><source src="../../assets/sony-focus-show-feature.mp4" type="video/mp4" /></video><figcaption><b>Motion / Focus</b><span>Sony x Focus / NYC</span></figcaption>';
+  videoFigure.innerHTML = '<video controls playsinline preload="metadata" poster="../../assets/sony-rooftop-motion-poster.jpg"><source src="../../assets/sony-focus-show-feature.mp4?v=20260927-1" type="video/mp4" /></video><figcaption><b>Motion / Focus</b><span>Sony x Focus / NYC</span></figcaption>';
   fragment.appendChild(videoFigure);
   files.forEach((file, index) => {
     const figure = document.createElement('figure');
