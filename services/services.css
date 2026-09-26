@@ -38,6 +38,7 @@
 .service-process-copy { margin-top: clamp(32px, 5vw, 70px); }
 .service-process > .service-process-copy { max-width: none; font-size: inherit; line-height: normal; }
 .service-process-copy h2 { margin: 0 0 12px; }
+.service-process-copy h2 { margin-left: -.04em; }
 .service-process-copy h2 { max-width: none; }
 .service-process-copy > div { max-width: 42rem; font-size: clamp(1rem,1.3vw,1.18rem); line-height: 1.6; }
 .service-process-copy > div p { margin: 0; }
