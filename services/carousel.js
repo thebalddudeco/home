@@ -12,6 +12,11 @@
   const target = document.querySelector('.service-cta');
   if (!serviceKey || !target) return;
 
+  target.querySelector('.service-button')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = `../../?contact=${encodeURIComponent({ 'editorial-fashion': 'Fashion + Editorial', events: 'Events + Backstage', portraits: 'Portraits', weddings: 'Weddings', commercial: 'Commercial' }[serviceKey])}#contact-form`;
+  });
+
   const label = pageNames[serviceKey];
   const section = document.createElement('section');
   section.className = 'gallery-room gallery-room-pink service-category-carousel';

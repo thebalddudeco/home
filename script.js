@@ -424,6 +424,17 @@ if (contactDialog && contactForm) {
   });
   contactDialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
 
+  const requestedService = new URLSearchParams(window.location.search).get('contact');
+  if (window.location.hash === '#contact-form') {
+    if (requestedService && contactProjectType) {
+      contactProjectType.value = requestedService;
+      contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    contactDialog.showModal();
+    document.body.classList.add('dialog-open');
+    window.setTimeout(() => contactForm.querySelector('input:not([type="hidden"])')?.focus(), 0);
+  }
+
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const submitButton = contactForm.querySelector('button[type="submit"]');
