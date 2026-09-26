@@ -112,3 +112,20 @@ const loadArchive = async () => {
 };
 
 loadArchive();
+
+const archiveContactTrigger = document.querySelector('.archive-cta-button');
+if (archiveContactTrigger) {
+  const dialog = document.createElement('dialog');
+  dialog.className = 'contact-dialog';
+  dialog.setAttribute('aria-labelledby', 'archive-contact-title');
+  dialog.innerHTML = '<div class="contact-dialog-shell"><button class="contact-dialog-close" type="button" aria-label="Close contact form"><span class="material-symbols-outlined" aria-hidden="true">close</span></button><div class="contact-dialog-intro"><p class="label">NEW WORK / NEW YORK + WORLDWIDE</p><h2 id="archive-contact-title">TELL ME WHAT<br />WE’RE MAKING.</h2><p class="contact-dialog-price">CUSTOM COMMISSIONS / QUOTED TO SCOPE</p><p>Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.</p></div><form class="contact-form" action="https://formsubmit.co/info@thebalddude.co" method="POST"><input type="hidden" name="_subject" value="NEW CLIENT" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="Requested Service" value="General inquiry" /><input type="hidden" name="Starting Price Range" value="Custom quote" /><label><span>Name *</span><input type="text" name="Name" autocomplete="name" required /></label><label><span>Email *</span><input type="email" name="email" autocomplete="email" required /></label><label><span>Phone</span><input type="tel" name="Phone" autocomplete="tel" /></label><label><span>Project type *</span><select name="Project Type" required><option value="">Choose one</option><option>Fashion + Editorial</option><option>Events + Backstage</option><option>Portraits</option><option>Weddings</option><option>Commercial</option><option>Other</option></select></label><label><span>Target date</span><input type="date" name="Target Date" /></label><label class="contact-form-wide"><span>Instagram / website</span><input type="url" name="Instagram or Website" placeholder="https://" /></label><label class="contact-form-wide"><span>Tell me about the project *</span><textarea name="Project Details" rows="6" required></textarea></label><div class="contact-form-actions contact-form-wide"><button type="submit">Send inquiry <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></button></div></form></div>';
+  document.body.appendChild(dialog);
+  const close = () => dialog.close();
+  dialog.querySelector('.contact-dialog-close').addEventListener('click', close);
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) close(); });
+  archiveContactTrigger.addEventListener('click', (event) => {
+    event.preventDefault();
+    dialog.showModal();
+    window.setTimeout(() => dialog.querySelector('input[name="Name"]')?.focus(), 0);
+  });
+}
