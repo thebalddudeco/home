@@ -15,11 +15,11 @@
   const label = pageNames[serviceKey];
   const projectType = { 'editorial-fashion': 'Fashion + Editorial', events: 'Events + Backstage', portraits: 'Portraits', weddings: 'Weddings', commercial: 'Commercial' }[serviceKey];
   const contactCopy = {
-    'editorial-fashion': ['CAMPAIGNS / LOOKBOOKS / STREET STORIES', 'MAKE IT<br />EDITORIAL.', 'STARTING RANGE / $950–$3,200+', 'Tell me about the collection, talent, locations, deliverables, and where the photographs will live. I’ll shape the right level of production around the story.'],
-    events: ['FASHION WEEK / RED CARPET / AFTER DARK', 'PUT ME<br />IN THE ROOM.', 'STARTING RANGE / $750–$3,750+', 'Share the date, venue, run of show, access, guest count, and turnaround needs.'],
-    portraits: ['ARTISTS / FOUNDERS / PEOPLE WITH PRESENCE', 'STEP INTO<br />THE FRAME.', 'STARTING RANGE / $650–$1,350', 'Tell me who the photographs are for, how you want to be seen, and where the images will be used.'],
-    weddings: ['COURTHOUSE / INTIMATE / BEAUTIFULLY UNFORCED', 'LET IT FEEL<br />LIKE YOURS.', 'STARTING RANGE / $750–$2,750+', 'Share your date, ceremony location, guest count, timeline, and the moments that matter most.'],
-    commercial: ['PRODUCT / BRAND / SOCIAL CAMPAIGNS', 'BUILD THE<br />CAMPAIGN.', 'CREATIVE FEES / $1,500–$5,000+', 'Tell me about the brand, campaign, deliverables, usage, timeline, and production needs.']
+    'editorial-fashion': ['CAMPAIGNS / LOOKBOOKS / STREET STORIES', 'MAKE IT<br />EDITORIAL.', 'STARTING RANGE / $950–$3,200+', 'Tell me what you’re making, who is involved, where we’re shooting, and what you need to deliver.'],
+    events: ['FASHION WEEK / RED CARPET / AFTER DARK', 'PUT ME<br />IN THE ROOM.', 'STARTING RANGE / $750–$3,750+', 'Send the date, venue, schedule, guest count, and anything else I should know about the event.'],
+    portraits: ['ARTISTS / FOUNDERS / PEOPLE WITH PRESENCE', 'STEP INTO<br />THE FRAME.', 'STARTING RANGE / $650–$1,350', 'Tell me who the portraits are for, how you want to come across, and where you’ll use the images.'],
+    weddings: ['COURTHOUSE / INTIMATE / BEAUTIFULLY UNFORCED', 'LET IT FEEL<br />LIKE YOURS.', 'STARTING RANGE / $750–$2,750+', 'Send the date, ceremony location, guest count, and what you already have planned.'],
+    commercial: ['PRODUCT / BRAND / SOCIAL CAMPAIGNS', 'BUILD THE<br />CAMPAIGN.', 'CREATIVE FEES / $1,500–$5,000+', 'Tell me about the brand, the deliverables, the timeline, and where the images will be used.']
   }[serviceKey];
   const dialog = document.createElement('dialog');
   dialog.className = 'contact-dialog';
