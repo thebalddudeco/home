@@ -108,6 +108,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .service-intro-grid > div p { margin: 0; }
 .service-intro-note { margin-top: 20px !important; color: var(--acid); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .service-intro .text-link { color: white; }
+h2 { margin-left: -.05em !important; }
 .work { position: relative; overflow: hidden; padding: clamp(70px, 11vw, 160px) var(--page-gutter); background: var(--paper); color: var(--ink); }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: clamp(20px, 3vw, 46px); margin-bottom: clamp(60px, 9vw, 120px); }
 .section-head-copy { display: flex; flex-direction: column; align-items: flex-start; }
