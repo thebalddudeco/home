@@ -74,6 +74,19 @@
 .service-category-carousel .gallery-track figcaption { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0 0; font-size: .68rem; font-weight: 700; text-transform: uppercase; }
 .service-category-carousel .gallery-track figcaption span { color: var(--acid); }
 .service-category-carousel .gallery-loading, .service-category-carousel .gallery-error { grid-row: 1; align-self: center; min-height: 240px; margin: 0; display: grid; place-items: center; border: 2px solid currentColor; padding: 28px; font-size: .76rem; font-weight: 700; text-transform: uppercase; }
+.service-category-carousel { --room-bg: var(--acid); --room-fg: var(--ink); padding: 8px 0 18px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); background: var(--acid); color: var(--ink); }
+.service-category-carousel .gallery-room-head { display: flex; justify-content: flex-end; align-items: center; min-height: 44px; padding: 0 clamp(18px, 4vw, 60px) 8px; }
+.service-category-carousel .gallery-room-head > span, .service-category-carousel .gallery-room-head h2 { display: none; }
+.service-category-carousel .gallery-count { margin: 0 14px 0 0; color: var(--ink); font-size: .62rem; }
+.service-category-carousel .gallery-controls { align-self: center; }
+.service-category-carousel .gallery-controls button { width: 42px; height: 30px; aspect-ratio: auto; border: 1px solid var(--ink); }
+.service-category-carousel .gallery-controls button:last-child { border-left: 0; }
+.service-category-carousel .gallery-controls .material-symbols-outlined { font-size: 1.4rem; }
+.service-category-carousel .gallery-track { grid-auto-columns: clamp(220px, 17vw, 330px); gap: 7px; scrollbar-color: var(--ink) transparent; padding: 0 clamp(8px, 3vw, 42px) 0; }
+.service-category-carousel .gallery-track img { aspect-ratio: 3 / 4; filter: grayscale(1) contrast(1.12); }
+.service-category-carousel .gallery-track figcaption { padding: 5px 2px 0; color: var(--ink); font-size: .55rem; }
+.service-category-carousel .gallery-track figcaption span { color: var(--ink); font-weight: 400; }
+.service-category-carousel .gallery-loading, .service-category-carousel .gallery-error { min-height: 180px; border-color: var(--ink); }
 @media (max-width: 720px) {
   .service-category-carousel .gallery-room-head { grid-template-columns: 32px minmax(0, 1fr); gap: 8px; }
   .service-category-carousel h2 { font-size: clamp(3rem, 16vw, 6rem); }

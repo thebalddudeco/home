@@ -14,8 +14,8 @@
 
   const label = pageNames[serviceKey];
   const section = document.createElement('section');
-  section.className = 'gallery-room gallery-room-black service-category-carousel';
-  section.innerHTML = `<header class="gallery-room-head"><span>Selected work</span><h2>${label}</h2><p class="gallery-count" data-gallery-count aria-live="polite">Loading</p><div class="gallery-controls" aria-label="${label} gallery controls"><button type="button" data-carousel-prev aria-label="Previous images"><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></button><button type="button" data-carousel-next aria-label="Next images"><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button></div></header><div class="gallery-track" data-carousel-track tabindex="0" aria-label="${label} photographs"><p class="gallery-loading">Loading archive…</p></div></section>`;
+  section.className = 'gallery-room gallery-room-pink service-category-carousel';
+  section.innerHTML = `<header class="gallery-room-head"><span aria-hidden="true"></span><h2 aria-hidden="true"></h2><p class="gallery-count" data-gallery-count aria-live="polite">Loading</p><div class="gallery-controls" aria-label="${label} gallery controls"><button type="button" data-carousel-prev aria-label="Previous images"><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></button><button type="button" data-carousel-next aria-label="Next images"><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button></div></header><div class="gallery-track" data-carousel-track tabindex="0" aria-label="${label} photographs"><p class="gallery-loading">Loading archive…</p></div></section>`;
   target.before(section);
 
   const track = section.querySelector('[data-carousel-track]');
