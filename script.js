@@ -208,9 +208,9 @@ const contactCards = {
   Portraits: {
     kicker: 'Artists / founders / people with presence',
     title: 'Step into<br />the frame.',
-    price: 'Starting range / $650–$1,350',
-    fieldPrice: '$650–$1,350',
-    budgets: ['$650–$1,000', '$1,000–$1,350', '$1,350–$2,000', '$2,000+'],
+    price: 'Starting range / $350–$1,350',
+    fieldPrice: '$350–$1,350',
+    budgets: ['$350–$650', '$650–$1,000', '$1,000–$1,350', '$1,350–$2,000', '$2,000+'],
     copy: 'Tell me who the photographs are for, how you want to be seen, and where the images will be used. We’ll build the location, styling, and direction around your point of view.'
   },
   Weddings: {
