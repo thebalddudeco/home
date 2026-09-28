@@ -187,6 +187,68 @@ const contactKicker = document.querySelector('[data-contact-kicker]');
 const contactTitle = document.querySelector('[data-contact-title]');
 const contactPrice = document.querySelector('[data-contact-price]');
 const contactCopy = document.querySelector('[data-contact-copy]');
+const contactShell = document.querySelector('.contact-dialog-shell');
+const campaignMedia = document.querySelector('[data-campaign-media]');
+const campaignVideo = campaignMedia?.querySelector('video');
+const campaignCopy = document.querySelector('[data-campaign-copy]');
+const genericContactCopy = document.querySelector('[data-generic-contact-copy]');
+const campaignTimer = document.querySelector('[data-campaign-timer]');
+const campaignSubmit = contactForm?.querySelector('button[type="submit"]');
+let campaignMode = false;
+
+const campaignStart = new Date('2026-10-01T00:00:00-04:00');
+const campaignEnd = new Date('2026-11-01T00:00:00-04:00');
+
+const setCampaignMode = (active) => {
+  campaignMode = active;
+  contactShell?.classList.toggle('campaign-active', active);
+  if (campaignMedia) campaignMedia.hidden = !active;
+  if (campaignCopy) campaignCopy.hidden = !active;
+  if (genericContactCopy) genericContactCopy.hidden = active;
+  if (campaignVideo) {
+    if (active) campaignVideo.play().catch(() => {});
+    else campaignVideo.pause();
+  }
+  if (active) {
+    if (contactProjectType) contactProjectType.value = 'Be My Model Campaign';
+    if (contactServiceField) contactServiceField.value = 'Be My Model Campaign';
+    if (contactPriceField) contactPriceField.value = '$350';
+    if (contactBudgetSelect) {
+      contactBudgetSelect.replaceChildren(new Option('Choose a range', ''), new Option('$350', '$350'));
+      contactBudgetSelect.selectedIndex = 1;
+      contactBudgetSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+};
+
+const updateCampaignTimer = () => {
+  if (!campaignTimer) return;
+  const now = new Date();
+  const target = now < campaignStart ? campaignStart : campaignEnd;
+  const difference = target.getTime() - now.getTime();
+  if (now >= campaignEnd) {
+    campaignTimer.textContent = 'This October campaign has ended.';
+    campaignTimer.classList.add('is-closed');
+    if (campaignSubmit) campaignSubmit.disabled = true;
+    return;
+  }
+  const totalSeconds = Math.max(0, Math.floor(difference / 1000));
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const pad = (value) => String(value).padStart(2, '0');
+  campaignTimer.textContent = now < campaignStart
+    ? `Opens in ${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`
+    : `October bookings close in ${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+  campaignTimer.classList.remove('is-closed');
+  if (campaignSubmit) campaignSubmit.disabled = now < campaignStart;
+};
+
+if (campaignTimer) {
+  updateCampaignTimer();
+  window.setInterval(updateCampaignTimer, 1000);
+}
 
 const contactCards = {
   'Fashion + Editorial': {
@@ -398,9 +460,12 @@ if (contactDialog && contactForm) {
     trigger.addEventListener('click', (event) => {
       event.preventDefault();
       const service = trigger.dataset.service || '';
+      setCampaignMode(!service);
       if (contactProjectType) {
-        contactProjectType.value = service;
-        contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
+        if (service) {
+          contactProjectType.value = service;
+          contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
+        }
       }
       if (contactStatus) {
         contactStatus.textContent = '';
@@ -425,8 +490,11 @@ if (contactDialog && contactForm) {
   contactDialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
 
   const requestedService = new URLSearchParams(window.location.search).get('contact');
+  const requestedCampaign = new URLSearchParams(window.location.search).get('campaign');
   if (window.location.hash === '#contact-form') {
-    if (requestedService && contactProjectType) {
+    if (requestedCampaign === 'be-my-model' || (!requestedCampaign && !requestedService)) {
+      setCampaignMode(true);
+    } else if (requestedService && contactProjectType) {
       contactProjectType.value = requestedService;
       contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
     }
@@ -457,7 +525,8 @@ if (contactDialog && contactForm) {
       if (!response.ok || result.success === false) throw new Error('Submission failed');
 
       contactForm.reset();
-      applyContactCard();
+      if (campaignMode) setCampaignMode(true);
+      else applyContactCard();
       window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {

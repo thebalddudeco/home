@@ -249,6 +249,15 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog { width: min(1500px, calc(100vw - 32px)); max-height: calc(100svh - 24px); padding: 0; border: 2px solid var(--acid); background: var(--ink); color: white; box-shadow: 18px 18px 0 var(--acid); }
 .contact-dialog::backdrop { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
 .contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(560px, .95fr) minmax(520px, 1.05fr); gap: clamp(72px, 5vw, 104px); padding: clamp(32px, 4vw, 56px); }
+.contact-dialog-shell.campaign-active { grid-template-columns: minmax(320px, .82fr) minmax(520px, 1.18fr); gap: clamp(36px, 4vw, 72px); }
+.campaign-media { min-width: 0; align-self: stretch; background: #050505; border: 1px solid rgba(255,255,255,.18); }
+.campaign-media video { display: block; width: 100%; height: 100%; min-height: 520px; max-height: min(76svh, 760px); object-fit: cover; object-position: center; }
+.campaign-lede { max-width: 39rem; margin-top: 20px; font-size: 1rem; line-height: 1.55; }
+.campaign-package { display: grid; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; font-size: .9rem; line-height: 1.45; }
+.campaign-package li { display: flex; gap: 10px; align-items: baseline; }
+.campaign-package li::before { content: "—"; flex: 0 0 auto; color: var(--acid); }
+.campaign-timer { margin-top: 24px; color: var(--acid); font: 900 .82rem/1.3 var(--font-display); letter-spacing: .04em; text-transform: uppercase; }
+.campaign-timer.is-closed { color: #ffb2c9; }
 .contact-dialog-close { position: absolute; z-index: 2; top: 12px; right: 16px; padding: 0; border: 0; background: transparent; color: var(--acid); font: 400 2.5rem/1 var(--font-body); cursor: pointer; }
 .contact-dialog-close:hover { color: white; }
 .contact-dialog-intro { min-width: 0; }
@@ -330,6 +339,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 @media (max-width: 1180px) {
   .contact-dialog { width: min(900px, calc(100vw - 24px)); }
   .contact-dialog-shell { grid-template-columns: 1fr; gap: 34px; padding: 58px clamp(24px, 5vw, 48px) 36px; }
+  .contact-dialog-shell.campaign-active { grid-template-columns: 1fr; }
+  .campaign-media video { min-height: 0; max-height: 58svh; aspect-ratio: 16 / 9; }
   .contact-dialog-intro h2 { max-width: 12ch; font-size: clamp(3.4rem, 9vw, 5.8rem); }
   .contact-dialog-intro > p:last-child { max-width: 46rem; }
 }
@@ -415,6 +426,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .sound-page-footer span:last-child { display: none; }
   .contact-dialog { width: calc(100vw - 16px); max-height: calc(100svh - 16px); box-shadow: none; }
   .contact-dialog-shell { grid-template-columns: 1fr; padding: 58px 20px 28px; }
+  .campaign-media video { max-height: 46svh; }
   .contact-dialog-price { margin-top: 20px; }
   .contact-dialog-intro > p:last-child { margin-top: 16px; }
   .contact-form { grid-template-columns: 1fr; }

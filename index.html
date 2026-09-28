@@ -324,11 +324,32 @@
     <dialog id="contact-form" class="contact-dialog" aria-labelledby="contact-form-title">
       <div class="contact-dialog-shell">
         <button class="contact-dialog-close" type="button" aria-label="Close contact form"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+        <div class="campaign-media" data-campaign-media hidden>
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Be My Model campaign preview">
+            <source src="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/be-my-model-campaign.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="contact-dialog-intro">
-          <p class="label" data-contact-kicker>New work / New York + worldwide</p>
-          <h2 id="contact-form-title" data-contact-title>Tell me what<br />we’re making.</h2>
-          <p class="contact-dialog-price" data-contact-price>Custom commissions / quoted to scope</p>
-      <p data-contact-copy>Tell me what you’re making, when it’s happening, and what you need. I’ll get back to you with availability and a clear next step.</p>
+          <div data-campaign-copy hidden>
+            <p class="label">Be My Model / October 2026</p>
+            <h2 id="campaign-form-title">Be my model<br />campaign.</h2>
+            <p class="contact-dialog-price">Portrait session / $350</p>
+            <p class="campaign-lede">A focused 90-minute portrait session in New York City, with clear direction and images that feel like you.</p>
+            <ul class="campaign-package">
+              <li>90-minute shoot</li>
+              <li>35 high-resolution edited images</li>
+              <li>30-second recap reel</li>
+              <li>Private online gallery</li>
+              <li>Direct creative guidance throughout the shoot</li>
+            </ul>
+            <p class="campaign-timer" data-campaign-timer role="status" aria-live="polite"></p>
+          </div>
+          <div data-generic-contact-copy>
+            <p class="label" data-contact-kicker>New work / New York + worldwide</p>
+            <h2 id="contact-form-title" data-contact-title>Tell me what<br />we’re making.</h2>
+            <p class="contact-dialog-price" data-contact-price>Custom commissions / quoted to scope</p>
+            <p data-contact-copy>Tell me what you’re making, when it’s happening, and what you need. I’ll get back to you with availability and a clear next step.</p>
+          </div>
         </div>
         <form class="contact-form" action="https://formsubmit.co/info@thebalddude.co" method="POST">
           <input type="hidden" name="_subject" value="NEW CLIENT" />
@@ -346,6 +367,7 @@
               <option>Fashion + Editorial</option>
               <option>Events + Backstage</option>
               <option>Portraits</option>
+              <option>Be My Model Campaign</option>
               <option>Weddings</option>
               <option>Commercial</option>
               <option>Other</option>
