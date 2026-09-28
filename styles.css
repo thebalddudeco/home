@@ -266,7 +266,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog-shell.campaign-active .contact-form-actions button { background: var(--campaign-acid); }
 .contact-dialog-shell.campaign-active .contact-form-actions button:hover { background: white; }
 .campaign-media { min-width: 0; align-self: stretch; background: #050505; border: 1px solid rgba(255,255,255,.18); }
-.campaign-media video { display: block; width: 100%; height: 100%; min-height: 520px; max-height: min(76svh, 760px); object-fit: cover; object-position: center; }
+.campaign-media video { display: block; width: 100%; height: 100%; min-height: 520px; max-height: min(76svh, 760px); object-fit: contain; object-position: center; background: #050505; }
 .campaign-lede { max-width: 39rem; margin-top: 20px; font-size: 1rem; line-height: 1.55; }
 .campaign-package { display: grid; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; font-size: .9rem; line-height: 1.45; }
 .campaign-package li { display: flex; gap: 10px; align-items: baseline; }
