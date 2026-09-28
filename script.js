@@ -266,7 +266,7 @@ const contactCards = {
     price: 'Starting range / $750–$3,750+',
     fieldPrice: '$750–$3,750+',
     budgets: ['$750–$1,250', '$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
-    copy: 'Event coverage starts at $750 for up to three hours and 100 edited images, including arrivals, portraits, candids, lighting, retouching, commercial use, a private online gallery, and five-day delivery. The $2,250 Fashion Event Story includes up to three hours and 150 edited images, with branded moments built into the coverage. The $3,750 Editorial Event Day Rate covers up to four hours, 200 edited images, a complete editorial story, priority delivery, and a recap video.'
+    copy: 'Event coverage can include arrivals, backstage, portraits, candids, details, branded moments, lighting, retouching, a private online gallery, and fast delivery. Coverage time, final image count, commercial use, and a recap video are shaped around the pace and needs of the event.'
   },
   Portraits: {
     kicker: 'Artists / founders / people with presence',
@@ -274,7 +274,7 @@ const contactCards = {
     price: 'Starting range / $350–$1,350',
     fieldPrice: '$350–$1,350',
     budgets: ['$350–$650', '$650–$1,000', '$1,000–$1,350', '$1,350–$2,000', '$2,000+'],
-    copy: 'Portrait sessions start at $350 for a one-hour NYC shoot with 10 edited images, direct-flash direction, a private online gallery, and five-day delivery. The $650 portrait story includes two hours and 20 edited images, with the $950 personal brand session adding a 30-second recap reel and commercial-use licensing. Every session includes retouching and clear direction throughout.'
+    copy: 'Portrait sessions can include one to two hours in New York City, direct-flash direction, high-resolution edited images, retouching, a private online gallery, and clear delivery timing. Commercial-use licensing and a short recap reel can be added when the project calls for them.'
   },
   Weddings: {
     kicker: 'Courthouse / intimate / beautifully unforced',
@@ -282,7 +282,7 @@ const contactCards = {
     price: 'Starting range / $750–$2,750+',
     fieldPrice: '$750–$2,750+',
     budgets: ['$750–$1,250', '$1,250–$1,750', '$1,750–$2,250', '$2,250–$2,750', '$2,750–$4,000', '$4,000+'],
-    copy: 'Courthouse coverage starts at $750 for the ceremony, couple portraits, 25 edited images, a private online gallery, and a 15-second recap reel with five-day delivery. The $1,050 Editorial Courthouse Story adds NYC street portraits, 35 edited images, and a 30-second reel. The $1,350 Magazine-Ready Wedding Story covers up to three NYC locations, 50+ edited images, a private gallery, a 60-second reel, and three-day delivery. Every option includes retouching and clear direction.'
+    copy: 'Courthouse coverage can include the ceremony, couple portraits, NYC street portraits, retouching, a private online gallery, and a short recap reel. Coverage time, locations, final image count, and delivery are shaped around the day and the moments you want documented.'
   },
   Commercial: {
     kicker: 'Product / brand / social campaigns',
