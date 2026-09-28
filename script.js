@@ -282,7 +282,7 @@ const contactCards = {
     price: 'Starting range / $750–$2,750+',
     fieldPrice: '$750–$2,750+',
     budgets: ['$750–$1,250', '$1,250–$1,750', '$1,750–$2,250', '$2,250–$2,750', '$2,750–$4,000', '$4,000+'],
-    copy: 'Share your date, ceremony location, guest count, timeline, and the moments that matter most. Expect candid storytelling, decisive flash, and portraits with real editorial presence.'
+    copy: 'Courthouse coverage starts at $750 for the ceremony, couple portraits, 25 edited images, a private online gallery, and a 15-second recap reel with five-day delivery. The $1,050 Editorial Courthouse Story adds NYC street portraits, 35 edited images, and a 30-second reel. The $1,350 Magazine-Ready Wedding Story covers up to three NYC locations, 50+ edited images, a private gallery, a 60-second reel, and three-day delivery. Every option includes retouching and clear direction.'
   },
   Commercial: {
     kicker: 'Product / brand / social campaigns',
