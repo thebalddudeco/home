@@ -250,6 +250,9 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog::backdrop { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
 .contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(560px, .95fr) minmax(520px, 1.05fr); gap: clamp(72px, 5vw, 104px); padding: clamp(32px, 4vw, 56px); }
 .contact-dialog-shell.campaign-active { grid-template-columns: minmax(320px, .82fr) minmax(520px, 1.18fr); gap: clamp(36px, 4vw, 72px); }
+.contact-dialog-shell.campaign-active .campaign-media { grid-column: 1; grid-row: 1 / span 2; }
+.contact-dialog-shell.campaign-active .contact-dialog-intro { grid-column: 2; grid-row: 1; }
+.contact-dialog-shell.campaign-active .contact-form { grid-column: 2; grid-row: 2; }
 .contact-dialog-shell.campaign-active { --campaign-acid: #d1fe17; }
 .contact-dialog-shell.campaign-active .contact-dialog-close { color: var(--campaign-acid); }
 .contact-dialog-shell.campaign-active .contact-dialog-intro h2 { color: var(--campaign-acid); }
@@ -352,6 +355,9 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .contact-dialog { width: min(900px, calc(100vw - 24px)); }
   .contact-dialog-shell { grid-template-columns: 1fr; gap: 34px; padding: 58px clamp(24px, 5vw, 48px) 36px; }
   .contact-dialog-shell.campaign-active { grid-template-columns: 1fr; }
+  .contact-dialog-shell.campaign-active .campaign-media,
+  .contact-dialog-shell.campaign-active .contact-dialog-intro,
+  .contact-dialog-shell.campaign-active .contact-form { grid-column: 1; grid-row: auto; }
   .campaign-media video { min-height: 0; max-height: 58svh; aspect-ratio: 16 / 9; }
   .contact-dialog-intro h2 { max-width: 12ch; font-size: clamp(3.4rem, 9vw, 5.8rem); }
   .contact-dialog-intro > p:last-child { max-width: 46rem; }
