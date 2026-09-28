@@ -200,6 +200,7 @@ const campaignStart = new Date('2026-10-01T00:00:00-04:00');
 const campaignEnd = new Date('2026-11-01T00:00:00-04:00');
 
 const setCampaignMode = (active) => {
+  if (active && new Date() >= campaignEnd) active = false;
   campaignMode = active;
   contactShell?.classList.toggle('campaign-active', active);
   if (campaignMedia) campaignMedia.hidden = !active;
@@ -209,6 +210,7 @@ const setCampaignMode = (active) => {
     if (active) campaignVideo.play().catch(() => {});
     else campaignVideo.pause();
   }
+  if (campaignSubmit && !active) campaignSubmit.disabled = false;
   if (active) {
     if (contactProjectType) contactProjectType.value = 'Be My Model Campaign';
     if (contactServiceField) contactServiceField.value = 'Be My Model Campaign';
@@ -224,14 +226,13 @@ const setCampaignMode = (active) => {
 const updateCampaignTimer = () => {
   if (!campaignTimer) return;
   const now = new Date();
-  const target = now < campaignStart ? campaignStart : campaignEnd;
-  const difference = target.getTime() - now.getTime();
   if (now >= campaignEnd) {
-    campaignTimer.textContent = 'This October campaign has ended.';
-    campaignTimer.classList.add('is-closed');
-    if (campaignSubmit) campaignSubmit.disabled = true;
+    setCampaignMode(false);
+    if (campaignTimer) campaignTimer.textContent = '';
     return;
   }
+  const target = now < campaignStart ? campaignStart : campaignEnd;
+  const difference = target.getTime() - now.getTime();
   const totalSeconds = Math.max(0, Math.floor(difference / 1000));
   const days = Math.floor(totalSeconds / 86400);
   const hours = Math.floor((totalSeconds % 86400) / 3600);
