@@ -255,8 +255,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog-shell.campaign-active .contact-form { grid-column: 2; grid-row: 2; }
 .contact-dialog-shell.campaign-active { --campaign-acid: #d1fe17; }
 .contact-dialog-shell.campaign-active .contact-dialog-close { color: var(--campaign-acid); }
-.contact-dialog-shell.campaign-active .contact-dialog-intro h2 { color: var(--campaign-acid); }
-.contact-dialog-shell.campaign-active .contact-dialog-price { border-color: var(--campaign-acid); color: var(--campaign-acid); }
+.contact-dialog-shell.campaign-active .contact-dialog-intro h2 { color: var(--campaign-acid) !important; }
+.contact-dialog-shell.campaign-active .contact-dialog-price { border-color: var(--campaign-acid); color: var(--campaign-acid) !important; }
 .contact-dialog-shell.campaign-active .campaign-package li::before,
 .contact-dialog-shell.campaign-active .campaign-timer { color: var(--campaign-acid); }
 .contact-dialog-shell.campaign-active .contact-form label > span { color: var(--campaign-acid); }
