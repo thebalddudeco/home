@@ -449,7 +449,14 @@ const enhanceSelect = (select, index) => {
 };
 
 document.querySelectorAll('.contact-form select').forEach(enhanceSelect);
-contactProjectType?.addEventListener('change', () => applyContactCard(contactProjectType.value));
+contactProjectType?.addEventListener('change', () => {
+  if (contactProjectType.value === 'Be My Model Campaign') {
+    setCampaignMode(true);
+  } else {
+    setCampaignMode(false);
+    applyContactCard(contactProjectType.value);
+  }
+});
 document.addEventListener('click', (event) => {
   enhancedSelects.forEach((item) => {
     if (!item.wrapper.contains(event.target)) item.close();
