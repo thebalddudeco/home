@@ -266,7 +266,7 @@ const contactCards = {
     price: 'Starting range / $750–$3,750+',
     fieldPrice: '$750–$3,750+',
     budgets: ['$750–$1,250', '$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
-    copy: 'Share the date, venue, run of show, access, guest count, and turnaround needs. Coverage can include arrivals, backstage, atmosphere, portraits, details, and fast social selects.'
+    copy: 'Event coverage starts at $750 for up to three hours and 100 edited images, including arrivals, portraits, candids, lighting, retouching, commercial use, a private online gallery, and five-day delivery. The $2,250 Fashion Event Story includes up to three hours and 150 edited images, with branded moments built into the coverage. The $3,750 Editorial Event Day Rate covers up to four hours, 200 edited images, a complete editorial story, priority delivery, and a recap video.'
   },
   Portraits: {
     kicker: 'Artists / founders / people with presence',
