@@ -274,7 +274,7 @@ const contactCards = {
     price: 'Starting range / $350–$1,350',
     fieldPrice: '$350–$1,350',
     budgets: ['$350–$650', '$650–$1,000', '$1,000–$1,350', '$1,350–$2,000', '$2,000+'],
-    copy: 'Tell me who the photographs are for, how you want to be seen, and where the images will be used. We’ll build the location, styling, and direction around your point of view.'
+    copy: 'Portrait sessions start at $350 for a one-hour NYC shoot with 10 edited images, direct-flash direction, a private online gallery, and five-day delivery. The $650 portrait story includes two hours and 20 edited images, with the $950 personal brand session adding a 30-second recap reel and commercial-use licensing. Every session includes retouching and clear direction throughout.'
   },
   Weddings: {
     kicker: 'Courthouse / intimate / beautifully unforced',
