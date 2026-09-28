@@ -250,7 +250,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog::-webkit-scrollbar, .contact-dialog-shell::-webkit-scrollbar { display: none; }
 .contact-dialog::backdrop { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
 .contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(560px, .95fr) minmax(520px, 1.05fr); gap: clamp(72px, 5vw, 104px); padding: clamp(32px, 4vw, 56px); }
-.contact-dialog-shell.campaign-active { grid-template-columns: minmax(420px, .9fr) minmax(560px, 1.1fr); gap: clamp(28px, 3vw, 56px); height: calc(100svh - 24px); box-sizing: border-box; overflow: hidden; scrollbar-width: none; }
+.contact-dialog-shell.campaign-active { grid-template-columns: minmax(540px, .95fr) minmax(500px, 1.05fr); gap: 24px; padding: 28px; height: calc(100svh - 24px); box-sizing: border-box; overflow: hidden; scrollbar-width: none; }
 .contact-dialog-shell.campaign-active .campaign-media { grid-column: 1; grid-row: 1 / span 2; }
 .contact-dialog-shell.campaign-active .contact-dialog-intro { grid-column: 2; grid-row: 1; }
 .contact-dialog-shell.campaign-active .contact-form { grid-column: 2; grid-row: 2; }
@@ -267,7 +267,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-dialog-shell.campaign-active .contact-form-actions button { background: var(--campaign-acid); }
 .contact-dialog-shell.campaign-active .contact-form-actions button:hover { background: white; }
 .campaign-media { min-width: 0; align-self: stretch; background: #050505; border: 1px solid rgba(255,255,255,.18); }
-.campaign-media video { display: block; width: auto; max-width: 100%; height: 100%; min-height: 520px; max-height: min(76svh, 760px); margin: 0 auto; object-fit: contain; object-position: center; background: #050505; }
+.campaign-media video { display: block; width: 100%; height: 100%; min-height: 520px; max-height: min(76svh, 760px); margin: 0 auto; object-fit: contain; object-position: center; background: #050505; }
 .campaign-lede { max-width: 39rem; margin-top: 20px; font-size: 1rem; line-height: 1.55; }
 .campaign-package { display: grid; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; font-size: .9rem; line-height: 1.45; }
 .campaign-package li { display: flex; gap: 10px; align-items: baseline; }
@@ -355,7 +355,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 @media (max-width: 1180px) {
   .contact-dialog { width: min(900px, calc(100vw - 24px)); }
   .contact-dialog-shell { grid-template-columns: 1fr; gap: 34px; padding: 58px clamp(24px, 5vw, 48px) 36px; }
-  .contact-dialog-shell.campaign-active { grid-template-columns: minmax(360px, .82fr) minmax(440px, 1.18fr); gap: 20px; padding: 48px 28px 28px; }
+  .contact-dialog-shell.campaign-active { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 20px; padding: 48px 28px 28px; }
   .contact-dialog-shell.campaign-active .campaign-media,
   .contact-dialog-shell.campaign-active .contact-dialog-intro,
   .contact-dialog-shell.campaign-active .contact-form { grid-column: 1; grid-row: auto; }
