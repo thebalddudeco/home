@@ -90,14 +90,17 @@
           ['../assets/my-kit/fuji-xh2.webp', 'Fujifilm X-H2 camera'],
           ['../assets/my-kit/viltrox-85.webp', 'Viltrox AF 85mm f/1.8 lens'],
           ['../assets/my-kit/viltrox-56.png', 'Viltrox AF 56mm f/1.2 Pro lens'],
-          ['../assets/my-kit/viltrox-35.webp', 'Viltrox AF 35mm f/1.4 lens']
+          ['../assets/my-kit/viltrox-35.webp', 'Viltrox AF 35mm f/1.4 lens'],
+          ['../assets/my-kit/viltrox-28.jpg', 'Viltrox AF 28mm f/4.5 lens']
         ];
         images.forEach(([src, alt], i) => { if (cards[i]) cards[i].querySelector('figure').innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" />`; });
         if (cards[3]) cards[3].innerHTML = cards[3].innerHTML.replaceAll('33mm', '35mm').replaceAll('f/1.4 V2', 'f/1.4').replaceAll('AF 33mm', 'AF 35mm');
-        cards[4]?.remove();
         cards[5]?.remove();
         const remaining = [...document.querySelectorAll('.kit-section-gear .kit-card')];
-        if (remaining[4]) remaining[4].querySelector('figure').innerHTML = '<img src="../assets/my-kit/tilta-hydra.png" alt="Tilta Hydra Alien Mini Ultimate Kit" loading="lazy" />';
+        if (remaining[5]) remaining[5].querySelector('figure').innerHTML = '<img src="../assets/my-kit/tilta-hydra.png" alt="Tilta Hydra Alien Mini Ultimate Kit" loading="lazy" />';
+        if (remaining[6]) remaining[6].querySelector('figure').innerHTML = '<img src="../assets/my-kit/spark-z3.webp" alt="Viltrox Spark Z3 flash" loading="lazy" />';
+        if (remaining[5]) remaining[5].querySelector('.kit-index').textContent = '12 / TILTA';
+        if (remaining[6]) remaining[6].querySelector('.kit-index').textContent = '13 / VILTROX';
       })();
     </script>
   </body>
