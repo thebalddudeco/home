@@ -11,3 +11,4 @@
 .substack-post-embed iframe,iframe[src*="substack.com"]{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important}
 .kit-card .substack-post-embed{display:block!important;width:100%!important;max-width:none!important;min-width:0!important}
 .kit-card:has(.substack-post-embed) .kit-card-body{grid-column:3 / -1}.kit-card:has(.substack-post-embed) .substack-post-embed{width:100%;max-width:none}
+.kit-card:has(.substack-post-embed) figure{display:none}.kit-card:has(.substack-post-embed) .kit-card-body{grid-column:2 / -1}
