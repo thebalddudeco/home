@@ -95,12 +95,43 @@
         ];
         images.forEach(([src, alt], i) => { if (cards[i]) cards[i].querySelector('figure').innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" />`; });
         if (cards[3]) cards[3].innerHTML = cards[3].innerHTML.replaceAll('33mm', '35mm').replaceAll('f/1.4 V2', 'f/1.4').replaceAll('AF 33mm', 'AF 35mm');
-        cards[5]?.remove();
         const remaining = [...document.querySelectorAll('.kit-section-gear .kit-card')];
-        if (remaining[5]) remaining[5].querySelector('figure').innerHTML = '<img src="../assets/my-kit/tilta-hydra.png" alt="Tilta Hydra Alien Mini Ultimate Kit" loading="lazy" />';
-        if (remaining[6]) remaining[6].querySelector('figure').innerHTML = '<img src="../assets/my-kit/spark-z3.webp" alt="Viltrox Spark Z3 flash" loading="lazy" />';
-        if (remaining[5]) remaining[5].querySelector('.kit-index').textContent = '12 / TILTA';
-        if (remaining[6]) remaining[6].querySelector('.kit-index').textContent = '13 / VILTROX';
+        if (remaining[6]) remaining[6].querySelector('figure').innerHTML = '<img src="../assets/my-kit/tilta-hydra.png" alt="Tilta Hydra Alien Mini Ultimate Kit" loading="lazy" />';
+        if (remaining[7]) remaining[7].querySelector('figure').innerHTML = '<img src="../assets/my-kit/spark-z3.webp" alt="Viltrox Spark Z3 flash" loading="lazy" />';
+
+        const reviews = [
+          ['The NANUK 935 Is the Case I Take Everywhere', 'An honest review of the NANUK 935 Pro Photo Kit in Orange with Heavy Duty Wheels.', 'https://thebalddude.substack.com/p/the-nanuk-935-is-the-case-i-take'],
+          ['The NANUK 910 Gives My Tilta Hydra Its Own Home', 'An honest review of the NANUK 910 Orange with Cubed Foam.', 'https://thebalddude.substack.com/p/the-nanuk-910-gives-my-tilta-hydra'],
+          ['The NANUK 905 Is the Small Case I Am Glad I Have', 'An honest review of the NANUK 905 Orange with Cubed Foam.', 'https://thebalddude.substack.com/p/the-nanuk-905-is-the-small-case-i'],
+          ['The NANUK 940 Keeps My Production Hardware Under Control', 'An honest review of the NANUK 940 Camera Case in Black with Pro Photo Kit.', 'https://thebalddude.substack.com/p/the-nanuk-940-keeps-my-production'],
+          ['The NANUK N-PVD 18L Is My Everyday Working Backpack', 'An honest review of the NANUK N-PVD 18L Backpack with N-CUBIK T1 Storage Pouch.', 'https://thebalddude.substack.com/p/the-nanuk-n-pvd-18l-is-my-everyday'],
+          ['The NANUK N-PVD 6L Is My Street Photography Sling', 'An honest review of the NANUK N-PVD 6L Sling Bag.', 'https://thebalddude.substack.com/p/the-nanuk-n-pvd-6l-is-my-street-photography'],
+          ['The Fujifilm X-H2 Is a Camera I Actually Work With', 'An honest review of the Fujifilm X-H2 for photography and video.', 'https://thebalddude.substack.com/p/the-fujifilm-x-h2-is-a-camera-i-actually'],
+          ['The Viltrox AF 85mm f/1.8 Is a Strong Portrait Lens', 'An honest review of the Viltrox AF 85mm f/1.8 STM for Fujifilm X.', 'https://thebalddude.substack.com/p/the-viltrox-af-85mm-f18-is-a-strong'],
+          ['The Viltrox AF 56mm f/1.2 Pro Gives Me the Portrait Look I Want', 'An honest review of the Viltrox AF 56mm f/1.2 Pro for Fujifilm X.', 'https://thebalddude.substack.com/p/the-viltrox-af-56mm-f12-pro-gives'],
+          ['Viltrox AF 35mm f/1.7 Is a Great Everyday Lens', 'An honest review of the Viltrox AF 35mm f/1.7 for Fujifilm X.', 'https://thebalddude.substack.com/p/viltrox-af-35mm-f17-is-a-great-everyday'],
+          ['The Viltrox AF 28mm f/4.5 Is Small, Simple, and Easy to Carry', 'An honest review of the Viltrox AF 28mm f/4.5 for Fujifilm X.', 'https://thebalddude.substack.com/p/the-viltrox-af-28mm-f45-is-small'],
+          ['The Tilta Full Camera Cage Is the Most Secure Cage I Tried', 'An honest review of the Tilta Full Camera Cage for the Fujifilm X-H2S and X-H2.', 'https://thebalddude.substack.com/p/the-tilta-full-camera-cage-is-the'],
+          ['Tilta Hydra Alien Mini Is a Serious Production Tool', 'An honest review of the Tilta Hydra Alien Mini Ultimate Kit in Forest Green.', 'https://thebalddude.substack.com/p/tilta-hydra-alien-mini-is-a-serious'],
+          ['Viltrox Spark Z3 Gives Me More Control Over Light', 'An honest review of the Viltrox Spark Z3 Flash for Fujifilm in Tundra Green.', 'https://thebalddude.substack.com/p/viltrox-spark-z3-gives-me-more-control']
+        ];
+        [...document.querySelectorAll('.kit-card')].forEach((card, index) => {
+          const review = reviews[index];
+          if (!review) return;
+          const body = card.querySelector('.kit-card-body');
+          body.querySelectorAll('p:not(.kit-index):not(.kit-deck)').forEach((node) => node.remove());
+          const embed = document.createElement('div');
+          embed.className = 'substack-post-embed';
+          const title = document.createElement('p'); title.lang = 'en'; title.textContent = `${review[0]} by The Bald Dude Co.`;
+          const summary = document.createElement('p'); summary.textContent = review[1];
+          const link = document.createElement('a'); link.dataset.postLink = ''; link.href = review[2]; link.textContent = 'Read on Substack';
+          embed.append(title, summary, link);
+          body.querySelector('.kit-link').before(embed);
+        });
+        const embedScript = document.createElement('script');
+        embedScript.async = true;
+        embedScript.src = 'https://substack.com/embedjs/embed.js';
+        document.body.append(embedScript);
       })();
     </script>
   </body>
