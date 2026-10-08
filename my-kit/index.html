@@ -152,6 +152,13 @@
           embedScript.src = 'https://substack.com/embedjs/embed.js';
           document.body.append(embedScript);
         });
+        const stretchSubstackFrames = () => document.querySelectorAll('.substack-post-embed iframe, iframe[src*="substack.com"]').forEach((frame) => {
+          frame.style.setProperty('width', '100%', 'important');
+          frame.style.setProperty('max-width', 'none', 'important');
+          frame.style.setProperty('min-width', '0', 'important');
+        });
+        new MutationObserver(stretchSubstackFrames).observe(document.body, { childList: true, subtree: true });
+        stretchSubstackFrames();
       })();
     </script>
   </body>
