@@ -99,6 +99,24 @@
         if (remaining[6]) remaining[6].querySelector('figure').innerHTML = '<img src="../assets/my-kit/tilta-hydra.png" alt="Tilta Hydra Alien Mini Ultimate Kit" loading="lazy" />';
         if (remaining[7]) remaining[7].querySelector('figure').innerHTML = '<img src="../assets/my-kit/spark-z3.webp" alt="Viltrox Spark Z3 flash" loading="lazy" />';
 
+        const productLinks = [
+          'https://nanuk.com/products/nanuk-935-pro-photo-kit?srsltid=AU7gw4U0S0gzfXDmUc4t99yuwtuWZa7mnjpOQfKpsrzQizn0v75q9g95&variant=33900603899949',
+          'https://nanuk.com/products/nanuk-910?variant=33591989829677',
+          'https://nanuk.com/products/nanuk-905?variant=34024703000621',
+          'https://nanuk.com/products/nanuk-940?variant=34024707751981',
+          'https://nanuk.com/products/n-pvd-18l',
+          'https://nanuk.com/products/n-pvd-6l',
+          'https://www.fujifilm-x.com/en-us/products/cameras/x-h2/',
+          'https://viltrox.com/products/viltrox-85mm-f1-8-lens-of-lighter-weight-for-fuji-x-mount?_pos=15&_fid=128f297a6&_ss=c',
+          'https://viltrox.com/products/viltrox-af-56mm-f14-x-mount-lens?_pos=14&_fid=128f297a6&_ss=c',
+          'https://viltrox.com/products/viltrox-af-33mm-f14-xf-aps-c-lens?_pos=17&_fid=128f297a6&_ss=c',
+          'https://viltrox.com/products/af-28mm-f4-5-x?_pos=8&_fid=128f297a6&_ss=c',
+          'https://tilta.com/shop/full-camera-cage-for-fujifilm-x-h2s-black?aff=thebalddudeco',
+          'https://tilta.com/shop/hydra-alien-mini-ultimate-kit?aff=thebalddudeco',
+          'https://viltrox.com/products/z3-camera-flash?variant=42465095909442'
+        ];
+        [...document.querySelectorAll('.kit-card')].forEach((card, index) => { if (productLinks[index]) card.querySelector('.kit-link').href = productLinks[index]; });
+
         const reviews = [
           ['The NANUK 935 Is the Case I Take Everywhere', 'An honest review of the NANUK 935 Pro Photo Kit in Orange with Heavy Duty Wheels.', 'https://thebalddude.substack.com/p/the-nanuk-935-is-the-case-i-take'],
           ['The NANUK 910 Gives My Tilta Hydra Its Own Home', 'An honest review of the NANUK 910 Orange with Cubed Foam.', 'https://thebalddude.substack.com/p/the-nanuk-910-gives-my-tilta-hydra'],
