@@ -146,10 +146,12 @@
           embed.append(title, summary, link);
           body.querySelector('.kit-link').before(embed);
         });
-        const embedScript = document.createElement('script');
-        embedScript.async = true;
-        embedScript.src = 'https://substack.com/embedjs/embed.js';
-        document.body.append(embedScript);
+        reviews.forEach(() => {
+          const embedScript = document.createElement('script');
+          embedScript.async = true;
+          embedScript.src = 'https://substack.com/embedjs/embed.js';
+          document.body.append(embedScript);
+        });
       })();
     </script>
   </body>
