@@ -30,11 +30,6 @@
     gap: 8px;
   }
 
-  .home-rebuild .topbar {
-    height: 69px !important;
-    min-height: 69px !important;
-  }
-
   .home-rebuild .topbar .wordmark,
   .work-archive-page .topbar .wordmark,
   .kit-page .topbar .wordmark {
