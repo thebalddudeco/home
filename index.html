@@ -6,6 +6,25 @@
     <meta name="description" content="Justin von Braun is a New York City photographer specializing in editorial portraits, direct-flash event photography, fashion, courthouse weddings, and commercial campaigns." />
     <link rel="canonical" href="https://www.thebalddude.co/" />
     <title>NYC Editorial, Event &amp; Wedding Photographer | The Bald Dude Co.</title>
+    <style>html{visibility:hidden}</style>
+    <script defer>
+      (async()=>{
+        try {
+          const response = await fetch('/card-preview/index.html');
+          let html = await response.text();
+          html = html
+            .replace(/(src|href)="\.\//g, '$1="/')
+            .replace(/href="style\.css/g, 'href="/card-preview/style.css')
+            .replace(/src="script\.js/g, 'src="/card-preview/script.js')
+            .replace('content="noindex,nofollow"', 'content="index,follow"');
+          document.open();
+          document.write(html);
+          document.close();
+        } catch (error) {
+          document.documentElement.style.visibility = 'visible';
+        }
+      })();
+    </script>
     <link rel="icon" type="image/png" href="https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/brand-favicon.png" />
     <link rel="stylesheet" href="styles.css?v=20260928-7" />
     <script type="application/ld+json">
