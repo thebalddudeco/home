@@ -680,11 +680,11 @@ body,body *{font-family:'Open Sans Local',Arial,sans-serif!important}
   .home-rebuild .tablet-frame{
     --frame-margin:min(2.5vw,4vh);
     top:var(--frame-margin)!important;
-    right:var(--frame-margin)!important;
-    bottom:var(--frame-margin)!important;
     left:var(--frame-margin)!important;
-    width:auto!important;
-    height:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:calc(100vw - var(--frame-margin) - var(--frame-margin))!important;
+    height:calc(100vh - var(--frame-margin) - var(--frame-margin))!important;
     transform:none!important;
   }
 }
