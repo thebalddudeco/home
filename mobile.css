@@ -30,6 +30,11 @@
     gap: 8px;
   }
 
+  .home-rebuild .topbar {
+    height: 68px !important;
+    min-height: 68px !important;
+  }
+
   .home-rebuild .topbar .wordmark,
   .work-archive-page .topbar .wordmark,
   .kit-page .topbar .wordmark {
@@ -175,6 +180,7 @@
     background: #f3f1ed;
     box-shadow: 0 8px 18px rgba(0,0,0,.14);
   }
+  .home-rebuild .topbar .editorial-nav { top: 68px !important; }
   .home-rebuild .topbar.mobile-menu-open .editorial-nav,
   .work-archive-page .topbar.mobile-menu-open .editorial-nav,
   .kit-page .topbar.mobile-menu-open .editorial-nav { display: flex !important; }
