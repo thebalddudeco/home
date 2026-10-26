@@ -107,31 +107,8 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 .card-stage:before{opacity:.12!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38))!important}
 .card-stage:after{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34))!important}
 
-/* Final card sizing: 95% viewport width and a fixed 925px height. */
-.home-rebuild .tablet-frame{width:95vw!important;height:925px!important;min-height:0!important;aspect-ratio:auto!important}
+/* Card sizing is finalized by the shared desktop inset rule below. */
 
-/* Final desktop frame rule: the same viewport inset on every side. */
-@media(min-width:761px){
-  .home-rebuild .tablet-frame{
-    --frame-margin:min(2.5vw,4vh);
-    top:50%!important;
-    left:50%!important;
-    width:calc(100vw - var(--frame-margin) - var(--frame-margin))!important;
-    height:calc(100vh - var(--frame-margin) - var(--frame-margin))!important;
-    transform:translate(-50%,-50%)!important;
-  }
-}
-
-/* Desktop homepage card: keep the top and bottom stage margins equal. */
-@media(min-width:761px){
-  .home-rebuild .tablet-frame{
-    --frame-margin:min(2.5vw,4vh);
-    top:50%!important;
-    width:calc(100vw - var(--frame-margin) - var(--frame-margin))!important;
-    height:calc(100vh - var(--frame-margin) - var(--frame-margin))!important;
-    transform:translate(-50%,-50%)!important;
-  }
-}
 .home-rebuild .rangefinder{inset:25px!important}
 @media(max-width:760px){.home-rebuild .rangefinder{inset:18px!important}}
 .home-rebuild .rangefinder{z-index:20!important;color:#111!important;mix-blend-mode:normal!important;text-shadow:none!important}
@@ -162,8 +139,7 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 .home-rebuild .topbar .wordmark img{display:block;width:100%!important;height:auto!important;filter:none!important;object-fit:contain!important}
 @media(max-width:760px){.home-rebuild .topbar .wordmark{width:165px!important}}
 
-/* Responsive card width with a fixed 925px card height. */
-.home-rebuild .tablet-frame{width:95vw!important;height:925px!important;min-height:0!important;aspect-ratio:auto!important}
+/* Responsive card sizing is finalized by the shared desktop inset rule below. */
 
 /* Supplied monochrome subway photograph as the persistent website surround. */
 .card-stage{background-image:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('../assets/site-background.png');background-size:cover;background-position:center;background-repeat:no-repeat}
@@ -697,5 +673,18 @@ body,body *{font-family:'Open Sans Local',Arial,sans-serif!important}
 .card-stage:before{opacity:.12!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38))!important}
 .card-stage:after{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34))!important}
 
-/* Final card sizing: 95% viewport width and a fixed 925px height. */
-.home-rebuild .tablet-frame{width:95vw!important;height:925px!important;min-height:0!important;aspect-ratio:auto!important}
+/* Card sizing is finalized by the shared desktop inset rule below. */
+
+/* Final desktop geometry: one identical inset on every side; no fixed height. */
+@media(min-width:761px){
+  .home-rebuild .tablet-frame{
+    --frame-margin:min(2.5vw,4vh);
+    top:var(--frame-margin)!important;
+    right:var(--frame-margin)!important;
+    bottom:var(--frame-margin)!important;
+    left:var(--frame-margin)!important;
+    width:auto!important;
+    height:auto!important;
+    transform:none!important;
+  }
+}
