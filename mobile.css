@@ -19,13 +19,6 @@
 
   .home-rebuild .tablet-frame {
     top: calc(50% - 16px) !important;
-    padding: 0 !important;
-  }
-
-  .home-rebuild .tablet-screen {
-    position: absolute !important;
-    inset: 0 !important;
-    border-radius: inherit !important;
   }
 
   .home-rebuild .topbar,
@@ -100,16 +93,6 @@
   .home-rebuild .rangefinder,
   .work-archive-page .rangefinder,
   .kit-page .rangefinder { inset: 12px !important; }
-
-  .home-rebuild .rangefinder,
-  .work-archive-page .rangefinder,
-  .kit-page .rangefinder {
-    position: fixed !important;
-    z-index: 1000 !important;
-    pointer-events: none !important;
-  }
-
-  .home-rebuild .rangefinder { bottom: 28px !important; }
 
   .home-rebuild .rangefinder .rf-scale,
   .work-archive-page .rangefinder .rf-scale,
