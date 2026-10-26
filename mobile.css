@@ -17,6 +17,17 @@
     border-radius: 14px !important;
   }
 
+  .home-rebuild .tablet-frame {
+    top: 50% !important;
+    padding: 0 !important;
+  }
+
+  .home-rebuild .tablet-screen {
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: inherit !important;
+  }
+
   .home-rebuild .topbar,
   .work-archive-page .topbar,
   .kit-page .topbar {
