@@ -110,6 +110,18 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 /* Final card sizing: 95% viewport width and a fixed 925px height. */
 .home-rebuild .tablet-frame{width:95vw!important;height:925px!important;min-height:0!important;aspect-ratio:auto!important}
 
+/* Final desktop frame rule: the same viewport inset on every side. */
+@media(min-width:761px){
+  .home-rebuild .tablet-frame{
+    --frame-margin:min(2.5vw,4vh);
+    top:50%!important;
+    left:50%!important;
+    width:calc(100vw - (2 * var(--frame-margin)))!important;
+    height:calc(100vh - (2 * var(--frame-margin)))!important;
+    transform:translate(-50%,-50%)!important;
+  }
+}
+
 /* Desktop homepage card: keep the top and bottom stage margins equal. */
 @media(min-width:761px){
   .home-rebuild .tablet-frame{
