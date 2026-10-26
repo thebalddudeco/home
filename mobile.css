@@ -1,0 +1,344 @@
+/* Mobile-only presentation layer. The desktop project does not load this file. */
+
+@media (max-width: 760px) {
+  html, body { min-width: 0; overflow-x: hidden; }
+  body { background-attachment: scroll; }
+
+  /* Keep the same card, but make it fit the phone viewport and remain scrollable. */
+  .home-rebuild .tablet-frame,
+  .work-archive-page .work-shell,
+  .kit-page .kit-shell {
+    width: calc(100vw - 24px) !important;
+    height: calc(100svh - 24px) !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 12px auto !important;
+    border-radius: 14px !important;
+  }
+
+  .home-rebuild .topbar,
+  .work-archive-page .topbar,
+  .kit-page .topbar {
+    height: 64px !important;
+    min-height: 64px !important;
+    padding: 0 14px !important;
+    gap: 8px;
+  }
+
+  .home-rebuild .topbar .wordmark,
+  .work-archive-page .topbar .wordmark,
+  .kit-page .topbar .wordmark {
+    width: 56px !important;
+    height: 56px !important;
+    flex: 0 1 auto;
+    top: 2px !important;
+  }
+
+  .home-rebuild .topbar .wordmark img,
+  .work-archive-page .topbar .wordmark img,
+  .kit-page .topbar .wordmark img {
+    width: 56px !important;
+    height: 56px !important;
+    object-fit: contain !important;
+    content: url('../assets/favicom.png') !important;
+  }
+
+  .home-rebuild .editorial-nav,
+  .work-archive-page .editorial-nav,
+  .kit-page .editorial-nav {
+    gap: 7px !important;
+    left: 0 !important;
+    top: 5px !important;
+    flex: 0 0 auto;
+  }
+
+  .home-rebuild .editorial-nav a,
+  .work-archive-page .editorial-nav a,
+  .kit-page .editorial-nav a {
+    padding: 6px 0 !important;
+    font-size: 6px !important;
+    letter-spacing: .02em !important;
+    white-space: nowrap;
+  }
+
+  .home-rebuild main,
+  .work-archive-page main,
+  .kit-page main { padding-left: 18px !important; padding-right: 18px !important; }
+
+  .home-rebuild .editorial-hero-copy { padding-left: 0 !important; padding-right: 0 !important; }
+  .home-rebuild .editorial-hero-title,
+  .home-rebuild .editorial-hero-title h1,
+  .home-rebuild #editorial-hero-title {
+    max-width: 100% !important;
+    font-size: clamp(34px, 9vw, 46px) !important;
+    line-height: .88 !important;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .home-rebuild .editorial-hero-title span,
+  .home-rebuild .editorial-hero-title strong { white-space: nowrap; }
+
+  .home-rebuild .home-cases,
+  .home-rebuild .home-wedding,
+  .home-rebuild .home-reels,
+  .home-rebuild .home-manifesto,
+  .home-rebuild .home-services,
+  .home-rebuild .home-contact { padding-left: 0 !important; padding-right: 0 !important; }
+
+  .home-rebuild .rangefinder,
+  .work-archive-page .rangefinder,
+  .kit-page .rangefinder { inset: 12px !important; }
+
+  .home-rebuild .rangefinder .rf-scale,
+  .work-archive-page .rangefinder .rf-scale,
+  .kit-page .rangefinder .rf-scale { width: min(190px, calc(100% - 96px)) !important; }
+
+  .home-rebuild .rangefinder .rf-aperture,
+  .home-rebuild .rangefinder .rf-exposure,
+  .work-archive-page .rangefinder .rf-aperture,
+  .work-archive-page .rangefinder .rf-exposure,
+  .kit-page .rangefinder .rf-aperture,
+  .kit-page .rangefinder .rf-exposure { bottom: 10px !important; font-size: 7px !important; }
+
+  .home-rebuild .rangefinder .rf-aperture,
+  .work-archive-page .rangefinder .rf-aperture,
+  .kit-page .rangefinder .rf-aperture { left: 10px !important; }
+
+  .home-rebuild .rangefinder .rf-exposure,
+  .work-archive-page .rangefinder .rf-exposure,
+  .kit-page .rangefinder .rf-exposure { right: 10px !important; }
+
+  /* Mobile overlay keeps the range scale, pointer, and dots only. */
+  .home-rebuild .rangefinder .rf-corner,
+  .work-archive-page .rangefinder .rf-corner,
+  .kit-page .rangefinder .rf-corner,
+  .home-rebuild .rangefinder .rf-aperture,
+  .home-rebuild .rangefinder .rf-exposure,
+  .work-archive-page .rangefinder .rf-aperture,
+  .work-archive-page .rangefinder .rf-exposure,
+  .kit-page .rangefinder .rf-aperture,
+  .kit-page .rangefinder .rf-exposure { display: none !important; }
+
+  .home-rebuild .home-shot img,
+  .work-archive-page .gallery-card img,
+  .kit-page .kit-card img { object-position: center center; }
+
+  .work-archive-page .archive-hero,
+  .kit-page .kit-hero { padding-top: 28px !important; padding-bottom: 28px !important; }
+  .work-archive-page .archive-hero h1,
+  .kit-page .kit-hero h1 { font-size: clamp(46px, 14vw, 76px) !important; max-width: 100%; overflow-wrap: anywhere; }
+}
+
+/* The desktop navigation remains unchanged; this control exists only on phones. */
+.mobile-menu-toggle { display: none; }
+
+@media (max-width: 760px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    padding: 4px 2px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0;
+    background: transparent;
+    color: #060606;
+    cursor: pointer;
+  }
+  .mobile-menu-toggle span { display: block; width: 100%; height: 1px; background: currentColor; transition: transform .18s ease, opacity .18s ease; }
+  .mobile-menu-open .mobile-menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-menu-open .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
+  .mobile-menu-open .mobile-menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .home-rebuild .topbar .editorial-nav,
+  .work-archive-page .topbar .editorial-nav,
+  .kit-page .topbar .editorial-nav {
+    display: none !important;
+    position: absolute !important;
+    top: 64px !important;
+    right: 12px !important;
+    left: auto !important;
+    z-index: 80;
+    min-width: 128px;
+    padding: 8px 12px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    border: 1px solid #aaa9a4;
+    background: #f3f1ed;
+    box-shadow: 0 8px 18px rgba(0,0,0,.14);
+  }
+  .home-rebuild .topbar.mobile-menu-open .editorial-nav,
+  .work-archive-page .topbar.mobile-menu-open .editorial-nav,
+  .kit-page .topbar.mobile-menu-open .editorial-nav { display: flex !important; }
+  .mobile-menu-open .editorial-nav a { display: block; padding: 10px 0 !important; border-bottom: 1px solid rgba(170,169,164,.55); font-size: 8px !important; }
+  .mobile-menu-open .editorial-nav a:last-child { border-bottom: 0; }
+}
+
+/* Stack the about/introduction content instead of squeezing two desktop columns into a phone. */
+@media (max-width: 760px) {
+  .home-rebuild .editorial-intro {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto auto auto auto !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+    padding: 24px 0 34px !important;
+  }
+  .home-rebuild .editorial-intro-manifesto {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: block !important;
+    min-height: 0 !important;
+    padding: 0 0 22px !important;
+  }
+  .home-rebuild .editorial-intro-manifesto h2 { font-size: clamp(28px, 9vw, 38px) !important; }
+  .home-rebuild .editorial-intro-rule {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    margin: 0 0 16px !important;
+  }
+  .home-rebuild .editorial-intro-label {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+  }
+  .home-rebuild .editorial-intro-portrait {
+    grid-column: 1 !important;
+    grid-row: 4 !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 0 20px !important;
+    transform: none !important;
+  }
+  .home-rebuild .editorial-intro-portrait img {
+    display: block !important;
+    width: 95% !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important;
+    object-fit: cover !important;
+    clip-path: none !important;
+  }
+  .home-rebuild .editorial-intro-copy {
+    grid-column: 1 !important;
+    grid-row: 5 !important;
+    display: block !important;
+    padding: 0 !important;
+    transform: none !important;
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+  }
+  .home-rebuild .editorial-about-primary,
+  .home-rebuild .editorial-about-studio {
+    display: block !important;
+    margin: 0 0 20px !important;
+  }
+  .home-rebuild .editorial-intro-contact {
+    grid-column: 1 !important;
+    grid-row: 6 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Keep the editorial archive readable: three images, one column, no squeezed tiles. */
+  .home-rebuild .editorial-work-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    gap: 18px !important;
+  }
+  .home-rebuild .editorial-work-grid .work-shot-runway,
+  .home-rebuild .editorial-work-grid .work-shot-chrome,
+  .home-rebuild .editorial-work-grid .work-shot-afterdark,
+  .home-rebuild .editorial-work-grid .work-pull-quote {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  /* Put the archive message before the image stack on phones. */
+  .home-rebuild .editorial-work-grid .work-pull-quote { grid-row: 1 !important; }
+  .home-rebuild .editorial-work-grid .work-shot-runway { grid-row: 2 !important; }
+  .home-rebuild .editorial-work-grid .work-shot-chrome { grid-row: 3 !important; }
+  .home-rebuild .editorial-work-grid .work-shot-afterdark { grid-row: 4 !important; }
+  .home-rebuild .editorial-work-grid .work-shot-petal,
+  .home-rebuild .editorial-work-grid .work-shot-crown { display: none !important; }
+  .home-rebuild .editorial-work-grid .work-shot img { height: 230px !important; }
+  .home-rebuild .editorial-work-grid .work-shot-runway img { height: 300px !important; }
+  .home-rebuild .editorial-work-grid figcaption { display: block !important; font-size: 8px !important; line-height: 1.35 !important; }
+  .home-rebuild .editorial-work-grid figcaption span { display: block; margin-top: 3px; white-space: normal !important; }
+  .home-rebuild .editorial-work-grid .work-pull-quote { min-height: 150px; padding: 24px 0 !important; }
+  .home-rebuild .editorial-work-grid .work-pull-quote strong { white-space: nowrap !important; }
+  .home-rebuild .editorial-work-grid .work-pull-quote strong br { display: none !important; }
+
+  /* Rebalance the mobile section headings so each phrase wraps deliberately. */
+  .home-rebuild .editorial-intro-manifesto h2,
+  .home-rebuild .home-wedding h2,
+  .home-rebuild .home-reels h2,
+  .home-rebuild .home-cases header h2,
+  .home-rebuild .home-contact .home-instagram h3 {
+    max-width: 100% !important;
+    font-size: clamp(30px, 9vw, 42px) !important;
+    line-height: .94 !important;
+    letter-spacing: -.045em !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+  .home-rebuild .home-contact .home-project-button {
+    max-width: 100% !important;
+    font-size: 42px !important;
+    line-height: .96 !important;
+    letter-spacing: -.04em !important;
+    white-space: normal !important;
+  }
+  .home-rebuild .editorial-intro-manifesto h2 {
+    font-size: clamp(26px, 7.5vw, 32px) !important;
+    letter-spacing: -.055em !important;
+  }
+  .home-rebuild .home-cases header h2 {
+    font-size: 34px !important;
+    line-height: .94 !important;
+  }
+  .home-rebuild .home-playlist h3 { white-space: nowrap !important; }
+  .home-rebuild .home-wedding h2 br { display: none !important; }
+  .home-rebuild .home-wedding h2 em::before { content: ' ' !important; }
+  .home-rebuild .home-wedding h2 em { white-space: nowrap !important; }
+
+  /* Limit every mobile image/card gallery to its first three items. */
+  .home-rebuild .home-instagram-grid img:nth-child(n+4),
+  .work-archive-page .gallery-track figure:nth-of-type(n+4) { display: none !important; }
+
+  /* Shared mobile image-grid gutter and column rhythm. */
+  .home-rebuild .home-wedding-grid,
+  .home-rebuild .home-reel-grid,
+  .home-rebuild .home-instagram-grid {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .home-rebuild .home-wedding figure,
+  .home-rebuild .home-reel-grid figure,
+  .home-rebuild .home-instagram-grid img { min-width: 0; width: 100%; }
+  .home-rebuild .home-wedding figure:first-child { grid-column: auto !important; grid-row: auto !important; }
+  .home-rebuild .home-wedding figure img,
+  .home-rebuild .home-wedding figure:first-child img,
+  .home-rebuild .home-reel-grid figure video,
+  .home-rebuild .home-reel-grid figure:first-child video { height: 280px !important; }
+
+  .work-archive-page .gallery-track figcaption { display: block !important; font-size: 8px !important; line-height: 1.35 !important; }
+  .work-archive-page .gallery-track figcaption span { display: block; margin-top: 3px; }
+
+  .kit-page .kit-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .kit-page .kit-card-wide { grid-column: auto !important; }
+  .kit-page .kit-card img,
+  .kit-page .kit-card-wide img,
+  .kit-page .kit-card-feature img { height: 240px !important; }
+  .kit-page .kit-card h3 { font-size: 30px !important; line-height: .95 !important; }
+  .kit-page .kit-card p { font-size: 12px !important; line-height: 1.5 !important; }
+}
