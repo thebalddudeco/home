@@ -597,7 +597,7 @@ body,body *{font-family:'Open Sans Local',Arial,sans-serif!important}
     height:950px!important;
     min-height:0!important;
     aspect-ratio:4 / 3!important;
-    top:calc(4vh + 26px)!important;
+    top:4vh!important;
     transform:translateX(-50%)!important;
   }
 }
