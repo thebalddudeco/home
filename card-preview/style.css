@@ -116,8 +116,8 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
     --frame-margin:min(2.5vw,4vh);
     top:50%!important;
     left:50%!important;
-    width:calc(100vw - (2 * var(--frame-margin)))!important;
-    height:calc(100vh - (2 * var(--frame-margin)))!important;
+    width:calc(100vw - var(--frame-margin) - var(--frame-margin))!important;
+    height:calc(100vh - var(--frame-margin) - var(--frame-margin))!important;
     transform:translate(-50%,-50%)!important;
   }
 }
@@ -127,8 +127,8 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
   .home-rebuild .tablet-frame{
     --frame-margin:min(2.5vw,4vh);
     top:50%!important;
-    width:calc(100vw - (2 * var(--frame-margin)))!important;
-    height:calc(100vh - (2 * var(--frame-margin)))!important;
+    width:calc(100vw - var(--frame-margin) - var(--frame-margin))!important;
+    height:calc(100vh - var(--frame-margin) - var(--frame-margin))!important;
     transform:translate(-50%,-50%)!important;
   }
 }
