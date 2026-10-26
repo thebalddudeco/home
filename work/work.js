@@ -46,7 +46,7 @@ carousels.forEach((carousel) => {
   });
 });
 
-const createMediaCard = (item, albumName, index) => {
+const createMediaCard = (item, albumName, index, category) => {
   const figure = document.createElement('figure');
   if (item.height > item.width) figure.classList.add('gallery-tall');
 
@@ -63,7 +63,8 @@ const createMediaCard = (item, albumName, index) => {
     figure.addEventListener('pointerleave', () => video.pause());
   } else {
     const image = document.createElement('img');
-    image.src = item.url;
+    const localName = localGallery[category]?.[index];
+    image.src = localName ? `../assets/${localName}` : item.url;
     image.alt = `${albumName} photograph ${index + 1}`;
     image.loading = 'lazy';
     image.decoding = 'async';
@@ -102,7 +103,7 @@ const loadArchive = async () => {
       const entries = albums.flatMap((album) => album.items.map((item) => ({ item, albumName: album.name.split(' — ').slice(1).join(' / ') || album.name })));
 
       const fragment = document.createDocumentFragment();
-      entries.forEach(({ item, albumName }, index) => fragment.appendChild(createMediaCard(item, albumName, index)));
+      entries.forEach(({ item, albumName }, index) => fragment.appendChild(createMediaCard(item, albumName, index, category)));
       track.replaceChildren(fragment);
       count.textContent = `${entries.length} frame${entries.length === 1 ? '' : 's'}`;
     });
@@ -112,7 +113,7 @@ const loadArchive = async () => {
       const count = carousel.querySelector('[data-gallery-count]');
       const fallback = (localGallery[carousel.dataset.gallery] || []).map((file) => ({ type: 'image', url: 'https://huggingface.co/datasets/TheBaldDudeCo/website-gallery/resolve/main/' + file, width: 3, height: 4 }));
       const fragment = document.createDocumentFragment();
-      fallback.forEach((item, index) => fragment.appendChild(createMediaCard(item, carousel.dataset.gallery.replaceAll('-', ' '), index)));
+      fallback.forEach((item, index) => fragment.appendChild(createMediaCard(item, carousel.dataset.gallery.replaceAll('-', ' '), index, carousel.dataset.gallery)));
       track.replaceChildren(fragment);
       count.textContent = fallback.length + ' frames';
     });
