@@ -18,7 +18,7 @@
   }
 
   .home-rebuild .tablet-frame {
-    top: calc(50% - 8px) !important;
+    top: calc(50% - 16px) !important;
   }
 
   .home-rebuild .topbar,
