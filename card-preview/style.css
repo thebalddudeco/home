@@ -109,6 +109,14 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 
 /* Final card sizing: 95% viewport width and a fixed 925px height. */
 .home-rebuild .tablet-frame{width:95vw!important;height:925px!important;min-height:0!important;aspect-ratio:auto!important}
+
+/* Desktop homepage card: keep the top and bottom stage margins equal. */
+@media(min-width:761px){
+  .home-rebuild .tablet-frame{
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+  }
+}
 .home-rebuild .rangefinder{inset:25px!important}
 @media(max-width:760px){.home-rebuild .rangefinder{inset:18px!important}}
 .home-rebuild .rangefinder{z-index:20!important;color:#111!important;mix-blend-mode:normal!important;text-shadow:none!important}
