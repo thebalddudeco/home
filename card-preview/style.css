@@ -597,8 +597,13 @@ body,body *{font-family:'Open Sans Local',Arial,sans-serif!important}
     height:950px!important;
     min-height:0!important;
     aspect-ratio:4 / 3!important;
-    top:4vh!important;
-    transform:translateX(-50%)!important;
+    position:relative!important;
+    left:auto!important;
+    top:auto!important;
+    transform:none!important;
+    width:95vw!important;
+    height:925px!important;
+    margin:4vh auto!important;
   }
 }
 .home-rebuild .editorial-intro-label,.home-rebuild .editorial-intro-copy{padding-top:0!important;transform:translateY(-38px)!important}
