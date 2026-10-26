@@ -90,6 +90,16 @@
   .work-archive-page .rangefinder,
   .kit-page .rangefinder { inset: 12px !important; }
 
+  .home-rebuild .rangefinder,
+  .work-archive-page .rangefinder,
+  .kit-page .rangefinder {
+    position: fixed !important;
+    z-index: 1000 !important;
+    pointer-events: none !important;
+  }
+
+  .home-rebuild .rangefinder { bottom: 28px !important; }
+
   .home-rebuild .rangefinder .rf-scale,
   .work-archive-page .rangefinder .rf-scale,
   .kit-page .rangefinder .rf-scale { width: min(190px, calc(100% - 96px)) !important; }
