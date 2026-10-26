@@ -18,7 +18,7 @@
   }
 
   .home-rebuild .tablet-frame {
-    top: 50% !important;
+    top: calc(50% - 16px) !important;
     padding: 0 !important;
   }
 
