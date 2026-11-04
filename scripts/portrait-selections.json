@@ -1,0 +1,585 @@
+{
+  "photos": [
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\01.jpg",
+      "sha256": "aaa67e4460b869618048f3ba71f210546ad83110888b20aa688604fc40f37b5f",
+      "image": "portraits/christine/christine-01.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\02.jpg",
+      "sha256": "b0d9f62632ac2bbc33a66b06a0a184a25d919642b17e7bfe089497795ff585ed",
+      "image": "portraits/christine/christine-02.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\06.jpg",
+      "sha256": "21f53b14ff6b932cdfa861cdc449071e1e7b71c6a4dec57140d03b8a761f3178",
+      "image": "portraits/christine/christine-03.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\08.jpg",
+      "sha256": "8e717d5bd4e2c57170e7311a7538c7f5910bd5d9be805ad0250cdd6b04fb077e",
+      "image": "portraits/christine/christine-04.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\10.jpg",
+      "sha256": "d64252fdd2f70681882e047b5b253b990878fb25a21efc6faff1db2b95799882",
+      "image": "portraits/christine/christine-05.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\12.jpg",
+      "sha256": "341703307bf1435bd90378cd7e3528b514ad14f6c130a8b47fb5b06aff7d7f01",
+      "image": "portraits/christine/christine-06.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\13.jpg",
+      "sha256": "f0defe6c071c99659a588191feafdca71b91180a46268f74eea9668d2aa2a52b",
+      "image": "portraits/christine/christine-07.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\14.jpg",
+      "sha256": "88f16202f8429713c8c4ca38e801174417ba52daa1b19d55fd8ac593ab86fb54",
+      "image": "portraits/christine/christine-08.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\18.jpg",
+      "sha256": "f36c7696417fbb6804d661f18295a86c1faf2dda52262c91a88db02b225b3870",
+      "image": "portraits/christine/christine-09.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Christine Kim",
+      "source": "E:\\LADIES\\Christine Kim\\03_FINAL\\ENHANCED\\22.jpg",
+      "sha256": "f0922e1625a35b2563a3c6fb6314f92152b60cd20ea500582c9ca53b5603c0b2",
+      "image": "portraits/christine/christine-10.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_044749_608b274c-f85f-473e-963e-b0c7f7f463f8.jpg",
+      "sha256": "ab3c732682f85cb7d2b724742f3ff8b0e3b021442c10a1ed290391af423c00d0",
+      "image": "portraits/ferry/ferry-01.webp",
+      "width": 2048,
+      "height": 1143
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_044829_dc94ddae-88ec-41d1-bd59-a0cb382aef54.jpg",
+      "sha256": "94694f6ede1ec041ad96ec598cde6e03a61d57af1823cd73859b14eab772256e",
+      "image": "portraits/ferry/ferry-02.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_044946_0b14bbb8-fe34-4fde-9bb4-be5f37a3abd5.jpg",
+      "sha256": "0b1573e394ff9b6a0bad157e01eeefb16f8ed7af0479222907479d8bd9bfa78a",
+      "image": "portraits/ferry/ferry-03.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_045349_e952aebe-33bf-4b28-980e-458fc286b9f6.jpg",
+      "sha256": "ed711779f5b6755406cdc79e43e419d67e2f764d7b8bbd7b9b9b55e3b635ab86",
+      "image": "portraits/ferry/ferry-04.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_045949_d6325e91-76a4-4f03-ad3d-8ea54815eda1.jpg",
+      "sha256": "69654a2c973c3bf0eaa47771ad1d901a2d780291264e5b1f384b0bb7b8acaaef",
+      "image": "portraits/ferry/ferry-05.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_050837_f238e714-df34-4b50-aa6b-74920fe5457f.jpg",
+      "sha256": "bec9ce20a8642f17020877c80279cbeb49715ad07efff33e312c941c5be66b1b",
+      "image": "portraits/ferry/ferry-06.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_051209_42d3cfac-9633-4c23-8aa6-07754a58484f.jpg",
+      "sha256": "2851c95bad1751133022c6a6001232e70cfc0ae7ef1b466097d69c4a22a34bb7",
+      "image": "portraits/ferry/ferry-07.webp",
+      "width": 2048,
+      "height": 1143
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_051430_ddc488b6-5ae3-4c12-9f95-1c42c48f4022.jpg",
+      "sha256": "6f45c5e59b966e6afce1e679449623a8c7fb5a254c07a95629e73aebcdf9a7d2",
+      "image": "portraits/ferry/ferry-08.webp",
+      "width": 2048,
+      "height": 1143
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_051920_7ed1f9cb-10e6-4a85-9391-51aade10b610.jpg",
+      "sha256": "f725aa53048618d222018c0fd136bc284e4c1961989b04e6ca76167f78f0c581",
+      "image": "portraits/ferry/ferry-09.webp",
+      "width": 1529,
+      "height": 2048
+    },
+    {
+      "project": "Golden Hour Ferry",
+      "source": "F:\\EVENTS\\GOLDEN HOUR FERRY SHOOT\\EDITS\\hf_20261016_053348_602da89e-07d7-4d8e-a74f-0e677519befe.jpg",
+      "sha256": "99f49ae0c81fac4996cd54e0c4cb75a40ed74c68c1c457b304ef1906d691cd59",
+      "image": "portraits/ferry/ferry-10.webp",
+      "width": 2048,
+      "height": 1143
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\10_1.jpg",
+      "sha256": "734c310940b5633447207d613880c2755ab90577b4d96f38ac05f693f8fdc4e3",
+      "image": "portraits/macy/macy-01.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\11_1.jpg",
+      "sha256": "2be27a84dcc81074283f24c265a4a5c62c3dd0afca7cf6c1d557fd54aeac1c59",
+      "image": "portraits/macy/macy-02.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\13_1.jpg",
+      "sha256": "ffd44434c949b2f20cd77f285c33848528bcbeda6e1e778840a565a944be3d72",
+      "image": "portraits/macy/macy-03.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\16_1.jpg",
+      "sha256": "05ad7e3db1942ac9469b3a0182435ff1600b517723b41af0184e7155e1946bab",
+      "image": "portraits/macy/macy-04.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\17_1.jpg",
+      "sha256": "eeb9d754c3db51d0a3bea3b9366e3d48936c4abc472982ee4bca5a156c01f8d2",
+      "image": "portraits/macy/macy-05.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\3_1.jpg",
+      "sha256": "d73eb57b8d5428520ae43bdc4eea6585d8baa45b81425fe6c3ba58899eb89115",
+      "image": "portraits/macy/macy-06.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\5_1.jpg",
+      "sha256": "76c371e091a96f36da6190e024eef695f7ec4b25f01070c322fe8e6e9c380d12",
+      "image": "portraits/macy/macy-07.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\6_1.jpg",
+      "sha256": "2994465c7d3fcacd674f82ddb19eb0a1e1692128ab7c9b6297c4eafb921ab396",
+      "image": "portraits/macy/macy-08.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\7_1.jpg",
+      "sha256": "28d55656ba406c5a04580e8c3fa9a9d1b0aae1edf4389d2363b9f64475f95d1d",
+      "image": "portraits/macy/macy-09.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Macy",
+      "source": "E:\\LADIES\\Macy\\04_FINAL\\Selected\\9_1.jpg",
+      "sha256": "67d45f9538f902332365e4adaa8c5fb8ed2d9b9ec72b4b3871771b251ec0331b",
+      "image": "portraits/macy/macy-10.webp",
+      "width": 2560,
+      "height": 1911
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\01.png",
+      "sha256": "ee43c8c77b2960e143abe141c3536a67f90988ec187fe61cd71738df02973b72",
+      "image": "portraits/ludivine/ludivine-01.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\02.png",
+      "sha256": "5c870a37328c4d89ab424a6cd8b9bf4696dd814a825d496e2f3b75e1cd89629f",
+      "image": "portraits/ludivine/ludivine-02.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\04.png",
+      "sha256": "20133334a0d1fa2fd50d8d1aa95c03eeedec74c9ce96acbef4a26f8d2a28a425",
+      "image": "portraits/ludivine/ludivine-03.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\05.png",
+      "sha256": "f08347330b9931c6eb8e69d2adee0c30247dba7f67e24eb65282eaccf1d3df43",
+      "image": "portraits/ludivine/ludivine-04.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\06.png",
+      "sha256": "a0ac4423f3ced4188929246458b124a5a73740018ee5b2e1b1f95e1f026ea535",
+      "image": "portraits/ludivine/ludivine-05.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\07.png",
+      "sha256": "016b0e1e9cd422a6eed221aa219e7969a51fe4cf4cd43518d0701e2545b322f5",
+      "image": "portraits/ludivine/ludivine-06.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\08.png",
+      "sha256": "5e37b3ca1e49e8a64c52dbf829ef0ae9f2ab03ff06b14f1fd9f2d842a271f04a",
+      "image": "portraits/ludivine/ludivine-07.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\09.png",
+      "sha256": "a9c71388cc9e43eb0d8ab58d4440a0703d2e87f4d0b45918e8bb16bb98201a2d",
+      "image": "portraits/ludivine/ludivine-08.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Ludivine",
+      "source": "E:\\LADIES\\Ludivine\\NEW\\10.png",
+      "sha256": "a570f1a1b7c08d6ae37946fcdc3803f9b0196fcca9f40c86fcd703a101014c38",
+      "image": "portraits/ludivine/ludivine-09.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\1.jpg",
+      "sha256": "24d6983a3531411085d5644af041ed6d3a957850dfb85dcc68abfacf95706539",
+      "image": "portraits/olivia/olivia-01.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\2.jpg",
+      "sha256": "a4fb65f96cf328e5043f3a73cf3cc79cfa5c27b8efac3e47f9ba3f03c5c4c463",
+      "image": "portraits/olivia/olivia-02.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\3.jpg",
+      "sha256": "5905eb88fb5682f33683d5389924f07e068151a878fff559b739dc580bc6cd05",
+      "image": "portraits/olivia/olivia-03.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\4.jpg",
+      "sha256": "b747dec47efc39ce133a0d7e2cbc3e96343d86470aa7dc4c5af4fdabecf24f7c",
+      "image": "portraits/olivia/olivia-04.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\5.jpg",
+      "sha256": "f857abb7312e7df8c3097cbe733473e68f3394f79cfb2a06804aa10d000a549a",
+      "image": "portraits/olivia/olivia-05.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\6.jpg",
+      "sha256": "78e0140d48ec323d6470acbe624ed77b22d0f22a2a021c964dc2c809c43f2bde",
+      "image": "portraits/olivia/olivia-06.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\7.jpg",
+      "sha256": "9377149d2e41782565011d1be89deca3c2b06e497e8dd17548f32b3e2571c1a0",
+      "image": "portraits/olivia/olivia-07.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Olivia",
+      "source": "E:\\LADIES\\Olivia\\ENHANCED\\EDITS\\8.jpg",
+      "sha256": "691993f078ecdee68b654141b6e0eda6510baed5a900c63a141feafd4bf0803a",
+      "image": "portraits/olivia/olivia-08.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0003.png",
+      "sha256": "d23ab9f66b7317e2dd1d753061ddfd8cdaf34a323a8a713eead7da6068056f5a",
+      "image": "portraits/kyla/kyla-01.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0014.png",
+      "sha256": "b03f6b7a16d333ce22a857d61ca5653d4f994575234b7dd57d584e55738d7204",
+      "image": "portraits/kyla/kyla-02.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0027.png",
+      "sha256": "83e56a69c789dc9b12babcf38d1e93910873cbf599470f7f48b816ac5ab01997",
+      "image": "portraits/kyla/kyla-03.webp",
+      "width": 2560,
+      "height": 1707
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0097.png",
+      "sha256": "1ffaed7a16737ea141e19d131402b042a388944485816bbe8047083562a1e2c7",
+      "image": "portraits/kyla/kyla-04.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0110.png",
+      "sha256": "ab57b6b4a544f877812e5ade4d595cbfff4b6b6828d960c4eb9648ff723fea60",
+      "image": "portraits/kyla/kyla-05.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0184.png",
+      "sha256": "98971aac7e19ec7220e761098f25749946804beaa2ed360bac7fb7f0f3210b00",
+      "image": "portraits/kyla/kyla-06.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0270.png",
+      "sha256": "69474c8188ade39526b20b281ebaa510f576b214750be159eb854249c0f49a7a",
+      "image": "portraits/kyla/kyla-07.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0294.png",
+      "sha256": "964b7a1ec4c402c6702127145ce9b5d03140d49ca10ae151447a6796d4a13bdb",
+      "image": "portraits/kyla/kyla-08.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0393.png",
+      "sha256": "521518e0a5eba656b4d6e3396ff77ad53edb76212b78bb170697c056f7c3e8f0",
+      "image": "portraits/kyla/kyla-09.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Studio Workshop",
+      "source": "E:\\LADIES\\Kyla\\Photo Workshop\\PHOTO\\EDITS\\DSCF0497.png",
+      "sha256": "37852c3a3c034aaab4defe92c9824e2fd95682657434d5560b03bcfc20f6baba",
+      "image": "portraits/kyla/kyla-10.webp",
+      "width": 1707,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2418.jpg",
+      "sha256": "79e7b24bfc7a756f08953252ebcb5d99663ce494f474cf82286a9eeebfc54917",
+      "image": "portraits/zoe/zoe-01.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2498.jpg",
+      "sha256": "508be1ba90ad7bf60b1f7aad8a988fc449a512a8db748e818e8153728f3b38f0",
+      "image": "portraits/zoe/zoe-02.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2553.jpg",
+      "sha256": "a7a3c1eb1ec26abad3d16f9a91f3b88a828cbc7ef54974ec280fc15674f72b92",
+      "image": "portraits/zoe/zoe-03.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2601.jpg",
+      "sha256": "b28416a274bfdbb6b5c637c2c3e51aaccd53db23a7b8c1017a7fa39189653d74",
+      "image": "portraits/zoe/zoe-04.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2613.jpg",
+      "sha256": "31858e42265bd98c5d76e4aeb723288680ba6373e2077333f77d4efc9a830860",
+      "image": "portraits/zoe/zoe-05.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2696.jpg",
+      "sha256": "900b432c283eeb596835273f53e171222e0ef5f96e1b8862d057bee8d064bf33",
+      "image": "portraits/zoe/zoe-06.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2776.jpg",
+      "sha256": "cad4b7642bdd16e571338ae50b41757253326f474d1db2a673c9ed8ae0efe11d",
+      "image": "portraits/zoe/zoe-07.webp",
+      "width": 2560,
+      "height": 1429
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2832.jpg",
+      "sha256": "d8b58fe48cba7a7f57e9693346ede598d0d2ed7f8788329213776f01500a50e3",
+      "image": "portraits/zoe/zoe-08.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF2841.jpg",
+      "sha256": "23cbb29471546f9dbfe58a30e75e9928bd38a87c4106ac6e9a6dfa417c30f146",
+      "image": "portraits/zoe/zoe-09.webp",
+      "width": 1911,
+      "height": 2560
+    },
+    {
+      "project": "Zoe",
+      "source": "E:\\LADIES\\Zoe\\PHOTO\\CINEMATIC\\FULL SIZE\\RESIZED\\Selected\\DSCF3087.jpg",
+      "sha256": "d7b6ae360c8519d60374af23c30f6ee1f946cb4ec8e8a9850dd538edcf9c8180",
+      "image": "portraits/zoe/zoe-10.webp",
+      "width": 2560,
+      "height": 1429
+    }
+  ],
+  "movingPortraits": [
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\1.mp4",
+      "sha256": "f2c36c19fe1a8877ed709365b047ceea8d2325c06379143b8ba8cdd789e55e87",
+      "image": "portraits/aika/aika-01-poster.webp",
+      "video": "portraits/aika/aika-01.webm",
+      "duration": "3.049000"
+    },
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\2_1.mp4",
+      "sha256": "38475881cd71707b7a499e609a490b882c2ef98c5cb0a17d01f4e96784e8ceff",
+      "image": "portraits/aika/aika-02-poster.webp",
+      "video": "portraits/aika/aika-02.webm",
+      "duration": "3.049000"
+    },
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\3_1.mp4",
+      "sha256": "a1f28754cf12dd661afd2003902c094e807a24d70f05dbe8025fda8000c4980f",
+      "image": "portraits/aika/aika-03-poster.webp",
+      "video": "portraits/aika/aika-03.webm",
+      "duration": "3.049000"
+    },
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\4_1.mp4",
+      "sha256": "9a82d01c322b577c24ed5bf61904bd1b122c17dea7fe057853bda05db20b9dbc",
+      "image": "portraits/aika/aika-04-poster.webp",
+      "video": "portraits/aika/aika-04.webm",
+      "duration": "3.049000"
+    },
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\5_1.mp4",
+      "sha256": "5eab3f1cd9a17c4c889121ebbe476de8a6e9ff830e7d4791d06fb21b3383250b",
+      "image": "portraits/aika/aika-05-poster.webp",
+      "video": "portraits/aika/aika-05.webm",
+      "duration": "3.049000"
+    },
+    {
+      "source": "E:\\LADIES\\Aika Yokoyama\\5_VIDEO\\B&W\\7_1.mp4",
+      "sha256": "5fd613aaced8a7c34319284c788090725a351b1441e450ca07ddb7940b7c0984",
+      "image": "portraits/aika/aika-06-poster.webp",
+      "video": "portraits/aika/aika-06.webm",
+      "duration": "3.049000"
+    }
+  ],
+  "unreadableSource": "E:\\LADIES\\Ludivine\\NEW\\03.png"
+}

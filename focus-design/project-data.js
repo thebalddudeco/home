@@ -332,11 +332,12 @@ const selectedProjectSets = [
         "height": 1067
       },
       {
-        "image": "project-polaroids/penthouse-show-05.webp",
-        "sourceName": "DSCF1042_1_1.jpg",
+        "image": "project-polaroids/penthouse-headroom-DSCF0863.webp",
+        "sourceName": "DSCF0863_1_1.jpg",
         "galleryIndex": 4,
         "width": 1027,
-        "height": 1600
+        "height": 1600,
+        "polaroidPosition": "50% 0%"
       }
     ]
   },

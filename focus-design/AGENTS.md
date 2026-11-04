@@ -12,3 +12,5 @@ Deduplicate each category by image content, including resized/renamed copies. Th
 The homepage section titled 'MOTION / SOUND OFF, PULSE ON' must use the existing API-synced Instagram feed (../instagram-feed.json). Do not render the local Motion video collection in this homepage section. The uploaded films belong only to the Motion category viewer.
 
 Instagram means the account main Posts/profile grid, including Reels shared to that grid and pinned posts in their grid order. Do not switch to the Reels tab and do not exclude all Reels. The observed profile-grid seed and pinned order live in scripts/instagram-profile-grid.json.
+
+Portraits is curated exclusively from the supplied portrait-session folders in `portrait-data.js`, including six Aika moving portraits. Do not append old Editorial, Events, or Weddings photographs to Portraits. Keep image identities exclusive across the four main still categories. Preserve aligned per-frame video/title metadata when filtering mixed galleries.

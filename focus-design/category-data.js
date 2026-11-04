@@ -25,30 +25,6 @@ const selectedCategoryFrames = [
   },
   {
     "project": "sony",
-    "category": "portraits",
-    "image": "category-selects/sony-DSCF0839.webp",
-    "sourceName": "DSCF0839.webp"
-  },
-  {
-    "project": "sony",
-    "category": "portraits",
-    "image": "category-selects/sony-DSCF0932.webp",
-    "sourceName": "DSCF0932.webp"
-  },
-  {
-    "project": "sony",
-    "category": "portraits",
-    "image": "category-selects/sony-DSCF1010.webp",
-    "sourceName": "DSCF1010.webp"
-  },
-  {
-    "project": "sony",
-    "category": "portraits",
-    "image": "category-selects/sony-DSCF1109.webp",
-    "sourceName": "DSCF1109.webp"
-  },
-  {
-    "project": "sony",
     "category": "events",
     "image": "category-selects/sony-DSCF0881.webp",
     "sourceName": "DSCF0881.webp"
@@ -76,12 +52,6 @@ const selectedCategoryFrames = [
     "category": "events",
     "image": "category-selects/ukraine-DSCF0857.webp",
     "sourceName": "DSCF0857.webp"
-  },
-  {
-    "project": "ukraine",
-    "category": "portraits",
-    "image": "category-selects/ukraine-DSCF1381.webp",
-    "sourceName": "DSCF1381.webp"
   },
   {
     "project": "ukraine",
@@ -271,12 +241,6 @@ const selectedCategoryFrames = [
   },
   {
     "project": "soho-june",
-    "category": "portraits",
-    "image": "category-selects/soho-june-SOHO FASHION SHOW #43_1.webp",
-    "sourceName": "SOHO FASHION SHOW #43_1.jpg"
-  },
-  {
-    "project": "soho-june",
     "category": "events",
     "image": "category-selects/soho-june-SOHO FASHION SHOW #22_1.webp",
     "sourceName": "SOHO FASHION SHOW #22_1.jpg"
@@ -301,48 +265,6 @@ const selectedCategoryFrames = [
   },
   {
     "project": "soho-july",
-    "category": "portraits",
-    "image": "category-selects/soho-july-DSCF0521.webp",
-    "sourceName": "DSCF0521.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "category-selects/soho-july-DSCF0542.webp",
-    "sourceName": "DSCF0542.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "category-selects/soho-july-DSCF0574.webp",
-    "sourceName": "DSCF0574.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "category-selects/soho-july-DSCF0579.webp",
-    "sourceName": "DSCF0579.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "category-selects/soho-july-DSCF0638.webp",
-    "sourceName": "DSCF0638.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "project-polaroids/soho-july-approved-DSCF0672.webp",
-    "sourceName": "DSCF0672.jpg"
-  },
-  {
-    "project": "soho-july",
-    "category": "portraits",
-    "image": "project-polaroids/soho-july-approved-DSCF0705.webp",
-    "sourceName": "DSCF0705.jpg"
-  },
-  {
-    "project": "soho-july",
     "category": "editorial",
     "image": "category-selects/soho-july-DSCF0547.webp",
     "sourceName": "DSCF0547.jpg"
@@ -358,30 +280,6 @@ const selectedCategoryFrames = [
     "category": "events",
     "image": "category-selects/soho-july-DSCF0651.webp",
     "sourceName": "DSCF0651.jpg"
-  },
-  {
-    "project": "soho-oct",
-    "category": "portraits",
-    "image": "category-selects/soho-oct-DSCF0075.webp",
-    "sourceName": "DSCF0075.jpg"
-  },
-  {
-    "project": "soho-oct",
-    "category": "portraits",
-    "image": "category-selects/soho-oct-DSCF0112.webp",
-    "sourceName": "DSCF0112.webp"
-  },
-  {
-    "project": "soho-oct",
-    "category": "portraits",
-    "image": "category-selects/soho-oct-DSCF0493.webp",
-    "sourceName": "DSCF0493.webp"
-  },
-  {
-    "project": "soho-oct",
-    "category": "portraits",
-    "image": "category-selects/soho-oct-DSCF0684.webp",
-    "sourceName": "DSCF0684.jpg"
   },
   {
     "project": "soho-oct",
@@ -445,63 +343,9 @@ const selectedCategoryFrames = [
   },
   {
     "project": "penthouse",
-    "category": "portraits",
-    "image": "category-selects/penthouse-DSCF0806_1.webp",
-    "sourceName": "DSCF0806_1.jpg"
-  },
-  {
-    "project": "penthouse",
-    "category": "portraits",
-    "image": "category-selects/penthouse-DSCF0849_1.webp",
-    "sourceName": "DSCF0849_1.jpg"
-  },
-  {
-    "project": "penthouse",
-    "category": "portraits",
-    "image": "category-selects/penthouse-DSCF0878_1_1.webp",
-    "sourceName": "DSCF0878_1_1.jpg"
-  },
-  {
-    "project": "penthouse",
-    "category": "portraits",
-    "image": "category-selects/penthouse-DSCF0987_1.webp",
-    "sourceName": "DSCF0987_1.jpg"
-  },
-  {
-    "project": "penthouse",
-    "category": "portraits",
-    "image": "category-selects/penthouse-DSCF1042_1_1.webp",
-    "sourceName": "DSCF1042_1_1.jpg"
-  },
-  {
-    "project": "penthouse",
     "category": "events",
     "image": "category-selects/penthouse-DSCF0719_1.webp",
     "sourceName": "DSCF0719_1.jpg"
-  },
-  {
-    "project": "gatsby",
-    "category": "portraits",
-    "image": "category-selects/gatsby-DSCF6412.webp",
-    "sourceName": "DSCF6412.jpg"
-  },
-  {
-    "project": "gatsby",
-    "category": "portraits",
-    "image": "category-selects/gatsby-DSCF6677.webp",
-    "sourceName": "DSCF6677.jpg"
-  },
-  {
-    "project": "gatsby",
-    "category": "portraits",
-    "image": "category-selects/gatsby-DSCF6860.webp",
-    "sourceName": "DSCF6860.jpg"
-  },
-  {
-    "project": "gatsby",
-    "category": "portraits",
-    "image": "category-selects/gatsby-DSCF7078.webp",
-    "sourceName": "DSCF7078.jpg"
   },
   {
     "project": "gatsby",
@@ -538,36 +382,6 @@ const selectedCategoryFrames = [
     "category": "events",
     "image": "category-selects/gatsby-DSCF7041.webp",
     "sourceName": "DSCF7041.jpg"
-  },
-  {
-    "project": "halloween",
-    "category": "portraits",
-    "image": "category-selects/halloween-DSCF0634.webp",
-    "sourceName": "DSCF0634.webp"
-  },
-  {
-    "project": "halloween",
-    "category": "portraits",
-    "image": "category-selects/halloween-DSCF0733.webp",
-    "sourceName": "DSCF0733.jpg"
-  },
-  {
-    "project": "halloween",
-    "category": "portraits",
-    "image": "category-selects/halloween-DSCF0971.webp",
-    "sourceName": "DSCF0971.webp"
-  },
-  {
-    "project": "halloween",
-    "category": "portraits",
-    "image": "category-selects/halloween-DSCF1756.webp",
-    "sourceName": "DSCF1756.jpg"
-  },
-  {
-    "project": "halloween",
-    "category": "portraits",
-    "image": "category-selects/halloween-DSCF1844.webp",
-    "sourceName": "DSCF1844.jpg"
   },
   {
     "project": "halloween",
