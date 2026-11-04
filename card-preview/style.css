@@ -103,7 +103,7 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 @media(max-width:760px){.home-rebuild main{padding-top:64px!important}}
 
 /* Final override: keep the supplied subway photograph visible behind the card. */
-.card-stage{background:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('site-background.png') center/cover no-repeat!important}
+.card-stage{background:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('site-background.webp') center/cover no-repeat!important}
 .card-stage:before{opacity:.12!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38))!important}
 .card-stage:after{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34))!important}
 
@@ -142,7 +142,7 @@ body.card-concept{height:100%;min-height:0;overflow:hidden;background:transparen
 /* Responsive card sizing is finalized by the shared desktop inset rule below. */
 
 /* Supplied monochrome subway photograph as the persistent website surround. */
-.card-stage{background-image:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('../assets/site-background.png');background-size:cover;background-position:center;background-repeat:no-repeat}
+.card-stage{background-image:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('../assets/site-background.webp');background-size:cover;background-position:center;background-repeat:no-repeat}
 .card-stage:before{opacity:.12;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38))}
 .card-stage:after{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34))}
 
@@ -669,7 +669,7 @@ body,body *{font-family:'Open Sans Local',Arial,sans-serif!important}
 @media(max-width:760px){.home-rebuild main{padding-top:64px!important}}
 
 /* Final override: keep the supplied subway photograph visible behind the card. */
-.card-stage{background:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('../assets/site-background.png') center/cover no-repeat!important}
+.card-stage{background:linear-gradient(rgba(7,8,8,.28),rgba(7,8,8,.28)),url('../assets/site-background.webp') center/cover no-repeat!important}
 .card-stage:before{opacity:.12!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38))!important}
 .card-stage:after{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34))!important}
 

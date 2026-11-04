@@ -3,6 +3,10 @@ name: Publish website
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: [Sync Instagram feed]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: '43 * * * *'
@@ -18,7 +22,9 @@ concurrency:
 
 jobs:
   refresh:
-    if: github.event_name != 'schedule' || vars.GOOGLE_REVIEWS_SYNC_ENABLED == 'true'
+    if: >-
+      (github.event_name != 'schedule' || vars.GOOGLE_REVIEWS_SYNC_ENABLED == 'true') &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     environment:
       name: github-pages

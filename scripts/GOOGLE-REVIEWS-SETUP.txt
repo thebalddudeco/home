@@ -16,10 +16,15 @@ support/contact info@thebalddude.co. User created a Desktop OAuth client.
 Credentials verified from the supplied private JSON file, outside this repository.
 Owner authorization helper: scripts/authorize_google_reviews.py (loopback only,
 PKCE and state validation; private output outside the served website).
-Google consent screen opened on 2026-11-04; awaiting owner Allow action.
-No refresh token, repository secrets, deployment, or schedule activation has
-been verified. Business Profile API access is not yet verified.
-The review fetch has only been tested using synthetic responses.
+Owner consent completed and refresh token saved privately outside the repository.
+Token refresh tested successfully. Account Management API enabled by Justin.
+Live account request returned HTTP 429 with quota_limit_value=0. Google requires
+Business Profile API approval before review access can work. Justin supplied the
+application result: Google cannot proceed because eligibility criteria are not met.
+Automatic Google review sync remains disabled; the three supplied excerpts are live.
+No repository secrets or review-location resource have been configured.
+Root redesign published to www.thebalddude.co through GitHub Pages Actions.
+thebalddude.co redirects to that root URL; no /home or preview path is required.
 
 ACTIVATION
 1. Use a Google Cloud project owned by Justin with approved Business Profile API

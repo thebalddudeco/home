@@ -7,7 +7,7 @@ Honor `photo-policy.js` before adding or generating gallery selections. Justin e
 
 Do not reintroduce these photos under other filenames or crops. The same camera filenames in other project folders are different photographs; match the project and the actual image.
 
-Deduplicate each category by image content, including resized/renamed copies. The canonical map in `photo-policy.js` records known aliases. Preserve original source files. Polaroid photos must retain their complete composition (`object-fit: contain`).
+Deduplicate each category by image content, including resized/renamed copies. The canonical map in `photo-policy.js` records known aliases. Preserve original source files. Justin clarified on 2026-11-04: keep a uniform portrait Polaroid frame and zoom each photo to fill its opening (`object-fit: cover`). Do not resize the frame to fit each photo. Preserve faces/headroom through object-position when framing.
 
 The homepage section titled 'MOTION / SOUND OFF, PULSE ON' must use the existing API-synced Instagram feed (../instagram-feed.json). Do not render the local Motion video collection in this homepage section. The uploaded films belong only to the Motion category viewer.
 

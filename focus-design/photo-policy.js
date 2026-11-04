@@ -7,11 +7,11 @@ const excludedPhotoAssets = new Set([
   "category-selects/soho-july-DSCF0690.jpg"
 ]);
 const canonicalPhotoAssets = {
-  "category-selects/soho-june-SOHO FASHION SHOW #34_1.jpg": "runway-floral.jpg",
-  "category-selects/soho-june-SOHO FASHION SHOW #9_1.jpg": "runway-white.jpg",
-  "category-selects/soho-july-DSCF0547.jpg": "chrome-visor.jpg",
-  "wedding-joyce-alex-confetti.jpg": "wedding-joyce-alex-balcony.jpg",
-  "wedding-joyce-alex-carry.jpg": "wedding-joyce-alex-balcony.jpg",
-  "category-selects/joyce-DSCF0335.jpg": "wedding-joyce-alex-subway.jpg",
-  "category-selects/joyce-DSCF0533.jpg": "wedding-joyce-alex-balcony.jpg"
+  "category-selects/soho-june-SOHO FASHION SHOW #34_1.webp": "runway-floral.webp",
+  "category-selects/soho-june-SOHO FASHION SHOW #9_1.webp": "runway-white.webp",
+  "category-selects/soho-july-DSCF0547.webp": "chrome-visor.webp",
+  "wedding-joyce-alex-confetti.webp": "wedding-joyce-alex-balcony.webp",
+  "wedding-joyce-alex-carry.webp": "wedding-joyce-alex-balcony.webp",
+  "category-selects/joyce-DSCF0335.webp": "wedding-joyce-alex-subway.webp",
+  "category-selects/joyce-DSCF0533.webp": "wedding-joyce-alex-balcony.webp"
 };

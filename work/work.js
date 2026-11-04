@@ -82,11 +82,11 @@ const createMediaCard = (item, albumName, index, category) => {
 };
 
 const localGallery = {
-  events: ['hero-sony-focus-dscf0768.jpg', 'sony-rooftop-motion-poster.jpg', 'fashion4ukraine-after-dark-poster.jpg', 'fashion4ukraine-backstage-poster.jpg', 'fashion4ukraine-blue-hour.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'portraits-sony-dscf0745.jpg'],
-  'editorial-fashion': ['runway-floral.jpg', 'chrome-visor.jpg', 'fashion4ukraine-petal-flash.jpg', 'leopard-crown.jpg', 'magenta-feather.jpg', 'hero-model.jpg', 'runway-white.jpg', 'hero-structured-black.jpg'],
-  'street-photography': ['portraits-sony-dscf0745.jpg', 'justin-von-braun-portrait.png', 'hero-structured-black.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'magenta-feather.jpg', 'hero-model.jpg', 'leopard-crown.jpg'],
-  'studio-photography': ['hero-model.jpg', 'hero-structured-black.jpg', 'magenta-feather.jpg', 'leopard-crown.jpg', 'chrome-visor.jpg', 'justin-von-braun-portrait.png', 'runway-white.jpg', 'portraits-sony-dscf0745.jpg'],
-  wedding: ['wedding-joyce-alex-balcony.jpg', 'wedding-joyce-alex-kiss.jpg', 'wedding-joyce-alex-family.jpg', 'wedding-joyce-alex-sidewalk.jpg', 'wedding-joyce-alex-couch.jpg', 'wedding-joyce-alex-confetti.jpg', 'wedding-joyce-alex-sunglasses.jpg', 'wedding-joyce-alex-carry.jpg']
+  events: ['hero-sony-focus-dscf0768.webp', 'sony-rooftop-motion-poster.webp', 'fashion4ukraine-after-dark-poster.webp', 'fashion4ukraine-backstage-poster.webp', 'fashion4ukraine-blue-hour.webp', 'chrome-visor.webp', 'runway-floral.webp', 'portraits-sony-dscf0745.webp'],
+  'editorial-fashion': ['runway-floral.webp', 'chrome-visor.webp', 'fashion4ukraine-petal-flash.webp', 'leopard-crown.webp', 'magenta-feather.webp', 'hero-model.webp', 'runway-white.webp', 'hero-structured-black.webp'],
+  'street-photography': ['portraits-sony-dscf0745.webp', 'justin-von-braun-portrait.webp', 'hero-structured-black.webp', 'chrome-visor.webp', 'runway-floral.webp', 'magenta-feather.webp', 'hero-model.webp', 'leopard-crown.webp'],
+  'studio-photography': ['hero-model.webp', 'hero-structured-black.webp', 'magenta-feather.webp', 'leopard-crown.webp', 'chrome-visor.webp', 'justin-von-braun-portrait.webp', 'runway-white.webp', 'portraits-sony-dscf0745.webp'],
+  wedding: ['wedding-joyce-alex-balcony.webp', 'wedding-joyce-alex-kiss.webp', 'wedding-joyce-alex-family.webp', 'wedding-joyce-alex-sidewalk.webp', 'wedding-joyce-alex-couch.webp', 'wedding-joyce-alex-confetti.webp', 'wedding-joyce-alex-sunglasses.webp', 'wedding-joyce-alex-carry.webp']
 };
 
 const loadArchive = async () => {

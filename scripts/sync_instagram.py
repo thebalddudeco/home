@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import json
+import io
 import mimetypes
 import os
 import re
 import urllib.parse
 import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
+from PIL import Image, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,8 +26,17 @@ def request_json(url: str) -> dict:
         "Authorization": f"Bearer {TOKEN}",
         "User-Agent": "TheBaldDudeCo-Instagram-Sync/1.0",
     })
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.load(response)
+    except urllib.error.HTTPError as error:
+        try:
+            detail = json.loads(error.read()).get('error', {})
+            message = str(detail.get('message', 'Request rejected')).replace(TOKEN, '[redacted]')
+            code = detail.get('code', error.code)
+        except (ValueError, TypeError):
+            message, code = 'Request rejected', error.code
+        raise RuntimeError(f'Instagram sync failed (HTTP {error.code}, code {code}): {message}') from None
 
 
 def download(url: str, destination_stem: Path) -> Path:
@@ -32,11 +44,11 @@ def download(url: str, destination_stem: Path) -> Path:
     with urllib.request.urlopen(request, timeout=45) as response:
         data = response.read()
         content_type = response.headers.get_content_type()
-    extension = mimetypes.guess_extension(content_type) or ".jpg"
-    if extension == ".jpe":
-        extension = ".jpg"
-    destination = destination_stem.with_suffix(extension)
-    destination.write_bytes(data)
+    destination = destination_stem.with_suffix('.webp')
+    with Image.open(io.BytesIO(data)) as image:
+        image = ImageOps.exif_transpose(image)
+        image.thumbnail((2560, 2560), Image.Resampling.LANCZOS)
+        image.save(destination, 'WEBP', quality=88, method=5)
     return destination
 
 

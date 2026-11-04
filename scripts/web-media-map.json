@@ -1,0 +1,2952 @@
+{
+  "assets/brand-favicon.png": {
+    "target": "assets/brand-favicon.webp",
+    "source_sha256": "0e19a0585e746421cfcf2d20ffc90398068572b17d514a93ccf98c3dd3633cc5",
+    "bytes": 32626
+  },
+  "assets/brand-main-wordmark.png": {
+    "target": "assets/brand-main-wordmark.webp",
+    "source_sha256": "ba56c352ecf255d21b71c360ccb4c79f84bf84d3274817e2d2b9ef9a35df964c",
+    "bytes": 7482
+  },
+  "assets/brand-mark.png": {
+    "target": "assets/brand-mark.webp",
+    "source_sha256": "f3c54c31c21a0232dad452e002ebd627790c4c8b60c953d9aee4e1fcec056a3c",
+    "bytes": 6468
+  },
+  "assets/brand-stacked.png": {
+    "target": "assets/brand-stacked.webp",
+    "source_sha256": "610fa525b4ad2a0162b89bd978eeae94a9b72056e163e80683efacbbfbb5b7bc",
+    "bytes": 10648
+  },
+  "assets/brand-wordmark.png": {
+    "target": "assets/brand-wordmark.webp",
+    "source_sha256": "969a620df1a5cd57c666abd4004aa3b8445040535a403e7880f5708f41010df3",
+    "bytes": 26762
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #14.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #14.webp",
+    "source_sha256": "5a245e43dd509791ec5d8b144ad3a6f33f8ee61b07459a84983cee933322c64c",
+    "bytes": 262796
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #109.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #109.webp",
+    "source_sha256": "2186a5c17bda7cc1d60ea602e8accb48348b24a7e609aaec811830955ab9871a",
+    "bytes": 226600
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #180.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #180.webp",
+    "source_sha256": "d4f9f7d6ac866e979444c49a8d41eebfcdae3ed40068f58b501d725ea021de6d",
+    "bytes": 160934
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #13.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #13.webp",
+    "source_sha256": "b9b422e826204c72e75f94ebded47f5b651d001a42863743950f9c0830598350",
+    "bytes": 264806
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #1.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #1.webp",
+    "source_sha256": "1721560c12691092436bb82154294fbaa05af03aa31da433357c8ce1fb2ab08d",
+    "bytes": 409972
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #190.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #190.webp",
+    "source_sha256": "1352cdcab67b128ef16797b4768cf60befbcac6a683a4d93dcfe84233305d6af",
+    "bytes": 281830
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #21.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #21.webp",
+    "source_sha256": "ab6fff4d61b087f54bc867c638fdf8b706dfd4eeb2c605303e51286ef9cbd3eb",
+    "bytes": 248868
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #28.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #28.webp",
+    "source_sha256": "dba5afeccb0b3ce7f4f20ffdf64f9afe1dad1e280eb0c449a102058c49ccebdf",
+    "bytes": 258416
+  },
+  "assets/category-selects/gatsby-DSCF6412.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF6412.webp",
+    "source_sha256": "5b1f42139c463f9e517dd2de3e60857e0903a40392e58706dd02c013e547765f",
+    "bytes": 124998
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #99.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #99.webp",
+    "source_sha256": "384cbc993ad7eed42a82058d60c7c367c33eafe4e18bcdc0749fb2513f97f291",
+    "bytes": 242770
+  },
+  "assets/category-selects/gatsby-DSCF5152.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF5152.webp",
+    "source_sha256": "1d402de1f1bed9d72ea2b53d450be4a9dd0511ae05589d2c02bf20e15677ba23",
+    "bytes": 402122
+  },
+  "assets/category-selects/emily-Emily & Pedro Reception #68.jpg": {
+    "target": "assets/category-selects/emily-Emily & Pedro Reception #68.webp",
+    "source_sha256": "54e61419fc5923857d67274cc42f2189f3eec394448bba5cd2a7df0c377ffa12",
+    "bytes": 228152
+  },
+  "assets/category-selects/gatsby-DSCF6495.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF6495.webp",
+    "source_sha256": "86dbc55d75be04c35bfb1e5e5e7e3f66097b8b219d8e172c31f295d840ce68d5",
+    "bytes": 199218
+  },
+  "assets/category-selects/gatsby-DSCF5020.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF5020.webp",
+    "source_sha256": "a6c98fdadf73dcf7a1eaac0b79bec36bcc58eb7d011bcfa37301e008988c9898",
+    "bytes": 574456
+  },
+  "assets/category-selects/gatsby-DSCF6677.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF6677.webp",
+    "source_sha256": "b9bbf4d6c0eda93a80839a3b9f9958ac59510dfaaf3ac9a71c0c34583b6b45f0",
+    "bytes": 189436
+  },
+  "assets/category-selects/gatsby-DSCF6615.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF6615.webp",
+    "source_sha256": "533d1c2b06f286957af1ce4e6fd03576136bc7f385af76d1cf2db856d60df974",
+    "bytes": 259000
+  },
+  "assets/category-selects/gatsby-DSCF7012.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF7012.webp",
+    "source_sha256": "8019963862b1632ea531d95f494d6105615a4f487cbec9ccfb3e0d36a8082f4b",
+    "bytes": 169704
+  },
+  "assets/category-selects/gatsby-DSCF7041.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF7041.webp",
+    "source_sha256": "419ce8abffc1871c354a2b58f5ddac7658f6f712caa5d2f334f215c4e14a48eb",
+    "bytes": 196532
+  },
+  "assets/category-selects/gatsby-DSCF6860.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF6860.webp",
+    "source_sha256": "17e257e9a96da5cfad986a163a39eb2dc62cd30a2f9ba7f6e38f499fbf62038f",
+    "bytes": 243554
+  },
+  "assets/category-selects/gatsby-DSCF7078.jpg": {
+    "target": "assets/category-selects/gatsby-DSCF7078.webp",
+    "source_sha256": "9f14c54b790292a6bbcd8da28fb2bc59e67d70384bb74d0bc33c1876e20ac780",
+    "bytes": 106450
+  },
+  "assets/category-selects/halloween-DSCF1134.jpg": {
+    "target": "assets/category-selects/halloween-DSCF1134.webp",
+    "source_sha256": "c89f232c48d9d67019d2f111cf2aeae0809b3f628d05c96d16b5bb9e81376a26",
+    "bytes": 180380
+  },
+  "assets/category-selects/halloween-DSCF0755.jpg": {
+    "target": "assets/category-selects/halloween-DSCF0755.webp",
+    "source_sha256": "4d9fe459d8b6f2a1f77596f0f45716e9770b4a1049ed6f65526b3e0d914ce741",
+    "bytes": 199894
+  },
+  "assets/category-selects/halloween-DSCF0861.jpg": {
+    "target": "assets/category-selects/halloween-DSCF0861.webp",
+    "source_sha256": "fcc1e556c95f4b1d500737c3fa2aecda365378eb224a27150c672e08640c2800",
+    "bytes": 163622
+  },
+  "assets/category-selects/halloween-DSCF0634.jpg": {
+    "target": "assets/category-selects/halloween-DSCF0634.webp",
+    "source_sha256": "341722d58506e65a76b3936f4f75da28a3c72627abfd9124743d27187a7148bd",
+    "bytes": 371776
+  },
+  "assets/category-selects/halloween-DSCF0971.jpg": {
+    "target": "assets/category-selects/halloween-DSCF0971.webp",
+    "source_sha256": "d7c25156ccfbf6ed8a2b78e6e0a671c05684ef8f40d8bcaf4665b5ce7cdb0194",
+    "bytes": 281420
+  },
+  "assets/category-selects/halloween-DSCF0733.jpg": {
+    "target": "assets/category-selects/halloween-DSCF0733.webp",
+    "source_sha256": "04fcbc989d0499d47ed9f817cfd5170bdfdce9543854799b411f65e58a5670e1",
+    "bytes": 395772
+  },
+  "assets/category-selects/halloween-DSCF1349.jpg": {
+    "target": "assets/category-selects/halloween-DSCF1349.webp",
+    "source_sha256": "7e1a8f9abfbc04d07c2bb3bd5a5ae061218de0c2a6fc7bc3ec40b5b30dd67d45",
+    "bytes": 147852
+  },
+  "assets/category-selects/halloween-DSCF1874.jpg": {
+    "target": "assets/category-selects/halloween-DSCF1874.webp",
+    "source_sha256": "af9e45bb44ade2e9ca8317e4342a8575a71386e70a813b0524299f592ef9cb20",
+    "bytes": 209974
+  },
+  "assets/category-selects/joyce-DSCF0021.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0021.webp",
+    "source_sha256": "3e54fcc2dbfc885a1eb858dc59decc56eb9d73df0a4de5c995b9b045b72e8ca8",
+    "bytes": 258090
+  },
+  "assets/category-selects/halloween-DSCF1844.jpg": {
+    "target": "assets/category-selects/halloween-DSCF1844.webp",
+    "source_sha256": "607b22554a2ad836762c2993e21ba94195ba56c79addc40c7f0b1d47a8fa4455",
+    "bytes": 188732
+  },
+  "assets/category-selects/joyce-DSCF0009.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0009.webp",
+    "source_sha256": "d6ae15d5311608d5c65bc57ec8601d5e3936fba33701c20805f9a581a7bd63e8",
+    "bytes": 302060
+  },
+  "assets/category-selects/joyce-DSCF0066.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0066.webp",
+    "source_sha256": "6a148a7851955b743af874d336c64b96e8b6136c96b89a132ecf20ee8807e900",
+    "bytes": 332304
+  },
+  "assets/category-selects/halloween-DSCF1756.jpg": {
+    "target": "assets/category-selects/halloween-DSCF1756.webp",
+    "source_sha256": "1c9066cb4634df9f5ec11c88be1e91c0e5abe012a131cede1b6e0df7a59d5655",
+    "bytes": 412516
+  },
+  "assets/category-selects/joyce-DSCF0134.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0134.webp",
+    "source_sha256": "04e26053011ba5416b7c199283c28fdb86887858871412c73e6f98cb524fdfd5",
+    "bytes": 503474
+  },
+  "assets/category-selects/joyce-DSCF0195.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0195.webp",
+    "source_sha256": "902bd9b274d8a2341f45a58d48f9dd237b38321e630dad73aaa60adfa80baf2b",
+    "bytes": 499124
+  },
+  "assets/category-selects/joyce-DSCF0234.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0234.webp",
+    "source_sha256": "4084c3828b7fb59b811d76d539c0788ec89a0267c551aa808380da3afe3649cf",
+    "bytes": 407438
+  },
+  "assets/category-selects/joyce-DSCF0155.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0155.webp",
+    "source_sha256": "a30c84d0a3d48910d4a5a125d2f5a716ad83aea5839ec9d0b062f305a08fa953",
+    "bytes": 488728
+  },
+  "assets/category-selects/joyce-DSCF0335.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0335.webp",
+    "source_sha256": "572011e8b645efe14fb7e5190a4a86219a1923bdab95832bacbaae63b9719a91",
+    "bytes": 452412
+  },
+  "assets/category-selects/joyce-DSCF0440.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0440.webp",
+    "source_sha256": "daedcb6ed20ab762da0f6a002c00bcc39e38b04c3bbd02aeb7dab418ed29d406",
+    "bytes": 341096
+  },
+  "assets/category-selects/joyce-DSCF0533.jpg": {
+    "target": "assets/category-selects/joyce-DSCF0533.webp",
+    "source_sha256": "ba1b45c1b73e767aebd8b63028f0b0c9d8a605fbdefb8551e94ebe7d9216f5d9",
+    "bytes": 272050
+  },
+  "assets/category-selects/penthouse-DSCF0358_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0358_1.webp",
+    "source_sha256": "fe02e08522e440260640f7b370f09244282158be0e3fff5ad7c84d4581fd7227",
+    "bytes": 223592
+  },
+  "assets/category-selects/penthouse-DSCF0306_1_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0306_1_1.webp",
+    "source_sha256": "6decc1f46b19f5487cbb7318b4b272e1685ba77cf347a9d21b4d04884db51f64",
+    "bytes": 166188
+  },
+  "assets/category-selects/penthouse-DSCF0583_1_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0583_1_1.webp",
+    "source_sha256": "2555c1d063891ef8656dc736d74b48077c6c6cc292ebb7ba7b4d0b72727969a3",
+    "bytes": 175948
+  },
+  "assets/category-selects/penthouse-DSCF0806_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0806_1.webp",
+    "source_sha256": "3ea3f646715032d58ba2ef89f6d2e1e780809a6f7aeb9e18c9ee3a5d5364ebc7",
+    "bytes": 189246
+  },
+  "assets/category-selects/penthouse-DSCF0719_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0719_1.webp",
+    "source_sha256": "cc82779af5d64b193299a8c3460a60e1f4f043a31c4c9568fb60ac74949cf214",
+    "bytes": 167342
+  },
+  "assets/category-selects/penthouse-DSCF0471_1_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0471_1_1.webp",
+    "source_sha256": "e666affe155e33f80f3259318ec6c705b7de21d0746ab3f8c311a643132cb51c",
+    "bytes": 269258
+  },
+  "assets/category-selects/penthouse-DSCF0878_1_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0878_1_1.webp",
+    "source_sha256": "2b42fa6352c08c925bc1998da7b9f4c2245de29bad3d3edd4cc1aad2522279ec",
+    "bytes": 226702
+  },
+  "assets/category-selects/penthouse-DSCF0849_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0849_1.webp",
+    "source_sha256": "21f3d1e64566dc0a50370753cbbd2a5acea966099432280018ee1657dc94a7ae",
+    "bytes": 111224
+  },
+  "assets/category-selects/penthouse-DSCF1042_1_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF1042_1_1.webp",
+    "source_sha256": "c0d71c8aa0d302f6220aa84fa09b7adf3baca03d80160879b313fa159868ff6e",
+    "bytes": 195206
+  },
+  "assets/category-selects/penthouse-DSCF0987_1.jpg": {
+    "target": "assets/category-selects/penthouse-DSCF0987_1.webp",
+    "source_sha256": "e8e2a5082bd5ba1cd69d459af8c7a62de14807e4c0c8d670ba132edfea18d3c6",
+    "bytes": 186124
+  },
+  "assets/category-selects/soho-july-DSCF0542.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0542.webp",
+    "source_sha256": "ca8f6944c5c8bec47316e65bff7d945071fd2cdc12da0bf94a3661537be49b7c",
+    "bytes": 402882
+  },
+  "assets/category-selects/soho-july-DSCF0521.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0521.webp",
+    "source_sha256": "2a50a060828f8f63dc1d8819529f2465a5e17c489da0ce6e4fca31039e9aa129",
+    "bytes": 659340
+  },
+  "assets/category-selects/soho-july-DSCF0574.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0574.webp",
+    "source_sha256": "de7cd71a9bbfa9727f9a4b4a922aacded1e4e682317b54dc58c366a855d6a766",
+    "bytes": 372884
+  },
+  "assets/category-selects/soho-july-DSCF0547.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0547.webp",
+    "source_sha256": "266dbadd748026e46a953b5f8b140a1673f95d83b079b1cb3a372a78ffff6941",
+    "bytes": 473506
+  },
+  "assets/category-selects/soho-july-DSCF0632.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0632.webp",
+    "source_sha256": "fb0ec9f24e3a57b11222eeae6a5cb3d2a927b500c7a2de4dc0cc71cc59db3639",
+    "bytes": 446388
+  },
+  "assets/category-selects/soho-july-DSCF0579.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0579.webp",
+    "source_sha256": "a28b6c29dc2d0390f3b4617b11ece12f9ec474eba107dcbb18391fc8344fa945",
+    "bytes": 376150
+  },
+  "assets/category-selects/soho-july-DSCF0638.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0638.webp",
+    "source_sha256": "a444c58b5698eb9f8f38682b5d2eaf48922604bb401b6a4a58b6700a8db26027",
+    "bytes": 424992
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #22_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #22_1.webp",
+    "source_sha256": "0d66499162e7fecc55de7a11102d4a0388f8fab15a322c41f7e82a8b16f8931b",
+    "bytes": 335188
+  },
+  "assets/category-selects/soho-july-DSCF0651.jpg": {
+    "target": "assets/category-selects/soho-july-DSCF0651.webp",
+    "source_sha256": "dfa89ea2a0cace614da0d15761b113d21c591934ace174d30fc5a28fd2ce8683",
+    "bytes": 686232
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #18_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #18_1.webp",
+    "source_sha256": "67fbb3d92fa4ea4a8943e910170e54102bd87477fcb44cada5bc7b7f2a92fb1c",
+    "bytes": 415202
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #31_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #31_1.webp",
+    "source_sha256": "ebef3551bbec5ae27ab047e68eefba06c9ad8163def6b2329fc03f6d385bc62e",
+    "bytes": 420824
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #27_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #27_1.webp",
+    "source_sha256": "586c1729be6203b035720b599fbbe48b6354b1bb4279cb99715856a5d9279b74",
+    "bytes": 318134
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #34_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #34_1.webp",
+    "source_sha256": "a5b04755984ccc3951d548cf6f932cd59bd32bdc30ab9a4955c83a3492acc2b2",
+    "bytes": 342596
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #36_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #36_1.webp",
+    "source_sha256": "2c92f0c7daaede0d0efb0185ec139836fb046791cc23b5a463d470f92dc25f19",
+    "bytes": 388094
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #48_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #48_1.webp",
+    "source_sha256": "7daad48436f6766045ab2b266cd5a7c900c211bbb16ad6f3e11c0c9aa979cb7b",
+    "bytes": 357884
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #43_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #43_1.webp",
+    "source_sha256": "90d96fd1816c44a8978a261c37a449cd89d4d916b331a02ec64527a7a35c1049",
+    "bytes": 390692
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #9_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #9_1.webp",
+    "source_sha256": "549b11bbfa092ccb5a5221911a769dc0b2f0847110b7b2de587f5563556b114d",
+    "bytes": 315098
+  },
+  "assets/category-selects/soho-june-SOHO FASHION SHOW #50_1.jpg": {
+    "target": "assets/category-selects/soho-june-SOHO FASHION SHOW #50_1.webp",
+    "source_sha256": "063895cd73ac9d4b215138b50484a7a74148fedaef1cc74b307fdb9b7012f085",
+    "bytes": 346368
+  },
+  "assets/category-selects/soho-oct-DSCF0112.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0112.webp",
+    "source_sha256": "e87bc4753f7a9ca7b579bdb814b80c4754d1977ed46469974776535f51c0e711",
+    "bytes": 118576
+  },
+  "assets/category-selects/soho-oct-DSCF0218.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0218.webp",
+    "source_sha256": "ac6df2f873ce34d8f58ac8bf46f4dfc3d0d4df7d0bc7c80d4a26937f9e76ee48",
+    "bytes": 143308
+  },
+  "assets/category-selects/soho-oct-DSCF0493.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0493.webp",
+    "source_sha256": "16a0b41bcad45a36666008d3989c340e0e16ed38074df33f359fd7a0df81197d",
+    "bytes": 134044
+  },
+  "assets/category-selects/soho-oct-DSCF0197.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0197.webp",
+    "source_sha256": "6c6f41e01592af665de8be1a94d47e9a5bc2d9898d60a566611914c9c678ef4e",
+    "bytes": 177176
+  },
+  "assets/category-selects/soho-oct-DSCF0075.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0075.webp",
+    "source_sha256": "c01b3cbe534dc648548d649cc2a46b2f2845dbc98b60b80db3afe6b1b5a4deee",
+    "bytes": 66838
+  },
+  "assets/category-selects/soho-oct-DSCF0525.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0525.webp",
+    "source_sha256": "7e34498fb8da6d4fb8bbbf3949288dd442b739a3c4eb2c0a4a72daf284c3a690",
+    "bytes": 202506
+  },
+  "assets/category-selects/soho-oct-DSCF0552.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0552.webp",
+    "source_sha256": "ead657aed51ae767ea555613742141b91d4a12eb7ff61fcd22802bf5cd48a78c",
+    "bytes": 105418
+  },
+  "assets/category-selects/soho-oct-DSCF0010.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0010.webp",
+    "source_sha256": "0cac183ae3b1ccc2bef6a401e11c1130692be3cd425a33c4658c01d5a45b4e71",
+    "bytes": 127274
+  },
+  "assets/category-selects/soho-oct-DSCF0652.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0652.webp",
+    "source_sha256": "815617a1a4cc7de58c3ff8b762465ea9f4ad14de84b3c40e3d33ca482d38f445",
+    "bytes": 91194
+  },
+  "assets/category-selects/soho-oct-DSCF0684.jpg": {
+    "target": "assets/category-selects/soho-oct-DSCF0684.webp",
+    "source_sha256": "db27febaeb11c02a01fdabcb74bcae1573e4ecd6e5723f22aae27ed0e885d78b",
+    "bytes": 61746
+  },
+  "assets/category-selects/sony-DSCF0798.jpg": {
+    "target": "assets/category-selects/sony-DSCF0798.webp",
+    "source_sha256": "8b95dd64350f890259cbcbd620de0347fb4e9519c6950a944f9262634d123d61",
+    "bytes": 226424
+  },
+  "assets/category-selects/sony-DSCF0881.jpg": {
+    "target": "assets/category-selects/sony-DSCF0881.webp",
+    "source_sha256": "3f600e9c0bf4ac361d1bfa17d625236ed05aac10bea46f5739a53fab36e017da",
+    "bytes": 289378
+  },
+  "assets/category-selects/sony-DSCF0743.jpg": {
+    "target": "assets/category-selects/sony-DSCF0743.webp",
+    "source_sha256": "a42c7a31f98bc7af48580c02a925f09608285d66c2ea787e2fdab6eb56a84cb8",
+    "bytes": 239998
+  },
+  "assets/category-selects/sony-DSCF0839.jpg": {
+    "target": "assets/category-selects/sony-DSCF0839.webp",
+    "source_sha256": "706dd87dcc8c595368934121928899fb6cb44ac4eb90d942abf850ef57a3fc30",
+    "bytes": 303202
+  },
+  "assets/category-selects/sony-DSCF0785.jpg": {
+    "target": "assets/category-selects/sony-DSCF0785.webp",
+    "source_sha256": "f751517b43b0bcd22e9b7492c713a66b588167ee20a03b87e5e9fbb51cef35c9",
+    "bytes": 230464
+  },
+  "assets/category-selects/sony-DSCF0914.jpg": {
+    "target": "assets/category-selects/sony-DSCF0914.webp",
+    "source_sha256": "7731e4869cc6abbbb7133ede78310c4bf36bed2203d8e36d813cf36369e2a252",
+    "bytes": 316362
+  },
+  "assets/category-selects/sony-DSCF0971.jpg": {
+    "target": "assets/category-selects/sony-DSCF0971.webp",
+    "source_sha256": "88dd9ea91dd490491450eb108d56981c79364e8dee16e79e9858e7e3303d1888",
+    "bytes": 135676
+  },
+  "assets/category-selects/sony-DSCF0932.jpg": {
+    "target": "assets/category-selects/sony-DSCF0932.webp",
+    "source_sha256": "3ddfaa7bf3751f07d335cede326c631293c6a2463bffaa2286c80be9bc61e7b9",
+    "bytes": 173666
+  },
+  "assets/category-selects/sony-DSCF1010.jpg": {
+    "target": "assets/category-selects/sony-DSCF1010.webp",
+    "source_sha256": "abce0f08e48e0086bf2f72b1777e4842af57f45f88e008d226f730525b75731d",
+    "bytes": 168942
+  },
+  "assets/category-selects/sony-DSCF1109.jpg": {
+    "target": "assets/category-selects/sony-DSCF1109.webp",
+    "source_sha256": "ad042d19b64b20c3cf64993b4e42cc87c5b5fb2da5f0281ce1f41082df7aaf38",
+    "bytes": 278030
+  },
+  "assets/category-selects/ukraine-DSCF0112.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF0112.webp",
+    "source_sha256": "7a2bca4271f12786cabcaa8150556d7a96d436fa4a5fff3ef724daa458de8e5b",
+    "bytes": 235072
+  },
+  "assets/category-selects/ukraine-DSCF0398.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF0398.webp",
+    "source_sha256": "04fb79a87c729322e46eb87d77c29682bad9c53dc6cbc35debcf55e5c916bc43",
+    "bytes": 280360
+  },
+  "assets/category-selects/ukraine-DSCF0857.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF0857.webp",
+    "source_sha256": "5d286024c3dff3cab5428f68e8b9f86191599e92bde5d415dfb1973937e2521e",
+    "bytes": 264650
+  },
+  "assets/category-selects/ukraine-DSCF1381.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF1381.webp",
+    "source_sha256": "ac1cbc3f8cf03bc7919ab24503a59b86bd5a253adf835887d6a904c3f0484d88",
+    "bytes": 196712
+  },
+  "assets/category-selects/ukraine-DSCF1732.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF1732.webp",
+    "source_sha256": "ade2c977a468cbedab70122717332330b7f2fc14fba88f2a55605d03f1f39458",
+    "bytes": 181766
+  },
+  "assets/category-selects/ukraine-DSCF2179.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF2179.webp",
+    "source_sha256": "70a9815aeb0609d450380b9539949d799120f10acf170cdf0e7385f98bfd2e4f",
+    "bytes": 187322
+  },
+  "assets/category-selects/ukraine-DSCF2286.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF2286.webp",
+    "source_sha256": "33bb7dfa6d4255d24e8d1788100c6ffe7c961094262ec065e53f4bef91715c11",
+    "bytes": 275522
+  },
+  "assets/category-selects/ukraine-DSCF2683.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF2683.webp",
+    "source_sha256": "76e68e9a732a51ff8d12c159112d183d9e81993fed57b2e815ecd638584c5cb0",
+    "bytes": 216620
+  },
+  "assets/category-selects/ukraine-DSCF3248.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF3248.webp",
+    "source_sha256": "9dd699006688e290d8986656a8c869e9652d74decf062149598a14f9089bbcfc",
+    "bytes": 188020
+  },
+  "assets/category-selects/ukraine-DSCF3039.jpg": {
+    "target": "assets/category-selects/ukraine-DSCF3039.webp",
+    "source_sha256": "f8fa391646d61278ea83f2f8ef564ac5bbe240bcdb7b0d7d9889f6f9ada069b5",
+    "bytes": 211398
+  },
+  "assets/chrome-visor.jpg": {
+    "target": "assets/chrome-visor.webp",
+    "source_sha256": "c107cae99a2f3cea1b11c34e68cd0b887469bca42fcbc56531fe3c099b6ff61d",
+    "bytes": 650230
+  },
+  "assets/christine-kim-portrait-01.jpg": {
+    "target": "assets/christine-kim-portrait-01.webp",
+    "source_sha256": "aaa67e4460b869618048f3ba71f210546ad83110888b20aa688604fc40f37b5f",
+    "bytes": 273564
+  },
+  "assets/fashion4ukraine/DSCF0112.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0112.webp",
+    "source_sha256": "67043b08b508231ca592ea9d881efc39f44c8762317fe0e1207defdd704cf8d9",
+    "bytes": 337074
+  },
+  "assets/fashion4ukraine/DSCF0115.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0115.webp",
+    "source_sha256": "147ac9e416682767d664c3d01f211adc3bdc0fb95e3ae463ffad995b2e98654f",
+    "bytes": 275810
+  },
+  "assets/fashion4ukraine/DSCF0118.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0118.webp",
+    "source_sha256": "abe81c6e1d01ac595b15ac3aa182db4054092ff483645e9dfca3852910e58793",
+    "bytes": 324562
+  },
+  "assets/fashion4ukraine/DSCF0113.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0113.webp",
+    "source_sha256": "df74543eb258c3108c48a074e393e17c7295bd41df7a1b38038ca2e67e00041f",
+    "bytes": 401734
+  },
+  "assets/fashion4ukraine/DSCF0159.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0159.webp",
+    "source_sha256": "205cce7b639f42fe5cfd3a542ae2fd4b379bf74860f8c9ebfd6319e80a351153",
+    "bytes": 250046
+  },
+  "assets/fashion4ukraine/DSCF0172.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0172.webp",
+    "source_sha256": "c497bfa4b3b1aae5d3813c933077ed962229ebf76500762c078065c7aa37d975",
+    "bytes": 310016
+  },
+  "assets/fashion4ukraine/DSCF0185.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0185.webp",
+    "source_sha256": "540632a512bbaa91485a8ea8953f05e88bf0d00f8d9b530429dd5c3593ca4bf1",
+    "bytes": 326936
+  },
+  "assets/fashion4ukraine/DSCF0215.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0215.webp",
+    "source_sha256": "cd5bba7d3a802f0b036ea147c283912080cc7a66add0a6bbfb41eadaed42b31a",
+    "bytes": 291302
+  },
+  "assets/fashion4ukraine/DSCF0214.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0214.webp",
+    "source_sha256": "99510e8740efb3904dce4f253e534d5544a8b37165fbed72d2944d1c29a13f34",
+    "bytes": 308530
+  },
+  "assets/fashion4ukraine/DSCF0232.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0232.webp",
+    "source_sha256": "0de6b13563699c6751cc19dec20b3c666b644a962f02c87f1d464fe8cc689575",
+    "bytes": 334106
+  },
+  "assets/fashion4ukraine/DSCF0229.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0229.webp",
+    "source_sha256": "4e608625ef693250594732f18fe2f5688eb397abc35dd1b4c23d338c6265c121",
+    "bytes": 492336
+  },
+  "assets/fashion4ukraine/DSCF0234.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0234.webp",
+    "source_sha256": "b098e7053b1ffdb1b5aba74194b63eecbe856d470b5f430efe9593c7d0bcedb2",
+    "bytes": 343874
+  },
+  "assets/fashion4ukraine/DSCF0237.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0237.webp",
+    "source_sha256": "85172d2caa1f75e66c77a777d749b3ab5346630df13457f64263ecda04af8184",
+    "bytes": 276116
+  },
+  "assets/fashion4ukraine/DSCF0240.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0240.webp",
+    "source_sha256": "866565dc29dcd48c960ccee7f1956d61842fba45a4f8a7ba1cc5c96f41f49bed",
+    "bytes": 394164
+  },
+  "assets/fashion4ukraine/DSCF0239.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0239.webp",
+    "source_sha256": "dd8e53ecd6fbcb3779b2e62169956d0a8cd3fcaf2942ead860b2b8b9dce9c1ac",
+    "bytes": 316092
+  },
+  "assets/fashion4ukraine/DSCF0246.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0246.webp",
+    "source_sha256": "947045ec19027869b69c53ece3e754a63d9e49b1c84c90a5c7f6c8e3d5f1d0c3",
+    "bytes": 506302
+  },
+  "assets/fashion4ukraine/DSCF0248.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0248.webp",
+    "source_sha256": "64b63831d531dbdf78c112a295abe8a2db585fcb35cbcb78e3551c3d57a079b8",
+    "bytes": 428132
+  },
+  "assets/fashion4ukraine/DSCF0242.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0242.webp",
+    "source_sha256": "bde210b68beb9e81fa7ef87553cace80ff98e1bc27761a68781dca9adcc3411f",
+    "bytes": 429884
+  },
+  "assets/fashion4ukraine/DSCF0243.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0243.webp",
+    "source_sha256": "7d10c9f2cff2f086b6f3f4f5c9808fc8270940e5978442a69463eccab9a1a588",
+    "bytes": 424598
+  },
+  "assets/fashion4ukraine/DSCF0254.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0254.webp",
+    "source_sha256": "4325fb654bb86bd04ad76d5a0c49c8895a4e424fa30a1098ca5868baeeae6e53",
+    "bytes": 294914
+  },
+  "assets/fashion4ukraine/DSCF0249.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0249.webp",
+    "source_sha256": "f3f1e4b594b9e888963be3ef6864c24bc41acdb76e678b15f42481dc25f8117c",
+    "bytes": 431030
+  },
+  "assets/fashion4ukraine/DSCF0259.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0259.webp",
+    "source_sha256": "539f21ab0742738dd1c1deb0fc2d5fe31c27fb3400b3fe4316258eedaeb7626c",
+    "bytes": 324442
+  },
+  "assets/fashion4ukraine/DSCF0394.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0394.webp",
+    "source_sha256": "33c1c1aca4f76a0c29be8078407734d1178d3a18cb2a203b154fc51a31932e01",
+    "bytes": 562682
+  },
+  "assets/fashion4ukraine/DSCF0398.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0398.webp",
+    "source_sha256": "fedabe82ae315412f2bd11bcf18a54d4e21dbafa86235db1c0bddc194f4fffc0",
+    "bytes": 384056
+  },
+  "assets/fashion4ukraine/DSCF0375.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0375.webp",
+    "source_sha256": "50f0c48bb8b8b107f23bd66195207e6f4e51efd64ee70cc0bf7274844600bf50",
+    "bytes": 360402
+  },
+  "assets/fashion4ukraine/DSCF0392.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0392.webp",
+    "source_sha256": "ceec9ac19a58cdbf93dbefb619695c61abbc0d623ee70f919d14ce7c7f086eb9",
+    "bytes": 556812
+  },
+  "assets/fashion4ukraine/DSCF0396.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0396.webp",
+    "source_sha256": "ed535982aea8837dff2201309a65c9dd91a3093825d090a2fe88aa798416864d",
+    "bytes": 570886
+  },
+  "assets/fashion4ukraine/DSCF0402.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0402.webp",
+    "source_sha256": "756983e825b1a635caca5f0de3b086792eefe7a5d26e6d72fc44b04381ef0d87",
+    "bytes": 515964
+  },
+  "assets/fashion4ukraine/DSCF0416.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0416.webp",
+    "source_sha256": "de9f500b51a00b70865bf7e21dce7862cef7993ab72a7a5b8570087c74709501",
+    "bytes": 403514
+  },
+  "assets/fashion4ukraine/DSCF0404.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0404.webp",
+    "source_sha256": "8d76521c27685c528712bd6ce57924d629cb0800b38dc04cfe40c1179f32ae6e",
+    "bytes": 320880
+  },
+  "assets/fashion4ukraine/DSCF0423.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0423.webp",
+    "source_sha256": "fb04c38b30cc6a41b42c3477760ab741f9d6814dec247936c1da3a39cd65dd9b",
+    "bytes": 390958
+  },
+  "assets/fashion4ukraine/DSCF0421.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0421.webp",
+    "source_sha256": "d636549b29b540977b9e3ed5c7eed9614e4f0ddefcc42b1d8e07d1771ff422dd",
+    "bytes": 369502
+  },
+  "assets/fashion4ukraine/DSCF0414.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0414.webp",
+    "source_sha256": "b0bb728f7956d0421fc6db88bb78797aba4d8f59aaa64e435225e0fa383c9f9d",
+    "bytes": 443830
+  },
+  "assets/fashion4ukraine/DSCF0427.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0427.webp",
+    "source_sha256": "f77f2ff9f0a22ddd3262d652779fedf4f9b6f892d66f793bb62f2ec34e983cbf",
+    "bytes": 286658
+  },
+  "assets/fashion4ukraine/DSCF0459.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0459.webp",
+    "source_sha256": "f6b650645d6cb1af920de631bbe28cf528e56993af7e411fee2c6d4000f9a63e",
+    "bytes": 262652
+  },
+  "assets/fashion4ukraine/DSCF0464.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0464.webp",
+    "source_sha256": "d6508f4b19c6575c018d8baff136fdb650e1494739bcb231a987263b39b97a28",
+    "bytes": 342310
+  },
+  "assets/fashion4ukraine/DSCF0470.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0470.webp",
+    "source_sha256": "b88f876fdbc47336f98d46bf978ced226fdb3011fc061d59e0a36f06a98c86fc",
+    "bytes": 394506
+  },
+  "assets/fashion4ukraine/DSCF0461.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0461.webp",
+    "source_sha256": "d148f95f0abcc5be7566aa2a24aaf78bacfa8cd463e3c07673faabc52c4515f9",
+    "bytes": 377322
+  },
+  "assets/fashion4ukraine/DSCF0478.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0478.webp",
+    "source_sha256": "9898c197b9d55574f112462951cca99bade70e6d930efc4742d09b0c282b28c6",
+    "bytes": 402240
+  },
+  "assets/fashion4ukraine/DSCF0471.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0471.webp",
+    "source_sha256": "38ea1006af3afa522a7c9a1105a54f94ec403a13ee2f4acee3df977ec65c3a19",
+    "bytes": 401426
+  },
+  "assets/fashion4ukraine/DSCF0482.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0482.webp",
+    "source_sha256": "0a40b04a5d2d3c740301e425b6e2e1fcbfa541ef3ec55ff0677ddff82fa3a2b5",
+    "bytes": 210198
+  },
+  "assets/fashion4ukraine/DSCF0484.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0484.webp",
+    "source_sha256": "910a698455e265a00df325caa7d50e9e65e237c03993719fafa4eb2eeb2a9200",
+    "bytes": 411246
+  },
+  "assets/fashion4ukraine/DSCF0499.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0499.webp",
+    "source_sha256": "064c8280ad3aea9f2746cf1345658f5c9e1820d9bb5db812c234ae45743b5138",
+    "bytes": 463672
+  },
+  "assets/fashion4ukraine/DSCF0496.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0496.webp",
+    "source_sha256": "a42426fc0982c47915748aa3cf455153f8c3809d53ea36c11c5e34c86605a53e",
+    "bytes": 447716
+  },
+  "assets/fashion4ukraine/DSCF0485.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0485.webp",
+    "source_sha256": "11dc84d79eba9b6385e621fe138a0cd6ee2012b2bc7fde5ede0575aa3e431457",
+    "bytes": 366574
+  },
+  "assets/fashion4ukraine/DSCF0504.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0504.webp",
+    "source_sha256": "27b47b601f33e363d0784864623f72d763593b1e35fe0146050bbe12a3f3304d",
+    "bytes": 244166
+  },
+  "assets/fashion4ukraine/DSCF0493.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0493.webp",
+    "source_sha256": "e71f093a8c1b5b66073772aa4cb3b18592c87d0859f038cac9581271579c8e2b",
+    "bytes": 399690
+  },
+  "assets/fashion4ukraine/DSCF0506.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0506.webp",
+    "source_sha256": "4f326638fdb757dae17e0f05c571c214051df9ad1f71361e419789c042949624",
+    "bytes": 599174
+  },
+  "assets/fashion4ukraine/DSCF0524.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0524.webp",
+    "source_sha256": "08d50f48f806050a88141987449d251a699e5453a87df229d943a1a103d9ce26",
+    "bytes": 217378
+  },
+  "assets/fashion4ukraine/DSCF0520.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0520.webp",
+    "source_sha256": "858eb5064f3eff672ef1e746fcd2fbe2a26db82b4f1df451d205a0d6c29100f5",
+    "bytes": 346278
+  },
+  "assets/fashion4ukraine/DSCF0526.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0526.webp",
+    "source_sha256": "b4809dc7b169dfeb7e206f72a43aedf112f9e2e7da587dedae1b9874f93dfa93",
+    "bytes": 241684
+  },
+  "assets/fashion4ukraine/DSCF0550.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0550.webp",
+    "source_sha256": "de75c5904112bbb0cf88ecd444a565fe21a188efc2a9b84753010c61e34243a2",
+    "bytes": 415362
+  },
+  "assets/fashion4ukraine/DSCF0509.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0509.webp",
+    "source_sha256": "2cc8f078d2453c9cbd5e311095205a0451df74c01ca4884fef2195943a617171",
+    "bytes": 428772
+  },
+  "assets/fashion4ukraine/DSCF0543.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0543.webp",
+    "source_sha256": "7dc9624642395482ec46d42490a3672802e366733431919da0a7a1dea49746d4",
+    "bytes": 387090
+  },
+  "assets/fashion4ukraine/DSCF0554.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0554.webp",
+    "source_sha256": "08bf04cc7020d0ac9aea657f5f4551f8f4128ae2f34983b29a8f915e59ab5d67",
+    "bytes": 335734
+  },
+  "assets/fashion4ukraine/DSCF0560.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0560.webp",
+    "source_sha256": "9f4c4ddccc30880f9377bb54558104fe59bf459841883f70ebf9f5e87e9c6994",
+    "bytes": 236728
+  },
+  "assets/fashion4ukraine/DSCF0564.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0564.webp",
+    "source_sha256": "af6ef8daba7d3738141cf7a5795350b5a4a9ea22cf29f8892f790ca4dbdabb0a",
+    "bytes": 388234
+  },
+  "assets/fashion4ukraine/DSCF0576.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0576.webp",
+    "source_sha256": "a0f9d51b112f6953e99cd0ed3876efde23deb3938490da4f0467874b95cd7c8f",
+    "bytes": 279544
+  },
+  "assets/fashion4ukraine/DSCF0573.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0573.webp",
+    "source_sha256": "486ece9073a286798c7b4d161e672a574801abe9912fe4635d2970f892941d7e",
+    "bytes": 328908
+  },
+  "assets/fashion4ukraine/DSCF0569.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0569.webp",
+    "source_sha256": "8f98c7854821f3fecc1750982af2b0141dce839abbe1585a8b3a2ae758a80788",
+    "bytes": 331982
+  },
+  "assets/fashion4ukraine/DSCF0581.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0581.webp",
+    "source_sha256": "2addff9cbf11ba99b69e2b639e92418849c89c5780eabe5f4646a1e36ca44a37",
+    "bytes": 363380
+  },
+  "assets/fashion4ukraine/DSCF0588.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0588.webp",
+    "source_sha256": "08bc7618de20b077078f993786b3042ec754205c6151505d98b6db017af68448",
+    "bytes": 363132
+  },
+  "assets/fashion4ukraine/DSCF0591.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0591.webp",
+    "source_sha256": "bdbf71f20335f62161b795f843870cebd01b729a3a711dab29e3c4953ae906c6",
+    "bytes": 381872
+  },
+  "assets/fashion4ukraine/DSCF0615.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0615.webp",
+    "source_sha256": "b13fc98471c89026776b63f3073367836f36c4d1be74761c6a7d5aee31a5ac8e",
+    "bytes": 165762
+  },
+  "assets/fashion4ukraine/DSCF0620.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0620.webp",
+    "source_sha256": "5e1b991bdbc33213a6955f82898354cb042c281f93d4c621d272a248705df807",
+    "bytes": 277188
+  },
+  "assets/fashion4ukraine/DSCF0631.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0631.webp",
+    "source_sha256": "aeea845328578967a81fd7582c6f90de030b96462eb475a3f67bab7d061b4790",
+    "bytes": 421622
+  },
+  "assets/fashion4ukraine/DSCF0629.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0629.webp",
+    "source_sha256": "644637d17dcbc71ce69a035f1865ddd68f0fda87a16352663e3e788de35f95eb",
+    "bytes": 509966
+  },
+  "assets/fashion4ukraine/DSCF0634.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0634.webp",
+    "source_sha256": "19c33cfa1e88c56a0d0e1f2e7974512b3de08cafec9ecaa1e928f867846453ba",
+    "bytes": 211452
+  },
+  "assets/fashion4ukraine/DSCF0642.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0642.webp",
+    "source_sha256": "b5cb2569badb9b83efeaa60802765323e85e76a30bc35023f96cb5c47b4fba8d",
+    "bytes": 342670
+  },
+  "assets/fashion4ukraine/DSCF0663.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0663.webp",
+    "source_sha256": "f60c17a883da1984de8fd8bf62b752ca1a40ccbe4ae0cbfbf2a5f78a289ffe5d",
+    "bytes": 352370
+  },
+  "assets/fashion4ukraine/DSCF0659.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0659.webp",
+    "source_sha256": "f9d0705f2acec01bcbd95d3113c9fb7fde220558a16a3ff209dab8918be80233",
+    "bytes": 339522
+  },
+  "assets/fashion4ukraine/DSCF0674.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0674.webp",
+    "source_sha256": "dc0f20faa9f335df544b48c176b7c176a41c20a675fa5b6eb88bb45fd512914f",
+    "bytes": 306300
+  },
+  "assets/fashion4ukraine/DSCF0739.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0739.webp",
+    "source_sha256": "8d79becf14cee95bd41445f348e4057657767532cf919679dec8f654dc30039d",
+    "bytes": 308334
+  },
+  "assets/fashion4ukraine/DSCF0699.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0699.webp",
+    "source_sha256": "52de991b581bed8d29a331ae6ba490399ed823bc5957855a6e46c68d97a6a6f2",
+    "bytes": 396102
+  },
+  "assets/fashion4ukraine/DSCF0742.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0742.webp",
+    "source_sha256": "ef8312fb3aae17bcb8ea8c103674502c468decfc6eedac9d37c2b9f9243fba1f",
+    "bytes": 347244
+  },
+  "assets/fashion4ukraine/DSCF0747.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0747.webp",
+    "source_sha256": "93f6388676f7407b805bc36ae31d4dd6223e01e2b0730fa47d44ceb3e4135589",
+    "bytes": 358674
+  },
+  "assets/fashion4ukraine/DSCF0736.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0736.webp",
+    "source_sha256": "b5c967c676d7da3f325d076db5be51896f504a4e24bc76e2e1394c71c6b17a53",
+    "bytes": 261234
+  },
+  "assets/fashion4ukraine/DSCF0749.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0749.webp",
+    "source_sha256": "cbd4bfe72f7cf7fb2b8c29bd1dceec2ad15d45e705ad60a1d777658b1e63ddce",
+    "bytes": 339380
+  },
+  "assets/fashion4ukraine/DSCF0760.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0760.webp",
+    "source_sha256": "e7773f9228bdc48c0c9cf9e987bbd6b9c2a362736e08d3ff066291aad275644d",
+    "bytes": 347640
+  },
+  "assets/fashion4ukraine/DSCF0752.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0752.webp",
+    "source_sha256": "73040020b00ac7f9061e39c2f94457af1a92014f04118cf785d2e93bf7fa38f3",
+    "bytes": 224642
+  },
+  "assets/fashion4ukraine/DSCF0770.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0770.webp",
+    "source_sha256": "7b451ea273ace8861220df6ae5aa804aaa5c4a5cf504d9da6b534a6667e32ebd",
+    "bytes": 482790
+  },
+  "assets/fashion4ukraine/DSCF0769.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0769.webp",
+    "source_sha256": "73307f4df2e48fa46d675b135d7e0f1a44098267e4732ee806ff5ed88c6802e4",
+    "bytes": 463016
+  },
+  "assets/fashion4ukraine/DSCF0762.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0762.webp",
+    "source_sha256": "183f749f961c62d1d651876c4e4d3e1217608f0132a9ccc587e425817d55dae0",
+    "bytes": 444366
+  },
+  "assets/fashion4ukraine/DSCF0779.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0779.webp",
+    "source_sha256": "9877d5b68d7903720b8b6c74f54e4e3a7e16907a93e9f1a80e98aab1e6c17fa1",
+    "bytes": 483500
+  },
+  "assets/fashion4ukraine/DSCF0776.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0776.webp",
+    "source_sha256": "2d1d5a01d1b0d819bf2b0485061ce548b05f8703ffea58fb4267b0b5b25a2bac",
+    "bytes": 313508
+  },
+  "assets/fashion4ukraine/DSCF0780.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0780.webp",
+    "source_sha256": "ae10e85c7ea945b54521b37ed644c12ee026a1a926d93a350892291e2232b422",
+    "bytes": 475422
+  },
+  "assets/fashion4ukraine/DSCF0840.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0840.webp",
+    "source_sha256": "4a4ca2643502c0292cfa91f4ea3ca422f0ec75e538abddec238305603052c0c4",
+    "bytes": 306440
+  },
+  "assets/fashion4ukraine/DSCF0845.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0845.webp",
+    "source_sha256": "bf340993a764efd592cf58f36907055ea412c7de8ef4e0be8e5b6dc5bfe577ae",
+    "bytes": 292788
+  },
+  "assets/fashion4ukraine/DSCF0846.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0846.webp",
+    "source_sha256": "51263fc4c6c1adf19042634babea486abd20f97acb8dd35be45cf037fb2e6827",
+    "bytes": 324200
+  },
+  "assets/fashion4ukraine/DSCF0843.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0843.webp",
+    "source_sha256": "40b06e3b7d19b09b8982a126154fef348b6f0bef4ecbfedb6617fdfe52002fe7",
+    "bytes": 400580
+  },
+  "assets/fashion4ukraine/DSCF0784.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0784.webp",
+    "source_sha256": "7be56267ab7cf4b498efeb87ad743cc485e4ca6ac64589f34140340a691fd424",
+    "bytes": 345118
+  },
+  "assets/fashion4ukraine/DSCF0853.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0853.webp",
+    "source_sha256": "bc952d1116f324eac630bc56d04a1717021ea061321383ccd39d914351c1d70e",
+    "bytes": 262532
+  },
+  "assets/fashion4ukraine/DSCF0857.jpg": {
+    "target": "assets/fashion4ukraine/DSCF0857.webp",
+    "source_sha256": "3cec1dbe58457c541145caa2226e3c0c9f6a373697a18bc3437494b4b6b30172",
+    "bytes": 369806
+  },
+  "assets/fashion4ukraine/DSCF1255.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1255.webp",
+    "source_sha256": "25ecaef3254fb536e672a2b0ff519737db1db4579e11f200b61635f0d8601f6f",
+    "bytes": 326710
+  },
+  "assets/fashion4ukraine/DSCF1205.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1205.webp",
+    "source_sha256": "6c59fb481a38bb301ff7fc5edbb4d50e29bd298480be5dfed449bc3e38f94891",
+    "bytes": 246616
+  },
+  "assets/fashion4ukraine/DSCF1192.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1192.webp",
+    "source_sha256": "08bb6062557084db92471ef3580154f956d2c70cc0344ea39c173a6ff5563e8a",
+    "bytes": 344384
+  },
+  "assets/fashion4ukraine/DSCF1194.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1194.webp",
+    "source_sha256": "e4f9bdafb4503ca266b87e37cb0cb240abbbd8c599e17b678311bf0fe1f28bb0",
+    "bytes": 192852
+  },
+  "assets/fashion4ukraine/DSCF1250.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1250.webp",
+    "source_sha256": "196498c230f9193642c46ec87a0a671373f7f8678a00314fedd87f006ed7cd49",
+    "bytes": 377324
+  },
+  "assets/fashion4ukraine/DSCF1257.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1257.webp",
+    "source_sha256": "5c5b16a8e839128e84609c34eb72f786472f6edf4d46a16fd027b520ecb48748",
+    "bytes": 375840
+  },
+  "assets/fashion4ukraine/DSCF1275.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1275.webp",
+    "source_sha256": "bb9f90dac1418d99a58309bd7658b9100736e99d70ab415755c96808c4d1dd70",
+    "bytes": 281270
+  },
+  "assets/fashion4ukraine/DSCF1297.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1297.webp",
+    "source_sha256": "2af4f6562e93ffa806222d17385a3c125d31343242d8f312171f07b72e63dfd3",
+    "bytes": 261184
+  },
+  "assets/fashion4ukraine/DSCF1300.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1300.webp",
+    "source_sha256": "72295501ed3488ed253d08b038b9e487b2cc967ec095052e8fba887566c73e30",
+    "bytes": 281938
+  },
+  "assets/fashion4ukraine/DSCF1260.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1260.webp",
+    "source_sha256": "9ea50ae99be7672ff06ea0c16e9b7135f153eaff1aed0040c10a3868fee758b0",
+    "bytes": 237762
+  },
+  "assets/fashion4ukraine/DSCF1289.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1289.webp",
+    "source_sha256": "a48598dbe8fc34d99c6a7cd4e9b2f1f60ca59b3062242e74fd75626d96e56ed3",
+    "bytes": 378544
+  },
+  "assets/fashion4ukraine/DSCF1376.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1376.webp",
+    "source_sha256": "61ac9fdc165f81b39ca5c886e58fee49b2b3b942a7e7f3d574adf6cefcc849ff",
+    "bytes": 307296
+  },
+  "assets/fashion4ukraine/DSCF1384.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1384.webp",
+    "source_sha256": "0f1df1b23ce56aca0439e95ec55d265226a49913c417db926e61f8bc4489535c",
+    "bytes": 178668
+  },
+  "assets/fashion4ukraine/DSCF1381.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1381.webp",
+    "source_sha256": "7aaee9e00268b2d8e2d0a76f1ab2d31c7052db68cda95efecec54d9d1796a093",
+    "bytes": 280738
+  },
+  "assets/fashion4ukraine/DSCF1411.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1411.webp",
+    "source_sha256": "ada726ccfb66e9835127bcb63f78cb2c87714f6db744aa7d69b170a175921b5d",
+    "bytes": 529914
+  },
+  "assets/fashion4ukraine/DSCF1416.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1416.webp",
+    "source_sha256": "1c482505a1ff31cd618d99d9837d4a8beffd28f16d6386520e379bf37849a62c",
+    "bytes": 311738
+  },
+  "assets/fashion4ukraine/DSCF1446.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1446.webp",
+    "source_sha256": "184cf00c73a0ea1fc7848f9b197bc3c09734a8ff3a089ae94ba118b34cd89506",
+    "bytes": 521444
+  },
+  "assets/fashion4ukraine/DSCF1395.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1395.webp",
+    "source_sha256": "11d58ed6340fbc8e8998c243d566a010a5f3ffd8c0afd6c03076d2f6ba107576",
+    "bytes": 292070
+  },
+  "assets/fashion4ukraine/DSCF1497.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1497.webp",
+    "source_sha256": "3079b6f49457c83fcfccee48bcd12d45bcfe1497f0e1a760559d8d72c1af5d58",
+    "bytes": 337488
+  },
+  "assets/fashion4ukraine/DSCF1503.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1503.webp",
+    "source_sha256": "8587314c97bdcf853c6276d9504f8318c85f02d1a1112a7d67d825694d251aaa",
+    "bytes": 350616
+  },
+  "assets/fashion4ukraine/DSCF1504.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1504.webp",
+    "source_sha256": "841c9b11f9f38cde8b6007f82a5ad2422ea7d2ed3e140afbb0fb123aec521895",
+    "bytes": 365554
+  },
+  "assets/fashion4ukraine/DSCF1500.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1500.webp",
+    "source_sha256": "26623efbc28ebcf71c63387147a54c84f571ec87cf897b8fee38dee3b1609680",
+    "bytes": 350262
+  },
+  "assets/fashion4ukraine/DSCF1528.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1528.webp",
+    "source_sha256": "937fc0003589f06b93d6189154b174634b443ec46964fb2a99cc9a7a63fbdd08",
+    "bytes": 203594
+  },
+  "assets/fashion4ukraine/DSCF1532.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1532.webp",
+    "source_sha256": "e907038c08bfac56ff67fbc22e3990ceaee7aa99e7da4c072d8b32cbe117b36c",
+    "bytes": 486416
+  },
+  "assets/fashion4ukraine/DSCF1541.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1541.webp",
+    "source_sha256": "63307cd6625ba00598ef986939fd8b61cdc661a986beff7934aefb7cffdd988d",
+    "bytes": 224684
+  },
+  "assets/fashion4ukraine/DSCF1539.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1539.webp",
+    "source_sha256": "a5a281a770435ce3fc9d6911d1d60a52e48c711415530f273d162f478bf9e8bc",
+    "bytes": 223170
+  },
+  "assets/fashion4ukraine/DSCF1546.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1546.webp",
+    "source_sha256": "263b0c4c9b986c6c6571969bbf30d775d2bce1f04c93b3693224a7de045227a0",
+    "bytes": 279528
+  },
+  "assets/fashion4ukraine/DSCF1555.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1555.webp",
+    "source_sha256": "2f0f2ff22a889fcd9da7091dbaf520606bfda5ee683633437a811ab90cc05e15",
+    "bytes": 227084
+  },
+  "assets/fashion4ukraine/DSCF1556.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1556.webp",
+    "source_sha256": "8a7ecd7ac3fa2448fe785ba5c0b078a80634a3a34c43cc7451473d5db786ff2d",
+    "bytes": 323614
+  },
+  "assets/fashion4ukraine/DSCF1559.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1559.webp",
+    "source_sha256": "64fe40c7e2dd78b6578fe045d24028017932389cf95dac03a118f151a6b34e99",
+    "bytes": 301790
+  },
+  "assets/fashion4ukraine/DSCF1593.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1593.webp",
+    "source_sha256": "7ab6a44fd36ad712d78115a7c90fc10fad7d583c0a396670ee77d3bc93489943",
+    "bytes": 269556
+  },
+  "assets/fashion4ukraine/DSCF1569.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1569.webp",
+    "source_sha256": "9c79bae60849e7e4e661c1eed9a60ab44d24cc0e52370593d33d0a788bb81fdc",
+    "bytes": 289096
+  },
+  "assets/fashion4ukraine/DSCF1580.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1580.webp",
+    "source_sha256": "f281d59632dbeacae70b7e52ea9cd05520c04f7817121ea1d7d59d0cdb33b7dd",
+    "bytes": 215370
+  },
+  "assets/fashion4ukraine/DSCF1718.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1718.webp",
+    "source_sha256": "25bab6d907e7954a637bf4f8aa2beffcf4d255d5ea67b3aa66504337b004b0e1",
+    "bytes": 191464
+  },
+  "assets/fashion4ukraine/DSCF1603.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1603.webp",
+    "source_sha256": "453ed46ab0f4ba1ee661abd2d91bf33e657280fc41993efd5ddf4d9dc2147d03",
+    "bytes": 274544
+  },
+  "assets/fashion4ukraine/DSCF1610.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1610.webp",
+    "source_sha256": "2eae07b837b392f7b22eafaee39e5f35dc657e8d39ac141a727d92ab052b0b39",
+    "bytes": 270044
+  },
+  "assets/fashion4ukraine/DSCF1729.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1729.webp",
+    "source_sha256": "8ee85069ea2b8620cd0e77dd90adeb089d8ee5d2f62b5a5537156fe3992622ee",
+    "bytes": 219764
+  },
+  "assets/fashion4ukraine/DSCF1722.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1722.webp",
+    "source_sha256": "bb373d7677361b63ba676e0fcb92bfab5a1fe9aeebace18cfab444f011f0d487",
+    "bytes": 340464
+  },
+  "assets/fashion4ukraine/DSCF1747.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1747.webp",
+    "source_sha256": "f52874677d5a3fc7b366182191e77ba3121cecb58862b9eb20b95436632a1d4f",
+    "bytes": 203360
+  },
+  "assets/fashion4ukraine/DSCF1732.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1732.webp",
+    "source_sha256": "33f25f9aaf5bb899d173f80510e26881d89261b67d10f949e1015efc419e4240",
+    "bytes": 251976
+  },
+  "assets/fashion4ukraine/DSCF1750.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1750.webp",
+    "source_sha256": "555d8442e240fd2481e75f29554af7c14aa2695683e38fbf31d44fb9f29014c5",
+    "bytes": 381944
+  },
+  "assets/fashion4ukraine/DSCF1771.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1771.webp",
+    "source_sha256": "86cd0a868c4dc4ab07789352561195dcd30c3c3e0d4fae6903ecaa2f35cdcee7",
+    "bytes": 260966
+  },
+  "assets/fashion4ukraine/DSCF1758.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1758.webp",
+    "source_sha256": "2ec5bfc68e09585b881e81ed2f82e99cb1280d0f3403c30137d0f15163fdfdfe",
+    "bytes": 305448
+  },
+  "assets/fashion4ukraine/DSCF1754.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1754.webp",
+    "source_sha256": "1f3903797c0b0366249b9ab2cd97b9751cd76a90d33db1791f35c0cc1c3fcde6",
+    "bytes": 283934
+  },
+  "assets/fashion4ukraine/DSCF2062.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2062.webp",
+    "source_sha256": "eb67fa6f3d14e6c6c5d4a9da380579c1a28a366d975517a2030749f0742c066e",
+    "bytes": 259946
+  },
+  "assets/fashion4ukraine/DSCF2057.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2057.webp",
+    "source_sha256": "2d832d4170a58ad22d0bbde919420296c97de4a8298352a542333bcce4fdfd4c",
+    "bytes": 317522
+  },
+  "assets/fashion4ukraine/DSCF1966.jpg": {
+    "target": "assets/fashion4ukraine/DSCF1966.webp",
+    "source_sha256": "5a81703b3ad26ecc9fe1dfddf7dc6dce3953629f7b0f37d8925864948ef1f85a",
+    "bytes": 377100
+  },
+  "assets/fashion4ukraine/DSCF2085.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2085.webp",
+    "source_sha256": "7fffd796733bebf6328163518d585dfc2fb19815b123fedae2546d7139e95f9d",
+    "bytes": 280774
+  },
+  "assets/fashion4ukraine/DSCF2087.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2087.webp",
+    "source_sha256": "e28fd06cf1ec5be9533df40bd9b496e8d8d97ef42b7a1e6557d46a0e31d26cbc",
+    "bytes": 294670
+  },
+  "assets/fashion4ukraine/DSCF2072.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2072.webp",
+    "source_sha256": "d41dbd657202b9302098de151f962375338b0cc06d8e581de1ba2328e345a0b8",
+    "bytes": 446386
+  },
+  "assets/fashion4ukraine/DSCF2078.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2078.webp",
+    "source_sha256": "5cdd163d30a153fb7966a4594f6c234d073ce4aa930b6bc0305fd1f084cad46e",
+    "bytes": 426104
+  },
+  "assets/fashion4ukraine/DSCF2090.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2090.webp",
+    "source_sha256": "b858b52edb40165142f8c49dbfb106bce6939c70f4033196398be6e85f17b1dd",
+    "bytes": 248894
+  },
+  "assets/fashion4ukraine/DSCF2103.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2103.webp",
+    "source_sha256": "1ad4e27fe2f72a1939af6972f33348ac104d096c4cda45820941e2952a48b1bc",
+    "bytes": 284968
+  },
+  "assets/fashion4ukraine/DSCF2105.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2105.webp",
+    "source_sha256": "e68bc0e79b7fc92cadcc0c19bcdd7c26ff2f81628b6281226bfadc717d4acf67",
+    "bytes": 333764
+  },
+  "assets/fashion4ukraine/DSCF2119.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2119.webp",
+    "source_sha256": "b6023d8d6398d1a5238973d63819783611771ffe2d23e1fbc2ce36daee56791a",
+    "bytes": 289712
+  },
+  "assets/fashion4ukraine/DSCF2107.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2107.webp",
+    "source_sha256": "5ed3b9556098e7c4ebe7cf88b0bc63d0b039c9610cd1354a58d86048b3a22bad",
+    "bytes": 218796
+  },
+  "assets/fashion4ukraine/DSCF2132.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2132.webp",
+    "source_sha256": "d9a2d43001c77a6d0315147753d5ff258638eef4bcc541762348d2374791d344",
+    "bytes": 425990
+  },
+  "assets/fashion4ukraine/DSCF2139.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2139.webp",
+    "source_sha256": "fbe39492b89bde109c6ca19a19ce43fb67e64676fac4176b9b94b0eb8a79eb68",
+    "bytes": 335034
+  },
+  "assets/fashion4ukraine/DSCF2143.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2143.webp",
+    "source_sha256": "e230026c00c239330994f6f0b3081be18966b7262574eda51704f4fe7ed0123f",
+    "bytes": 495572
+  },
+  "assets/fashion4ukraine/DSCF2159.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2159.webp",
+    "source_sha256": "2bd3a5a171b54a770727ab715627c92055765a9e370ebd8e0e76d0599b962ce4",
+    "bytes": 160850
+  },
+  "assets/fashion4ukraine/DSCF2162.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2162.webp",
+    "source_sha256": "9db5ed5ce732550d2bfd698012cdccda0f104c9021eaa87da96c87a459a08340",
+    "bytes": 355444
+  },
+  "assets/fashion4ukraine/DSCF2150.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2150.webp",
+    "source_sha256": "75af5d73f83344fb9c30d5dc9182dc99c9e7309ecc1b190a9f8124a75f8615f1",
+    "bytes": 384850
+  },
+  "assets/fashion4ukraine/DSCF2175.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2175.webp",
+    "source_sha256": "345b6d2409ebc30afc6a9019bb474fdabbcb0e51f397d8697df6e9988f84842a",
+    "bytes": 295396
+  },
+  "assets/fashion4ukraine/DSCF2179.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2179.webp",
+    "source_sha256": "37989249acf8e7903a25dfc526686ee6137c50dd08a852c18f95be6a51a545d0",
+    "bytes": 256052
+  },
+  "assets/fashion4ukraine/DSCF2171.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2171.webp",
+    "source_sha256": "8d3c1c3fbff57c33c5a39dc0884cdac78cf08f7b7f6e5949c773b3726504126e",
+    "bytes": 507384
+  },
+  "assets/fashion4ukraine/DSCF2181.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2181.webp",
+    "source_sha256": "dd39ddf2bf89698fab5d6681deb616335cf777106df5ce9db8e0d039b8fe348d",
+    "bytes": 331890
+  },
+  "assets/fashion4ukraine/DSCF2195.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2195.webp",
+    "source_sha256": "55d36c823d08de4e2621ceb43ab73cc8db632ceea5896e8c490ee0d089104d1d",
+    "bytes": 285420
+  },
+  "assets/fashion4ukraine/DSCF2221.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2221.webp",
+    "source_sha256": "3d9c97ba98af14ac1a6aa12eb71187a39d820e4587aa720dfcb711a73dc36f81",
+    "bytes": 214504
+  },
+  "assets/fashion4ukraine/DSCF2217.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2217.webp",
+    "source_sha256": "8d041ea68680e1bdf603662b2db83accf7af7d149dd2d05ab4d725dd0f5dd3fd",
+    "bytes": 340798
+  },
+  "assets/fashion4ukraine/DSCF2213.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2213.webp",
+    "source_sha256": "a914065920b1465057b9a463e81bec0f1fdb1a65e6232f79543e2e963b468478",
+    "bytes": 337402
+  },
+  "assets/fashion4ukraine/DSCF2225.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2225.webp",
+    "source_sha256": "71bb68f7955b1cfc684b9b05a713dfcc9325997bf91a4401b18c5f9a33d1e46f",
+    "bytes": 190346
+  },
+  "assets/fashion4ukraine/DSCF2186.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2186.webp",
+    "source_sha256": "04ad7c3343ed6d12e0740c6b302b843fdf382c48bca51a76f41604a46b44993c",
+    "bytes": 256238
+  },
+  "assets/fashion4ukraine/DSCF2211.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2211.webp",
+    "source_sha256": "5b61b35e4a6bc5230ed8c4eec452e51d812202b5fa14d1d97d6dcbb1c982b732",
+    "bytes": 174438
+  },
+  "assets/fashion4ukraine/DSCF2265.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2265.webp",
+    "source_sha256": "6468c63b7793a5e32230e2ce29dda3ea86628d4fe3d780f3bb1366e4821a453c",
+    "bytes": 300516
+  },
+  "assets/fashion4ukraine/DSCF2268.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2268.webp",
+    "source_sha256": "8c7939870ace83cf22e4e1dc58657b95012cee516e65cc891ebe343aa9106aac",
+    "bytes": 297118
+  },
+  "assets/fashion4ukraine/DSCF2245.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2245.webp",
+    "source_sha256": "a2e0194cae61c4b1ca784bce08e7393aa8d35753db8f1ab4c9ae0608ab17c4e2",
+    "bytes": 396746
+  },
+  "assets/fashion4ukraine/DSCF2255.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2255.webp",
+    "source_sha256": "2145acefd7dd6cf616cc1bb67eb752b04fb01ce100e6ff649c0918241ed9431e",
+    "bytes": 384620
+  },
+  "assets/fashion4ukraine/DSCF2286.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2286.webp",
+    "source_sha256": "0fdef7836d7545eaa7537c984a9ad734f21e56a4432d70a60b643e547ffd3758",
+    "bytes": 376464
+  },
+  "assets/fashion4ukraine/DSCF2293.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2293.webp",
+    "source_sha256": "ff252887fda6a64b506455ee3971c6e18afabc447e05ec2e6750974a9dc0d6ca",
+    "bytes": 362048
+  },
+  "assets/fashion4ukraine/DSCF2340.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2340.webp",
+    "source_sha256": "14d726bbfd3d0b184585c3f3fb17d44d1943f6fd231b35bc01cad9fb30752d2a",
+    "bytes": 352252
+  },
+  "assets/fashion4ukraine/DSCF2331.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2331.webp",
+    "source_sha256": "4b2b756fdfc55bd942b038bf6ff2e279e6e6eacdcf226c60b278071c58087fb1",
+    "bytes": 348912
+  },
+  "assets/fashion4ukraine/DSCF2399.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2399.webp",
+    "source_sha256": "12b5ff74b7c1b66ee21e11280621a63bb9df51ff8483181099098036d429a084",
+    "bytes": 240128
+  },
+  "assets/fashion4ukraine/DSCF2361.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2361.webp",
+    "source_sha256": "185caf3144c990af5cc8caaa1201c9cbbfd123e600c5253856d761d9e1599a39",
+    "bytes": 341834
+  },
+  "assets/fashion4ukraine/DSCF2326.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2326.webp",
+    "source_sha256": "1fcc6f33cdc99afeee75b22d78d6fce21d1be9dd48155230a2114c64b8f7b445",
+    "bytes": 416104
+  },
+  "assets/fashion4ukraine/DSCF2385.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2385.webp",
+    "source_sha256": "a461d2bcfb1011cbf48c28a064afb9692cb3aa0280de5f89387f4333ede14708",
+    "bytes": 253722
+  },
+  "assets/fashion4ukraine/DSCF2422.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2422.webp",
+    "source_sha256": "50dc0761d37e97db6b37c2e0ae50985537333cef6b2169ce14db45661b18b572",
+    "bytes": 352918
+  },
+  "assets/fashion4ukraine/DSCF2461.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2461.webp",
+    "source_sha256": "154e7c8e38c413b1fa09242867bc1cebf44c9eef8dd26560f616830aab0a7e13",
+    "bytes": 329948
+  },
+  "assets/fashion4ukraine/DSCF2462.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2462.webp",
+    "source_sha256": "9598e3588d718043ed1361c5fae21b7fa0bd4a0566f3c757888cb344f3d097ab",
+    "bytes": 429808
+  },
+  "assets/fashion4ukraine/DSCF2410.jpg": {
+    "target": "assets/fashion4ukraine/DSCF2410.webp",
+    "source_sha256": "4069a6b64c90d36aa35beb9e2853c466f408e222edf48628d77ccb5108035906",
+    "bytes": 307638
+  },
+  "assets/fashion4ukraine-01.jpg": {
+    "target": "assets/fashion4ukraine-01.webp",
+    "source_sha256": "2addff9cbf11ba99b69e2b639e92418849c89c5780eabe5f4646a1e36ca44a37",
+    "bytes": 363380
+  },
+  "assets/fashion4ukraine-02.jpg": {
+    "target": "assets/fashion4ukraine-02.webp",
+    "source_sha256": "a48598dbe8fc34d99c6a7cd4e9b2f1f60ca59b3062242e74fd75626d96e56ed3",
+    "bytes": 378544
+  },
+  "assets/fashion4ukraine-03.jpg": {
+    "target": "assets/fashion4ukraine-03.webp",
+    "source_sha256": "14d4eaa69f30daf26611bfc89ae0dd38e72e2d994711dd482326aa38b2e8079d",
+    "bytes": 179458
+  },
+  "assets/fashion4ukraine-after-dark-poster.jpg": {
+    "target": "assets/fashion4ukraine-after-dark-poster.webp",
+    "source_sha256": "0af04bb7b4fa9820bfd2ffc8b390d0a6f67b79c8ed9f9899d4d4d547aa5e9de8",
+    "bytes": 47066
+  },
+  "assets/fashion4ukraine-backstage-poster.jpg": {
+    "target": "assets/fashion4ukraine-backstage-poster.webp",
+    "source_sha256": "8fb7bbf7814fa702a6d1bca23485919b96a13db897eff57d7da90ffcb6a468b3",
+    "bytes": 84602
+  },
+  "assets/fashion4ukraine-04.jpg": {
+    "target": "assets/fashion4ukraine-04.webp",
+    "source_sha256": "2eae07b837b392f7b22eafaee39e5f35dc657e8d39ac141a727d92ab052b0b39",
+    "bytes": 270044
+  },
+  "assets/fashion4ukraine-petal-flash.jpg": {
+    "target": "assets/fashion4ukraine-petal-flash.webp",
+    "source_sha256": "44a4210391d377e5925db46a8063c00f35fb7ae8b446fc8858144537cbf01d06",
+    "bytes": 318346
+  },
+  "assets/fashion4ukraine-blue-hour.jpg": {
+    "target": "assets/fashion4ukraine-blue-hour.webp",
+    "source_sha256": "85290b66df9b0cb20fc6347fc2e64618bbde8a6037e74b396988c4229e226f50",
+    "bytes": 265676
+  },
+  "assets/favicom.png": {
+    "target": "assets/favicom.webp",
+    "source_sha256": "0e19a0585e746421cfcf2d20ffc90398068572b17d514a93ccf98c3dd3633cc5",
+    "bytes": 32626
+  },
+  "assets/instagram-01.jpg": {
+    "target": "assets/instagram-01.webp",
+    "source_sha256": "a7ead84fb39bb6b8b2dbcee339f098e5fbab633bd72717477ce9ad97a233e8aa",
+    "bytes": 240738
+  },
+  "assets/hero-model.jpg": {
+    "target": "assets/hero-model.webp",
+    "source_sha256": "43aded91454aa8d9b5322ebb516992a1083f5d94040d515dc56351df564e7b3a",
+    "bytes": 367100
+  },
+  "assets/instagram-02.jpg": {
+    "target": "assets/instagram-02.webp",
+    "source_sha256": "c1396d0914f6232baf27704efa8929e8a9ea0c16502f89d1b2b893f2270a0a99",
+    "bytes": 161634
+  },
+  "assets/hero-structured-black.jpg": {
+    "target": "assets/hero-structured-black.webp",
+    "source_sha256": "8ab97fe46f79b552b47aac8af316e907d855cf01bd546abe12a626ef854a827c",
+    "bytes": 587314
+  },
+  "assets/instagram-03.jpg": {
+    "target": "assets/instagram-03.webp",
+    "source_sha256": "d504024fb1d37a1383127a85aaee014967ae1c9aad71311358af25601997d8bf",
+    "bytes": 198196
+  },
+  "assets/instagram-04.jpg": {
+    "target": "assets/instagram-04.webp",
+    "source_sha256": "079d078ad18a6b6795d41102fc6b465ec6caea58e6ede3fed689e5b9e95d1a72",
+    "bytes": 129882
+  },
+  "assets/instagram-06.jpg": {
+    "target": "assets/instagram-06.webp",
+    "source_sha256": "4fcb8bac42fbc666016b01280eb7cc292cacf8c0911218b15e61c99997c0372e",
+    "bytes": 111556
+  },
+  "assets/instagram-05.jpg": {
+    "target": "assets/instagram-05.webp",
+    "source_sha256": "163f14f3fce7881d6c94529e8dc66cd6a236c5fdf76437e8eb0a6d8305333607",
+    "bytes": 232840
+  },
+  "assets/hero-sony-focus-dscf0768.jpg": {
+    "target": "assets/hero-sony-focus-dscf0768.webp",
+    "source_sha256": "dc390c334a69810d0030e0a62c4f9b8b17b7cdee19d05b935a261f97e7cafb31",
+    "bytes": 596836
+  },
+  "assets/instagram-08.jpg": {
+    "target": "assets/instagram-08.webp",
+    "source_sha256": "b645be38fdf97d5da3a1ac1f90b2a823ad66520b449d20364538d46a9e140fe7",
+    "bytes": 118298
+  },
+  "assets/instagram-07.jpg": {
+    "target": "assets/instagram-07.webp",
+    "source_sha256": "c53711cfb971da8b8bfb9df1d4eac9cef45f6c90d2fe7a2fbe7f7e9c1e5ba0dc",
+    "bytes": 99316
+  },
+  "assets/instagram-09.jpg": {
+    "target": "assets/instagram-09.webp",
+    "source_sha256": "ddec1a9744cb8cf3a0ce69d8b135e0004e7b4eaaad2fe7cf8f797007af1ae9db",
+    "bytes": 137176
+  },
+  "assets/instagram-11.jpg": {
+    "target": "assets/instagram-11.webp",
+    "source_sha256": "9128a9f4959d447c66a630bac20ddc07962aa8a31fb5093b368b51af1d408141",
+    "bytes": 116440
+  },
+  "assets/instagram-12.jpg": {
+    "target": "assets/instagram-12.webp",
+    "source_sha256": "923fe7624c3ce7e4eba1e7193d9fc61e05f42fde6bfc4a43acf8bc8ff5385239",
+    "bytes": 129878
+  },
+  "assets/instagram-live-01.jpg": {
+    "target": "assets/instagram-live-01.webp",
+    "source_sha256": "71a6784a9eb037cfd21f9a04b488818a742b9d3fbfb7be120606ffae5dd551cc",
+    "bytes": 17120
+  },
+  "assets/instagram-live-02.jpg": {
+    "target": "assets/instagram-live-02.webp",
+    "source_sha256": "977eecb39f4bf41bdcd202af8d9ded3da377a58762c907591b6114b8f493b00b",
+    "bytes": 14984
+  },
+  "assets/instagram-10.jpg": {
+    "target": "assets/instagram-10.webp",
+    "source_sha256": "e4ffe35b5bd347839da038cb401124eeb46ca121e2a95e25a4a36c40dad5fa89",
+    "bytes": 127564
+  },
+  "assets/instagram-live-03.jpg": {
+    "target": "assets/instagram-live-03.webp",
+    "source_sha256": "7efeda3a5475d33c132f8fa4023681abf8f3ec2c3ec1edb16b217992c28f0609",
+    "bytes": 52918
+  },
+  "assets/instagram-live-05.jpg": {
+    "target": "assets/instagram-live-05.webp",
+    "source_sha256": "aeaf3e732927675579e5c3e2d0fa26a4e1086b99b2bda2b7b155b87a2ad0536b",
+    "bytes": 40208
+  },
+  "assets/instagram-live-07.jpg": {
+    "target": "assets/instagram-live-07.webp",
+    "source_sha256": "f26bdd5f11a3ac0dae19aeda5935edcb50cf63775f0032c848d8da6d09f9eb7e",
+    "bytes": 64184
+  },
+  "assets/instagram-live-08.jpg": {
+    "target": "assets/instagram-live-08.webp",
+    "source_sha256": "e9097d9a5e9700f3ef170187f71e7f2cb5c6556511ea62149edabe9e2159bd0e",
+    "bytes": 88302
+  },
+  "assets/instagram-live-06.jpg": {
+    "target": "assets/instagram-live-06.webp",
+    "source_sha256": "2af03a2437462953e2f9d5754dd8c17667b607c483de034cc3fe4331ff8216b4",
+    "bytes": 20934
+  },
+  "assets/instagram-live-04.jpg": {
+    "target": "assets/instagram-live-04.webp",
+    "source_sha256": "bc9e63b70f69c9fcada6366cca18a782f5352cbf71dd3e39a1e7cd25135b3c69",
+    "bytes": 25338
+  },
+  "assets/instagram-main-02.jpg": {
+    "target": "assets/instagram-main-02.webp",
+    "source_sha256": "e8a28a53851a1a25a8d5ebd3aed56295b70376ee5182ae1005c5494e291b74f3",
+    "bytes": 25694
+  },
+  "assets/instagram-live-11.jpg": {
+    "target": "assets/instagram-live-11.webp",
+    "source_sha256": "2df227c01a60bfe6c86be43032786d96cfbdb92bfef16cfd75b8d608726a08d1",
+    "bytes": 344846
+  },
+  "assets/instagram-live-09.jpg": {
+    "target": "assets/instagram-live-09.webp",
+    "source_sha256": "e101f9eea693f2a8a2e4f45f03884c2b00fc70d74ed5398fdeda6ed20b5573e8",
+    "bytes": 17014
+  },
+  "assets/instagram-main-01.jpg": {
+    "target": "assets/instagram-main-01.webp",
+    "source_sha256": "cf7c4215212502a9f44580719a33a8395d2e1fee4b52341380737da86fd8d7ae",
+    "bytes": 35674
+  },
+  "assets/instagram-live-10.jpg": {
+    "target": "assets/instagram-live-10.webp",
+    "source_sha256": "7360ec53ac25d4d912182de1629cdd6f3401dbcfd2041d39c9cd3707a7d6dd82",
+    "bytes": 361670
+  },
+  "assets/instagram-live-12.jpg": {
+    "target": "assets/instagram-live-12.webp",
+    "source_sha256": "8e24ec6dafd821ddcfa64bcdb01456e44a430d57c55e82a5c9fbcf8427603fb9",
+    "bytes": 320528
+  },
+  "assets/instagram-main-03.jpg": {
+    "target": "assets/instagram-main-03.webp",
+    "source_sha256": "c8e8213a132f38eb8abe03f7e836efa916de9851bf4b3934be16541e501d4638",
+    "bytes": 38286
+  },
+  "assets/instagram-main-04.jpg": {
+    "target": "assets/instagram-main-04.webp",
+    "source_sha256": "4fe28865059ca803115efe77dc308a03443a8f1ac3a8dfef8dd1951dff8bf67e",
+    "bytes": 69268
+  },
+  "assets/instagram-main-06.jpg": {
+    "target": "assets/instagram-main-06.webp",
+    "source_sha256": "e502d2041e89ae9d22bf346bd0b49fffee16b8e79454ac225a311eb5f09c736f",
+    "bytes": 16250
+  },
+  "assets/instagram-main-05.jpg": {
+    "target": "assets/instagram-main-05.webp",
+    "source_sha256": "dec04bb367ab4ddf3587d8718b980306c87de0b11d419a68837844e2d7007c2c",
+    "bytes": 33510
+  },
+  "assets/instagram-main-10.jpg": {
+    "target": "assets/instagram-main-10.webp",
+    "source_sha256": "e4b1fb68a85d18d8d43f74b236a900a347a07d8e75c305a5fb2c4b12246e0dcc",
+    "bytes": 80254
+  },
+  "assets/instagram-main-08.jpg": {
+    "target": "assets/instagram-main-08.webp",
+    "source_sha256": "2df227c01a60bfe6c86be43032786d96cfbdb92bfef16cfd75b8d608726a08d1",
+    "bytes": 344846
+  },
+  "assets/instagram-main-07.jpg": {
+    "target": "assets/instagram-main-07.webp",
+    "source_sha256": "7360ec53ac25d4d912182de1629cdd6f3401dbcfd2041d39c9cd3707a7d6dd82",
+    "bytes": 361670
+  },
+  "assets/instagram-main-11.jpg": {
+    "target": "assets/instagram-main-11.webp",
+    "source_sha256": "547570345f783bbcaadf2bc37f6f53f7a3f20275cd7d5813a4758bafbd4a64a1",
+    "bytes": 71578
+  },
+  "assets/instagram-main-09.jpg": {
+    "target": "assets/instagram-main-09.webp",
+    "source_sha256": "8e24ec6dafd821ddcfa64bcdb01456e44a430d57c55e82a5c9fbcf8427603fb9",
+    "bytes": 320528
+  },
+  "assets/instagram-main-12.jpg": {
+    "target": "assets/instagram-main-12.webp",
+    "source_sha256": "e19b4abbe0f2c40d8e87ee1686de6028591de28be3fd19eaed4131de66710a50",
+    "bytes": 57844
+  },
+  "assets/joyce-alex/DSCF0009.jpg": {
+    "target": "assets/joyce-alex/DSCF0009.webp",
+    "source_sha256": "e0dc59b403be5b80488becfe48f8f0a0ca4140e9b3e5f6a22ce99c163ddb910c",
+    "bytes": 419910
+  },
+  "assets/joyce-alex/DSCF0005.jpg": {
+    "target": "assets/joyce-alex/DSCF0005.webp",
+    "source_sha256": "81a25bc8777a032c6a9a375b085dea25e38375b95121d65054f40942aab3b86c",
+    "bytes": 386182
+  },
+  "assets/joyce-alex/DSCF0001.jpg": {
+    "target": "assets/joyce-alex/DSCF0001.webp",
+    "source_sha256": "05b9410574ec3cacefe00f4d5bcc7befa6f1dda88b42b4d9a9ea799d5e624cdd",
+    "bytes": 422646
+  },
+  "assets/joyce-alex/DSCF0011.jpg": {
+    "target": "assets/joyce-alex/DSCF0011.webp",
+    "source_sha256": "61d5dc526163a320b8656af808a1d62efd8d824240cb4139e2b07acaaca4ffa4",
+    "bytes": 441178
+  },
+  "assets/joyce-alex/DSCF0015.jpg": {
+    "target": "assets/joyce-alex/DSCF0015.webp",
+    "source_sha256": "af278f2ad4943feeb9ce1e5167af3d1c3eef1e6be2969e9f27d3530149b344b3",
+    "bytes": 496770
+  },
+  "assets/joyce-alex/DSCF0019.jpg": {
+    "target": "assets/joyce-alex/DSCF0019.webp",
+    "source_sha256": "c9a230ee44212d97ce90a42d27f5aec1aa7e9252254c16ffa5c7a9983e49bda1",
+    "bytes": 386938
+  },
+  "assets/joyce-alex/DSCF0021.jpg": {
+    "target": "assets/joyce-alex/DSCF0021.webp",
+    "source_sha256": "bac82856ad8857f16ff37b4a59dbab350bb2b935ccb7bcee3d1c387f2fed80a4",
+    "bytes": 364692
+  },
+  "assets/joyce-alex/DSCF0028.jpg": {
+    "target": "assets/joyce-alex/DSCF0028.webp",
+    "source_sha256": "072635f4aab0ff0b9883c67b68735111d93848aadc39c3b93222f7bf46bab8d4",
+    "bytes": 374130
+  },
+  "assets/joyce-alex/DSCF0059.jpg": {
+    "target": "assets/joyce-alex/DSCF0059.webp",
+    "source_sha256": "631e8cec8a5bf1d80682ae3c1ec529169c48fcc64f73d3f659e3321c09a508dc",
+    "bytes": 357202
+  },
+  "assets/joyce-alex/DSCF0034.jpg": {
+    "target": "assets/joyce-alex/DSCF0034.webp",
+    "source_sha256": "16dd6fe417e588043e803850a579c46a36c862207969578a255b0b661e3c68ff",
+    "bytes": 399432
+  },
+  "assets/joyce-alex/DSCF0046.jpg": {
+    "target": "assets/joyce-alex/DSCF0046.webp",
+    "source_sha256": "ee2842bc8fed7533d53976c61473be30523da358242a186476b45938104b2266",
+    "bytes": 439018
+  },
+  "assets/joyce-alex/DSCF0063.jpg": {
+    "target": "assets/joyce-alex/DSCF0063.webp",
+    "source_sha256": "9c19c46fd0aff243dae8025b701509543440fdc7c4f7c70151ec7505c375ff34",
+    "bytes": 442886
+  },
+  "assets/joyce-alex/DSCF0066.jpg": {
+    "target": "assets/joyce-alex/DSCF0066.webp",
+    "source_sha256": "eb0655b5aada63d031335745f322c17de1e1e78ff81103c4560e6a7247b6bee8",
+    "bytes": 482910
+  },
+  "assets/joyce-alex/DSCF0090.jpg": {
+    "target": "assets/joyce-alex/DSCF0090.webp",
+    "source_sha256": "617d68870c2f8b79db0f01cea7c9fefea0135ad4e49db684fe7b81546c060fb0",
+    "bytes": 430972
+  },
+  "assets/joyce-alex/DSCF0076.jpg": {
+    "target": "assets/joyce-alex/DSCF0076.webp",
+    "source_sha256": "e6dc1671d956a0aefb0bb470941f36350b4a63afa9382f2433f02ae12ed67eb6",
+    "bytes": 412360
+  },
+  "assets/joyce-alex/DSCF0094.jpg": {
+    "target": "assets/joyce-alex/DSCF0094.webp",
+    "source_sha256": "c040877ca2a177c56c01fb5fd564ba6fa8ea6d332fa50d59609c218d87b837fd",
+    "bytes": 421416
+  },
+  "assets/joyce-alex/DSCF0104.jpg": {
+    "target": "assets/joyce-alex/DSCF0104.webp",
+    "source_sha256": "6a4ba3a23bf2e150ca2d1dc1cb756c45d14198181cec03dcf9a45a26db8ca751",
+    "bytes": 308598
+  },
+  "assets/joyce-alex/DSCF0072.jpg": {
+    "target": "assets/joyce-alex/DSCF0072.webp",
+    "source_sha256": "f069cc5a2998e8f31c356b1b3078beaf06aff71f3df569518c20ff113530d69f",
+    "bytes": 496626
+  },
+  "assets/joyce-alex/DSCF0111.jpg": {
+    "target": "assets/joyce-alex/DSCF0111.webp",
+    "source_sha256": "1d64da25d6de20defdf89f7fd2dcd306e840c006fcbbc1ea60a83db182365841",
+    "bytes": 378008
+  },
+  "assets/joyce-alex/DSCF0113.jpg": {
+    "target": "assets/joyce-alex/DSCF0113.webp",
+    "source_sha256": "41f6297f85013941abe42de247976915a66f5b6a300709c112df28167d4d0413",
+    "bytes": 325616
+  },
+  "assets/joyce-alex/DSCF0126.jpg": {
+    "target": "assets/joyce-alex/DSCF0126.webp",
+    "source_sha256": "149e9a6f2ba56f54d7280834a945f2a4e8991dc0a7aeb2ef18e58fcb8af923d9",
+    "bytes": 774420
+  },
+  "assets/joyce-alex/DSCF0141.jpg": {
+    "target": "assets/joyce-alex/DSCF0141.webp",
+    "source_sha256": "d740b713d9f08f42887d257179548e43ead3f1a683c80de3429799efefa8d1c0",
+    "bytes": 614540
+  },
+  "assets/joyce-alex/DSCF0134.jpg": {
+    "target": "assets/joyce-alex/DSCF0134.webp",
+    "source_sha256": "334a30adf038933bc37549fc3061f1f8c2ce79113c648bc81d10d6916192c300",
+    "bytes": 667826
+  },
+  "assets/joyce-alex/DSCF0182.jpg": {
+    "target": "assets/joyce-alex/DSCF0182.webp",
+    "source_sha256": "c2e441a6abf03a8d0aae94aae17e0dcd8e1faaefb87fa6d0b128673feefbe1d5",
+    "bytes": 589746
+  },
+  "assets/joyce-alex/DSCF0155.jpg": {
+    "target": "assets/joyce-alex/DSCF0155.webp",
+    "source_sha256": "726db27fb4cb4bde9208e76f1bfec4438eebde27bd976fd991f39fd326881cb6",
+    "bytes": 652910
+  },
+  "assets/joyce-alex/DSCF0195.jpg": {
+    "target": "assets/joyce-alex/DSCF0195.webp",
+    "source_sha256": "d617e14e415a2b234a17c19d949ddbd6d7062b1e6da1cb626c0c5eb7bc3b34b6",
+    "bytes": 667656
+  },
+  "assets/joyce-alex/DSCF0224.jpg": {
+    "target": "assets/joyce-alex/DSCF0224.webp",
+    "source_sha256": "35538eee1e5725ef2c2bad279f1a56c631dafd0601e0e4ed064fb369739d9a9f",
+    "bytes": 711876
+  },
+  "assets/joyce-alex/DSCF0234.jpg": {
+    "target": "assets/joyce-alex/DSCF0234.webp",
+    "source_sha256": "c146b66c6e47960f40b299012238e1b6858dfca3a4b270f135bf235cfcb143e0",
+    "bytes": 556798
+  },
+  "assets/joyce-alex/DSCF0259.jpg": {
+    "target": "assets/joyce-alex/DSCF0259.webp",
+    "source_sha256": "3c6c10914ac38c15b9356c5011d27c924ddf96175b3ead5e4b909a38c159fcd9",
+    "bytes": 534418
+  },
+  "assets/joyce-alex/DSCF0275.jpg": {
+    "target": "assets/joyce-alex/DSCF0275.webp",
+    "source_sha256": "46508efc88b6b63f4cef174d26ed54e35d4f64b2d728674ccc2990493df982e3",
+    "bytes": 681610
+  },
+  "assets/joyce-alex/DSCF0335.jpg": {
+    "target": "assets/joyce-alex/DSCF0335.webp",
+    "source_sha256": "e2944b2227a05aedd78b3787511bf822ed7bef2be1086126e2ceaca096b73d80",
+    "bytes": 623202
+  },
+  "assets/joyce-alex/DSCF0392.jpg": {
+    "target": "assets/joyce-alex/DSCF0392.webp",
+    "source_sha256": "6f50d89b9cfa60204282446b08858816fadb908b775dd1c7704559def115770a",
+    "bytes": 715030
+  },
+  "assets/joyce-alex/DSCF0440.jpg": {
+    "target": "assets/joyce-alex/DSCF0440.webp",
+    "source_sha256": "f8e7caeae7c36c519b2f177eb7f95b359cc1cc3ce558fda0109c90737acad147",
+    "bytes": 481302
+  },
+  "assets/joyce-alex/DSCF0463.jpg": {
+    "target": "assets/joyce-alex/DSCF0463.webp",
+    "source_sha256": "a34cc2ecdda8db37ee58aef41526b4acdec1a4ad835eab84e5f7569c07e1aae4",
+    "bytes": 597366
+  },
+  "assets/joyce-alex/DSCF0478.jpg": {
+    "target": "assets/joyce-alex/DSCF0478.webp",
+    "source_sha256": "28dd1af0602d7199947e4d93f94f2acdd71de5d462602fd9669e0fb6d4e6e181",
+    "bytes": 547270
+  },
+  "assets/joyce-alex/DSCF0314.jpg": {
+    "target": "assets/joyce-alex/DSCF0314.webp",
+    "source_sha256": "31fbaca4af154471cd1886d9e59309e6b1c74e3273b53750ef9c005de675dd86",
+    "bytes": 806246
+  },
+  "assets/joyce-alex/DSCF0533.jpg": {
+    "target": "assets/joyce-alex/DSCF0533.webp",
+    "source_sha256": "bd687eaaf88c644d91c31020b28a497a70892dee36677b13cf49cc250e88e278",
+    "bytes": 398566
+  },
+  "assets/joyce-alex/DSCF0490.jpg": {
+    "target": "assets/joyce-alex/DSCF0490.webp",
+    "source_sha256": "67f8cb787724f1520adf5f34cb0ee778fd036eafd2a35feeb62b775c1170f62a",
+    "bytes": 390392
+  },
+  "assets/joyce-alex/DSCF0625.jpg": {
+    "target": "assets/joyce-alex/DSCF0625.webp",
+    "source_sha256": "cd4153aebd34b2c814a05511dc32a9fcd3cfdd098e52a0afed239da7ecc989ef",
+    "bytes": 659962
+  },
+  "assets/leopard-crown.jpg": {
+    "target": "assets/leopard-crown.webp",
+    "source_sha256": "65a66930b65e7985a6ca0f01b7ceeedf6357204e6adfc8b2eac22120a27b1536",
+    "bytes": 246134
+  },
+  "assets/joyce-alex/DSCF0588.jpg": {
+    "target": "assets/joyce-alex/DSCF0588.webp",
+    "source_sha256": "3c4ada5208eeec5e14c9869b442ecea43f4d2d449ac3e258cdbafc2049cc8d95",
+    "bytes": 586806
+  },
+  "assets/magenta-feather.jpg": {
+    "target": "assets/magenta-feather.webp",
+    "source_sha256": "002a71ca8169d954ebaccd315a27a5cc9a684854234cac251f03443db761d23e",
+    "bytes": 419112
+  },
+  "assets/motion-20260630_051327_817-poster.jpg": {
+    "target": "assets/motion-20260630_051327_817-poster.webp",
+    "source_sha256": "4438636e4ef48281ea9c635cda0fdc55d953ffff3cccad954065f98c2d9f4ff5",
+    "bytes": 39648
+  },
+  "assets/motion-20260917_100931_540-poster.jpg": {
+    "target": "assets/motion-20260917_100931_540-poster.webp",
+    "source_sha256": "b8e3f0dfca632049741772b2d39d288ab33076b6c1aed09d3b2ec53a6bd41bda",
+    "bytes": 99498
+  },
+  "assets/motion-20260630_054411_810-poster.jpg": {
+    "target": "assets/motion-20260630_054411_810-poster.webp",
+    "source_sha256": "6d539ceab74dcac585d1ae57f272f8735197167ee7457d9a9a0fda396d99dd8b",
+    "bytes": 104996
+  },
+  "assets/motion-20260630_045749_681-poster.jpg": {
+    "target": "assets/motion-20260630_045749_681-poster.webp",
+    "source_sha256": "9faf0c1175fbccbda5759a07e87e549d5f6dd88192d3eba3062038e2ef25aee0",
+    "bytes": 39166
+  },
+  "assets/justin-about-ultrawide.png": {
+    "target": "assets/justin-about-ultrawide.webp",
+    "source_sha256": "0439e60bd21ba24e81a9c61e520370e6a8c9e124a931d3125babdb56db3e1924",
+    "bytes": 180502
+  },
+  "assets/motion-20260921_154001_821-poster.jpg": {
+    "target": "assets/motion-20260921_154001_821-poster.webp",
+    "source_sha256": "0b579e45d22af123cbca158409b2647191b79086aba34293acd9d852a45b8b2a",
+    "bytes": 64048
+  },
+  "assets/motion-20260921_152456_814-poster.jpg": {
+    "target": "assets/motion-20260921_152456_814-poster.webp",
+    "source_sha256": "4ffbddda0751a3cc1b9f383baeae82c595c4f7626ca4bc0f2cbfefb646e991de",
+    "bytes": 100812
+  },
+  "assets/motion-20261013_193857_945-poster.jpg": {
+    "target": "assets/motion-20261013_193857_945-poster.webp",
+    "source_sha256": "d52d71e02a9ef89a073827d3d5ea886ebe90197eb05a603a5b5b63c2747dc291",
+    "bytes": 119326
+  },
+  "assets/motion-20260921_153252_485-poster.jpg": {
+    "target": "assets/motion-20260921_153252_485-poster.webp",
+    "source_sha256": "5d9c77b3f43b469fadabc8a069f16463f7d4429c365a069af8ae95cd70c2bfbb",
+    "bytes": 70964
+  },
+  "assets/motion-20260921_155029_882-poster.jpg": {
+    "target": "assets/motion-20260921_155029_882-poster.webp",
+    "source_sha256": "0d2a3693b9d1912c865d7104f5fbb83cc0bb2ae9e22f27ab48995f5bac5cd951",
+    "bytes": 110300
+  },
+  "assets/motion-20261019_140252_664-poster.jpg": {
+    "target": "assets/motion-20261019_140252_664-poster.webp",
+    "source_sha256": "a118c12541ab05de60cbfead1b23789ed7a859045b6c7a9bc512f97078ad9470",
+    "bytes": 141958
+  },
+  "assets/motion-20261027_171728_137-poster.jpg": {
+    "target": "assets/motion-20261027_171728_137-poster.webp",
+    "source_sha256": "74993b7b50d5ec9b536b564a581372a3221f21eff3ba74e3e60d2199574d2eb5",
+    "bytes": 28656
+  },
+  "assets/motion-20261031_071656_814-poster.jpg": {
+    "target": "assets/motion-20261031_071656_814-poster.webp",
+    "source_sha256": "9174b422d1d381198b71264085e7a1c0a181a5575bb9142c1952a8dfe06a70a9",
+    "bytes": 45870
+  },
+  "assets/motion-20261103_161559_398-poster.jpg": {
+    "target": "assets/motion-20261103_161559_398-poster.webp",
+    "source_sha256": "3f10fe978027bcaf6df1613396a2f9b098f9e4e55b2b80ab3eabb1bb9fc31181",
+    "bytes": 146598
+  },
+  "assets/motion-20261103_161621_543-poster.jpg": {
+    "target": "assets/motion-20261103_161621_543-poster.webp",
+    "source_sha256": "4948cfffde236b4b05e6ef56da44045166eac8f82048faabcccbdc04d53c71f8",
+    "bytes": 90248
+  },
+  "assets/motion-20261103_161730_224-poster.jpg": {
+    "target": "assets/motion-20261103_161730_224-poster.webp",
+    "source_sha256": "2ccc7de670636aa56511d44056988ac8a35ec134a2576c55772688f6c1caac3e",
+    "bytes": 126590
+  },
+  "assets/motion-20261103_161650_440-poster.jpg": {
+    "target": "assets/motion-20261103_161650_440-poster.webp",
+    "source_sha256": "1551a6d04af17087d80114b3b5539c913ce481e21da2d599ebdc54c01df523b8",
+    "bytes": 92982
+  },
+  "assets/motion-20261103_162406_242-poster.jpg": {
+    "target": "assets/motion-20261103_162406_242-poster.webp",
+    "source_sha256": "13ab291aed6b1774438e362aa5f9e37075178f99cd0452d8f1e37e896572b126",
+    "bytes": 86168
+  },
+  "assets/motion-20261103_162103_028-poster.jpg": {
+    "target": "assets/motion-20261103_162103_028-poster.webp",
+    "source_sha256": "0b1eccc0700d75cd9a30639a6c5c2d121e18797675e30dfad1ff55340b4a93ed",
+    "bytes": 160834
+  },
+  "assets/motion-20261103_162455_898-poster.jpg": {
+    "target": "assets/motion-20261103_162455_898-poster.webp",
+    "source_sha256": "88c2ed2244c68db014d0ad98873fdec4f5865c5d49c10e031e172c7876bd80c7",
+    "bytes": 36824
+  },
+  "assets/nav-sound.jpg": {
+    "target": "assets/nav-sound.webp",
+    "source_sha256": "b935ec4089d295103e1f5f79cbe186444b22483f79b80f17cf34d97d1c453a73",
+    "bytes": 39222
+  },
+  "assets/my-kit/viltrox-28.jpg": {
+    "target": "assets/my-kit/viltrox-28.webp",
+    "source_sha256": "41b6216fee03c519f1c586fd0fe285119477f2a8c51816475b75728a8d4e6c49",
+    "bytes": 15368
+  },
+  "assets/nyc-halloween-parade-reel-01-poster.jpg": {
+    "target": "assets/nyc-halloween-parade-reel-01-poster.webp",
+    "source_sha256": "63d3213004fe04794fec80858bb228341abd0b20daef5fc0c9c740ebe7a9cf61",
+    "bytes": 120764
+  },
+  "assets/nav-contact-dscf0773.jpg": {
+    "target": "assets/nav-contact-dscf0773.webp",
+    "source_sha256": "3f7dc5ed210852ad4eed90eaf7703b1b2d7fd0920e22c5ff3feeaaf059f4b7d4",
+    "bytes": 371556
+  },
+  "assets/nav-work-dscf1028.jpg": {
+    "target": "assets/nav-work-dscf1028.webp",
+    "source_sha256": "eeb79cf2f833be86c6a1f80179cafaecb1efbfab15f618003b14b41e7cfb5027",
+    "bytes": 270554
+  },
+  "assets/nyc-halloween-parade-reel-02-poster.jpg": {
+    "target": "assets/nyc-halloween-parade-reel-02-poster.webp",
+    "source_sha256": "0eac3cad7bf3e4ec9ee34c1321a91bd2efbf2e2834f37b0d03ca162fae0a7a0d",
+    "bytes": 51006
+  },
+  "assets/project-polaroids/emily-pedro-reception-02.jpg": {
+    "target": "assets/project-polaroids/emily-pedro-reception-02.webp",
+    "source_sha256": "eb700e8a56c9019cb84ccbe802aea368b97b7fa3feedbd67aac3840add6321f9",
+    "bytes": 176084
+  },
+  "assets/project-polaroids/emily-pedro-reception-03.jpg": {
+    "target": "assets/project-polaroids/emily-pedro-reception-03.webp",
+    "source_sha256": "d0aa17aab234f10cb3b1846c59d95cc6814da8121cb0de847b037824a85ab4cd",
+    "bytes": 126900
+  },
+  "assets/project-polaroids/emily-pedro-reception-01.jpg": {
+    "target": "assets/project-polaroids/emily-pedro-reception-01.webp",
+    "source_sha256": "8dd27f4295a8a6fbc0ba6c18351b72a5ca8f74ce9eb87f82c66bba0eeb86e5f5",
+    "bytes": 326376
+  },
+  "assets/project-polaroids/emily-pedro-reception-05.jpg": {
+    "target": "assets/project-polaroids/emily-pedro-reception-05.webp",
+    "source_sha256": "c4bdb8264ede4c1a190340149c11175114ad1a0f7f6d3ca1a1d412568420d023",
+    "bytes": 168628
+  },
+  "assets/project-polaroids/fashion4ukraine-01.jpg": {
+    "target": "assets/project-polaroids/fashion4ukraine-01.webp",
+    "source_sha256": "a43a920f2dfe069799884b2fa63cc09b298feb7ef88d8e84609dc4f4dfae6d3b",
+    "bytes": 184040
+  },
+  "assets/project-polaroids/emily-pedro-reception-04.jpg": {
+    "target": "assets/project-polaroids/emily-pedro-reception-04.webp",
+    "source_sha256": "06d36bfd14ce115345dd100e052dd88b06160e09645594256db6dc1d4048bc96",
+    "bytes": 205002
+  },
+  "assets/project-polaroids/fashion4ukraine-02.jpg": {
+    "target": "assets/project-polaroids/fashion4ukraine-02.webp",
+    "source_sha256": "23a9b6357ceff513d738ab4070e3cef52a219c47713ac33dc1c6074d3c17b1a4",
+    "bytes": 147542
+  },
+  "assets/project-polaroids/fashion4ukraine-03.jpg": {
+    "target": "assets/project-polaroids/fashion4ukraine-03.webp",
+    "source_sha256": "ae9b2c0731ad7a4eaadb0c939d5a96b77f6617e45ca398714c8ad77ed43c212b",
+    "bytes": 147052
+  },
+  "assets/project-polaroids/fashion4ukraine-04.jpg": {
+    "target": "assets/project-polaroids/fashion4ukraine-04.webp",
+    "source_sha256": "7c1525b3d405a2c569981c251d9cf74fde59d8704b49327fe6bd0a45d39467a5",
+    "bytes": 165586
+  },
+  "assets/project-polaroids/fashion4ukraine-05.jpg": {
+    "target": "assets/project-polaroids/fashion4ukraine-05.webp",
+    "source_sha256": "0060adc95529fa13e17b99a511bcfb073e86fa4fadfa9924389d26efc9949ff8",
+    "bytes": 139494
+  },
+  "assets/project-polaroids/great-gatsby-party-02.jpg": {
+    "target": "assets/project-polaroids/great-gatsby-party-02.webp",
+    "source_sha256": "cb59465fbbc6c02c24d50a71f0f8b1b3b94fc2f2b5622f439b29edec889a0e96",
+    "bytes": 152474
+  },
+  "assets/project-polaroids/great-gatsby-party-01.jpg": {
+    "target": "assets/project-polaroids/great-gatsby-party-01.webp",
+    "source_sha256": "47605538a12c98e20382ca7630c109228615fa2e23c6fd11063847679b16b750",
+    "bytes": 318230
+  },
+  "assets/justin-von-braun-portrait.png": {
+    "target": "assets/justin-von-braun-portrait.webp",
+    "source_sha256": "6d4a5cda39617c0f42f4336bb3d21d004a3892ad5c8d7740f47eaaaeecb4d288",
+    "bytes": 349400
+  },
+  "assets/portraits-sony-dscf0745.jpg": {
+    "target": "assets/portraits-sony-dscf0745.webp",
+    "source_sha256": "2400e07cd3779dff1b8c2afd4f5bac4603ba03728cd6d4237865c11659328b95",
+    "bytes": 638592
+  },
+  "assets/project-polaroids/great-gatsby-party-03.jpg": {
+    "target": "assets/project-polaroids/great-gatsby-party-03.webp",
+    "source_sha256": "01b1f2e6c53630d7617cf0fd9b8bec0b34b52939316d2d364e0145364f943369",
+    "bytes": 193222
+  },
+  "assets/project-polaroids/great-gatsby-party-05.jpg": {
+    "target": "assets/project-polaroids/great-gatsby-party-05.webp",
+    "source_sha256": "c998f51df4cc27e6026bd1a875b18d0860ca1e6900f318cdd1ce73efccd02ccd",
+    "bytes": 83244
+  },
+  "assets/project-polaroids/great-gatsby-party-04.jpg": {
+    "target": "assets/project-polaroids/great-gatsby-party-04.webp",
+    "source_sha256": "b4ef41c10bf9a98ebe7585d9b99a46d7146f99e5d558370f32a04cb741266fba",
+    "bytes": 134540
+  },
+  "assets/project-polaroids/joyce-aleks-02.jpg": {
+    "target": "assets/project-polaroids/joyce-aleks-02.webp",
+    "source_sha256": "ec379465d8e5f569ad573407219e3fafbc69c63ed178050fa23f60edf711f4c8",
+    "bytes": 422006
+  },
+  "assets/project-polaroids/joyce-aleks-01.jpg": {
+    "target": "assets/project-polaroids/joyce-aleks-01.webp",
+    "source_sha256": "0cfba8466f6e84371e3976571557281f70fa3ace5cdd81259618d5d0935ee974",
+    "bytes": 261320
+  },
+  "assets/project-polaroids/joyce-aleks-03.jpg": {
+    "target": "assets/project-polaroids/joyce-aleks-03.webp",
+    "source_sha256": "6bcb482be7f8808a4e1fc628532cea232df46d7ff20954cc98fbc8e931d9e14e",
+    "bytes": 331058
+  },
+  "assets/project-polaroids/joyce-aleks-04.jpg": {
+    "target": "assets/project-polaroids/joyce-aleks-04.webp",
+    "source_sha256": "7cc0a138465360d191f1e603f79bbeb9cd8fcd3d22b7b2eb5b4b02c6537aaaec",
+    "bytes": 271276
+  },
+  "assets/project-polaroids/joyce-aleks-05.jpg": {
+    "target": "assets/project-polaroids/joyce-aleks-05.webp",
+    "source_sha256": "85a089256616cf2d628a981fe123b750b5a95c56efce8fac7bc8a75c04dca075",
+    "bytes": 214754
+  },
+  "assets/project-polaroids/nyc-halloween-parade-01.jpg": {
+    "target": "assets/project-polaroids/nyc-halloween-parade-01.webp",
+    "source_sha256": "b448cb555d111157a227df1f78cb6efae6ac86d9cfa4b26f7f319081e1084d76",
+    "bytes": 298500
+  },
+  "assets/project-polaroids/nyc-halloween-parade-03.jpg": {
+    "target": "assets/project-polaroids/nyc-halloween-parade-03.webp",
+    "source_sha256": "188396b0bfa2929f9891036210ac48a27c7c894838de505eb562f6f6fa8e35ae",
+    "bytes": 149990
+  },
+  "assets/project-polaroids/nyc-halloween-parade-02.jpg": {
+    "target": "assets/project-polaroids/nyc-halloween-parade-02.webp",
+    "source_sha256": "c3a531350cea4f1db19237fbd770fbd6842c346746baafd5365052bf3e3f9b16",
+    "bytes": 318278
+  },
+  "assets/project-polaroids/nyc-halloween-parade-04.jpg": {
+    "target": "assets/project-polaroids/nyc-halloween-parade-04.webp",
+    "source_sha256": "a6f279d6f263be561c5016b68915d736ba3d58b73eef0d7c16e280151164258c",
+    "bytes": 352178
+  },
+  "assets/project-polaroids/nyc-halloween-parade-05.jpg": {
+    "target": "assets/project-polaroids/nyc-halloween-parade-05.webp",
+    "source_sha256": "883b9e1a06194b69283d0fef62703833a1a6fe3f5016ea8caf7a3820b5ef40ff",
+    "bytes": 333460
+  },
+  "assets/project-polaroids/penthouse-show-02.jpg": {
+    "target": "assets/project-polaroids/penthouse-show-02.webp",
+    "source_sha256": "c728c8f701d4539068dddaaba1ea05b85df7e23bb4bb7a9115c142f03a49a001",
+    "bytes": 265328
+  },
+  "assets/project-polaroids/penthouse-show-01.jpg": {
+    "target": "assets/project-polaroids/penthouse-show-01.webp",
+    "source_sha256": "554aaab0165cdf588160dc33b9fd0ed295f0e0562d40c46def9b392750e35bca",
+    "bytes": 140398
+  },
+  "assets/project-polaroids/penthouse-show-03.jpg": {
+    "target": "assets/project-polaroids/penthouse-show-03.webp",
+    "source_sha256": "e7e2169109211ee74cc6abe1102853b5975f4a1901985c7e5541ed326ba46023",
+    "bytes": 189442
+  },
+  "assets/project-polaroids/penthouse-show-05.jpg": {
+    "target": "assets/project-polaroids/penthouse-show-05.webp",
+    "source_sha256": "49b30cd3e30fc385f6ee650eb3049ebef869de301d865ad8473a753b9515fd1e",
+    "bytes": 161848
+  },
+  "assets/project-polaroids/penthouse-show-04.jpg": {
+    "target": "assets/project-polaroids/penthouse-show-04.webp",
+    "source_sha256": "11162f8cb4135a01fa6b8584cf3b4b72f27c3848aec075bbd1254255528a0046",
+    "bytes": 154094
+  },
+  "assets/project-polaroids/soho-july-2026-02.jpg": {
+    "target": "assets/project-polaroids/soho-july-2026-02.webp",
+    "source_sha256": "52f679c4bd36d9d283c038a2f9ed45173bf12a4a5053d9ebb78dc4f2fd9a999f",
+    "bytes": 230510
+  },
+  "assets/project-polaroids/soho-july-2026-01.jpg": {
+    "target": "assets/project-polaroids/soho-july-2026-01.webp",
+    "source_sha256": "bc0e99f2ae73abc2ff24ee4f6a563c200eac0b1098d2983c7c92c53bfff043cc",
+    "bytes": 510622
+  },
+  "assets/project-polaroids/soho-july-2026-03.jpg": {
+    "target": "assets/project-polaroids/soho-july-2026-03.webp",
+    "source_sha256": "5c028962775565c20c71fbc384e2449941a613d7408c8173de62ee26bc1cfb37",
+    "bytes": 373706
+  },
+  "assets/project-polaroids/soho-july-approved-DSCF0672.jpg": {
+    "target": "assets/project-polaroids/soho-july-approved-DSCF0672.webp",
+    "source_sha256": "0424ffa71e39edaa23bc0b85b7586d7bee5c690cf20e5c794fc24e73461c0c07",
+    "bytes": 292058
+  },
+  "assets/project-polaroids/soho-july-approved-DSCF0705.jpg": {
+    "target": "assets/project-polaroids/soho-july-approved-DSCF0705.webp",
+    "source_sha256": "58c830cd0bd774462e20913fef11c9f984b0d84de2672413ac70c4d03ebe127e",
+    "bytes": 301860
+  },
+  "assets/project-polaroids/soho-june-2026-02.jpg": {
+    "target": "assets/project-polaroids/soho-june-2026-02.webp",
+    "source_sha256": "9a99b72b3e1f8b0516f4578adab647c078b56a37727b39dcaa582c0e710340d3",
+    "bytes": 336426
+  },
+  "assets/project-polaroids/soho-june-2026-03.jpg": {
+    "target": "assets/project-polaroids/soho-june-2026-03.webp",
+    "source_sha256": "ffc0427360e1ee6bf305f84374bb182673032f398af05a7143a99dfeacea9579",
+    "bytes": 267016
+  },
+  "assets/project-polaroids/soho-june-2026-01.jpg": {
+    "target": "assets/project-polaroids/soho-june-2026-01.webp",
+    "source_sha256": "2635eb0501f73a4e6f632c5873d1eb710f275b1da1ba5891d069c0addbef5354",
+    "bytes": 333944
+  },
+  "assets/project-polaroids/soho-june-2026-04.jpg": {
+    "target": "assets/project-polaroids/soho-june-2026-04.webp",
+    "source_sha256": "730b5fd30242881c085738f65994a72600c763602da2abc99b96772afca96804",
+    "bytes": 267590
+  },
+  "assets/project-polaroids/soho-june-2026-05.jpg": {
+    "target": "assets/project-polaroids/soho-june-2026-05.webp",
+    "source_sha256": "a1e8276d46c927c517747e013261dcd4c0a5faab64c414afb0b67c7642ccd93b",
+    "bytes": 239100
+  },
+  "assets/project-polaroids/soho-october-2026-01.jpg": {
+    "target": "assets/project-polaroids/soho-october-2026-01.webp",
+    "source_sha256": "b10f7d408110d4eed29b23bbf34a04ddb874eb41b32e39dd5aec252d0899b108",
+    "bytes": 103366
+  },
+  "assets/project-polaroids/soho-october-2026-02.jpg": {
+    "target": "assets/project-polaroids/soho-october-2026-02.webp",
+    "source_sha256": "38d1f95e18251c1919b5fb454b9056f03d32640dd45cf282dfdf8caa97610e39",
+    "bytes": 53720
+  },
+  "assets/project-polaroids/soho-october-2026-03.jpg": {
+    "target": "assets/project-polaroids/soho-october-2026-03.webp",
+    "source_sha256": "ba143fa42e0dc3f2c9dba71c098cc3a46aae3e145f4d8272c9212a93f7f2542a",
+    "bytes": 150400
+  },
+  "assets/project-polaroids/soho-october-2026-04.jpg": {
+    "target": "assets/project-polaroids/soho-october-2026-04.webp",
+    "source_sha256": "8a96949874dd4d88eaebb490baa7f39ddb7b36050dd9dfad28ce2fd94c3e5190",
+    "bytes": 159224
+  },
+  "assets/project-polaroids/soho-october-2026-05.jpg": {
+    "target": "assets/project-polaroids/soho-october-2026-05.webp",
+    "source_sha256": "ed024fd5d80e28208cd6599a706b881f377507641f6a40705d589400dbdb7c75",
+    "bytes": 50880
+  },
+  "assets/project-polaroids/sony-focus-show-01.jpg": {
+    "target": "assets/project-polaroids/sony-focus-show-01.webp",
+    "source_sha256": "525458c6e74091c988fe7cfc35811ae3cdde79c60e077b89f770d0d6a3c8a7f4",
+    "bytes": 180046
+  },
+  "assets/project-polaroids/sony-focus-show-04.jpg": {
+    "target": "assets/project-polaroids/sony-focus-show-04.webp",
+    "source_sha256": "c10bd5dce25cbc6566412df7318d045b75d8975cb2bd9a63f82d7577e6467cf8",
+    "bytes": 97624
+  },
+  "assets/project-polaroids/sony-focus-show-03.jpg": {
+    "target": "assets/project-polaroids/sony-focus-show-03.webp",
+    "source_sha256": "c3ece7e2d7f74827b2e863b157943a4cc4de10599d3b374a6676a8871616a0d2",
+    "bytes": 227858
+  },
+  "assets/project-polaroids/sony-focus-show-02.jpg": {
+    "target": "assets/project-polaroids/sony-focus-show-02.webp",
+    "source_sha256": "71d71b7962c7cdf692bad68385835473005da4d399bc26f147141dd044b05904",
+    "bytes": 169096
+  },
+  "assets/project-polaroids/sony-focus-show-05.jpg": {
+    "target": "assets/project-polaroids/sony-focus-show-05.webp",
+    "source_sha256": "813eabd26abdaf6c446a4b220188b669bbde0141a4bb64c8b505662c18016ee8",
+    "bytes": 204518
+  },
+  "assets/runway-white.jpg": {
+    "target": "assets/runway-white.webp",
+    "source_sha256": "de77130da1bea21f24314ab331ad181c2e34781c2cfc6620982e8b12ee763b05",
+    "bytes": 433564
+  },
+  "assets/ruffle-afterdark.jpg": {
+    "target": "assets/ruffle-afterdark.webp",
+    "source_sha256": "e11779dace45aea476c42fe7da60ebec6bc397564adba1b467bf7e9b17dc73d4",
+    "bytes": 654028
+  },
+  "assets/runway-floral.jpg": {
+    "target": "assets/runway-floral.webp",
+    "source_sha256": "9048f6be9ec28848ef43081c3335f7cddfc763289245b3a6f98b70c7bb44c110",
+    "bytes": 469856
+  },
+  "assets/sony-focus-show/DSCF0743.jpg": {
+    "target": "assets/sony-focus-show/DSCF0743.webp",
+    "source_sha256": "cf6b7d34b0d5d4b985213268d008684f569691d038d916191f6567fa95151903",
+    "bytes": 569654
+  },
+  "assets/sony-focus-show/DSCF0745.jpg": {
+    "target": "assets/sony-focus-show/DSCF0745.webp",
+    "source_sha256": "2400e07cd3779dff1b8c2afd4f5bac4603ba03728cd6d4237865c11659328b95",
+    "bytes": 638592
+  },
+  "assets/my-kit/nanuk-905-new.png": {
+    "target": "assets/my-kit/nanuk-905-new.webp",
+    "source_sha256": "7312c899da7b58cbbeadc807d892fc3eae3e32368cffa41004689b72fe220f3d",
+    "bytes": 350258
+  },
+  "assets/sony-focus-show/DSCF0765.jpg": {
+    "target": "assets/sony-focus-show/DSCF0765.webp",
+    "source_sha256": "e3d8f8165d7983c5dae2ab657653181778f572636fe12255119b9551a65388e1",
+    "bytes": 612898
+  },
+  "assets/site-background.png": {
+    "target": "assets/site-background.webp",
+    "source_sha256": "b1c3b4d809894e946989d0274e6683f45940271ecf82734b5e046864b3558a11",
+    "bytes": 800146
+  },
+  "assets/sony-focus-show/DSCF0763.jpg": {
+    "target": "assets/sony-focus-show/DSCF0763.webp",
+    "source_sha256": "9fb1a79f795a6ca637f66e07d6359fe5826fbc7666f2519f079929490a26fa4f",
+    "bytes": 640504
+  },
+  "assets/sony-focus-show/DSCF0766.jpg": {
+    "target": "assets/sony-focus-show/DSCF0766.webp",
+    "source_sha256": "935b7eeb0a153c6010c5ffa1e1453100c9ba9167ea4e0cdaadedc57c51b1599d",
+    "bytes": 578534
+  },
+  "assets/sony-focus-show/DSCF0768.jpg": {
+    "target": "assets/sony-focus-show/DSCF0768.webp",
+    "source_sha256": "dc390c334a69810d0030e0a62c4f9b8b17b7cdee19d05b935a261f97e7cafb31",
+    "bytes": 596836
+  },
+  "assets/sony-focus-show/DSCF0773.jpg": {
+    "target": "assets/sony-focus-show/DSCF0773.webp",
+    "source_sha256": "ea5ef6dd5f231e064f0448fc671576ead15f42efa31f393cfc3757f590e7d5f4",
+    "bytes": 594804
+  },
+  "assets/sony-focus-show/DSCF0774.jpg": {
+    "target": "assets/sony-focus-show/DSCF0774.webp",
+    "source_sha256": "ba4dc4ab887a33a968a45558dbf1e1b0db983c6f9bd8bc3fa664cb2b8523909b",
+    "bytes": 582702
+  },
+  "assets/sony-focus-show/DSCF0785.jpg": {
+    "target": "assets/sony-focus-show/DSCF0785.webp",
+    "source_sha256": "01e7c6e3043e824b79edac9b685249a17fbf2492c94b4cc999958eb8ac2f4946",
+    "bytes": 545002
+  },
+  "assets/sony-focus-show/DSCF0787.jpg": {
+    "target": "assets/sony-focus-show/DSCF0787.webp",
+    "source_sha256": "99ad5df1231a1c9c356aaa407526991258601a96f9e782ad09fa3fb53b3d4dc2",
+    "bytes": 596564
+  },
+  "assets/sony-focus-show/DSCF0778.jpg": {
+    "target": "assets/sony-focus-show/DSCF0778.webp",
+    "source_sha256": "165e119735e3562196b202e4b220e7b2413233cf409e1af3225f97d2940a85d0",
+    "bytes": 616778
+  },
+  "assets/sony-focus-show/DSCF0791.jpg": {
+    "target": "assets/sony-focus-show/DSCF0791.webp",
+    "source_sha256": "3b6a35f53e946f7d7960abec59bf33d60c27c68c00b5e3775178d833c5d70918",
+    "bytes": 481184
+  },
+  "assets/sony-focus-show/DSCF0809.jpg": {
+    "target": "assets/sony-focus-show/DSCF0809.webp",
+    "source_sha256": "4ef82c74d85f6fec22927dd983933b635e2d424cde1d3bfbe9c8feacde82331e",
+    "bytes": 493538
+  },
+  "assets/sony-focus-show/DSCF0804.jpg": {
+    "target": "assets/sony-focus-show/DSCF0804.webp",
+    "source_sha256": "71502879814f0df3f922785f35aa0cbaad859f786489de4dc781242483d987cb",
+    "bytes": 481924
+  },
+  "assets/sony-focus-show/DSCF0795.jpg": {
+    "target": "assets/sony-focus-show/DSCF0795.webp",
+    "source_sha256": "caa5c99e60de139a6043c457ed6fba5dc9ef90c7baedea4274abda19b8b80975",
+    "bytes": 489790
+  },
+  "assets/sony-focus-show/DSCF0824.jpg": {
+    "target": "assets/sony-focus-show/DSCF0824.webp",
+    "source_sha256": "62c8790edc62a82faf515248b7fe4545ee4693484b7b0ff772b6eb5608e28084",
+    "bytes": 651176
+  },
+  "assets/sony-focus-show/DSCF0837.jpg": {
+    "target": "assets/sony-focus-show/DSCF0837.webp",
+    "source_sha256": "a573b499ae0072e0f7b02f4f205db753bd82cb26e070d12a91261a5efa0321a9",
+    "bytes": 518894
+  },
+  "assets/sony-focus-show/DSCF0798.jpg": {
+    "target": "assets/sony-focus-show/DSCF0798.webp",
+    "source_sha256": "8f9905b78e8785891de80d13f1cc40599cc9314a81e65585ec0b66d000ab03bd",
+    "bytes": 539350
+  },
+  "assets/sony-focus-show/DSCF0874.jpg": {
+    "target": "assets/sony-focus-show/DSCF0874.webp",
+    "source_sha256": "0179cc6ab38764c9d2604baa631887c1ca707076ad81a602f694a78ecaa7465f",
+    "bytes": 673820
+  },
+  "assets/sony-focus-show/DSCF0877.jpg": {
+    "target": "assets/sony-focus-show/DSCF0877.webp",
+    "source_sha256": "05b9e5d47621104376234cfce2aac8c51558a8385cc948535723e4852f461f34",
+    "bytes": 574214
+  },
+  "assets/sony-focus-show/DSCF0839.jpg": {
+    "target": "assets/sony-focus-show/DSCF0839.webp",
+    "source_sha256": "c1fcd2e226d7ca05c271f470e0a90bbe29a7af5a8a0a1866170012a552abe3ab",
+    "bytes": 710170
+  },
+  "assets/sony-focus-show/DSCF0851.jpg": {
+    "target": "assets/sony-focus-show/DSCF0851.webp",
+    "source_sha256": "e282443d64d585b74de621d0328dce08db195b560c7fe141518bc2838b0dcf93",
+    "bytes": 603502
+  },
+  "assets/sony-focus-show/DSCF0881.jpg": {
+    "target": "assets/sony-focus-show/DSCF0881.webp",
+    "source_sha256": "1d3fbfd5a2d09a0fd4722ce3902e241b127836ab1310c93c6f49373ca08aa7ac",
+    "bytes": 642162
+  },
+  "assets/sony-focus-show/DSCF0888.jpg": {
+    "target": "assets/sony-focus-show/DSCF0888.webp",
+    "source_sha256": "a5f56b941a1cc6172a3551c5796700bdf24d88e7f17685a99332e882f14fb14d",
+    "bytes": 746938
+  },
+  "assets/sony-focus-show/DSCF0914.jpg": {
+    "target": "assets/sony-focus-show/DSCF0914.webp",
+    "source_sha256": "d9818f9710d058a452b6c65f6c858d7a65e51a3d5a1ef4f660d76d3ef651c7e6",
+    "bytes": 706798
+  },
+  "assets/sony-focus-show/DSCF0904.jpg": {
+    "target": "assets/sony-focus-show/DSCF0904.webp",
+    "source_sha256": "e16d95b23f7b177b8df649e8b7f30d0dbb23c5aa72b94bf008dbef0f4b38bc99",
+    "bytes": 551432
+  },
+  "assets/sony-focus-show/DSCF0891.jpg": {
+    "target": "assets/sony-focus-show/DSCF0891.webp",
+    "source_sha256": "1bb9bc6e5a15d2ce08b581d036743a26415352bbad0fdf0f2dac8e14cf7416de",
+    "bytes": 748670
+  },
+  "assets/sony-focus-show/DSCF0908.jpg": {
+    "target": "assets/sony-focus-show/DSCF0908.webp",
+    "source_sha256": "516aefa2b9045835aa14185ae65421524b23570822d0717192e46b01dbad676f",
+    "bytes": 514150
+  },
+  "assets/sony-focus-show/DSCF0916.jpg": {
+    "target": "assets/sony-focus-show/DSCF0916.webp",
+    "source_sha256": "9f5f3dc73adaec45945afac83e15ee87ddf3fd6a1b11ed17486cd1099c06056f",
+    "bytes": 529944
+  },
+  "assets/sony-focus-show/DSCF0922.jpg": {
+    "target": "assets/sony-focus-show/DSCF0922.webp",
+    "source_sha256": "1c4b9f55a8ca5a7c9ed5c7ddfa005bf5cc0a891b057b3409bc847d315d231e7a",
+    "bytes": 724396
+  },
+  "assets/sony-focus-show/DSCF0928.jpg": {
+    "target": "assets/sony-focus-show/DSCF0928.webp",
+    "source_sha256": "538305e1b896f0fa6eea2904b297010baae60b74a4eca5d38fc508dd5a989322",
+    "bytes": 434324
+  },
+  "assets/sony-focus-show/DSCF0932.jpg": {
+    "target": "assets/sony-focus-show/DSCF0932.webp",
+    "source_sha256": "4c7ddd0e3d4102e52f2f0aa4a5f2aece62a018895c4beb1cddb6147ba852f9f9",
+    "bytes": 430580
+  },
+  "assets/sony-focus-show/DSCF0939.jpg": {
+    "target": "assets/sony-focus-show/DSCF0939.webp",
+    "source_sha256": "78a8816ce24c0e36db5945c77d2b4b387ca02ac70e2e27e2fc796479dbd73ee0",
+    "bytes": 548550
+  },
+  "assets/sony-focus-show/DSCF0936.jpg": {
+    "target": "assets/sony-focus-show/DSCF0936.webp",
+    "source_sha256": "27615ac0b9200d2355e90a405dd24b107403d307444703b0470b7b04346a613f",
+    "bytes": 485344
+  },
+  "assets/sony-focus-show/DSCF0945.jpg": {
+    "target": "assets/sony-focus-show/DSCF0945.webp",
+    "source_sha256": "c0266238f477855aa9dfa98b7338be740dcb4060315bec2b999508564314902c",
+    "bytes": 557270
+  },
+  "assets/sony-focus-show/DSCF0946.jpg": {
+    "target": "assets/sony-focus-show/DSCF0946.webp",
+    "source_sha256": "ea0f3de74e2a7ea9ad1fd76bfb65b3aab6b9df54b9237e4fdc7adbb5bf0cc9bd",
+    "bytes": 504458
+  },
+  "assets/sony-focus-show/DSCF0952.jpg": {
+    "target": "assets/sony-focus-show/DSCF0952.webp",
+    "source_sha256": "fd04cbef35d76fbaa294f1f1b381e9ccd14179ce5a44ea5abce03c64e14b7f24",
+    "bytes": 435944
+  },
+  "assets/sony-focus-show/DSCF0971.jpg": {
+    "target": "assets/sony-focus-show/DSCF0971.webp",
+    "source_sha256": "fc896809a1c8be66077b3fd5868ce3d9b8ddacb5b0b0e86a83a81d0d221d908d",
+    "bytes": 360734
+  },
+  "assets/sony-focus-show/DSCF0966.jpg": {
+    "target": "assets/sony-focus-show/DSCF0966.webp",
+    "source_sha256": "ae7fa0e0433ad3a9230418c1a89977028a6b02c7a1dce1d929d6a3316baaa205",
+    "bytes": 408848
+  },
+  "assets/sony-focus-show/DSCF0970.jpg": {
+    "target": "assets/sony-focus-show/DSCF0970.webp",
+    "source_sha256": "4597161c8a680d62e9c40416725736e11cc9ee28df3238e9e1a2f1fc95065163",
+    "bytes": 445534
+  },
+  "assets/sony-focus-show/DSCF0957.jpg": {
+    "target": "assets/sony-focus-show/DSCF0957.webp",
+    "source_sha256": "576092423004dd3572470a6f00e28957ee8233db2b6da270e5f8e3bb3c79abbf",
+    "bytes": 658508
+  },
+  "assets/sony-focus-show/DSCF0977.jpg": {
+    "target": "assets/sony-focus-show/DSCF0977.webp",
+    "source_sha256": "51617404d0dfbf715cbff1ff2e3cdba4ac21ac1a1f26f3a92dab3fa0c3d7df81",
+    "bytes": 514014
+  },
+  "assets/sony-focus-show/DSCF0978.jpg": {
+    "target": "assets/sony-focus-show/DSCF0978.webp",
+    "source_sha256": "789863dfd0f870f5e3e339caa9ec2e4d1194d9c0323cb4bf5f9acaf263ccfe23",
+    "bytes": 386480
+  },
+  "assets/sony-focus-show/DSCF0980.jpg": {
+    "target": "assets/sony-focus-show/DSCF0980.webp",
+    "source_sha256": "e83aff0be3fd93ec11356ec5bd9d75b98fc33d4abe79c38cee8baf066060607c",
+    "bytes": 465452
+  },
+  "assets/sony-focus-show/DSCF0979.jpg": {
+    "target": "assets/sony-focus-show/DSCF0979.webp",
+    "source_sha256": "9451ca0cb4bd3ad7267cf35b74ee2640ea7c46cffa10f81a9f32bf24275736c1",
+    "bytes": 362922
+  },
+  "assets/sony-focus-show/DSCF0982.jpg": {
+    "target": "assets/sony-focus-show/DSCF0982.webp",
+    "source_sha256": "54fc8bcd072e58adfe0f0f82dea8a3513bbbca1ce7d33303d73c7c73de8e495d",
+    "bytes": 514540
+  },
+  "assets/sony-focus-show/DSCF0990.jpg": {
+    "target": "assets/sony-focus-show/DSCF0990.webp",
+    "source_sha256": "2409581df5a97c5878bd6c970dbc6b6a646a177ba0d28c6ee935d4bd7ef00eaf",
+    "bytes": 352730
+  },
+  "assets/sony-focus-show/DSCF0976.jpg": {
+    "target": "assets/sony-focus-show/DSCF0976.webp",
+    "source_sha256": "19488f74ee8e7da85e132d2e4f9ad9649fb8e8a81f01aa937cdd37b06cd449bf",
+    "bytes": 410354
+  },
+  "assets/sony-focus-show/DSCF1005.jpg": {
+    "target": "assets/sony-focus-show/DSCF1005.webp",
+    "source_sha256": "50742ecdfd3405c68df7e220ffa150e18afc516a6f85b17b7149250c761c7809",
+    "bytes": 505742
+  },
+  "assets/sony-focus-show/DSCF0992.jpg": {
+    "target": "assets/sony-focus-show/DSCF0992.webp",
+    "source_sha256": "5567bd86759f63d835f7e9b2db931b14ae05966afb046a259123ac77e93f8f05",
+    "bytes": 559294
+  },
+  "assets/sony-focus-show/DSCF0999.jpg": {
+    "target": "assets/sony-focus-show/DSCF0999.webp",
+    "source_sha256": "58c98d81410c036eeedaa4a93770a670845093b03e44e6f8091151a49c2c414d",
+    "bytes": 657944
+  },
+  "assets/sony-focus-show/DSCF1006.jpg": {
+    "target": "assets/sony-focus-show/DSCF1006.webp",
+    "source_sha256": "75829a112a08187f076e95b3b7ea4071814d821306961da23b27bee9daa8c35b",
+    "bytes": 390838
+  },
+  "assets/sony-focus-show/DSCF1002.jpg": {
+    "target": "assets/sony-focus-show/DSCF1002.webp",
+    "source_sha256": "be71f75c79cc622b8ee193d77fada7cdaf6eab9b00bf22ed07f0d57ac79972f1",
+    "bytes": 625680
+  },
+  "assets/sony-focus-show/DSCF1010.jpg": {
+    "target": "assets/sony-focus-show/DSCF1010.webp",
+    "source_sha256": "6ef593b6fa768685eec74c25e26f8d92243c33a6effaafbf6a259e573e4f36ae",
+    "bytes": 429258
+  },
+  "assets/sony-focus-show/DSCF1024.jpg": {
+    "target": "assets/sony-focus-show/DSCF1024.webp",
+    "source_sha256": "df01712510fcbced6c44191eb58174235f8cb66cae67680ff84fd1f0daa50394",
+    "bytes": 413172
+  },
+  "assets/sony-focus-show/DSCF1009.jpg": {
+    "target": "assets/sony-focus-show/DSCF1009.webp",
+    "source_sha256": "5717087d334600a263a78f9205fce491c391872a531cc5a1d1d45a68b74979cf",
+    "bytes": 491904
+  },
+  "assets/sony-focus-show/DSCF1023.jpg": {
+    "target": "assets/sony-focus-show/DSCF1023.webp",
+    "source_sha256": "8d211b5f414334f86d25f8ca9dbda65c72ce41035a5a1cdf95ff6751a44d97a0",
+    "bytes": 505512
+  },
+  "assets/sony-focus-show/DSCF1016.jpg": {
+    "target": "assets/sony-focus-show/DSCF1016.webp",
+    "source_sha256": "1f3e919b99fb347333faacc9b04504ada1cbe3eaec86c3b4cbfb07f13dd43ac9",
+    "bytes": 827734
+  },
+  "assets/sony-focus-show/DSCF1021.jpg": {
+    "target": "assets/sony-focus-show/DSCF1021.webp",
+    "source_sha256": "093faefe87b48023d0c879b78f00387c4078e26970eaae23ac31c36940daaaec",
+    "bytes": 941624
+  },
+  "assets/sony-focus-show/DSCF1025.jpg": {
+    "target": "assets/sony-focus-show/DSCF1025.webp",
+    "source_sha256": "ce21771293a942851c6d987ed4294d585b1c50b6c08554f29e415c93d299edec",
+    "bytes": 409788
+  },
+  "assets/sony-focus-show/DSCF1026.jpg": {
+    "target": "assets/sony-focus-show/DSCF1026.webp",
+    "source_sha256": "8b050db13115bf668a7cce6a5eb67af389bcc54a7c9a909e98888cd4d7a9a610",
+    "bytes": 490126
+  },
+  "assets/sony-focus-show/DSCF1036.jpg": {
+    "target": "assets/sony-focus-show/DSCF1036.webp",
+    "source_sha256": "038595532dd087d2adce4898e9aaa9ee4e905d6fd52e7b51c67440d9ee630584",
+    "bytes": 602366
+  },
+  "assets/sony-focus-show/DSCF1037.jpg": {
+    "target": "assets/sony-focus-show/DSCF1037.webp",
+    "source_sha256": "b9cced9c2dea4825bc4b354baad436e51078c4ab1d400f27c1a153e9fe121f0a",
+    "bytes": 586554
+  },
+  "assets/sony-focus-show/DSCF1041.jpg": {
+    "target": "assets/sony-focus-show/DSCF1041.webp",
+    "source_sha256": "a52f3b084b032d6bd84ea932d575f9c3ce4e2f9d10dae4e00b1b0c5773669ffc",
+    "bytes": 446874
+  },
+  "assets/sony-focus-show/DSCF1028.jpg": {
+    "target": "assets/sony-focus-show/DSCF1028.webp",
+    "source_sha256": "d4c5d3d89e7176384f2035c19feae7b94417fedd237ae9a6df0efe38aaab21e4",
+    "bytes": 438996
+  },
+  "assets/sony-focus-show/DSCF1044.jpg": {
+    "target": "assets/sony-focus-show/DSCF1044.webp",
+    "source_sha256": "00e187538579d1017f0e9b147cf07ac70950b3e4803f49871d1dff8c2185c477",
+    "bytes": 457692
+  },
+  "assets/sony-focus-show/DSCF1047.jpg": {
+    "target": "assets/sony-focus-show/DSCF1047.webp",
+    "source_sha256": "1292a758d12be61c06b95fbf0e1e1577e7233304cfbcf88846f19ec23283d7e7",
+    "bytes": 410864
+  },
+  "assets/sony-focus-show/DSCF1050.jpg": {
+    "target": "assets/sony-focus-show/DSCF1050.webp",
+    "source_sha256": "7b0080c0fd9cb5a10a41312a14fb5e8caf2139b462922a2cea55e7512bda5be6",
+    "bytes": 399554
+  },
+  "assets/sony-focus-show/DSCF1057.jpg": {
+    "target": "assets/sony-focus-show/DSCF1057.webp",
+    "source_sha256": "eb8e147d28fbbc6ae64ceedd0d4ccf1d5003ed23f2216ac9e80acf1080476ba2",
+    "bytes": 470132
+  },
+  "assets/sony-focus-show/DSCF1054.jpg": {
+    "target": "assets/sony-focus-show/DSCF1054.webp",
+    "source_sha256": "10a4da7b455a2b08fcf87a5bc6478a1540f4bfee955e2ddcee88dadf0537b8fe",
+    "bytes": 474188
+  },
+  "assets/sony-focus-show/DSCF1055.jpg": {
+    "target": "assets/sony-focus-show/DSCF1055.webp",
+    "source_sha256": "d59881a070c15e0cb4f7af55b4f9ed9e2c5be26a7b9bc97ced769bcc5cce83f7",
+    "bytes": 726484
+  },
+  "assets/sony-focus-show/DSCF1056.jpg": {
+    "target": "assets/sony-focus-show/DSCF1056.webp",
+    "source_sha256": "f3965ea621e58641f065f819c38e8120b66d413ef48b45254a98bee35f3fd071",
+    "bytes": 646534
+  },
+  "assets/sony-focus-show/DSCF1060.jpg": {
+    "target": "assets/sony-focus-show/DSCF1060.webp",
+    "source_sha256": "ff09f509f748cab4ca850ea25234445e1c5a7489d60b305ddafb7bfa685b5b23",
+    "bytes": 425222
+  },
+  "assets/sony-focus-show/DSCF1066.jpg": {
+    "target": "assets/sony-focus-show/DSCF1066.webp",
+    "source_sha256": "aeefe468dc48cc825b44d0af26a420391fabd8625239cf36c10711867ad3e6af",
+    "bytes": 435658
+  },
+  "assets/sony-focus-show/DSCF1061.jpg": {
+    "target": "assets/sony-focus-show/DSCF1061.webp",
+    "source_sha256": "e5268468a4fc53fda95082d66d5f257ae2e39233345a6058dd4a43e610a561cd",
+    "bytes": 474910
+  },
+  "assets/sony-focus-show/DSCF1065.jpg": {
+    "target": "assets/sony-focus-show/DSCF1065.webp",
+    "source_sha256": "82d2bc05f14aac160a8092644084b621cffcee5896173a0e249ffdfe80490134",
+    "bytes": 437002
+  },
+  "assets/sony-focus-show/DSCF1064.jpg": {
+    "target": "assets/sony-focus-show/DSCF1064.webp",
+    "source_sha256": "2f35c173ae138b1a79a91413b0cf80b4679ed6b866f31ff67e38c20ebe0d0f98",
+    "bytes": 494930
+  },
+  "assets/sony-focus-show/DSCF1079.jpg": {
+    "target": "assets/sony-focus-show/DSCF1079.webp",
+    "source_sha256": "eb0f8c0367aea8f7419fa169a5513c922f58958f3585089eac9e6d42e29ce23e",
+    "bytes": 368930
+  },
+  "assets/sony-focus-show/DSCF1067.jpg": {
+    "target": "assets/sony-focus-show/DSCF1067.webp",
+    "source_sha256": "e8225cd241c798fad3e3cf16e86a5884a8c1c39fb0e1bbc90f4158b65c8e4d24",
+    "bytes": 432342
+  },
+  "assets/sony-focus-show/DSCF1116.jpg": {
+    "target": "assets/sony-focus-show/DSCF1116.webp",
+    "source_sha256": "ac266c6f36ba558a38ec7ac95507991cd724735b409873e1c9e6a2bcaddc1977",
+    "bytes": 420938
+  },
+  "assets/sony-focus-show/DSCF1112.jpg": {
+    "target": "assets/sony-focus-show/DSCF1112.webp",
+    "source_sha256": "ac80fa04320fb91e39f3cd2ee4c7e86df8f9b45fe798e87431d4f2421360a8e4",
+    "bytes": 461374
+  },
+  "assets/sony-focus-show/DSCF1097.jpg": {
+    "target": "assets/sony-focus-show/DSCF1097.webp",
+    "source_sha256": "6ecfac89ec4e748ce48e21e0a5b633d29ca16554b2d8b91a2895c96774413e58",
+    "bytes": 377190
+  },
+  "assets/sony-focus-show/DSCF1106.jpg": {
+    "target": "assets/sony-focus-show/DSCF1106.webp",
+    "source_sha256": "781ebec4a9c3802f22ee60fffcc64521a6301eb75d9904a50ce50b691fb51e6d",
+    "bytes": 463888
+  },
+  "assets/sony-focus-show/DSCF1110.jpg": {
+    "target": "assets/sony-focus-show/DSCF1110.webp",
+    "source_sha256": "c2ffc642f9a488ba8f6b33ca6e77aae53925e2b87c36ed1133f04a1eec402ac8",
+    "bytes": 431512
+  },
+  "assets/sony-focus-show/DSCF1109.jpg": {
+    "target": "assets/sony-focus-show/DSCF1109.webp",
+    "source_sha256": "72a069b07aa245d3fb8c4c86efb3c9fa9d35600932be399ae0e7b9ce5c166653",
+    "bytes": 675660
+  },
+  "assets/sony-rooftop-motion-poster.jpg": {
+    "target": "assets/sony-rooftop-motion-poster.webp",
+    "source_sha256": "718aa3601879112b1543ce57cac788ba92386efea4128292c7e204a2132e6bf1",
+    "bytes": 75862
+  },
+  "assets/wedding-joyce-alex-arcade.jpg": {
+    "target": "assets/wedding-joyce-alex-arcade.webp",
+    "source_sha256": "2a6f82c2520ca3acb482fa0d1fddf7bf9f3596de945c68e5202020c85c71e000",
+    "bytes": 631318
+  },
+  "assets/wedding-joyce-alex-carry.jpg": {
+    "target": "assets/wedding-joyce-alex-carry.webp",
+    "source_sha256": "61eb8cba36a0897ea2431dd96a3e00461063de73aaadf5a967d42f8c0fff511b",
+    "bytes": 352504
+  },
+  "assets/wedding-joyce-alex-confetti.jpg": {
+    "target": "assets/wedding-joyce-alex-confetti.webp",
+    "source_sha256": "bd687eaaf88c644d91c31020b28a497a70892dee36677b13cf49cc250e88e278",
+    "bytes": 398566
+  },
+  "assets/wedding-joyce-alex-couch.jpg": {
+    "target": "assets/wedding-joyce-alex-couch.webp",
+    "source_sha256": "e6dc1671d956a0aefb0bb470941f36350b4a63afa9382f2433f02ae12ed67eb6",
+    "bytes": 412360
+  },
+  "assets/wedding-joyce-alex-balcony.jpg": {
+    "target": "assets/wedding-joyce-alex-balcony.webp",
+    "source_sha256": "bd687eaaf88c644d91c31020b28a497a70892dee36677b13cf49cc250e88e278",
+    "bytes": 398566
+  },
+  "assets/wedding-joyce-alex-family.jpg": {
+    "target": "assets/wedding-joyce-alex-family.webp",
+    "source_sha256": "cd4153aebd34b2c814a05511dc32a9fcd3cfdd098e52a0afed239da7ecc989ef",
+    "bytes": 659962
+  },
+  "assets/wedding-joyce-alex-kiss.jpg": {
+    "target": "assets/wedding-joyce-alex-kiss.webp",
+    "source_sha256": "9c19c46fd0aff243dae8025b701509543440fdc7c4f7c70151ec7505c375ff34",
+    "bytes": 442886
+  },
+  "assets/wedding-joyce-alex-subway.jpg": {
+    "target": "assets/wedding-joyce-alex-subway.webp",
+    "source_sha256": "b3c0292f9bdb36d5a4f12e69f9a8af51afd4779211f7105cf9403390ddaec275",
+    "bytes": 569610
+  },
+  "assets/wedding-joyce-alex-sunglasses.jpg": {
+    "target": "assets/wedding-joyce-alex-sunglasses.webp",
+    "source_sha256": "627016a938427323d91d86bc9613a241b455b766228e5c0f0a84ff0d34dae86c",
+    "bytes": 290434
+  },
+  "assets/sony-focus-show/DSCF1118.jpg": {
+    "target": "assets/sony-focus-show/DSCF1118.webp",
+    "source_sha256": "3e77ddb99f22e1a9074093517861a112280747fa91c512cf59bf8255e0ce2203",
+    "bytes": 618228
+  },
+  "assets/wedding-joyce-alex-sidewalk.jpg": {
+    "target": "assets/wedding-joyce-alex-sidewalk.webp",
+    "source_sha256": "46508efc88b6b63f4cef174d26ed54e35d4f64b2d728674ccc2990493df982e3",
+    "bytes": 681610
+  },
+  "card-preview/site-background.png": {
+    "target": "card-preview/site-background.webp",
+    "source_sha256": "b1c3b4d809894e946989d0274e6683f45940271ecf82734b5e046864b3558a11",
+    "bytes": 800146
+  },
+  "work/site-background.png": {
+    "target": "work/site-background.webp",
+    "source_sha256": "b1c3b4d809894e946989d0274e6683f45940271ecf82734b5e046864b3558a11",
+    "bytes": 800146
+  },
+  "my-kit/site-background.png": {
+    "target": "my-kit/site-background.webp",
+    "source_sha256": "b1c3b4d809894e946989d0274e6683f45940271ecf82734b5e046864b3558a11",
+    "bytes": 800146
+  },
+  "assets/fashion4ukraine-after-dark.mp4": {
+    "target": "assets/fashion4ukraine-after-dark.webm",
+    "source_sha256": "5772aa71bd11b4c9c89d9bed2131d94b66e1c5d3efd1aa4a530fedeb1e2c2868",
+    "bytes": 7593755
+  },
+  "assets/fashion4ukraine/fashion4ukraine-1.mp4": {
+    "target": "assets/fashion4ukraine/fashion4ukraine-1.webm",
+    "source_sha256": "f64a084a409da539bad48fa2a5ccff0ee6580c047f0365a9d36ad9dec23c595b",
+    "bytes": 18120047
+  },
+  "assets/hero-doorway-model.mp4": {
+    "target": "assets/hero-doorway-model.webm",
+    "source_sha256": "a1804d58d77eb86dbf2eabf519f31ab990059246fd75dba402da2dd0a4863600",
+    "bytes": 850695
+  },
+  "assets/hero-mirror-model.mp4": {
+    "target": "assets/hero-mirror-model.webm",
+    "source_sha256": "eb99fb48b46a67eea289ddf1670d9b28173b66e2994f2ed07da51263ef00128c",
+    "bytes": 1355058
+  },
+  "assets/fashion4ukraine-backstage.mp4": {
+    "target": "assets/fashion4ukraine-backstage.webm",
+    "source_sha256": "bf80d0aad82339f325b585d3005c87f956fcf305f8559a514d1380b645f89337",
+    "bytes": 18120047
+  },
+  "assets/motion-20260630_045749_681.mp4": {
+    "target": "assets/motion-20260630_045749_681.webm",
+    "source_sha256": "65f6e2b221755212775f7836c779f7d99cfe08ea97415a1f31d79b4d665b6b36",
+    "bytes": 4974740
+  },
+  "assets/joyce-alex/joyce-alex-5.mp4": {
+    "target": "assets/joyce-alex/joyce-alex-5.webm",
+    "source_sha256": "2486232a44d8f837f82a8527d2b0724218e0c13cf5da286ac324fd219fc17329",
+    "bytes": 11796744
+  },
+  "assets/motion-20260630_051327_817.mp4": {
+    "target": "assets/motion-20260630_051327_817.webm",
+    "source_sha256": "9701726a701abf76274aeff837567166f90f6ef9ae74c7b48de3cf4132f47d22",
+    "bytes": 3088919
+  },
+  "assets/motion-20260630_054411_810.mp4": {
+    "target": "assets/motion-20260630_054411_810.webm",
+    "source_sha256": "70f1226fdb7c0d55837f3e747be304ce27f2564ded0821febbf404d1c2ac3023",
+    "bytes": 4970543
+  },
+  "assets/motion-20260917_100931_540.mp4": {
+    "target": "assets/motion-20260917_100931_540.webm",
+    "source_sha256": "109fb015c7b741bc3e2a0b6008b2fffbefdf67f4e56ab4833df97d150968e897",
+    "bytes": 3340432
+  },
+  "assets/motion-20260921_152456_814.mp4": {
+    "target": "assets/motion-20260921_152456_814.webm",
+    "source_sha256": "6fe1fba8952023a0291c981aec34f362275c278c1d9020646449e1e23be8caad",
+    "bytes": 4337342
+  },
+  "assets/motion-20260921_153252_485.mp4": {
+    "target": "assets/motion-20260921_153252_485.webm",
+    "source_sha256": "11e01fa649d2ec982ee6fb6f49fd78e09c36388d3901b95315efa13789026cf7",
+    "bytes": 4185118
+  },
+  "assets/motion-20260921_154001_821.mp4": {
+    "target": "assets/motion-20260921_154001_821.webm",
+    "source_sha256": "a83464ab49a04acbd913faad0d242036d37dddf39b7a06c0a1f4bd19beb3695e",
+    "bytes": 4234139
+  },
+  "assets/motion-20260921_155029_882.mp4": {
+    "target": "assets/motion-20260921_155029_882.webm",
+    "source_sha256": "019702a71b0f28cde522cde8f004fd4816a44f04980fde63f4c206e64420b831",
+    "bytes": 3581006
+  },
+  "assets/motion-20261013_193857_945.mp4": {
+    "target": "assets/motion-20261013_193857_945.webm",
+    "source_sha256": "5dfe2c7954ecee461cae916926628367f280c9e14dc2fe05cef14ed109f25a01",
+    "bytes": 4032446
+  },
+  "assets/motion-20261027_171728_137.mp4": {
+    "target": "assets/motion-20261027_171728_137.webm",
+    "source_sha256": "60f0b8b93714104ac55db254237daa4128d0ab42565d0e62aed99ca8b4d4ce58",
+    "bytes": 29836887
+  },
+  "assets/motion-20261019_140252_664.mp4": {
+    "target": "assets/motion-20261019_140252_664.webm",
+    "source_sha256": "1157f426b300bcd40c1f929a0e637af519925f42d633c1c2424c179143bfb15e",
+    "bytes": 47388148
+  },
+  "assets/motion-20261103_161559_398.mp4": {
+    "target": "assets/motion-20261103_161559_398.webm",
+    "source_sha256": "6966db7b61ec50b3e2b3401c7663aad82a220acf08f1973dbded0b2718c2a7e0",
+    "bytes": 3127014
+  },
+  "assets/motion-20261103_161621_543.mp4": {
+    "target": "assets/motion-20261103_161621_543.webm",
+    "source_sha256": "4b0ea0147f0e713a145ce72fac886ebf94d8a74245ec51023694759d348cbb8a",
+    "bytes": 5251790
+  },
+  "assets/motion-20261031_071656_814.mp4": {
+    "target": "assets/motion-20261031_071656_814.webm",
+    "source_sha256": "8efcad1e70395781ec3bbce5c2db46541caaaa4db5c19879bcbe925c9d757319",
+    "bytes": 14149427
+  },
+  "assets/motion-20261103_161650_440.mp4": {
+    "target": "assets/motion-20261103_161650_440.webm",
+    "source_sha256": "cc6e10fd794313b8d0b1cb3b937cd6e71e2d86daff972c0b8e153bd82e38db68",
+    "bytes": 8209217
+  },
+  "assets/motion-20261103_162103_028.mp4": {
+    "target": "assets/motion-20261103_162103_028.webm",
+    "source_sha256": "c29f79a5a5dc5af5bead4a03933341aec5762b4e285a7b2e43ca85598ecfe938",
+    "bytes": 6596517
+  },
+  "assets/motion-20261103_161730_224.mp4": {
+    "target": "assets/motion-20261103_161730_224.webm",
+    "source_sha256": "0710a635515c9bf31981459531ac1ce28e36560df2060935d593cabbb97f6e16",
+    "bytes": 16295533
+  },
+  "assets/motion-20261103_162406_242.mp4": {
+    "target": "assets/motion-20261103_162406_242.webm",
+    "source_sha256": "79b55ceb086498a7e73cf5c7dfd6a9cf6ee0b326996c73e2a8f905b03abda5d9",
+    "bytes": 7433608
+  },
+  "assets/motion-20261103_162455_898.mp4": {
+    "target": "assets/motion-20261103_162455_898.webm",
+    "source_sha256": "b7c4fc136dadf06670d5bff9638d5042e64e989ca85bee14258f51092cf95c38",
+    "bytes": 9506960
+  },
+  "assets/nyc-halloween-parade-reel-01.mp4": {
+    "target": "assets/nyc-halloween-parade-reel-01.webm",
+    "source_sha256": "edfcb951ce576cbebf840702499729ec2e3de17ad9dcc3eaa090e9c20f931887",
+    "bytes": 14033584
+  },
+  "assets/sony-focus-show/sony-focus-show-feature.mp4": {
+    "target": "assets/sony-focus-show/sony-focus-show-feature.webm",
+    "source_sha256": "a3206ca509f77a665d49daa2c27fd56432e80f673a7334c3cb03791752796763",
+    "bytes": 2974178
+  },
+  "assets/nyc-halloween-parade-reel-02.mp4": {
+    "target": "assets/nyc-halloween-parade-reel-02.webm",
+    "source_sha256": "44c23566672594ba12cf6ad4e32fd9cf7fe5b95dd3f9db7ef57b43a5b649091d",
+    "bytes": 16230830
+  },
+  "assets/sony-rooftop-motion.mp4": {
+    "target": "assets/sony-rooftop-motion.webm",
+    "source_sha256": "f8ba3ee372edbed76728a1d2c1a2aa79d6377233aeea61fd7cac2c590c9529fd",
+    "bytes": 8338327
+  },
+  "assets/wedding-joyce-alex-arcade.mp4": {
+    "target": "assets/wedding-joyce-alex-arcade.webm",
+    "source_sha256": "2486232a44d8f837f82a8527d2b0724218e0c13cf5da286ac324fd219fc17329",
+    "bytes": 11796744
+  }
+}

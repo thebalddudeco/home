@@ -87,3 +87,6 @@ dialog#menu{position:fixed;inset:0;border:0;max-width:none;max-height:none;width
 @media(max-width:600px){.reviews-section{padding:65px 25px;scroll-margin-top:76px}.reviews-heading{grid-template-columns:1fr;gap:28px;margin-bottom:40px}.reviews-heading h2{font-size:50px}.reviews-rating{grid-column:1;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px 20px}.reviews-rating strong{grid-row:span 2;font-size:48px}.reviews-rating small{grid-column:2}.reviews-grid{grid-template-columns:1fr;gap:24px}.review-card{padding:25px 16px}.review-card blockquote{font-size:24px;margin:24px 0}.reviews-footer{line-height:1.7}}
 
 .reviews-grid .review-card[hidden]{display:none}.reviews-more{display:block;margin:35px auto 0;padding:14px 22px;border:1px solid #ffffff50;font-size:10px}.review-card blockquote{overflow-wrap:anywhere}
+
+/* Fixed portrait prints: enlarge each photograph to fill the photo opening. */
+.polaroid img{object-fit:cover;object-position:50% 20%}

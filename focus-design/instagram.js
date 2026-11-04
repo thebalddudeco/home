@@ -1,9 +1,13 @@
 // Reuse the existing scheduled Instagram API feed from the original website.
 'use strict';
-(async () => {
+(() => {
   const grid = document.querySelector('[data-instagram-grid]');
   const status = document.querySelector('[data-instagram-status]');
   if (!grid) return;
+  let loading = false;
+  async function refreshFeed() {
+  if (loading) return;
+  loading = true;
   try {
     const feedUrl = new URL('/instagram-feed.json', document.baseURI);
     const response = await fetch(feedUrl, {cache:'no-store'});
@@ -25,6 +29,12 @@
     grid.replaceChildren(fragment);
     status.textContent = 'FROM INSTAGRAM';
   } catch {
-    status.textContent = 'FOLLOW ON INSTAGRAM';
+    if (!grid.children.length) status.textContent = 'FOLLOW ON INSTAGRAM';
+  } finally {
+    loading = false;
   }
+  }
+  refreshFeed();
+  setInterval(() => { if (!document.hidden) refreshFeed(); }, 10 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshFeed(); });
 })();

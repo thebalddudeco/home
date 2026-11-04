@@ -50,7 +50,7 @@
     width: 56px !important;
     height: 56px !important;
     object-fit: contain !important;
-    content: url('../assets/favicom.png') !important;
+    content: url('../assets/favicom.webp') !important;
   }
 
   .home-rebuild .editorial-nav,

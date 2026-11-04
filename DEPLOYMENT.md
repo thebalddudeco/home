@@ -60,3 +60,13 @@ The workflow refreshes every day at 10:17 UTC. If authorization expires, renew t
 ## Rollback
 
 The previous production state is preserved on `pre-redesign-2026-09-20`. Review the branch first, restore the desired static files to `main`, retain the current `CNAME` unless the host is also changing, and allow the Pages build to complete before declaring the rollback live.
+
+
+2026-11-04 — Focus portfolio published at the domain root.
+GitHub Pages uses Actions, publishing main via .github/workflows/sync-google-reviews.yml.
+The build copies WebP/WebM derivatives and omits original media using scripts/web-media-map.json.
+Original source media stays unchanged in the repository and local source folders.
+Google review authorization is saved privately, but API quota is zero and Google denied eligibility.
+Review auto-sync stays disabled; three supplied client excerpts remain visible.
+The existing Instagram scheduled job last failed with HTTP 401; its token needs renewal.
+The observed main-profile grid remains the displayed fallback until authorization is restored.

@@ -5,3 +5,5 @@ __pycache__/
 google-reviews.json
 google-reviews.tmp
 _site/
+_site-webmedia/
+*.converting.webm
