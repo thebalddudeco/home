@@ -337,7 +337,7 @@ const selectedProjectSets = [
         "galleryIndex": 4,
         "width": 1027,
         "height": 1600,
-        "polaroidPosition": "50% 0%"
+        "polaroidPosition": "50% 10%"
       }
     ]
   },
