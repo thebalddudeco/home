@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+google-reviews.json
+google-reviews.tmp
+_site/

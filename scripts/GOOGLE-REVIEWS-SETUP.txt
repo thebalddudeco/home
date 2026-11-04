@@ -1,0 +1,67 @@
+GOOGLE REVIEWS CONNECTION — PREPARED, NOT ACTIVE
+
+Website renderer: focus-design/reviews.js
+Read-only API sync: scripts/sync_google_reviews.py
+Hourly job: .github/workflows/sync-google-reviews.yml
+
+The preview keeps Justin's supplied three excerpts until the connection exists.
+Google Cloud project created on 2026-11-04:
+  Name: The Bald Dude Co Reviews
+  ID: rugged-destiny-513716-p5
+  Number: 948256860737
+  Organization: thebalddude.co (50412393368)
+Justin saved Project Creator for info@thebalddude.co; verified in Chrome.
+Google Auth branding created as The Bald Dude Co. Review Sync, Internal audience,
+support/contact info@thebalddude.co. User created a Desktop OAuth client.
+Credentials verified from the supplied private JSON file, outside this repository.
+Owner authorization helper: scripts/authorize_google_reviews.py (loopback only,
+PKCE and state validation; private output outside the served website).
+Google consent screen opened on 2026-11-04; awaiting owner Allow action.
+No refresh token, repository secrets, deployment, or schedule activation has
+been verified. Business Profile API access is not yet verified.
+The review fetch has only been tested using synthetic responses.
+
+ACTIVATION
+1. Use a Google Cloud project owned by Justin with approved Business Profile API
+   access and an OAuth client. Authorize the Google account that owns/manages
+   The Bald Dude Co. with offline access and scope:
+   https://www.googleapis.com/auth/business.manage
+   Google exposes this management scope for reading reviews; this integration
+   only performs GET review requests. Review the consent screen before granting.
+   An external OAuth app left in Testing may issue short-lived refresh tokens;
+   complete the applicable production setup for unattended operation.
+2. Store the following in GitHub Actions secrets, never source code or chat:
+   GOOGLE_REVIEW_CLIENT_ID
+   GOOGLE_REVIEW_CLIENT_SECRET
+   GOOGLE_REVIEW_REFRESH_TOKEN
+3. Set repository variable GOOGLE_REVIEW_LOCATION to the API resource name:
+   accounts/ACCOUNT_ID/locations/LOCATION_ID
+   Obtain these IDs through the authorized account/location APIs. The numeric
+   business ID in the Google Search management link is not assumed to be this ID.
+4. Once Justin approves publishing the redesign, integrate this job with the
+   production deployment. The prepared job assumes GitHub Pages with Source =
+   GitHub Actions and a complete, approved site on the default branch. It deploys
+   the entire checked-out static site; do not enable on an incomplete branch.
+   Do not run alongside a competing Pages publisher. Use the same concurrency
+   group and ensure other deployments also generate/carry the review feed.
+5. Set repository variable GOOGLE_REVIEWS_SYNC_ENABLED=true, manually run once,
+   verify the real API result and production page, then let the hourly schedule
+   run. GitHub schedules can be delayed; this is periodic, not instantaneous.
+
+BEHAVIOR
+- All pages fetched; all ratings retained; edits and removals reflected.
+- Google provides the average and count. The renderer uses those directly.
+- Newest updates first; six shown at a time with a More reviews button.
+- Text is inserted as text, never trusted HTML. No API credentials in browser.
+- A failed fetch aborts deployment, preserving the previously published feed.
+- API review JSON is generated only for deployment and ignored by Git. Never
+  commit it: Google API content must not accumulate in repository history.
+- Pages artifact retention is one day; front-end rejects API snapshots older
+  than 29 days and returns to the supplied excerpts. Disable the sync and remove
+  the generated feed from the deployed site if disconnecting permanently.
+- Existing manual excerpts remain the no-JavaScript/network fallback.
+
+References:
+https://developers.google.com/my-business/reference/rest/v4/accounts.locations.reviews/list
+https://developers.google.com/my-business/content/review-data
+https://developers.google.com/my-business/content/policies

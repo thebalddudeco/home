@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 OUTPUT = ROOT / "instagram-feed.json"
 TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "").strip()
-FIELDS = "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
+FIELDS = "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,is_shared_to_feed"
 ENDPOINT = "https://graph.instagram.com/v24.0/me/media"
 
 
@@ -51,11 +51,34 @@ def main() -> None:
     if not TOKEN:
         print("INSTAGRAM_ACCESS_TOKEN is not configured; keeping the curated fallback.")
         return
-    query = urllib.parse.urlencode({"fields": FIELDS, "limit": 12})
-    payload = request_json(f"{ENDPOINT}?{query}")
-    media = payload.get("data", [])
+    config_path = ROOT / 'scripts' / 'instagram-profile-grid.json'
+    config = json.loads(config_path.read_text(encoding='utf-8')) if config_path.exists() else {}
+    normalize = lambda value: (value or '').rstrip('/')
+    pinned = [normalize(url) for url in config.get('pinnedPermalinks', [])]
+    confirmed = {normalize(url) for url in config.get('observedGridPermalinks', [])}
+    query = urllib.parse.urlencode({'fields': FIELDS, 'limit': 100})
+    next_url = f'{ENDPOINT}?{query}'
+    media = []
+    seen = set()
+    for _ in range(10):
+        payload = request_json(next_url)
+        for post in payload.get('data', []):
+            permalink = normalize(post.get('permalink'))
+            on_grid = (post.get('media_type') in ('IMAGE', 'CAROUSEL_ALBUM')
+                       or post.get('is_shared_to_feed') is True
+                       or permalink in confirmed)
+            if on_grid and permalink and permalink not in seen:
+                seen.add(permalink)
+                media.append(post)
+        next_url = payload.get('paging', {}).get('next')
+        if not next_url or (len(media) >= 12 and all(url in seen for url in pinned)):
+            break
     if not media:
-        raise RuntimeError("Instagram returned no media; the existing feed was left unchanged.")
+        raise RuntimeError('No main profile-grid media returned; keeping the existing feed.')
+    media.sort(key=lambda post: (
+        0 if normalize(post.get('permalink')) in pinned else 1,
+        pinned.index(normalize(post.get('permalink'))) if normalize(post.get('permalink')) in pinned else 0,
+    ))
 
     for old_asset in ASSETS.glob("instagram-live-*"):
         old_asset.unlink()
@@ -72,6 +95,8 @@ def main() -> None:
             "permalink": post.get("permalink"),
             "alt": alt_text(post.get("caption")),
             "timestamp": post.get("timestamp"),
+            "mediaType": post.get("media_type"),
+            "pinned": normalize(post.get("permalink")) in pinned,
         })
 
     if not items:
@@ -79,6 +104,7 @@ def main() -> None:
 
     OUTPUT.write_text(json.dumps({
         "source": "instagram-api",
+        "scope": "profile-grid",
         "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "items": items,
     }, indent=2) + "\n", encoding="utf-8")

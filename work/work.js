@@ -82,10 +82,10 @@ const createMediaCard = (item, albumName, index, category) => {
 };
 
 const localGallery = {
-  events: ['hero-sony-focus-dscf0768.jpg', 'sony-rooftop-motion-poster.jpg', 'fashion4ukraine-after-dark-poster.jpg', 'fashion4ukraine-backstage-poster.jpg', 'fashion4ukraine-blue-hour.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'hero-backstage-gaze.jpg'],
+  events: ['hero-sony-focus-dscf0768.jpg', 'sony-rooftop-motion-poster.jpg', 'fashion4ukraine-after-dark-poster.jpg', 'fashion4ukraine-backstage-poster.jpg', 'fashion4ukraine-blue-hour.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'portraits-sony-dscf0745.jpg'],
   'editorial-fashion': ['runway-floral.jpg', 'chrome-visor.jpg', 'fashion4ukraine-petal-flash.jpg', 'leopard-crown.jpg', 'magenta-feather.jpg', 'hero-model.jpg', 'runway-white.jpg', 'hero-structured-black.jpg'],
-  'street-photography': ['hero-backstage-gaze.jpg', 'justin-von-braun-portrait.png', 'hero-structured-black.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'magenta-feather.jpg', 'hero-model.jpg', 'leopard-crown.jpg'],
-  'studio-photography': ['hero-model.jpg', 'hero-structured-black.jpg', 'magenta-feather.jpg', 'leopard-crown.jpg', 'chrome-visor.jpg', 'justin-von-braun-portrait.png', 'runway-white.jpg', 'hero-backstage-gaze.jpg'],
+  'street-photography': ['portraits-sony-dscf0745.jpg', 'justin-von-braun-portrait.png', 'hero-structured-black.jpg', 'chrome-visor.jpg', 'runway-floral.jpg', 'magenta-feather.jpg', 'hero-model.jpg', 'leopard-crown.jpg'],
+  'studio-photography': ['hero-model.jpg', 'hero-structured-black.jpg', 'magenta-feather.jpg', 'leopard-crown.jpg', 'chrome-visor.jpg', 'justin-von-braun-portrait.png', 'runway-white.jpg', 'portraits-sony-dscf0745.jpg'],
   wedding: ['wedding-joyce-alex-balcony.jpg', 'wedding-joyce-alex-kiss.jpg', 'wedding-joyce-alex-family.jpg', 'wedding-joyce-alex-sidewalk.jpg', 'wedding-joyce-alex-couch.jpg', 'wedding-joyce-alex-confetti.jpg', 'wedding-joyce-alex-sunglasses.jpg', 'wedding-joyce-alex-carry.jpg']
 };
 

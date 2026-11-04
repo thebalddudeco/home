@@ -1,0 +1,15 @@
+THE BALD DUDE CO. - FOCUS PORTFOLIO PREVIEW
+
+Open http://127.0.0.1:8765/focus-design/ while the preview server is running.
+
+The homepage is the animated project Polaroid stack. Scroll, swipe, drag, or use arrow keys / Previous and Next. The front card lifts out, changes to the back layer, and returns beneath the pile. Reverse navigation brings the bottom card forward. Open Project enters the full project gallery.
+
+The gallery reuses the live card-preview rangefinder markup and its original 13-dot snapped exposure-pointer calculation. Framing, focus points, selection outlines, and the bottom film ruler follow the supplied references.
+
+Existing source pages and portfolio assets are retained. New design files live in focus-design. Branch: design/focus-portfolio. No push or publication has been performed.
+
+Checked: desktop scrolling, reverse order, mobile-sized dragging and layout, project gallery navigation, rangefinder views, menu, contact form fields and asset existence. Contact form delivery was not submitted or verified. Physical phone testing has not been performed.
+
+To restart the local preview: run python -m http.server 8765 --bind 127.0.0.1 from the repository folder.
+
+Update: The Polaroid reel is the opening homepage header. The homepage continues into introduction, selected work, motion, services, About, project stories and contact. Scroll over the stack to cycle projects; scroll elsewhere to continue down the homepage.
