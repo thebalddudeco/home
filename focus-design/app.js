@@ -9,6 +9,7 @@ const projects = Array.from({length:5}, (_, imageIndex) => selectedProjectSets.m
   name:set.name,
   label:`${set.label} / ${imageIndex + 1} OF 5`,
   image:set.frames[imageIndex].image,
+  position:set.frames[imageIndex].polaroidPosition || '50% 20%',
   ratio:set.frames[imageIndex].width / set.frames[imageIndex].height,
   href:`#gallery/${set.id}/${set.frames[imageIndex].galleryIndex}`
 }))).flat().filter(project => !excludedPhotoAssets.has(project.image));
@@ -17,7 +18,7 @@ let order = projects.map((_, i) => i);
 const cards = projects.map((project, i) => {
   const card = document.createElement('figure');
   card.className = 'polaroid'; card.dataset.project = i;
-  const image = new Image(); image.src = asset(project.image); image.alt = project.name; image.draggable = false; image.decoding = 'async'; image.loading = i < 5 ? 'eager' : 'lazy'; image.style.objectFit = 'cover'; image.style.objectPosition = '50% 20%';
+  const image = new Image(); image.src = asset(project.image); image.alt = project.name; image.draggable = false; image.decoding = 'async'; image.loading = i < 5 ? 'eager' : 'lazy'; image.style.objectFit = 'cover'; image.style.objectPosition = project.position;
   const caption = document.createElement('figcaption');
   const name = document.createElement('em'); name.textContent = project.name;
   const label = document.createElement('span'); label.textContent = project.label;

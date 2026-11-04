@@ -229,7 +229,8 @@ const selectedProjectSets = [
         "sourceName": "DSCF0532.jpg",
         "galleryIndex": 1,
         "width": 1600,
-        "height": 1067
+        "height": 1067,
+        "polaroidPosition": "95% 20%"
       },
       {
         "image": "project-polaroids/soho-july-2026-03.webp",
@@ -243,7 +244,8 @@ const selectedProjectSets = [
         "sourceName": "DSCF0672.jpg",
         "galleryIndex": 3,
         "width": 1800,
-        "height": 1200
+        "height": 1200,
+        "polaroidPosition": "75% 20%"
       },
       {
         "image": "project-polaroids/soho-july-approved-DSCF0705.webp",
