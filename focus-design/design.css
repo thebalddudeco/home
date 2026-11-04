@@ -90,3 +90,10 @@ dialog#menu{position:fixed;inset:0;border:0;max-width:none;max-height:none;width
 
 /* Fixed portrait prints: enlarge each photograph to fill the photo opening. */
 .polaroid img{object-fit:cover;object-position:50% 20%}
+
+/* The same five social profiles appear in contact, the menu, and the footer. */
+.contact-socials{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:14px}
+.contact-socials a{text-decoration:underline;text-underline-offset:3px}
+.footer-socials{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px 22px;max-width:560px}
+.contact-socials a:focus-visible,.footer-socials a:focus-visible{outline-offset:4px}
+@media(max-width:600px){.site-footer{flex-wrap:wrap}.footer-socials{flex-basis:100%;justify-content:flex-start;gap:12px 18px}}
