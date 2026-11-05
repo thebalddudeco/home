@@ -22,6 +22,9 @@ ENDPOINT = "https://graph.instagram.com/v24.0/me/media"
 
 
 def request_json(url: str) -> dict:
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme != 'https' or parsed.hostname not in ('graph.instagram.com', 'graph.facebook.com'):
+        raise RuntimeError('Refusing to send Instagram credentials outside Meta Graph API.')
     request = urllib.request.Request(url, headers={
         "Authorization": f"Bearer {TOKEN}",
         "User-Agent": "TheBaldDudeCo-Instagram-Sync/1.0",
@@ -37,6 +40,22 @@ def request_json(url: str) -> dict:
         except (ValueError, TypeError):
             message, code = 'Request rejected', error.code
         raise RuntimeError(f'Instagram sync failed (HTTP {error.code}, code {code}): {message}') from None
+
+
+def media_endpoint() -> str:
+    mode = os.environ.get('INSTAGRAM_LOGIN_MODE', '').strip() or 'instagram'
+    if mode == 'instagram':
+        return ENDPOINT
+    if mode != 'unified':
+        raise RuntimeError('Unknown Instagram login mode.')
+    expected = os.environ.get('INSTAGRAM_EXPECTED_USERNAME', 'thebalddude.dng').strip().lower().lstrip('@')
+    accounts = request_json('https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id,username')
+    matching = [account for account in accounts.get('data', [])
+                if str(account.get('username', '')).lower() == expected]
+    if len(matching) != 1 or not str(matching[0].get('id', '')).isdigit():
+        raise RuntimeError(f'Meta has not exposed exactly one assigned Instagram account for @{expected}. '
+                           'Reconnect that Instagram asset in the website app; existing feed remains unchanged.')
+    return f"https://graph.facebook.com/v27.0/{matching[0]['id']}/media"
 
 
 def download(url: str, destination_stem: Path) -> Path:
@@ -69,7 +88,7 @@ def main() -> None:
     pinned = [normalize(url) for url in config.get('pinnedPermalinks', [])]
     confirmed = {normalize(url) for url in config.get('observedGridPermalinks', [])}
     query = urllib.parse.urlencode({'fields': FIELDS, 'limit': 100})
-    next_url = f'{ENDPOINT}?{query}'
+    next_url = f'{media_endpoint()}?{query}'
     media = []
     seen = set()
     for _ in range(10):

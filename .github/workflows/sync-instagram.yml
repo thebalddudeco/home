@@ -25,6 +25,8 @@ jobs:
       - name: Download current Instagram posts
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_LOGIN_MODE: ${{ vars.INSTAGRAM_LOGIN_MODE }}
+          INSTAGRAM_EXPECTED_USERNAME: thebalddude.dng
         run: python scripts/sync_instagram.py
       - name: Publish updated feed data
         run: |
