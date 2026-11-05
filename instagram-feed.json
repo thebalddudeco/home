@@ -1,8 +1,26 @@
 {
   "source": "instagram-api",
   "scope": "profile-grid",
-  "generatedAt": "2026-11-05T18:33:20.747910Z",
+  "generatedAt": "2026-11-05T18:33:57.591366Z",
   "items": [
+    {
+      "id": "18122368630934617",
+      "image": "assets/instagram-live-e512a488b0d480418479b76e.webp",
+      "permalink": "https://www.instagram.com/reel/DfSJuRqvJv-/",
+      "alt": "New York City is already one of the most interesting places on earth to photograph. Now throw in Halloween, thousands of ridiculous costumes, a parade through Greenwich Village, an",
+      "timestamp": "2026-11-03T15:00:03+0000",
+      "mediaType": "VIDEO",
+      "pinned": true
+    },
+    {
+      "id": "18016175291975996",
+      "image": "assets/instagram-live-364bd425b9b935977c75f67a.webp",
+      "permalink": "https://www.instagram.com/reel/DfSIWy_vE7O/",
+      "alt": "The best part of photographing the NYC Halloween Parade? The people. ALWAYS the people. Some of these costumes are genuinely insane. The amount of time, creativity, and commitment ",
+      "timestamp": "2026-11-03T14:47:56+0000",
+      "mediaType": "VIDEO",
+      "pinned": true
+    },
     {
       "id": "17939754516122658",
       "image": "assets/instagram-live-0bd613055b506a47059d1d62.webp",
@@ -22,20 +40,11 @@
       "pinned": false
     },
     {
-      "id": "18122368630934617",
-      "image": "assets/instagram-live-e512a488b0d480418479b76e.webp",
-      "permalink": "https://www.instagram.com/reel/DfSJuRqvJv-/",
-      "alt": "New York City is already one of the most interesting places on earth to photograph. Now throw in Halloween, thousands of ridiculous costumes, a parade through Greenwich Village, an",
-      "timestamp": "2026-11-03T15:00:03+0000",
-      "mediaType": "VIDEO",
-      "pinned": false
-    },
-    {
-      "id": "18016175291975996",
-      "image": "assets/instagram-live-364bd425b9b935977c75f67a.webp",
-      "permalink": "https://www.instagram.com/reel/DfSIWy_vE7O/",
-      "alt": "The best part of photographing the NYC Halloween Parade? The people. ALWAYS the people. Some of these costumes are genuinely insane. The amount of time, creativity, and commitment ",
-      "timestamp": "2026-11-03T14:47:56+0000",
+      "id": "18384941392235321",
+      "image": "assets/instagram-live-b9da56c47dc29e6d5e46f8f1.webp",
+      "permalink": "https://www.instagram.com/reel/DfS06_LvMNk/",
+      "alt": "DAY 4/30. Still doing this whole posting-every-day thing. Somehow. Today I'm heading to Elmhurst, Queens to meet up with a good friend and shoot the pilot for an upcoming video ser",
+      "timestamp": "2026-11-03T21:22:04+0000",
       "mediaType": "VIDEO",
       "pinned": false
     },
@@ -99,15 +108,6 @@
       "permalink": "https://www.instagram.com/reel/DemA2JWRw1t/",
       "alt": "Yesterday\u2019s #fujikina photo walk took us from the festival to the skatepark beneath the Manhattan Bridge, where the city, the riders, and the people around us gave us plenty to pho",
       "timestamp": "2026-10-17T11:40:53+0000",
-      "mediaType": "VIDEO",
-      "pinned": false
-    },
-    {
-      "id": "17925861150204838",
-      "image": "assets/instagram-live-3a5c9ebed4ffb8a5d99ec305.webp",
-      "permalink": "https://www.instagram.com/reel/Dek3AS0gzK-/",
-      "alt": "A golden hour ride on the Staten Island Ferry with @alicemfitzjohn, @elizaveta_verbovaya_, and @shotsbystevn. Between the breeze, the skyline, and the warm light across the deck, t",
-      "timestamp": "2026-10-17T00:51:04+0000",
       "mediaType": "VIDEO",
       "pinned": false
     }

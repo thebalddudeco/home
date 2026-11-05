@@ -7,6 +7,12 @@ import sync_instagram as sync
 
 
 class AccountConnectionTests(unittest.TestCase):
+    def test_profile_links_match_api_links_for_pins_and_grid_membership(self):
+        profile = 'https://www.instagram.com/thebalddude.dng/reel/DfSJuRqvJv-/'
+        api = 'https://www.instagram.com/reel/DfSJuRqvJv-/'
+        self.assertEqual(sync.normalize_permalink(profile), sync.normalize_permalink(api))
+        self.assertNotEqual(sync.normalize_permalink(api), sync.normalize_permalink('https://www.instagram.com/reel/another/'))
+
     @patch.dict(os.environ, {'INSTAGRAM_LOGIN_MODE': 'facebook', 'INSTAGRAM_EXPECTED_USERNAME': 'thebalddude.dng', 'INSTAGRAM_FACEBOOK_PAGE_ID': '123'})
     def test_linked_page_accepts_only_expected_instagram_account(self):
         with patch.object(sync, 'request_json', return_value={'id': '123', 'instagram_business_account': {'id': '456', 'username': 'thebalddude.dng'}}) as request:

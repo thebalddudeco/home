@@ -94,13 +94,20 @@ def alt_text(caption: str | None) -> str:
     return clean[:180]
 
 
+def normalize_permalink(value: str | None) -> str:
+    # Meta omits the username in API links; the profile UI includes it.
+    path = urllib.parse.urlsplit(value or '').path
+    match = re.search(r'/(p|reel|tv)/([^/]+)', path)
+    return f'https://www.instagram.com/{match[1]}/{match[2]}' if match else (value or '').rstrip('/')
+
+
 def main() -> None:
     if not TOKEN:
         print("INSTAGRAM_ACCESS_TOKEN is not configured; keeping the curated fallback.")
         return
     config_path = ROOT / 'scripts' / 'instagram-profile-grid.json'
     config = json.loads(config_path.read_text(encoding='utf-8')) if config_path.exists() else {}
-    normalize = lambda value: (value or '').rstrip('/')
+    normalize = normalize_permalink
     pinned = [normalize(url) for url in config.get('pinnedPermalinks', [])]
     confirmed = {normalize(url) for url in config.get('observedGridPermalinks', [])}
     query = urllib.parse.urlencode({'fields': FIELDS, 'limit': 100})
