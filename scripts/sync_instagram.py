@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import json
 import io
+import hashlib
 import mimetypes
 import os
 import re
 import urllib.parse
 import urllib.request
 import urllib.error
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from PIL import Image, ImageOps
@@ -46,9 +48,23 @@ def media_endpoint() -> str:
     mode = os.environ.get('INSTAGRAM_LOGIN_MODE', '').strip() or 'instagram'
     if mode == 'instagram':
         return ENDPOINT
+    expected = os.environ.get('INSTAGRAM_EXPECTED_USERNAME', 'thebalddude.dng').strip().lower().lstrip('@')
+    if mode == 'facebook':
+        # Resolve the already-linked Page directly; never read unrelated Pages.
+        page_id = os.environ.get('INSTAGRAM_FACEBOOK_PAGE_ID', '296434676893088').strip()
+        if not page_id.isdigit():
+            raise RuntimeError('A numeric Facebook Page ID is required; existing feed remains unchanged.')
+        fields = urllib.parse.urlencode({'fields': 'id,instagram_business_account{id,username}'})
+        page = request_json(f'https://graph.facebook.com/v27.0/{page_id}?{fields}')
+        account = page.get('instagram_business_account') or {}
+        if (str(page.get('id', '')) != page_id or
+                str(account.get('username', '')).lower() != expected or
+                not str(account.get('id', '')).isdigit()):
+            raise RuntimeError(f'The selected Facebook Page has not exposed @{expected}; '
+                               'existing feed remains unchanged.')
+        return f"https://graph.facebook.com/v27.0/{account['id']}/media"
     if mode != 'unified':
         raise RuntimeError('Unknown Instagram login mode.')
-    expected = os.environ.get('INSTAGRAM_EXPECTED_USERNAME', 'thebalddude.dng').strip().lower().lstrip('@')
     accounts = request_json('https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id,username')
     matching = [account for account in accounts.get('data', [])
                 if str(account.get('username', '')).lower() == expected]
@@ -111,34 +127,44 @@ def main() -> None:
         pinned.index(normalize(post.get('permalink'))) if normalize(post.get('permalink')) in pinned else 0,
     ))
 
-    for old_asset in ASSETS.glob("instagram-live-*"):
-        old_asset.unlink()
-
     items = []
-    for index, post in enumerate(media[:12], start=1):
-        image_url = post.get("thumbnail_url") or post.get("media_url")
-        if not image_url:
-            continue
-        local = download(image_url, ASSETS / f"instagram-live-{index:02d}")
-        items.append({
-            "id": post.get("id"),
-            "image": local.relative_to(ROOT).as_posix(),
-            "permalink": post.get("permalink"),
-            "alt": alt_text(post.get("caption")),
-            "timestamp": post.get("timestamp"),
-            "mediaType": post.get("media_type"),
-            "pinned": normalize(post.get("permalink")) in pinned,
-        })
-
-    if not items:
-        raise RuntimeError("Instagram returned no usable images; the existing feed was left unchanged.")
-
-    OUTPUT.write_text(json.dumps({
-        "source": "instagram-api",
-        "scope": "profile-grid",
-        "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "items": items,
-    }, indent=2) + "\n", encoding="utf-8")
+    # Download and decode everything before replacing the last successful feed.
+    # Content-based names keep its images intact even if a later operation fails.
+    with tempfile.TemporaryDirectory(prefix='.instagram-stage-', dir=ASSETS) as staging:
+        ready = []
+        for index, post in enumerate(media[:12], start=1):
+            image_url = post.get("thumbnail_url") or post.get("media_url")
+            if not image_url:
+                continue
+            staged = download(image_url, Path(staging) / f'photo-{index:02d}')
+            digest = hashlib.sha256(staged.read_bytes()).hexdigest()[:24]
+            local = ASSETS / f'instagram-live-{digest}.webp'
+            ready.append((staged, local))
+            items.append({
+                "id": post.get("id"),
+                "image": local.relative_to(ROOT).as_posix(),
+                "permalink": post.get("permalink"),
+                "alt": alt_text(post.get("caption")),
+                "timestamp": post.get("timestamp"),
+                "mediaType": post.get("media_type"),
+                "pinned": normalize(post.get("permalink")) in pinned,
+            })
+        if not items:
+            raise RuntimeError("Instagram returned no usable images; the existing feed was left unchanged.")
+        for staged, local in ready:
+            os.replace(staged, local)
+        pending = Path(staging) / 'feed.json'
+        pending.write_text(json.dumps({
+            "source": "instagram-api",
+            "scope": "profile-grid",
+            "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            "items": items,
+        }, indent=2) + "\n", encoding="utf-8")
+        os.replace(pending, OUTPUT)
+    keep = {item['image'] for item in items}
+    for old_asset in ASSETS.glob('instagram-live-*'):
+        if old_asset.is_file() and old_asset.relative_to(ROOT).as_posix() not in keep:
+            old_asset.unlink()
     print(f"Synced {len(items)} Instagram posts.")
 
 
