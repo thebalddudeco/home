@@ -32,11 +32,7 @@ const buildPlaylist = (playlist) => {
   link.setAttribute('aria-label', `Open ${playlist.title} in Spotify`);
   const linkText = document.createElement('span');
   linkText.textContent = 'Open Spotify';
-  const icon = document.createElement('i');
-  icon.className = 'material-symbols-outlined';
-  icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = 'arrow_outward';
-  link.append(linkText, icon);
+  link.append(linkText);
 
   article.append(number, art, copy, link);
   return article;
