@@ -1,7 +1,7 @@
 {
   "source": "instagram-api",
   "scope": "profile-grid",
-  "generatedAt": "2026-11-09T09:41:30.312835Z",
+  "generatedAt": "2026-11-09T20:04:51.508601Z",
   "items": [
     {
       "id": "18122368630934617",
@@ -20,24 +20,6 @@
       "timestamp": "2026-11-03T14:47:56+0000",
       "mediaType": "VIDEO",
       "pinned": true
-    },
-    {
-      "id": "17939754516122658",
-      "image": "assets/instagram-live-0bd613055b506a47059d1d62.webp",
-      "permalink": "https://www.instagram.com/reel/DfVUgZQPDkS/",
-      "alt": "One of my favorite things about being a creative in New York City is the people you meet along the way. I genuinely love growing my community, meeting new people, discovering what ",
-      "timestamp": "2026-11-04T20:35:40+0000",
-      "mediaType": "VIDEO",
-      "pinned": false
-    },
-    {
-      "id": "18222246958353544",
-      "image": "assets/instagram-live-beb28d7ba3e09c6d47fd6e5c.webp",
-      "permalink": "https://www.instagram.com/reel/DfU_lrzvblx/",
-      "alt": "DAY 5/30. Nothing too crazy today. Heading into the city for a couple of client meetings, then gearing up for a weekend full of private events. Looking forward to getting out there",
-      "timestamp": "2026-11-04T17:31:43+0000",
-      "mediaType": "VIDEO",
-      "pinned": false
     },
     {
       "id": "18384941392235321",
@@ -108,6 +90,24 @@
       "permalink": "https://www.instagram.com/reel/DemA2JWRw1t/",
       "alt": "Yesterday\u2019s #fujikina photo walk took us from the festival to the skatepark beneath the Manhattan Bridge, where the city, the riders, and the people around us gave us plenty to pho",
       "timestamp": "2026-10-17T11:40:53+0000",
+      "mediaType": "VIDEO",
+      "pinned": false
+    },
+    {
+      "id": "17925861150204838",
+      "image": "assets/instagram-live-3a5c9ebed4ffb8a5d99ec305.webp",
+      "permalink": "https://www.instagram.com/reel/Dek3AS0gzK-/",
+      "alt": "A golden hour ride on the Staten Island Ferry with @alicemfitzjohn, @elizaveta_verbovaya_, and @shotsbystevn. Between the breeze, the skyline, and the warm light across the deck, t",
+      "timestamp": "2026-10-17T00:51:04+0000",
+      "mediaType": "VIDEO",
+      "pinned": false
+    },
+    {
+      "id": "18228320272333634",
+      "image": "assets/instagram-live-64714ef045d8e5af3825cddb.webp",
+      "permalink": "https://www.instagram.com/reel/DekPxR6Pmt4/",
+      "alt": "The Staten Island Ferry, a glowing skyline, and some of my favorite light of the day. Had a great time creating with @alicemfitzjohn, @elizaveta_verbovaya_, and @shotsbystevn as th",
+      "timestamp": "2026-10-16T19:08:57+0000",
       "mediaType": "VIDEO",
       "pinned": false
     }
