@@ -1,7 +1,7 @@
 {
   "source": "instagram-api",
   "scope": "profile-grid",
-  "generatedAt": "2026-11-18T17:31:47.464651Z",
+  "generatedAt": "2026-11-18T23:35:08.011429Z",
   "items": [
     {
       "id": "18122368630934617",
@@ -36,6 +36,15 @@
       "permalink": "https://www.instagram.com/reel/DfS06_LvMNk/",
       "alt": "DAY 4/30. Still doing this whole posting-every-day thing. Somehow. Today I'm heading to Elmhurst, Queens to meet up with a good friend and shoot the pilot for an upcoming video ser",
       "timestamp": "2026-11-03T21:22:04+0000",
+      "mediaType": "VIDEO",
+      "pinned": false
+    },
+    {
+      "id": "17987907867085408",
+      "image": "assets/instagram-live-ef1be1e7948f9ee351456372.webp",
+      "permalink": "https://www.instagram.com/reel/DfM5aFivYWR/",
+      "alt": "Worked for 7s Yesterday was an absolute blast shooting the New York\u2019s Village Halloween Parade. The costumes, the puppets, the crowds, the beautiful chaos of it all. NYC showed off",
+      "timestamp": "2026-11-01T14:01:13+0000",
       "mediaType": "VIDEO",
       "pinned": false
     },
@@ -99,15 +108,6 @@
       "permalink": "https://www.instagram.com/reel/DemA2JWRw1t/",
       "alt": "Yesterday\u2019s #fujikina photo walk took us from the festival to the skatepark beneath the Manhattan Bridge, where the city, the riders, and the people around us gave us plenty to pho",
       "timestamp": "2026-10-17T11:40:53+0000",
-      "mediaType": "VIDEO",
-      "pinned": false
-    },
-    {
-      "id": "17925861150204838",
-      "image": "assets/instagram-live-3a5c9ebed4ffb8a5d99ec305.webp",
-      "permalink": "https://www.instagram.com/reel/Dek3AS0gzK-/",
-      "alt": "A golden hour ride on the Staten Island Ferry with @alicemfitzjohn, @elizaveta_verbovaya_, and @shotsbystevn. Between the breeze, the skyline, and the warm light across the deck, t",
-      "timestamp": "2026-10-17T00:51:04+0000",
       "mediaType": "VIDEO",
       "pinned": false
     }
