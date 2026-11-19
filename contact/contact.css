@@ -36,3 +36,10 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 /* Let the toolkit heading and supporting copy use the full section width. */
 .toolkit-heading{max-width:none}
 .toolkit-heading h2,.toolkit-heading>p:last-child{max-width:none}
+.centered-proof>p{margin-bottom:30px}
+.google-rating{display:flex;min-width:230px;box-sizing:border-box;flex-direction:column;align-items:center;gap:8px;margin:auto;padding:24px 34px 22px;border:1px solid #e5e2dc;border-radius:14px;background:linear-gradient(145deg,#fff 25%,#f8f6f2);color:#151515;text-decoration:none;box-shadow:0 12px 35px #16100b0a;transition:transform .25s,box-shadow .25s,border-color .25s}
+.google-rating:hover,.google-rating:focus-visible{transform:translateY(-4px);box-shadow:0 18px 42px #16100b15;border-color:#d6cfc2}
+.google-rating:before{content:'GOOGLE RATING';font-size:8px;font-weight:600;letter-spacing:.16em;color:#777}
+.google-rating strong{font-size:clamp(52px,7vw,72px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.google-rating>span{font-size:21px;line-height:1}
+.google-rating small{font-size:10px;letter-spacing:.13em;color:#666}
