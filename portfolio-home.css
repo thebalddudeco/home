@@ -36,3 +36,10 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .po
 @media(max-width:900px){:root{--portfolio-gutter:32px}.portfolio-intro{padding:100px 28px 116px}.collection-track{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-footer{flex-wrap:wrap}}
 @media(max-width:600px){:root{--portfolio-gutter:18px}.portfolio-header{height:70px;padding:0 20px;gap:14px}.portfolio-brand{font-size:11px}.portfolio-brand img{width:29px;height:29px}.portfolio-header nav{gap:12px;font-size:10px}.portfolio-header nav a:nth-child(2){display:none}.portfolio-intro{padding:92px 28px 92px}.portfolio-intro h1{font-size:15px;line-height:1.65}.collection-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.collection-track .collection{aspect-ratio:1.05}.collection-track .collection h2{font-size:8px;padding:9px}.hire-callout{padding:68px 18px 74px}.hire-callout a{font-size:9px}.portfolio-footer{padding:18px 20px;display:grid;grid-template-columns:1fr 1fr;line-height:1.6}.portfolio-footer span:last-child{text-align:right}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.collection-track .collection-photo img,.hire-callout a{transition:none}}
+
+/* Project names stay off the portfolio thumbnails until interaction. */
+.collection-track .collection::after{background:transparent}
+.collection-track .collection:hover::after,.collection-track .collection:focus-visible::after{background:rgba(0,0,0,.38)}
+.collection-track .collection h2{opacity:0;transition:opacity .25s ease;pointer-events:none}
+.collection-track .collection:hover h2,.collection-track .collection:focus-visible h2{opacity:1}
+@media(prefers-reduced-motion:reduce){.collection-track .collection h2{transition:none}}

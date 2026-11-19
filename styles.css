@@ -460,3 +460,6 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .nav-index a { opacity: 1; transform: none; animation: none; }
   .menu-close .material-symbols-outlined, .sound-page-close .material-symbols-outlined { transition: none; }
 }
+
+/* Global headline tracking: keep the display type open and legible. */
+body :is(h1,h2,h3){letter-spacing:-.015em!important}

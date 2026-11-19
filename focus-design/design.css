@@ -97,3 +97,8 @@ dialog#menu{position:fixed;inset:0;border:0;max-width:none;max-height:none;width
 .footer-socials{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px 22px;max-width:560px}
 .contact-socials a:focus-visible,.footer-socials a:focus-visible{outline-offset:4px}
 @media(max-width:600px){.site-footer{flex-wrap:wrap}.footer-socials{flex-basis:100%;justify-content:flex-start;gap:12px 18px}}
+
+/* Global headline tracking: keep the display type open and legible. */
+body :is(h1,h2,h3){letter-spacing:-.015em!important}
+
+body .collection-track .collection h2{letter-spacing:.055em!important}
