@@ -46,3 +46,7 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .event-coverage>header{max-width:none}
 .event-coverage h2{max-width:none;line-height:1.08}
 .event-coverage>header p:last-child{max-width:none}
+/* Give every contact-page headline the full width of its responsive layout. */
+.inquiry-page main :is(h1,h2,h3){display:block;width:100%;max-width:none!important;text-wrap:balance}
+.hero-copy,.challenge-wrap,.challenge-intro,.section-heading,.process-heading,.centered-proof,.toolkit-heading,.carousel-heading,.retainer-intro,.next-steps-heading,.inquiry-form-heading{max-width:none}
+.brief-invitation h2,.work-statement h2{max-width:none}
