@@ -79,7 +79,7 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .process-heading,.toolkit-heading,.toolkit-grid,.event-coverage>header,.event-mosaic,
 .selected-work>.carousel-heading,.work-carousel,.reviews-carousel-section .carousel-heading,
 .reviews-carousel-section .review-carousel{width:100%;max-width:none;margin-inline:auto;box-sizing:border-box}
-.process-row,.review-spotlight,.retainer-split,.gallery-delivery,.founder-split,.closing-image,
+.process-row,.review-spotlight,.retainer-split,.gallery-delivery,.founder-split,
 .centered-proof,.retainer-intro,.work-statement,.brief-invitation{width:calc(100% - var(--inquiry-gutter) - var(--inquiry-gutter));max-width:none;margin-inline:auto;box-sizing:border-box;padding-inline:0}
 .process-row{min-height:0}
 .process-row figure{height:auto;min-height:0;aspect-ratio:4/3}
