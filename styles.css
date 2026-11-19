@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700;1,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_back,arrow_forward,arrow_outward,check,close,expand_more&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=check,close,expand_more&display=block');
 
 :root {
   --ink: #07080a;
@@ -19,6 +19,7 @@ body { margin: 0; background: var(--ink); color: white; font-family: var(--font-
 body.dialog-open, body.menu-open { overflow: hidden; }
 a { color: inherit; }
 .material-symbols-outlined { display: inline-block; overflow: hidden; font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; font-size: 1em; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: "liga"; -webkit-font-feature-settings: "liga"; -webkit-font-smoothing: antialiased; }
+.triangle-icon { display: inline-grid; place-items: center; font-family: Arial, sans-serif !important; font-style: normal; font-weight: 700; line-height: 1; vertical-align: middle; }
 .site-header { position: fixed; inset: 16px 16px auto; z-index: 20; height: 58px; display: flex; align-items: stretch; pointer-events: none; }
 .mark, .nav-signal, .nav-controls { pointer-events: auto; }
 .mark { flex: 0 0 82px; display: grid; place-items: center; overflow: hidden; background: var(--acid); color: var(--ink); text-decoration: none; }

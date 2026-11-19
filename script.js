@@ -109,9 +109,9 @@ document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
 const addInstagramHoverIcon = (link) => {
   if (link.querySelector('.instagram-hover-icon')) return;
   const icon = document.createElement('span');
-  icon.className = 'instagram-hover-icon material-symbols-outlined';
+  icon.className = 'instagram-hover-icon triangle-icon';
   icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = 'arrow_outward';
+  icon.textContent = '▲';
   link.appendChild(icon);
 };
 
