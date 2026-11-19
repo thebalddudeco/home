@@ -58,6 +58,7 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .hero-scroll-cue{font-size:10px;letter-spacing:.14em}
 .scroll-question-note{font-size:clamp(12px,1vw,14px);color:#62625e}
 .toolkit-grid figcaption,.event-mosaic figcaption,.review-spotlight-image figcaption,.gallery-delivery figcaption{font-size:12px;line-height:1.45;letter-spacing:.08em}
+.toolkit-grid figure:nth-child(2) img{object-position:center top}
 .review-slide figcaption span,.work-carousel figcaption span{font-size:10px;letter-spacing:.12em}
 .package-card-top{font-size:10px;letter-spacing:.14em}
 .package-includes span{font-size:10px;letter-spacing:.12em}
