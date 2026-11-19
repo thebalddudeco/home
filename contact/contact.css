@@ -43,3 +43,6 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .google-rating strong{font-size:clamp(52px,7vw,72px);line-height:.95;letter-spacing:-.045em;font-weight:600}
 .google-rating>span{font-size:21px;line-height:1}
 .google-rating small{font-size:10px;letter-spacing:.13em;color:#666}
+.event-coverage>header{max-width:none}
+.event-coverage h2{max-width:none;line-height:1.08}
+.event-coverage>header p:last-child{max-width:none}
