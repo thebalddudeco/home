@@ -74,13 +74,13 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .review-slide p{display:flex;flex-direction:column;gap:7px;margin:20px 0 0}
 .review-slide p small{font-size:10px;letter-spacing:.12em;color:#777}
 
-/* One responsive content frame and one crop ratio for the offer page. */
-:root{--content-frame:1500px}
+/* Match the responsive inner width used by the Next Steps card row. */
 .challenge-wrap,.package-grid,.package-grid-compact,.comparison-wrap,.faq-grid,.next-steps-grid,
-.centered-proof,.process-heading,.toolkit-heading,.toolkit-grid,.event-coverage>header,.event-mosaic,
+.process-heading,.toolkit-heading,.toolkit-grid,.event-coverage>header,.event-mosaic,
 .selected-work>.carousel-heading,.work-carousel,.reviews-carousel-section .carousel-heading,
-.reviews-carousel-section .review-carousel{width:100%;max-width:var(--content-frame);margin-inline:auto}
-.process-row,.review-spotlight,.retainer-split,.gallery-delivery,.founder-split{width:min(100%,var(--content-frame));margin-inline:auto}
+.reviews-carousel-section .review-carousel{width:100%;max-width:none;margin-inline:auto;box-sizing:border-box}
+.process-row,.review-spotlight,.retainer-split,.gallery-delivery,.founder-split,.closing-image,
+.centered-proof,.retainer-intro,.work-statement,.brief-invitation{width:calc(100% - var(--inquiry-gutter) - var(--inquiry-gutter));max-width:none;margin-inline:auto;box-sizing:border-box;padding-inline:0}
 .process-row{min-height:0}
 .process-row figure{height:auto;min-height:0;aspect-ratio:4/3}
 .process-row figure img{height:100%;min-height:0}
