@@ -4,105 +4,6 @@ const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 const asset = name => `/assets/${name.split('/').map(encodeURIComponent).join('/')}`;
 const pad = n => String(n).padStart(2, '0');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-// Interleave five selected photographs from each of the ten major projects.
-const projects = Array.from({length:5}, (_, imageIndex) => selectedProjectSets.map(set => ({
-  name:set.name,
-  label:`${set.label} / ${imageIndex + 1} OF 5`,
-  image:set.frames[imageIndex].image,
-  position:set.frames[imageIndex].polaroidPosition || '50% 20%',
-  ratio:set.frames[imageIndex].width / set.frames[imageIndex].height,
-  href:`#gallery/${set.id}/${set.frames[imageIndex].galleryIndex}`
-}))).flat().filter(project => !excludedPhotoAssets.has(project.image));
-const stack = $('.polaroid-stack');
-let order = projects.map((_, i) => i);
-const cards = projects.map((project, i) => {
-  const card = document.createElement('figure');
-  card.className = 'polaroid'; card.dataset.project = i;
-  const image = new Image(); image.src = asset(project.image); image.alt = project.name; image.draggable = false; image.decoding = 'async'; image.loading = i < 5 ? 'eager' : 'lazy'; image.style.objectFit = 'cover'; image.style.objectPosition = project.position;
-  const caption = document.createElement('figcaption');
-  const name = document.createElement('em'); name.textContent = project.name;
-  const label = document.createElement('span'); label.textContent = project.label;
-  caption.append(name, label); card.append(image, caption); stack.append(card); return card;
-});
-const poses = ['translate(0%, 0%) rotate(0deg)', 'translate(-5%, 1%) rotate(-7deg)', 'translate(5%, 1%) rotate(8deg)', 'translate(-4%, 0%) rotate(-12deg)', 'translate(4%, -1%) rotate(12deg)'];
-let cycling = false;
-let lastCycle = 0;
-const poseAt = index => poses[Math.min(index, poses.length - 1)];
-const syncReel = (movingId = null) => {
-  order.forEach((id, position) => {
-    cards[id].style.zIndex = cards.length - position;
-    cards[id].hidden = position >= 5 && id !== movingId;
-    if (position >= 5 && id !== movingId) cards[id].style.transform = poseAt(position);
-    cards[id].setAttribute('aria-hidden', position ? 'true' : 'false');
-  });
-  const id = order[0]; const project = projects[id];
-  $('#reel-current').textContent = pad(id + 1);
-  $('#reel-total').textContent = pad(projects.length);
-  $('.reel-open').href = project.href;
-  $('.reel-open').setAttribute('aria-label', `Open project: ${project.name}`);
-  $('.reel-status').textContent = `${id + 1} of ${projects.length}: ${project.name}`;
-};
-order.forEach((id, i) => cards[id].style.transform = poseAt(i));
-syncReel();
-const moveCard = async (card, to, duration) => {
-  if (reducedMotion.matches) { card.style.transform = to; return; }
-  const from = getComputedStyle(card).transform;
-  const animation = card.animate([{transform:from}, {transform:to}], {duration, easing:'cubic-bezier(.22,.68,.22,1)', fill:'forwards'});
-  try { await animation.finished; } finally {card.style.transform = to; animation.cancel();}
-};
-async function cycleStack(direction = 1) {
-  if (cycling) return;
-  cycling = true;
-  const distance = direction > 0 ? 'translate(30%, -112%) rotate(14deg)' : 'translate(-30%, -112%) rotate(-14deg)';
-  try {
-    if (direction > 0) {
-      const outgoing = order[0];
-      // Clear the pile while still above it, then change the layer and return underneath.
-      await moveCard(cards[outgoing], distance, 330);
-      order.push(order.shift());
-      syncReel(outgoing);
-      await Promise.all(order.map((id, i) => i < 5 || id === outgoing ? moveCard(cards[id], poseAt(i), id === outgoing ? 470 : 430) : Promise.resolve()));
-      syncReel();
-    } else {
-      const incoming = order[order.length - 1];
-      // Lift the bottom card clear before bringing it in front of the other prints.
-      cards[incoming].hidden = false;
-      await moveCard(cards[incoming], distance, 360);
-      order.unshift(order.pop());
-      syncReel();
-      await Promise.all(order.slice(0,5).map((id, i) => moveCard(cards[id], poseAt(i), 450)));
-      syncReel();
-    }
-  } finally {cycling = false; lastCycle = performance.now();}
-}
-$('.reel-next').addEventListener('click', () => cycleStack(1));
-$('.reel-prev').addEventListener('click', () => cycleStack(-1));
-let wheelAmount = 0, lastWheel = 0;
-stack.addEventListener('wheel', event => {
-  if ($('#menu').open || event.ctrlKey) return;
-  event.preventDefault();
-  const now = performance.now();
-  if (now - lastWheel > 180) wheelAmount = 0;
-  lastWheel = now;
-  if (cycling || now - lastCycle < 200) {wheelAmount = 0; return;}
-  wheelAmount += (event.deltaY || event.deltaX) * (event.deltaMode === 1 ? 16 : 1);
-  if (Math.abs(wheelAmount) > 45) {cycleStack(Math.sign(wheelAmount)); wheelAmount = 0;}
-}, {passive:false});
-let drag = null;
-stack.addEventListener('pointerdown', event => {
-  if (cycling || (event.pointerType === 'mouse' && event.button !== 0)) return;
-  drag = {x:event.clientX, y:event.clientY, id:event.pointerId};
-  stack.setPointerCapture(event.pointerId);
-});
-stack.addEventListener('pointerup', event => {
-  if (!drag) return;
-  const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
-  drag = null;
-  if (Math.max(Math.abs(dx), Math.abs(dy)) > 35) cycleStack((Math.abs(dy) > Math.abs(dx) ? dy : dx) < 0 ? 1 : -1);
-  else if (!cycling) location.href = projects[order[0]].href;
-});
-stack.addEventListener('pointercancel', () => drag = null);
-stack.addEventListener('lostpointercapture', () => drag = null);
 const collections = [
  {id:'editorial', name:'Editorial', frames:['hero-sony-focus-dscf0768.webp','runway-floral.webp','chrome-visor.webp','fashion4ukraine-petal-flash.webp','leopard-crown.webp','magenta-feather.webp','runway-white.webp','hero-structured-black.webp']},
  {id:'portraits', name:'Portraits', frames:portraitFrames.map(item => item.image), videos:portraitFrames.map(item => item.video || null), titles:portraitFrames.map(item => item.title)},
@@ -164,8 +65,12 @@ collections.slice(0, categoryCount).forEach((collection, i) => {
   categoryButton.addEventListener('click', () => openCollection(i)); $('.category-nav').append(categoryButton);
   const ruler = document.createElement('button'); ruler.innerHTML = `${pad(i + 1)}<span>${collection.name}</span>`;
   ruler.setAttribute('aria-label', `View ${collection.name}`); ruler.addEventListener('click', () => openCollection(i, detailed)); $('.film-ruler').append(ruler);
-  const card = document.createElement('button'); card.className = 'collection'; card.innerHTML = `<div class="collection-photo"><img src="${asset(collection.frames[0])}" alt="${collection.name} collection" loading="lazy">${frameMarkup}</div><h2>${collection.name}<span>${pad(collection.frames.length)} FRAMES</span></h2>`;
-  card.addEventListener('click', () => openCollection(i)); $('.collection-track').append(card);
+});
+collections.slice(categoryCount).forEach((collection, i) => {
+  const index = categoryCount + i;
+  const card = document.createElement('button'); card.className = 'collection';
+  card.innerHTML = `<div class="collection-photo"><img src="${asset(collection.frames[0])}" alt="${collection.name}" loading="lazy">${frameMarkup}</div><h2>${collection.name}<span>${pad(collection.frames.length)} FRAMES</span></h2>`;
+  card.addEventListener('click', () => openCollection(index)); $('.collection-track').append(card);
 });
 function updateScale(progress) {
   const scale = $('.rf-scale'); if (!scale) return;
@@ -240,7 +145,7 @@ function advanceGallery(direction) {
   }
 }
 $('.image-stage').addEventListener('wheel', event => {
-  if (viewer.hidden || !detailed || $('#menu').open || event.ctrlKey) return;
+  if (viewer.hidden || !detailed || event.ctrlKey) return;
   event.preventDefault();
   const now = performance.now();
   if (now - galleryWheelTime > 180) galleryWheelTotal = 0;
@@ -269,46 +174,31 @@ $('.main-photo').addEventListener('pointerup', event => {
 $('.main-photo').addEventListener('pointercancel', () => photoSwipe = null);
 $('.main-photo').addEventListener('lostpointercapture', () => photoSwipe = null);
 
-const menu = $('#menu'), menuToggle = $('.menu-toggle');
-function closeMenu() {menu.close(); document.body.classList.remove('menu-open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.setAttribute('aria-label', 'Open menu'); menuToggle.querySelector('span').textContent = 'MENU';}
-menuToggle.addEventListener('click', () => {
-  if (menu.open) closeMenu();
-  else {menu.showModal(); document.body.classList.add('menu-open'); menuToggle.setAttribute('aria-expanded', 'true'); menuToggle.setAttribute('aria-label', 'Close menu'); menuToggle.querySelector('span').textContent = 'CLOSE';}
-});
-menu.addEventListener('cancel', event => {event.preventDefault(); closeMenu(); menuToggle.focus();});
-$$('a', menu).forEach(link => link.addEventListener('click', closeMenu));
-$('.dialog-close').addEventListener('click', () => {closeMenu(); menuToggle.focus();});
 function route() {
   const hash = location.hash.slice(1) || 'home';
   const parts = hash.split('/');
-  const valid = ['home','intro','overview','motion','services','gallery','about','reviews','contact','main'];
+  const valid = ['home','overview','gallery','contact'];
   const page = valid.includes(parts[0]) ? parts[0] : 'home';
   if (page === 'gallery' && parts[1]) {
     const found = collections.findIndex(c => c.id === parts[1]); if (found >= 0) category = found;
     frame = Number(parts[2]) || 0; setDetail(true);
   }
   const galleryOpen = page === 'gallery';
-  ['home','intro','overview','motion','services','about','reviews','contact'].forEach(id => $(`#${id}`).hidden = galleryOpen);
+  ['home','overview','contact'].forEach(id => $(`#${id}`).hidden = galleryOpen);
   viewer.hidden = !galleryOpen;
   document.body.classList.toggle('content-page', !galleryOpen);
   document.body.classList.toggle('gallery-open', galleryOpen);
-  $('.overview-link').href = page === 'home' ? '#overview' : '#home';
-  $('.overview-link').setAttribute('aria-label', page === 'home' ? 'View overview' : 'Back to projects');
-  $('.overview-link span:last-child').textContent = page === 'home' ? 'OVERVIEW' : 'BACK TO PROJECTS';
   if (page !== 'gallery') $('#featured-video').pause(); else renderFrame();
-  if (menu.open) closeMenu();
-  if (galleryOpen || page === 'home' || page === 'main') window.scrollTo(0,0);
+  if (galleryOpen || page === 'home') window.scrollTo(0,0);
   else $(`#${page}`).scrollIntoView({block:'start'});
 }
 document.addEventListener('keydown', event => {
-  if (menu.open || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName) || event.ctrlKey || event.metaKey || event.altKey) return;
-  const homeVisible = !$('#home').hidden && document.activeElement === stack;
-  if (['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(event.key) && (homeVisible || !viewer.hidden)) {
+  if (/INPUT|TEXTAREA|SELECT/.test(event.target.tagName) || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(event.key) && !viewer.hidden) {
     event.preventDefault();
     const direction = ['ArrowRight','ArrowDown'].includes(event.key) ? 1 : -1;
-    if (homeVisible) cycleStack(direction); else {frame += direction; renderFrame();}
+    frame += direction; renderFrame();
   }
-  if (event.key === 'Enter' && document.activeElement === stack && !cycling) location.href = projects[order[0]].href;
 });
 window.addEventListener('hashchange', route);
 window.addEventListener('resize', () => updateScale(frame / Math.max(collections[category].frames.length - 1, 1)));
