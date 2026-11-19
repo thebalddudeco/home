@@ -33,3 +33,6 @@ body.inquiry-page{margin:0;background:#fff;color:var(--inquiry-ink);font:15px/1.
 
 /* Keep the contact page headings relaxed across desktop and mobile. */
 body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
+/* Let the toolkit heading and supporting copy use the full section width. */
+.toolkit-heading{max-width:none}
+.toolkit-heading h2,.toolkit-heading>p:last-child{max-width:none}
