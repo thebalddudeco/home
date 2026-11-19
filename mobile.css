@@ -341,7 +341,7 @@
   .home-rebuild .home-reel-grid figure video,
   .home-rebuild .home-reel-grid figure:first-child video { height: 280px !important; }
 
-  .work-archive-page .gallery-track figcaption { display: block !important; font-size: 8px !important; line-height: 1.35 !important; }
+  .work-archive-page .gallery-track figcaption { display: block !important; font-size: 11px !important; line-height: 1.5 !important; }
   .work-archive-page .gallery-track figcaption span { display: block; margin-top: 3px; }
 
   .kit-page .kit-grid { grid-template-columns: 1fr !important; gap: 24px !important; }

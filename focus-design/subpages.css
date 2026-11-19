@@ -37,3 +37,7 @@
 .subpage .site-footer{border-top:1px solid #ffffff25}
 @media(max-width:1000px){.kit-grid{grid-template-columns:1fr 1fr}.kit-section-head,.subpage-section-head{grid-template-columns:1fr 2fr}.kit-section-head p,.subpage-section-head p{grid-column:2}.subpage-hero{gap:35px}.subpage-hero h1{font-size:100px}}
 @media(max-width:600px){.subpage-main{padding:85px 25px 65px}.subpage-hero{grid-template-columns:1fr;padding:55px 0 55px;gap:30px}.subpage-hero>.eyebrow{margin-bottom:10px}.subpage-hero h1{font-size:85px}.hero-note{justify-self:start;max-width:330px}.hero-note p{font-size:15px;margin:12px 0 20px}.kit-section,.sound-list-shell{padding-top:45px}.kit-section-head,.subpage-section-head{grid-template-columns:1fr;gap:23px;margin-bottom:35px}.kit-section-head p,.subpage-section-head p{grid-column:1}.kit-section-head h2,.subpage-section-head h2{font-size:46px}.kit-grid{grid-template-columns:1fr;gap:45px}.gear-image{padding:22px}.kit-card h3{font-size:30px}.kit-section+.kit-section{margin-top:55px}.sound-list{grid-template-columns:1fr;gap:50px}.sound-row{grid-template-columns:22px 1fr;gap:0 12px}.sound-row h3{font-size:32px}.sound-row-copy{margin-top:20px}}
+
+/* Keep subpage labels and small descriptions comfortably readable. */
+.subpage-hero>.eyebrow,.kit-section-head>span,.subpage-section-head>span{font-size:11px;letter-spacing:.1em}
+.kit-card small,.kit-card a,.sound-row-copy>span,.sound-row-link,.text-link{font-size:11px}

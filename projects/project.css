@@ -35,3 +35,8 @@
 .project-footer { display: flex; justify-content: space-between; gap: 24px; padding: 18px var(--page-gutter); background: var(--ink); color: var(--acid); font-size: .66rem; font-weight: 700; text-transform: uppercase; }
 .project-footer a { color: inherit; text-decoration: none; }
 @media (max-width: 720px) { .project-header { grid-template-columns: 62px 1fr 62px; min-height: 60px; } .project-header p { gap: 8px; padding: 0 12px; } .project-header p span { display: none; } .project-header p b { font-size: .61rem; } .project-hero { min-height: 64svh; grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; gap: 24px; } .project-hero h1 { font-size: clamp(3.7rem,18vw,7.3rem); } .project-hero > p:last-child { margin: 0; } .project-gallery { grid-template-columns: 1fr; } .project-gallery .project-feature { grid-column: auto; } .project-gallery .project-feature img { aspect-ratio: 4 / 5; } .project-footer { flex-wrap: wrap; } .project-footer span { width: 100%; } }
+
+/* Improve gallery caption and footer legibility without changing the image grid. */
+.project-kicker{font-size:.78rem;letter-spacing:.09em}
+.project-gallery figcaption{font-size:.75rem;line-height:1.45}
+.project-footer{font-size:.72rem;letter-spacing:.08em}

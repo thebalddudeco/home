@@ -120,3 +120,10 @@
   .service-footer { flex-wrap: wrap; }
   .service-footer span { width: 100%; }
 }
+
+/* Give service gallery captions and navigation metadata a comfortable reading size. */
+.service-kicker{font-size:.78rem;letter-spacing:.09em}
+.service-carousel-track figcaption{font-size:.75rem;line-height:1.45;padding:42px 14px 12px}
+.service-category-carousel .gallery-count{font-size:.72rem}
+.service-category-carousel .gallery-track figcaption{font-size:.72rem;line-height:1.45}
+.service-footer{font-size:.72rem;letter-spacing:.08em}

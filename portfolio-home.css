@@ -1,4 +1,4 @@
-:root{color-scheme:light;--portfolio-ink:#111;--portfolio-muted:#6b6b6b;--portfolio-line:#e8e8e8;--portfolio-gutter:clamp(18px,5.8vw,112px)}
+:root{color-scheme:light;--portfolio-ink:#111;--portfolio-muted:#626262;--portfolio-line:#dededc;--portfolio-gutter:clamp(18px,5.8vw,112px)}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body:not(.gallery-open){margin:0;background:#fff;color:var(--portfolio-ink);font-family:Arial,Helvetica,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
 body:not(.gallery-open) a{color:inherit;text-decoration:none}
@@ -43,3 +43,14 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .po
 .collection-track .collection h2{opacity:0;transition:opacity .25s ease;pointer-events:none}
 .collection-track .collection:hover h2,.collection-track .collection:focus-visible h2{opacity:1}
 @media(prefers-reduced-motion:reduce){.collection-track .collection h2{transition:none}}
+
+/* Refined reading scale for navigation, captions, and project actions. */
+.portfolio-brand{font-size:13px}
+.portfolio-header nav{font-size:12px}
+.portfolio-intro h1{max-width:760px;font-size:clamp(18px,1.55vw,22px);line-height:1.65;letter-spacing:0}
+.collection-track{gap:8px}
+.collection-track .collection h2{font-size:13px;letter-spacing:.075em}
+.hire-callout a{font-size:12px;padding:14px 22px}
+.portfolio-footer{font-size:10px;letter-spacing:.055em}
+@media(max-width:900px){.collection-track{gap:6px}}
+@media(max-width:600px){.portfolio-brand{font-size:11px}.portfolio-header nav{font-size:11px}.portfolio-intro h1{font-size:16px;line-height:1.65}.collection-track{gap:5px}.collection-track .collection h2{font-size:10px;letter-spacing:.055em}.hire-callout a{font-size:10px}.portfolio-footer{font-size:9px}}

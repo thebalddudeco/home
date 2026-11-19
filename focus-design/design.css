@@ -102,3 +102,13 @@ dialog#menu{position:fixed;inset:0;border:0;max-width:none;max-height:none;width
 body :is(h1,h2,h3){letter-spacing:-.015em!important}
 
 body .collection-track .collection h2{letter-spacing:.055em!important}
+
+/* Bring gallery captions and small labels up to a consistent, legible scale. */
+.photo-caption{font-size:11px!important;line-height:1.5;letter-spacing:.04em}
+.viewer.detail .photo-caption{font-size:11px!important;max-width:260px}
+.reel-heading .eyebrow,.page-heading .eyebrow{font-size:11px!important;letter-spacing:.1em}
+.continue-home{font-size:10px}
+.review-card figcaption small{font-size:10px}
+.review-card>a,.reviews-footer{font-size:10px}
+.polaroid figcaption span{font-size:10px}
+@media(max-width:600px){.photo-caption,.viewer.detail .photo-caption{font-size:10px!important}.continue-home{font-size:9px}.polaroid figcaption span{font-size:9px}}

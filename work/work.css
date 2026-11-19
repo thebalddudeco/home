@@ -212,3 +212,10 @@ body.work-archive-page *{box-sizing:border-box}
 .work-archive-page .rangefinder .rf-scale b,.work-archive-page .rangefinder .rf-dot,.work-archive-page .rangefinder .rf-pointer,.work-archive-page .rangefinder .rf-aperture,.work-archive-page .rangefinder .rf-exposure{color:#fff!important;-webkit-text-fill-color:#fff!important;mix-blend-mode:difference!important}
 .work-archive-page .rangefinder .rf-dot{background:#fff!important}.work-archive-page .rangefinder .rf-pointer{background:#fff!important}
 .work-archive-page .rangefinder .rf-corner{color:#fff!important;border-color:currentColor!important;mix-blend-mode:difference!important}
+
+/* Improve legibility of archive labels and image captions across screen sizes. */
+.work-archive-page .archive-kicker,.work-archive-page .gallery-count{font-size:11px;letter-spacing:.12em}
+.work-archive-page .gallery-track figcaption{font-size:11px;line-height:1.5;letter-spacing:.09em}
+.work-archive-page .gallery-controls button[data-carousel-prev]::before,.work-archive-page .gallery-controls button[data-carousel-next]::before{font-size:10px;letter-spacing:.08em}
+.work-archive-page .archive-footer{font-size:10px;letter-spacing:.09em}
+.work-archive-page .archive-cta-button{font-size:12px;letter-spacing:.06em}

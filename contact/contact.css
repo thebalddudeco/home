@@ -51,3 +51,17 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .triangle-icon{display:inline-grid;place-items:center;font-family:Arial,sans-serif;font-style:normal;font-weight:700;line-height:1;vertical-align:middle}
 .hero-copy,.challenge-wrap,.challenge-intro,.section-heading,.process-heading,.centered-proof,.toolkit-heading,.carousel-heading,.retainer-intro,.next-steps-heading,.inquiry-form-heading{max-width:none}
 .brief-invitation h2,.work-statement h2{max-width:none}
+
+/* Clearer editorial hierarchy: labels and image captions stay readable. */
+.inquiry-page .eyebrow{font-size:11px;line-height:1.55;letter-spacing:.14em;color:#62625e}
+.hero-copy .eyebrow{font-size:10px;color:#696965}
+.hero-scroll-cue{font-size:10px;letter-spacing:.14em}
+.scroll-question-note{font-size:clamp(12px,1vw,14px);color:#62625e}
+.toolkit-grid figcaption,.event-mosaic figcaption,.review-spotlight-image figcaption,.gallery-delivery figcaption{font-size:12px;line-height:1.45;letter-spacing:.08em}
+.review-slide figcaption span,.work-carousel figcaption span{font-size:10px;letter-spacing:.12em}
+.package-card-top{font-size:10px;letter-spacing:.14em}
+.package-includes span{font-size:10px;letter-spacing:.12em}
+.offer-assurance{font-size:10px;letter-spacing:.1em}
+.text-link,.pill-link{font-size:12px}
+.inquiry-form label{font-size:10px;letter-spacing:.1em}
+.submit-button{font-size:11px;letter-spacing:.1em}
