@@ -74,6 +74,37 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 }
 .review-slide p{display:flex;flex-direction:column;gap:7px;margin:20px 0 0}
 .review-slide p small{font-size:10px;letter-spacing:.12em;color:#777}
+
+/* One responsive content frame and one crop ratio for the offer page. */
+:root{--content-frame:1500px}
+.challenge-wrap,.package-grid,.package-grid-compact,.comparison-wrap,.faq-grid,.next-steps-grid,
+.centered-proof,.process-heading,.toolkit-heading,.toolkit-grid,.event-coverage>header,.event-mosaic,
+.selected-work>.carousel-heading,.work-carousel,.reviews-carousel-section .carousel-heading,
+.reviews-carousel-section .review-carousel{width:100%;max-width:var(--content-frame);margin-inline:auto}
+.process-row,.review-spotlight,.retainer-split,.gallery-delivery,.founder-split{width:min(100%,var(--content-frame));margin-inline:auto}
+.process-row{min-height:0}
+.process-row figure{height:auto;min-height:0;aspect-ratio:4/3}
+.process-row figure img{height:100%;min-height:0}
+.review-spotlight-image{height:auto;min-height:0;aspect-ratio:4/3}
+.toolkit-grid img,.event-mosaic figure,.work-carousel figure{height:auto;min-height:0;max-height:none;aspect-ratio:4/3}
+.event-mosaic figure{height:auto}
+.retainer-split,.gallery-delivery,.founder-split{grid-template-columns:1fr 1fr}
+.retainer-split>figure,.gallery-delivery figure,.founder-split>figure{height:auto;min-height:0;aspect-ratio:4/3;align-self:center}
+.retainer-split>figure img,.gallery-delivery figure img,.founder-split>figure img{height:100%;min-height:0}
+.package-summary{max-width:620px}
+@media(max-width:850px){
+  .retainer-split,.gallery-delivery,.founder-split{grid-template-columns:1fr}
+  .toolkit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .event-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .event-mosaic figure:last-child{grid-column:1/-1}
+}
+@media(max-width:620px){
+  .event-mosaic{grid-template-columns:1fr}
+  .event-mosaic figure:last-child{grid-column:auto}
+  .process-row figure,.process-row figure img{height:auto;min-height:0;max-height:none}
+  .retainer-split>figure,.gallery-delivery figure,.founder-split>figure{height:auto;min-height:0;max-height:none}
+  .retainer-split>figure img,.gallery-delivery figure img,.founder-split>figure img{height:100%;min-height:0;max-height:none}
+}
 .text-link,.pill-link{font-size:12px}
 .inquiry-form label{font-size:10px;letter-spacing:.1em}
 .submit-button{font-size:11px;letter-spacing:.1em}
