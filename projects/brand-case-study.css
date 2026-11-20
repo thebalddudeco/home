@@ -24,13 +24,17 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
 .case-pagination a:last-child{text-align:right}
 .case-pagination small{color:#777;font-size:9px;letter-spacing:.14em;text-transform:uppercase}
 .case-pagination strong{font-size:clamp(20px,3vw,38px);font-weight:400;letter-spacing:-.035em}
+.case-pagination strong.case-pagination-brand{display:flex;min-height:48px;align-items:center}
+.case-pagination a:last-child strong.case-pagination-brand{justify-content:flex-end}
+.case-pagination-brand img{display:block;width:auto;height:auto;max-width:min(220px,28vw);max-height:44px;object-fit:contain;object-position:center}
+.case-pagination-name{display:block;min-height:0}
 .case-film{grid-column:1/-1}
 .case-film video{background:#111}
 @media(max-width:700px){
  :root{--case-gutter:18px}
  .case-intro{padding:94px 0 68px}.case-intro h1{font-size:clamp(58px,16vw,100px);margin:20px 0}.case-meta{grid-template-columns:1fr;gap:18px;margin-top:55px;padding-top:18px}
  .case-gallery{grid-template-columns:1fr;width:90%;gap:24px;margin-bottom:90px}.case-gallery figure,.case-gallery figure.wide,.case-film{grid-column:1}
- .case-note{grid-template-columns:1fr;gap:22px;margin-bottom:90px}.case-pagination{padding-bottom:90px}.case-pagination strong{font-size:22px}
+ .case-note{grid-template-columns:1fr;gap:22px;margin-bottom:90px}.case-pagination{padding-bottom:90px}.case-pagination strong{font-size:22px}.case-pagination strong.case-pagination-brand{min-height:38px}.case-pagination-brand img{max-width:40vw;max-height:34px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
