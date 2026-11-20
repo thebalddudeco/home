@@ -54,3 +54,11 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .po
 .portfolio-footer{font-size:10px;letter-spacing:.055em}
 @media(max-width:900px){.collection-track{gap:6px}}
 @media(max-width:600px){.portfolio-brand{font-size:11px}.portfolio-header nav{font-size:11px}.portfolio-intro h1{font-size:16px;line-height:1.65}.collection-track{gap:5px}.collection-track .collection h2{font-size:10px;letter-spacing:.055em}.hire-callout a{font-size:10px}.portfolio-footer{font-size:9px}}
+.brand-project-links{width:90%;margin:0 auto;padding:28px 0 12px;border-top:1px solid var(--portfolio-line)}
+.brand-project-links>p{margin:0 0 18px;color:var(--portfolio-muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.brand-project-links>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.brand-project-links a{display:flex;flex-direction:column;gap:7px;padding:14px 0;border-bottom:1px solid var(--portfolio-line);font-size:16px;font-weight:600;transition:opacity .2s ease}
+.brand-project-links a:hover{opacity:.55}
+.brand-project-links a span{color:var(--portfolio-muted);font-size:12px;font-weight:400}
+.brand-project-links .brand-work-archive{display:inline-flex;gap:10px;margin-top:20px;padding:0 0 6px;border-bottom:1px solid #111;font-size:11px;font-weight:500;letter-spacing:.04em}
+@media(max-width:700px){.brand-project-links>div{grid-template-columns:1fr;gap:0}.brand-project-links{padding:22px 0 8px}}
