@@ -8,8 +8,8 @@ const selectedCategoryFrames = [
   {
     "project": "sony",
     "category": "editorial",
-    "image": "category-selects/sony-DSCF0785.webp",
-    "sourceName": "DSCF0785.webp"
+    "image": "sony-focus-show/sony-focus-cover-dscf0745.webp",
+    "sourceName": "sony-focus-cover-dscf0745.webp"
   },
   {
     "project": "sony",

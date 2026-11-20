@@ -20,26 +20,6 @@ const additionalMotionFilms = [
     "image": "motion-20260917_100931_540-poster.webp"
   },
   {
-    "title": "Fashion4Ukraine - Makeup",
-    "video": "motion-20260921_152456_814.webm",
-    "image": "motion-20260921_152456_814-poster.webp"
-  },
-  {
-    "title": "Fashion4Ukraine - Backstage moments",
-    "video": "motion-20260921_153252_485.webm",
-    "image": "motion-20260921_153252_485-poster.webp"
-  },
-  {
-    "title": "Fashion4Ukraine - Behind the looks",
-    "video": "motion-20260921_154001_821.webm",
-    "image": "motion-20260921_154001_821-poster.webp"
-  },
-  {
-    "title": "Fashion4Ukraine - Final looks",
-    "video": "motion-20260921_155029_882.webm",
-    "image": "motion-20260921_155029_882-poster.webp"
-  },
-  {
     "title": "New York - Golden hour",
     "video": "motion-20261013_193857_945.webm",
     "image": "motion-20261013_193857_945-poster.webp"

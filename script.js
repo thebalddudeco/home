@@ -260,13 +260,13 @@ const contactCards = {
     budgets: ['$950–$1,500', '$1,500–$2,500', '$2,500–$3,200', '$3,200–$5,000', '$5,000+'],
     copy: 'Tell me about the collection, talent, locations, deliverables, and where the photographs will live. I’ll shape the right level of production around the story.'
   },
-  'Events + Backstage': {
-    kicker: 'Fashion week / red carpet / after dark',
+  'Brand Events + Activations': {
+    kicker: 'Brand activations / product launches',
     title: 'Put me<br />in the room.',
     price: 'Starting range / $750–$3,750+',
     fieldPrice: '$750–$3,750+',
     budgets: ['$750–$1,250', '$1,250–$2,000', '$2,000–$3,000', '$3,000–$3,750', '$3,750–$5,000', '$5,000+'],
-    copy: 'Event coverage can include arrivals, backstage, portraits, candids, details, branded moments, lighting, retouching, a private online gallery, and fast delivery. Coverage time, final image count, commercial use, and a recap video are shaped around the pace and needs of the event.'
+    copy: 'Coverage can include product reveals, guest interactions, environmental details, and the moments that make a brand experience distinct. We shape photography, delivery, and usage around the event and campaign needs.'
   },
   Portraits: {
     kicker: 'Artists / founders / people with presence',

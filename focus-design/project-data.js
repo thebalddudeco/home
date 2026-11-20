@@ -42,51 +42,6 @@ const selectedProjectSets = [
     ]
   },
   {
-    "id": "fashion4ukraine",
-    "name": "Fashion4Ukraine",
-    "label": "BACKSTAGE / NYC",
-    "frames": [
-      {
-        "image": "project-polaroids/fashion4ukraine-01.webp",
-        "sourceName": "DSCF0112.jpg",
-        "galleryIndex": 181,
-        "appendToGallery": true,
-        "width": 1066,
-        "height": 1600
-      },
-      {
-        "image": "project-polaroids/fashion4ukraine-02.webp",
-        "sourceName": "DSCF1381.jpg",
-        "galleryIndex": 104,
-        "width": 1600,
-        "height": 1066
-      },
-      {
-        "image": "project-polaroids/fashion4ukraine-03.webp",
-        "sourceName": "DSCF2179.jpg",
-        "galleryIndex": 156,
-        "width": 1066,
-        "height": 1600
-      },
-      {
-        "image": "project-polaroids/fashion4ukraine-04.webp",
-        "sourceName": "DSCF3039.jpg",
-        "galleryIndex": 182,
-        "appendToGallery": true,
-        "width": 1066,
-        "height": 1600
-      },
-      {
-        "image": "project-polaroids/fashion4ukraine-05.webp",
-        "sourceName": "DSCF3248.jpg",
-        "galleryIndex": 183,
-        "appendToGallery": true,
-        "width": 1066,
-        "height": 1600
-      }
-    ]
-  },
-  {
     "id": "joyce-aleks",
     "name": "Joyce + Aleks",
     "label": "COURTHOUSE WEDDING",

@@ -12,9 +12,10 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
 .case-gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.4vw,22px);width:90%;margin:0 auto clamp(90px,14vw,190px)}
 .case-gallery figure{grid-column:span 6;margin:0;min-width:0}
 .case-gallery figure.wide{grid-column:1/-1}
+.case-gallery figure.case-gallery-row-start{grid-column-start:1}
 .case-gallery img,.case-gallery video{display:block;width:100%;height:auto;max-height:90vh;object-fit:contain;object-position:center;background:#eee}
 .case-gallery figure.wide img{width:100%;max-height:none}
-.case-gallery figcaption{padding-top:10px;color:#555;font-size:13px;line-height:1.5;letter-spacing:.025em}
+.case-gallery figcaption{padding-top:10px;color:#555;font-size:15px;line-height:1.5;letter-spacing:.025em}
 .case-note{width:90%;margin:0 auto clamp(90px,13vw,180px);padding:clamp(50px,9vw,120px) 0;border-top:1px solid var(--case-line);border-bottom:1px solid var(--case-line);display:grid;grid-template-columns:.7fr 1.3fr;gap:5vw}
 .case-note h2{margin:0;font-size:clamp(28px,4.4vw,62px);font-weight:400;line-height:1.04;letter-spacing:-.045em}
 .case-note p{max-width:60ch;margin:0;color:#555;font-family:Georgia,serif;font-size:clamp(17px,1.45vw,21px);line-height:1.65}
@@ -32,3 +33,13 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
  .case-note{grid-template-columns:1fr;gap:22px;margin-bottom:90px}.case-pagination{padding-bottom:90px}.case-pagination strong{font-size:22px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.case-motion-section{width:90%;margin:0 auto clamp(90px,14vw,190px)}
+.case-motion-heading{display:grid;grid-template-columns:.7fr 1.3fr;gap:5vw;padding:0 0 28px;border-bottom:1px solid var(--case-line)}
+.case-motion-heading h2{margin:0;font-size:clamp(28px,4.4vw,62px);font-weight:400;line-height:1.04;letter-spacing:-.045em}
+.case-motion-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,22px);padding-top:22px}
+.case-motion-grid figure{min-width:0;margin:0}
+.case-motion-grid video{display:block;width:100%;height:auto;max-height:70vh;aspect-ratio:16/10;object-fit:contain;object-position:center;background:#111}
+.case-motion-grid figcaption{padding-top:10px;color:#555;font-size:15px;line-height:1.5}
+@media(max-width:700px){.case-motion-heading{grid-template-columns:1fr;gap:18px}.case-motion-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(max-width:440px){.case-motion-grid{grid-template-columns:1fr}}

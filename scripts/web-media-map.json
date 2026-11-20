@@ -2958,5 +2958,10 @@
     "target": "assets/brand-work/arabica/arabica-coffee-fest.webm",
     "source_sha256": "d1229c5484df75bb060117cfaabcc6447fc39bd295ecbd7db0639c4ff3ce819b",
     "bytes": 16803044
+  },
+  "assets/sony-focus-show/sony-focus-cover-dscf0745.jpg": {
+    "target": "assets/sony-focus-show/sony-focus-cover-dscf0745.webp",
+    "source_sha256": "2400e07cd3779dff1b8c2afd4f5bac4603ba03728cd6d4237865c11659328b95",
+    "bytes": 638592
   }
 }

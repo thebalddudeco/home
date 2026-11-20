@@ -1,0 +1,4 @@
+@font-face{font-family:"Source Sans 3";src:url("/assets/fonts/source-sans-3/SourceSans3-Bold.ttf") format("truetype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("/assets/fonts/source-sans-3/SourceSans3-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+/* The website uses one type family throughout; the ID exclusion raises specificity over component styles. */
+html body *:not(#source-sans-force):not(.material-symbols-outlined){font-family:"Source Sans 3"!important}
