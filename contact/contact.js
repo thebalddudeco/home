@@ -8,16 +8,16 @@
   const packageField = document.querySelector('#selected-package');
   const form = document.querySelector('.inquiry-form');
   const recipes = {
-    fresh: 'If fresh images are the gap, a twice-yearly content partnership can create two planned refreshes across the year. Each one starts with a shot list based on what your business needs to share next.',
-    cohesion: 'If your visuals feel disconnected, start by defining one visual direction and planning where the images need to work. A focused brand shoot can establish the base; two planned refreshes a year can keep it current.',
-    planning: 'If you are unsure what to shoot, begin with pre-production. We’ll clarify the goal, audience, upcoming moments, and image needs, then turn those into a focused plan for a brand shoot or event.',
-    event: 'If an event is the priority, a one-off event shoot can cover the people, details, and atmosphere you want remembered. We’ll plan around your event schedule and deliver the edited photographs in an online gallery.',
-    brand: 'If your images aren’t showing what makes you different, a one-off brand shoot can focus on your people, process, and point of view—creating a clearer image library to use across your channels.'
+    fresh: 'If your brand is repeating the same images, a twice-yearly partnership can plan two purposeful refreshes around the launches, products, and campaigns coming up.',
+    cohesion: 'If your brand visuals feel disconnected, define one visual direction across campaigns, product stories, and brand events. Two planned productions a year can keep that image library current.',
+    planning: 'If the brief is still taking shape, start with pre-production. We’ll clarify the brand objective, audience, product, activation or campaign, and the images each channel needs.',
+    activation: 'For a brand event or activation, plan the moments that show the brand in the room: product discovery, audience interaction, environment, and the details of the experience.',
+    brand: 'If your images aren’t showing what makes the brand distinct, build a commissioned project around its product, people, point of view, and campaign needs.'
   };
   const labels = new Map(options.map(option => [option.value, option.closest('label').querySelector('strong').textContent]));
   const selected = () => options.filter(option => option.checked).map(option => option.value);
-  const choiceFor = values => values.includes('event') || values.includes('planning') || values.includes('brand') ? 'one-off' : 'bi-annual';
-  const packageLabel = id => id === 'bi-annual' ? 'The Bi-Annual Content Partnership' : 'Brand, Event & Private Event Photography';
+  const choiceFor = values => values.includes('activation') || values.includes('planning') || values.includes('brand') ? 'one-off' : 'bi-annual';
+  const packageLabel = id => id === 'bi-annual' ? 'The Bi-Annual Content Partnership' : 'Brand Events, Activations & Campaigns';
   function makePlan(values) {
     const direction = values.map(value => recipes[value]).join(' ');
     const offer = choiceFor(values);
@@ -25,7 +25,7 @@
     document.querySelector('#plan-copy').textContent = direction;
     const link = document.querySelector('#recommended-package-link');
     link.href = offer === 'bi-annual' ? '#package-bi-annual' : '#package-one-off';
-    link.firstChild.textContent = `See ${offer === 'bi-annual' ? 'the content partnership' : 'the one-off photography offer'} `;
+    link.firstChild.textContent = `See ${offer === 'bi-annual' ? 'the content partnership' : 'the brand production'} `;
     panel.hidden = false;
     challengeField.value = values.map(value => labels.get(value)).join('; ');
     directionField.value = direction;
