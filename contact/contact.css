@@ -177,3 +177,4 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
   .inquiry-page .inquiry-footer-links{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(prefers-reduced-motion:reduce){.inquiry-page .hero-photo{animation:none}}
+.inquiry-page .closing-image .eyebrow{display:inline-block;margin:0 0 18px;padding:8px 12px;background:rgba(0,0,0,.74);color:#fff;font-size:12px;line-height:1.4;letter-spacing:.14em;text-shadow:none}
