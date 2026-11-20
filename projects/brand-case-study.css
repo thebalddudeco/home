@@ -12,7 +12,7 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
 .case-gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.4vw,22px);width:90%;margin:0 auto clamp(90px,14vw,190px)}
 .case-gallery figure{grid-column:span 6;margin:0;min-width:0}
 .case-gallery figure.wide{grid-column:1/-1}
-.case-gallery figure.case-gallery-row-start{grid-column-start:1}
+.case-gallery figure.case-gallery-row-start{grid-column:1 / span 6}
 .case-gallery img,.case-gallery video{display:block;width:100%;height:auto;max-height:90vh;object-fit:contain;object-position:center;background:#eee}
 .case-gallery figure.wide img{width:100%;max-height:none}
 .case-gallery figcaption{padding-top:10px;color:#555;font-size:15px;line-height:1.5;letter-spacing:.025em}
@@ -56,5 +56,4 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
 .case-gallery.elorea-stills figcaption{width:100%}
 @media(max-width:700px){.case-gallery.elorea-stills{grid-template-columns:1fr}.case-gallery.elorea-stills img{max-height:78vh}}
 
-.case-gallery.gentle-night-stills figure.case-gallery-row-start{grid-column:1/-1;width:min(100%,720px)}
-@media(max-width:700px){.case-gallery.gentle-night-stills figure.case-gallery-row-start{width:100%}.case-pagination-brand.nonfiction-mark img{max-width:60vw;max-height:90px}}
+@media(max-width:700px){.case-pagination-brand.nonfiction-mark img{max-width:60vw;max-height:90px}}
