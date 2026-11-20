@@ -16,7 +16,7 @@ selectedProjectSets.push(
 allowlistedProjectIds.add('sigma-spring-street');
 allowlistedProjectIds.add('arabica-coffee-fest');
 const collections = [
- {id:'activations', name:'Brand Activations', frames:['brand-work/sigma/dscf0337.webp','sony-focus-show/sony-focus-cover-dscf0745.webp','brand-work/sigma/dscf0343.webp','sony-focus-show/DSCF0798.webp','brand-work/sigma/dscf0382.webp','sony-focus-show/DSCF0809.webp']},
+ {id:'activations', name:'Brand Activations', frames:['brand-work/sigma/dscf0337.webp','sony-focus-show/sony-focus-cover-dscf0745.webp','brand-work/sigma/dscf0343.webp','sony-focus-show/DSCF0798.webp','brand-work/sigma/dscf0382.webp']},
  {id:'experiences', name:'Brand Experiences', frames:['brand-work/arabica/arabica-01.webp','brand-work/arabica/arabica-02.webp','brand-work/arabica/arabica-03.webp','brand-work/arabica/arabica-04.webp','brand-work/arabica/arabica-05.webp','brand-work/arabica/arabica-06.webp']},
  {id:'brand-films', name:'Brand Films', frames:['brand-work/arabica/arabica-film-poster.webp','brand-work/sigma/sigma-film-poster.webp'], videos:['brand-work/arabica/arabica-coffee-fest.webm','brand-work/sigma/sigma-event-film.webm']}
 ];

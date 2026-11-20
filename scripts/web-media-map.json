@@ -2299,8 +2299,8 @@
     "source_sha256": "e3d8f8165d7983c5dae2ab657653181778f572636fe12255119b9551a65388e1",
     "bytes": 612898
   },
-  "assets/sony-focus-show/DSCF0766.jpg": {
-    "target": "assets/sony-focus-show/DSCF0766.webp",
+  "docs/excluded-media/sony-focus-show/DSCF0766.jpg": {
+    "target": "docs/excluded-media/sony-focus-show/DSCF0766.webp",
     "source_sha256": "935b7eeb0a153c6010c5ffa1e1453100c9ba9167ea4e0cdaadedc57c51b1599d",
     "bytes": 578534
   },
@@ -2329,18 +2329,18 @@
     "source_sha256": "01e7c6e3043e824b79edac9b685249a17fbf2492c94b4cc999958eb8ac2f4946",
     "bytes": 545002
   },
-  "assets/sony-focus-show/DSCF0787.jpg": {
-    "target": "assets/sony-focus-show/DSCF0787.webp",
+  "docs/excluded-media/sony-focus-show/DSCF0787.jpg": {
+    "target": "docs/excluded-media/sony-focus-show/DSCF0787.webp",
     "source_sha256": "99ad5df1231a1c9c356aaa407526991258601a96f9e782ad09fa3fb53b3d4dc2",
     "bytes": 596564
   },
-  "assets/sony-focus-show/DSCF0791.jpg": {
-    "target": "assets/sony-focus-show/DSCF0791.webp",
+  "docs/excluded-media/sony-focus-show/DSCF0791.jpg": {
+    "target": "docs/excluded-media/sony-focus-show/DSCF0791.webp",
     "source_sha256": "3b6a35f53e946f7d7960abec59bf33d60c27c68c00b5e3775178d833c5d70918",
     "bytes": 481184
   },
-  "assets/sony-focus-show/DSCF0795.jpg": {
-    "target": "assets/sony-focus-show/DSCF0795.webp",
+  "docs/excluded-media/sony-focus-show/DSCF0795.jpg": {
+    "target": "docs/excluded-media/sony-focus-show/DSCF0795.webp",
     "source_sha256": "caa5c99e60de139a6043c457ed6fba5dc9ef90c7baedea4274abda19b8b80975",
     "bytes": 489790
   },
@@ -2354,8 +2354,8 @@
     "source_sha256": "71502879814f0df3f922785f35aa0cbaad859f786489de4dc781242483d987cb",
     "bytes": 481924
   },
-  "assets/sony-focus-show/DSCF0809.jpg": {
-    "target": "assets/sony-focus-show/DSCF0809.webp",
+  "docs/excluded-media/sony-focus-show/DSCF0809.jpg": {
+    "target": "docs/excluded-media/sony-focus-show/DSCF0809.webp",
     "source_sha256": "4ef82c74d85f6fec22927dd983933b635e2d424cde1d3bfbe9c8feacde82331e",
     "bytes": 493538
   },
