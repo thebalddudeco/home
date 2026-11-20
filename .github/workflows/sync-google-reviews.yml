@@ -52,6 +52,8 @@ jobs:
           name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: _site
           retention-days: 1
+      - name: Wait for Pages artifact to become available
+        run: sleep 10
       - name: Deploy refreshed site
         id: deploy
         uses: actions/deploy-pages@v4
