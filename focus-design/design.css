@@ -88,8 +88,8 @@ dialog#menu{position:fixed;inset:0;border:0;max-width:none;max-height:none;width
 
 .reviews-grid .review-card[hidden]{display:none}.reviews-more{display:block;margin:35px auto 0;padding:14px 22px;border:1px solid #ffffff50;font-size:10px}.review-card blockquote{overflow-wrap:anywhere}
 
-/* Fixed portrait prints: enlarge each photograph to fill the photo opening. */
-.polaroid img{object-fit:cover;object-position:50% 20%}
+/* Fixed portrait prints: fill the opening with the subject centered. */
+.polaroid img{object-fit:cover;object-position:center center}
 
 /* The same five social profiles appear in contact, the menu, and the footer. */
 .contact-socials{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:14px}
@@ -112,3 +112,6 @@ body .collection-track .collection h2{letter-spacing:.055em!important}
 .review-card>a,.reviews-footer{font-size:10px}
 .polaroid figcaption span{font-size:10px}
 @media(max-width:600px){.photo-caption,.viewer.detail .photo-caption{font-size:10px!important}.continue-home{font-size:9px}.polaroid figcaption span{font-size:9px}}
+
+/* Center the subject consistently across the portfolio and gallery viewer. */
+.portfolio-grid-section img,.viewer img,.viewer video,.polaroid img,.about-hero>img{object-position:center center!important}

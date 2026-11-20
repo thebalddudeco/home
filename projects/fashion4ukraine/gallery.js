@@ -2,7 +2,7 @@
   document.querySelector('.project-close')?.setAttribute('href', '../../');
   const style = document.createElement('link');
   style.rel = 'stylesheet';
-  style.href = '../project.css?v=20260928-2';
+  style.href = '../project.css?v=20261120-centered-subjects';
   document.head.appendChild(style);
   const gallery = document.querySelector('.project-gallery');
   if (!gallery) return;

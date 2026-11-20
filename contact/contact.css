@@ -113,3 +113,11 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .work-carousel .work-project-link span{max-width:310px;color:#555;font:15px/1.5 Georgia,serif}
 .work-carousel .work-project-link i{margin-top:12px;font-size:11px;font-style:normal}
 .work-carousel .work-project-link:hover{background:#e8e6e1}
+
+/* Keep people and brand details centered in every image frame. The Sony
+   portrait is intentionally shown uncropped where it appears in wide layouts. */
+.inquiry-page img,.inquiry-page video{object-position:center center!important}
+.process-row figure{aspect-ratio:3/2;min-height:0}
+.process-row figure img{height:100%;min-height:0;object-position:center center!important}
+.process-row figure img[src*="DSCF0785"]{object-fit:contain!important;background:#17191a}
+.toolkit-grid img,.event-mosaic img,.work-carousel img{object-position:center center!important}

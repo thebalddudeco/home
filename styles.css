@@ -464,3 +464,4 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 
 /* Global headline tracking: keep the display type open and legible. */
 body :is(h1,h2,h3){letter-spacing:-.015em!important}
+.gallery-open img,.gallery-open video{object-position:center center!important}

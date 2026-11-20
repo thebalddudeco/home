@@ -18,6 +18,7 @@
 .project-gallery figure { margin: 0; }
 .project-gallery .project-gallery-tile { grid-column: auto !important; }
 .project-gallery img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: contrast(1.07) saturate(.94); }
+.project-gallery img { object-position: center center; }
 .project-gallery .project-feature { grid-column: 1 / -1; }
 .project-gallery .project-feature img { aspect-ratio: 16 / 9; }
 .project-gallery .project-video video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--ink); }
