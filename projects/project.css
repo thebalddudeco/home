@@ -41,3 +41,9 @@
 .project-kicker{font-size:.78rem;letter-spacing:.09em}
 .project-gallery figcaption{font-size:.75rem;line-height:1.45}
 .project-footer{font-size:.72rem;letter-spacing:.08em}
+
+
+/* Keep portfolio photographs uncropped at their original proportions. */
+.project-gallery img{width:auto;max-width:100%;height:auto;aspect-ratio:auto;object-fit:contain;object-position:center;filter:none;margin-inline:auto}
+.project-gallery .project-feature img{aspect-ratio:auto}
+.project-gallery .project-video video{height:auto;aspect-ratio:auto;object-fit:contain}
