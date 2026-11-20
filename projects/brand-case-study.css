@@ -47,3 +47,10 @@ body.brand-case{margin:0;background:#fff;color:var(--case-ink);font-family:Arial
 .case-motion-grid figcaption{padding-top:10px;color:#555;font-size:15px;line-height:1.5}
 @media(max-width:700px){.case-motion-heading{grid-template-columns:1fr;gap:18px}.case-motion-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
 @media(max-width:440px){.case-motion-grid{grid-template-columns:1fr}}
+
+/* ELOREA stills: keep the product sequence balanced and show every frame uncropped. */
+.case-gallery.elorea-stills{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.case-gallery.elorea-stills figure{grid-column:auto;display:flex;flex-direction:column;align-items:center}
+.case-gallery.elorea-stills img{width:auto;height:auto;max-width:100%;max-height:70vh;object-fit:contain;background:transparent}
+.case-gallery.elorea-stills figcaption{width:100%}
+@media(max-width:700px){.case-gallery.elorea-stills{grid-template-columns:1fr}.case-gallery.elorea-stills img{max-height:78vh}}
