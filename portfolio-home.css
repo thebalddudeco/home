@@ -166,16 +166,16 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .ho
 .centered-proof>p{max-width:480px;margin:0 auto 26px;color:#62625e;font-size:17px;line-height:1.55}
 .google-rating{display:flex;justify-content:center}
 .google-rating img{display:block;width:min(512px,90%);height:auto}
-.reviews-carousel-section{width:100%;box-sizing:border-box;margin:0 auto;padding:0 0 clamp(72px,8vw,112px);background:#f3f2ef;text-align:center}
-.review-carousel{display:grid;width:100%;box-sizing:border-box;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.1vw,18px);text-align:left}
-.review-slide{min-width:0;min-height:220px;padding:clamp(22px,2.2vw,32px);background:#fff;display:flex;flex-direction:column;align-items:flex-start;box-sizing:border-box;overflow-wrap:anywhere}
+.reviews-carousel-section{width:100%;box-sizing:border-box;margin:0 auto;padding:clamp(20px,2.6vw,36px) 0 clamp(38px,4vw,60px);background:#fff;text-align:center}
+.review-carousel{display:grid;width:calc(100% - clamp(32px,6vw,96px));max-width:1480px;margin:0 auto;box-sizing:border-box;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.5vw,24px);text-align:left}
+.review-slide{min-width:0;min-height:220px;padding:clamp(24px,2.4vw,36px);background:#f3f2ef;display:flex;flex-direction:column;align-items:flex-start;box-sizing:border-box;overflow-wrap:anywhere}
 .review-slide blockquote{margin:16px 0 auto;font-size:15px;line-height:1.5;overflow-wrap:anywhere}
 .review-stars{color:#d6a833;font-size:12px;letter-spacing:.1em}
 .review-slide p{display:flex;flex-direction:column;gap:7px;margin:20px 0 0}
 .review-slide p strong{font-weight:600}
 .review-slide p small{font-size:10px;letter-spacing:.12em;color:#777}
-.reviews-more{display:flex;justify-content:center;margin-top:28px;font-size:10px;letter-spacing:.08em}
-@media(max-width:760px){.centered-proof{padding:76px 0}.centered-proof>p{max-width:90%;font-size:15px}.reviews-carousel-section{padding:0 0 76px}.review-carousel{grid-template-columns:1fr;gap:10px}.review-slide{min-height:0;padding:24px}}
+.reviews-more{display:flex;width:max-content;max-width:calc(100% - 32px);justify-content:center;margin:22px auto 0;font-size:10px;letter-spacing:.08em}
+@media(max-width:760px){.centered-proof{padding:76px 0}.centered-proof>p{max-width:90%;font-size:15px}.reviews-carousel-section{padding:20px 0 42px}.review-carousel{width:calc(100% - 32px);max-width:560px;grid-template-columns:1fr;gap:12px}.review-slide{min-height:0;padding:24px}}
 
 /* The moved content planner sits directly after the homepage project gallery. */
 .challenge-section{padding:clamp(74px,8vw,120px) 0 clamp(48px,6vw,88px);background:#fff}
