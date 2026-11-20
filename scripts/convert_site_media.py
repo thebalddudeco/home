@@ -4,7 +4,6 @@ from pathlib import Path
 from PIL import Image, ImageOps
 import hashlib
 import json
-import shutil
 import subprocess
 import sys
 
@@ -12,9 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'scripts' / 'web-media-map.json'
 REENCODE_VIDEOS = '--videos-only' in sys.argv
 extensions = {'.jpg', '.jpeg', '.png', '.mp4', '.mov'}
-sources = sorted(p for p in ROOT.rglob('*') if p.is_file()
-    and not {'.git', '_site', '__pycache__'}.intersection(p.relative_to(ROOT).parts)
-    and p.suffix.lower() in extensions)
+tracked_files = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0')
+sources = sorted(ROOT / name for name in tracked_files if name
+    and (ROOT / name).is_file()
+    and (ROOT / name).suffix.lower() in extensions)
 mapping = {}
 for source in sources:
     target = source.with_suffix('.webm' if source.suffix.lower() in ('.mp4', '.mov') else '.webp')
@@ -34,8 +34,8 @@ def convert(source):
         command = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source),
             '-map', '0:v:0', '-map', '0:a?', '-vf',
             'scale=1920:1920:force_original_aspect_ratio=decrease:force_divisible_by=2',
-            '-c:v', 'av1_nvenc', '-preset', 'p5', '-rc', 'vbr', '-cq', '32',
-            '-b:v', '2500k', '-maxrate', '4000k', '-bufsize', '8000k', '-pix_fmt', 'yuv420p',
+            '-c:v', 'libvpx-vp9', '-deadline', 'good', '-cpu-used', '4', '-row-mt', '1',
+            '-crf', '32', '-b:v', '0', '-pix_fmt', 'yuv420p',
             '-c:a', 'libopus', '-b:a', '128k', str(temporary)]
         subprocess.run(command, check=True, stdout=subprocess.DEVNULL)
         temporary.replace(target)
