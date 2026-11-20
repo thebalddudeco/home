@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">NONFICTION</title>
+  <defs>
+    <path id="word-arc" d="M 31,126 A 89,89 0 0,1 209,126" />
+  </defs>
+  <circle cx="120" cy="120" r="94" fill="none" stroke="#171716" stroke-width="1.25" />
+  <text fill="#171716" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="2.1">
+    <textPath href="#word-arc" startOffset="50%" text-anchor="middle">NONFICTION</textPath>
+  </text>
+</svg>
