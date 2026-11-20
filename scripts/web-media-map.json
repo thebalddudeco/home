@@ -1,29 +1,4 @@
 {
-  "assets/brand-favicon.png": {
-    "target": "assets/brand-favicon.webp",
-    "source_sha256": "0e19a0585e746421cfcf2d20ffc90398068572b17d514a93ccf98c3dd3633cc5",
-    "bytes": 32626
-  },
-  "assets/brand-mark.png": {
-    "target": "assets/brand-mark.webp",
-    "source_sha256": "f3c54c31c21a0232dad452e002ebd627790c4c8b60c953d9aee4e1fcec056a3c",
-    "bytes": 6468
-  },
-  "assets/brand-main-wordmark.png": {
-    "target": "assets/brand-main-wordmark.webp",
-    "source_sha256": "ba56c352ecf255d21b71c360ccb4c79f84bf84d3274817e2d2b9ef9a35df964c",
-    "bytes": 7482
-  },
-  "assets/brand-stacked.png": {
-    "target": "assets/brand-stacked.webp",
-    "source_sha256": "610fa525b4ad2a0162b89bd978eeae94a9b72056e163e80683efacbbfbb5b7bc",
-    "bytes": 10648
-  },
-  "assets/brand-wordmark.png": {
-    "target": "assets/brand-wordmark.webp",
-    "source_sha256": "969a620df1a5cd57c666abd4004aa3b8445040535a403e7880f5708f41010df3",
-    "bytes": 26762
-  },
   "assets/category-selects/emily-Emily & Pedro Reception #13.jpg": {
     "target": "assets/category-selects/emily-Emily & Pedro Reception #13.webp",
     "source_sha256": "b9b422e826204c72e75f94ebded47f5b651d001a42863743950f9c0830598350",
@@ -3073,5 +3048,10 @@
     "target": "assets/brand-work/johnnie-walker/johnnie-walker-film.webm",
     "source_sha256": "42046e27111f56101dae4022515b993715dbd692834a1bf1b45345cf588c02d9",
     "bytes": 39971645
+  },
+  "assets/the-bald-dude-script.png": {
+    "target": "assets/the-bald-dude-script.webp",
+    "source_sha256": "11a2a93afba952a113880ca9a8621849e0f09e8e79af6300ac257c7bd8bd93a4",
+    "bytes": 15726
   }
 }

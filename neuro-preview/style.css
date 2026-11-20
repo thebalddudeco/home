@@ -57,3 +57,10 @@
 .contact-copy h2 i{color:#72b9b7}
 .contact-link{color:#deebe8;border-color:#477a7a}
 .footer{background:#040708}
+
+/* The supplied script mark replaces all previous wordmarks. */
+.wordmark{width:132px;height:auto;overflow:visible}
+.wordmark img.brand-script-logo{display:block;width:100%;height:auto;max-height:none;object-fit:contain;filter:invert(1)}
+.brand-center img.brand-script-logo{width:min(100%,250px);height:auto;max-height:none;object-fit:contain;filter:invert(1);mix-blend-mode:normal}
+footer img.brand-script-logo{display:block;width:132px;height:auto;max-height:76px;object-fit:contain}
+@media(max-width:640px){.wordmark{width:108px}.brand-center img.brand-script-logo{width:min(100%,210px)}footer img.brand-script-logo{width:112px;max-height:66px}}
