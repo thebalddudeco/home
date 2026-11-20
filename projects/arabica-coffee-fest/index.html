@@ -16,10 +16,10 @@
     .project-intro>div{display:grid;grid-template-columns:1fr .7fr;gap:30px;align-items:end;margin-top:30px}
     .project-intro>div p{max-width:650px;margin:0;color:#4d4d4d;font-size:16px;line-height:1.6;letter-spacing:0;text-transform:none}
     .project-mosaic{width:90%;margin:0 auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
-    .project-mosaic figure{grid-column:span 4;margin:0;overflow:hidden;background:#eee}
+    .project-mosaic figure{grid-column:span 4;margin:0;min-width:0;background:#f3f2ef}
     .project-mosaic figure:nth-child(1),.project-mosaic figure:nth-child(4){grid-column:span 7}
     .project-mosaic figure:nth-child(2),.project-mosaic figure:nth-child(5){grid-column:span 5}
-    .project-mosaic img,.project-mosaic video{display:block;width:100%;height:clamp(250px,42vw,620px);object-fit:cover}
+    .project-mosaic img,.project-mosaic video{display:block;width:100%;height:auto;max-height:88vh;object-fit:contain;object-position:center;background:#f3f2ef}
     .project-mosaic figcaption{padding:10px 2px;color:#666;font-size:11px;letter-spacing:.07em;text-transform:uppercase}
     .project-motion{width:90%;margin:clamp(70px,10vw,140px) auto}
     .project-motion h2{margin:0 0 22px;font-size:clamp(30px,5vw,64px);font-weight:400;letter-spacing:-.05em}

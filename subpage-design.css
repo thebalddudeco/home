@@ -1,0 +1,127 @@
+/* Shared light portfolio system for every non-home page. */
+:root{--page-ink:#111;--page-muted:#626262;--page-line:#dededc;--page-paper:#f3f2ef;--page-width:90%}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body.project-page,body.service-page,body.subpage{margin:0;background:#fff;color:var(--page-ink);font-family:Arial,Helvetica,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+body.subpage{color-scheme:light}
+body.project-page :is(h1,h2,h3),body.service-page :is(h1,h2,h3),body.subpage :is(h1,h2,h3){font-family:Arial,Helvetica,sans-serif;font-weight:400;letter-spacing:-.045em;line-height:1.06;text-transform:none}
+.portfolio-header{height:88px;padding:0 5%;background:#fff;border-bottom:1px solid var(--page-line)}
+.portfolio-brand{color:#111;font-size:13px;font-weight:700;letter-spacing:-.025em}
+.portfolio-header nav{gap:clamp(18px,2.8vw,46px);font-size:12px}
+.portfolio-footer{min-height:70px;padding:18px 5%;background:#fff;color:#626262;border-top:1px solid var(--page-line);font-size:10px;letter-spacing:.055em;text-transform:none}
+.portfolio-footer>a{color:#111;font-weight:700}
+
+/* Existing project galleries: show each photograph at its natural frame. */
+.project-page main{width:100%;margin:0 auto}
+.project-page .project-hero{width:var(--page-width);min-height:0;margin:0 auto;grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);grid-template-rows:auto auto;align-items:end;gap:24px 6vw;padding:clamp(90px,13vw,185px) 0 clamp(48px,7vw,100px);background:#fff;color:#111}
+.project-page .project-kicker{grid-column:1/-1;color:#666;font-size:10px;font-weight:400;letter-spacing:.12em}
+.project-page .project-hero h1{grid-column:1/-1;max-width:none;margin:0;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:clamp(54px,9.5vw,142px);font-weight:400;line-height:.98;letter-spacing:-.055em;text-transform:none}
+.project-page .project-hero h1 strong{color:#666;font-weight:400}
+.project-page .project-hero>p:last-child{grid-column:1/-1;max-width:66ch;margin:0;color:#555;font-family:Georgia,'Times New Roman',serif;font-size:clamp(17px,1.5vw,21px);line-height:1.6}
+.project-page .project-gallery{width:var(--page-width);margin:0 auto;padding:0 0 clamp(70px,10vw,140px);grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(12px,1.5vw,22px);background:#fff}
+.project-page .project-gallery figure{grid-column:span 6;min-width:0;margin:0}
+.project-page .project-gallery .project-feature{grid-column:1/-1}
+.project-page .project-gallery img,.project-page .project-gallery .project-video video{display:block;width:100%;height:auto;max-height:88vh;aspect-ratio:auto;object-fit:contain;object-position:center;background:var(--page-paper);filter:none}
+.project-page .project-gallery .project-feature img{aspect-ratio:auto}
+.project-page .project-gallery figcaption{display:flex;justify-content:space-between;gap:14px;padding:10px 0 0;color:#555;font-size:13px;font-weight:400;line-height:1.5;letter-spacing:.02em;text-transform:none}
+.project-page .project-gallery figcaption span{color:#777}
+.project-page .project-next{width:var(--page-width);margin:0 auto clamp(60px,9vw,120px);padding:clamp(40px,7vw,95px);background:var(--page-paper);color:#111}
+.project-page .project-next h2{max-width:none;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:clamp(38px,6.5vw,84px);font-weight:400;line-height:1.04;letter-spacing:-.045em;text-transform:none}
+.project-page .project-next a{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding:12px 18px;border:1px solid #222;border-radius:10px;background:transparent;color:#111;font-size:12px;font-weight:400;text-transform:none;transition:background .2s,color .2s}
+.project-page .project-next a:hover{background:#111;color:#fff}
+.project-mosaic{width:90%;margin:0 auto;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(12px,1.5vw,22px)}
+.project-mosaic figure{min-width:0;background:var(--page-paper)}
+.project-mosaic img,.project-mosaic video{width:100%;height:auto;max-height:88vh;aspect-ratio:auto;object-fit:contain;object-position:center;background:var(--page-paper)}
+.project-mosaic figcaption{padding:10px 0 0;color:#555;font-size:13px;letter-spacing:.02em;text-transform:none}
+
+/* Service pages share the same open type scale and 90% reading frame. */
+.service-page main{width:100%;margin:0 auto}
+.service-page :is(.service-hero,.service-detail-hero){position:relative;width:var(--page-width);min-height:0;margin:0 auto;display:grid;grid-template-columns:1fr;grid-template-rows:auto;gap:24px;padding:clamp(90px,13vw,185px) 0 clamp(65px,9vw,125px);overflow:visible;background:#fff;color:#111}
+.service-page :is(.service-hero,.service-detail-hero)::after{display:none}
+.service-page .service-kicker{color:#666;font-size:10px;font-weight:400;letter-spacing:.12em}
+.service-page :is(.service-hero,.service-detail-hero) h1{grid-column:1/-1;max-width:none;margin:8px 0 0;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:clamp(56px,10vw,148px);font-weight:400;line-height:.98;letter-spacing:-.055em;text-transform:none}
+.service-page :is(.service-hero,.service-detail-hero) h1 strong{color:#666;font-weight:400}
+.service-page .service-lede{grid-column:1/-1;max-width:66ch;margin:4px 0 0;color:#555;font-family:Georgia,'Times New Roman',serif;font-size:clamp(17px,1.5vw,21px);line-height:1.6}
+.service-page :is(.service-directory,.service-process,.service-detail-grid,.service-carousel,.service-category-carousel,.service-cta){width:var(--page-width);margin:0 auto;padding:clamp(44px,7vw,92px) 0;border-top:1px solid var(--page-line);background:#fff;color:#111}
+.service-page .service-directory h2,.service-page .service-process h2,.service-page .service-detail-grid h2,.service-page .service-cta h2{max-width:none;margin:16px 0 34px;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:clamp(36px,6vw,78px);font-weight:400;line-height:1.04;letter-spacing:-.045em;text-transform:none}
+.service-page .service-cards{border-top:1px solid var(--page-line)}
+.service-page .service-cards a{grid-template-columns:48px minmax(0,1fr) minmax(200px,.7fr) 28px;min-height:100px;border-bottom:1px solid var(--page-line);color:#111}
+.service-page .service-cards a:hover,.service-page .service-cards a:focus-visible{padding-inline:14px;background:var(--page-paper);color:#111}
+.service-page .service-cards b{font-family:Arial,Helvetica,sans-serif;font-size:clamp(22px,3.5vw,42px);font-weight:400;line-height:1.1;text-transform:none}
+.service-page .service-cards em{color:#555;font-size:14px;font-style:normal;line-height:1.55}
+.service-page .service-cards i{color:#111;font-size:13px}
+.service-page .service-process-copy{margin-top:28px}
+.service-page .service-process-copy>div,.service-page .service-detail-grid>div:last-child{max-width:68ch;color:#555;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.65}
+.service-page .service-button{padding:13px 18px;border:1px solid #222;border-radius:10px;background:#fff;color:#111;font-size:12px;font-weight:400;text-transform:none}
+.service-page .service-button:hover,.service-page .service-button:focus-visible{background:#111;color:#fff}
+.service-page .service-carousel,.service-page .service-category-carousel{overflow:hidden}
+.service-page .service-carousel-head{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.service-page .service-carousel-track,.service-page .service-category-carousel .gallery-track{grid-auto-columns:clamp(250px,30vw,460px);gap:12px;padding:0 0 12px;scrollbar-color:#111 transparent}
+.service-page .service-carousel-track figure{border:0;background:var(--page-paper)}
+.service-page .service-carousel-track img,.service-page .service-category-carousel .gallery-track img{width:100%;height:clamp(300px,48vw,680px);aspect-ratio:auto;object-fit:contain;object-position:center;background:var(--page-paper);filter:none}
+.service-page .service-carousel-track figcaption,.service-page .service-category-carousel .gallery-track figcaption{position:static;display:flex;gap:14px;padding:10px 0 0;background:transparent;color:#555;font-size:13px;line-height:1.5;letter-spacing:.02em;text-transform:none}
+.service-page .service-carousel-track figcaption span,.service-page .service-category-carousel .gallery-track figcaption span{color:#777}
+.service-page .service-category-carousel{border-top:1px solid var(--page-line);border-bottom:1px solid var(--page-line)}
+.service-page .service-category-carousel .gallery-room-head{justify-content:space-between;padding:0 0 18px}
+.service-page .service-category-carousel .gallery-count{color:#555;font-size:12px}
+.service-page .service-category-carousel .gallery-controls button{width:38px;height:38px;border:1px solid #aaa!important;background:#fff;color:#111}
+.service-page .service-category-carousel .gallery-controls button:hover{background:#111;color:#fff}
+.service-page .service-detail-grid ul{font-size:13px;font-weight:400;text-transform:none}
+.service-page .service-detail-grid li{border-color:var(--page-line)}
+.service-page .service-cta{background:var(--page-paper)}
+.service-page .service-cta h2{margin:0}
+
+/* The camera-kit and sound pages use the same light secondary-page frame. */
+.subpage .masthead{position:sticky;height:88px;padding:0 5%;background:#fff;border-bottom:1px solid var(--page-line);color:#111}
+.subpage .overview-link,.subpage .menu-toggle{display:none}
+.subpage .brand{position:static;transform:none;color:#111}
+.subpage .brand img{width:34px;height:34px;filter:none}
+.subpage-main{width:90%;max-width:none;margin:0 auto;padding:clamp(60px,9vw,125px) 0}
+.subpage .subpage-hero{grid-template-columns:1fr .65fr;gap:30px 7vw;padding:0 0 clamp(45px,7vw,92px);border-bottom:1px solid var(--page-line)}
+.subpage .subpage-hero h1{max-width:none;color:#111;font-size:clamp(56px,10vw,142px);line-height:.98;letter-spacing:-.055em}
+.subpage .hero-note{max-width:48ch;justify-self:start;color:#555}
+.subpage .hero-note p{color:#555;font:clamp(17px,1.5vw,21px)/1.6 Georgia,'Times New Roman',serif}
+.subpage .text-link{border-color:#222;color:#111}
+.subpage .kit-section,.subpage .sound-list-shell{padding-top:clamp(45px,7vw,90px)}
+.subpage .kit-section-head,.subpage .subpage-section-head{grid-template-columns:.5fr 1.3fr .7fr;gap:28px;margin-bottom:clamp(30px,5vw,58px)}
+.subpage .kit-section-head h2,.subpage .subpage-section-head h2{color:#111;font-size:clamp(32px,5vw,68px)}
+.subpage .kit-section-head p,.subpage .subpage-section-head p,.subpage .kit-card p,.subpage .sound-row-copy p{color:#555;line-height:1.65}
+.subpage .kit-grid{gap:44px 24px}
+.subpage .gear-image{padding:18px;border:0;background:var(--page-paper)}
+.subpage .gear-image:before,.subpage .gear-image:after{display:none}
+.subpage .gear-image img{object-fit:contain;object-position:center}
+.subpage .kit-card small,.subpage .sound-row-copy>span,.subpage .sound-row-number{color:#666;font-size:10px;letter-spacing:.09em}
+.subpage .kit-card h3,.subpage .sound-row h3{color:#111}
+.subpage .kit-card a,.subpage .sound-row-link{border-color:#222;color:#111;font-size:11px}
+.subpage .kit-section+.kit-section{border-color:var(--page-line)}
+.subpage .sound-row-art{border:0;background:var(--page-paper)}
+.subpage .site-footer{display:flex;padding:18px 5%;border-color:var(--page-line);color:#666;background:#fff;font-size:10px;letter-spacing:.055em}
+.subpage .site-footer a{color:#111}
+@media(max-width:760px){
+ :root{--page-width:90%}
+ .portfolio-header{height:70px;padding:0 5%;gap:14px}
+ .portfolio-brand{font-size:11px}.portfolio-brand img{width:29px;height:29px}
+ .portfolio-header nav{gap:12px;font-size:10px}.portfolio-header nav a:nth-child(2){display:none}
+ .portfolio-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;padding:18px 5%;line-height:1.6}
+ .portfolio-footer span:last-child{text-align:right}
+ .project-page .project-hero{grid-template-columns:1fr;padding-top:90px}
+ .project-page .project-hero h1{font-size:clamp(50px,14vw,94px)}
+ .project-page .project-gallery{grid-template-columns:1fr;gap:22px}
+ .project-page .project-gallery figure,.project-page .project-gallery .project-feature{grid-column:1}
+ .project-page .project-gallery img,.project-page .project-gallery .project-feature img{max-height:none}
+ .project-page .project-next{padding:32px 7%}
+ .service-page :is(.service-hero,.service-detail-hero){padding-top:90px}
+ .service-page :is(.service-hero,.service-detail-hero) h1{font-size:clamp(48px,13vw,92px)}
+ .service-page .service-cards a{grid-template-columns:30px 1fr 24px;gap:10px;min-height:90px}
+ .service-page .service-cards em{display:block;grid-column:2;font-size:13px}
+ .service-page .service-cards i{grid-column:3;grid-row:1/3}
+ .service-page .service-carousel-track,.service-page .service-category-carousel .gallery-track{grid-auto-columns:min(82vw,430px)}
+ .service-page .service-carousel-track img,.service-page .service-category-carousel .gallery-track img{height:82vw;max-height:560px}
+ .subpage-main{padding:60px 0}
+ .subpage .subpage-hero{grid-template-columns:1fr;padding-bottom:45px;gap:20px}
+ .subpage .subpage-hero h1{font-size:clamp(52px,15vw,90px)}
+ .subpage .hero-note{max-width:100%}
+ .subpage .kit-section-head,.subpage .subpage-section-head{grid-template-columns:1fr;gap:16px}
+ .subpage .kit-grid,.subpage .sound-list{grid-template-columns:1fr;gap:36px}
+ .subpage .site-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
