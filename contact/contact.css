@@ -113,6 +113,16 @@ body.inquiry-page :is(h1,h2,h3){letter-spacing:-.015em!important}
 .work-carousel .work-project-link span{max-width:310px;color:#555;font:15px/1.5 Georgia,serif}
 .work-carousel .work-project-link i{margin-top:12px;font-size:11px;font-style:normal}
 .work-carousel .work-project-link:hover{background:#e8e6e1}
+.work-carousel .work-project-link{position:relative;display:block;min-height:0;aspect-ratio:4/3;padding:0;overflow:hidden;background:#111;color:#fff}
+.work-carousel .work-project-link>img{display:block;width:100%;height:100%;min-height:0;object-fit:contain!important;object-position:center!important;background:#111;transition:transform .5s ease}
+.work-carousel .work-project-link:hover>img{transform:scale(1.025)}
+.work-project-caption{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:clamp(20px,3vw,36px);background:linear-gradient(180deg,transparent 36%,rgba(0,0,0,.76));opacity:0;transition:opacity .25s ease}
+.work-project-link:hover .work-project-caption,.work-project-link:focus-visible .work-project-caption{opacity:1}
+.work-project-caption strong{font-size:clamp(26px,3.2vw,42px);font-weight:500;letter-spacing:-.035em}
+.work-project-caption small{font-size:13px;line-height:1.45;letter-spacing:.03em}
+.work-project-caption i{margin-top:6px;font-size:12px;font-style:normal}
+@media(max-width:700px){.work-project-caption{opacity:1}.work-project-caption strong{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.work-carousel .work-project-link>img,.work-project-caption{transition:none}}
 
 /* Keep people and brand details centered in every image frame. The Sony
    portrait is intentionally shown uncropped where it appears in wide layouts. */

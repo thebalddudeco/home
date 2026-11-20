@@ -62,3 +62,16 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .po
 .brand-project-links a span{color:var(--portfolio-muted);font-size:12px;font-weight:400}
 .brand-project-links .brand-work-archive{display:inline-flex;gap:10px;margin-top:20px;padding:0 0 6px;border-bottom:1px solid #111;font-size:11px;font-weight:500;letter-spacing:.04em}
 @media(max-width:700px){.brand-project-links>div{grid-template-columns:1fr;gap:0}.brand-project-links{padding:22px 0 8px}}
+.brand-project-links .brand-case-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.brand-case-cards>a{position:relative;display:block;aspect-ratio:1.35;overflow:hidden;padding:0;border:0;background:#eee;color:#fff}
+.brand-case-cards>a:after{position:absolute;inset:0;content:"";background:linear-gradient(transparent 42%,rgba(0,0,0,.72));opacity:0;transition:opacity .25s ease}
+.brand-case-cards img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#171716;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.brand-case-cards>a:hover img,.brand-case-cards>a:focus-visible img{transform:scale(1.025)}
+.brand-case-cards>a:hover:after,.brand-case-cards>a:focus-visible:after{opacity:1}
+.brand-case-caption{position:absolute;z-index:1;left:18px;right:18px;bottom:18px;display:flex;flex-direction:column;gap:5px;opacity:0;transform:translateY(7px);transition:opacity .2s ease,transform .2s ease}
+.brand-case-cards>a:hover .brand-case-caption,.brand-case-cards>a:focus-visible .brand-case-caption{opacity:1;transform:none}
+.brand-case-caption strong{font-size:clamp(18px,2vw,26px);letter-spacing:.015em}
+.brand-case-caption small{font-size:11px;letter-spacing:.06em}
+.brand-case-cards>a:focus-visible{outline:2px solid #111;outline-offset:4px}
+@media(max-width:700px){.brand-project-links .brand-case-cards{grid-template-columns:1fr;gap:12px}.brand-case-cards>a{aspect-ratio:1.2}.brand-case-caption{opacity:1;transform:none}.brand-case-cards>a:after{opacity:1}}
+@media(prefers-reduced-motion:reduce){.brand-case-cards img,.brand-case-cards>a:after,.brand-case-caption{transition:none}}
