@@ -125,3 +125,6 @@ body.project-page :is(h1,h2,h3),body.service-page :is(h1,h2,h3),body.subpage :is
  .subpage .site-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Service routes inherit the current black, white, and neutral portfolio palette. */
+.service-page{--acid:#111;--ink:#111;--paper:#fff;--line:var(--page-line)}
