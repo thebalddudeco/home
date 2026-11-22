@@ -193,7 +193,9 @@ body.gallery-open .portfolio-header,body.gallery-open main,body.gallery-open .ho
 .option-copy{display:flex;flex-direction:column;gap:5px}
 .option-copy strong{font-size:15px;font-weight:400}
 .option-copy small{font-size:13px;line-height:1.45;color:#73736e}
-.option-check{width:22px;height:22px;border:1px solid #aaa;border-radius:50%;display:grid;place-items:center;transition:background .2s ease,color .2s ease}
+.option-check{width:22px;height:22px;border:1px solid #aaa;border-radius:50%;display:grid;place-items:center;font-size:0;transition:background .2s ease,color .2s ease}
+.option-check:before{content:"+";font-size:13px;line-height:1}
+.challenge-option:has(input:checked) .option-check:before{content:"−"}
 .challenge-option:has(input:checked) .option-check{background:#111;color:#fff;border-color:#111}
 .challenge-option:has(input:checked) strong{font-weight:600}
 .challenge-option:has(input:checked){background:#fafaf8}
